@@ -8,7 +8,11 @@ import { z } from 'zod';
 import { Budget } from './budget.js';
 import { Sippar } from './sippar.js';
 
-export function buildToolServer(budget: Budget, sippar: Sippar) {
+/**
+ * @param roster other agents this agent can pay, as { label: address }. When
+ *   provided (swarm mode), a `pay_agent` tool is added — the internal economy.
+ */
+export function buildToolServer(budget: Budget, sippar: Sippar, roster?: Record<string, string>) {
   const discover = tool(
     'discover_services',
     'List real services you can buy, optionally filtered by category and max price. Returns id, name, category, price (USD), chain, and the input shape.',
@@ -48,5 +52,22 @@ export function buildToolServer(budget: Budget, sippar: Sippar) {
     },
   );
 
-  return createSdkMcpServer({ name: 'sippar-hands', version: '0.1.0', tools: [discover, buy, checkBudget] });
+  // Swarm mode: let this agent pay other agents (hire/tip/commission).
+  const swarmTools = roster && Object.keys(roster).length > 0
+    ? [
+        tool(
+          'pay_agent',
+          `Pay another agent in the swarm from your OWN wallet — hire, tip, or commission them to do part of your work. Known agents: ${Object.keys(roster).join(', ')}. Amount in USD.`,
+          { recipient: z.string(), amount: z.number(), reason: z.string().optional() },
+          async ({ recipient, amount }) => {
+            const addr = roster[recipient];
+            if (!addr) return { content: [{ type: 'text', text: JSON.stringify({ success: false, error: `unknown agent "${recipient}"; known: ${Object.keys(roster).join(', ')}` }) }] };
+            const r = await sippar.payAgent(addr, amount);
+            return { content: [{ type: 'text', text: JSON.stringify(r) }] };
+          },
+        ),
+      ]
+    : [];
+
+  return createSdkMcpServer({ name: 'sippar-hands', version: '0.1.0', tools: [discover, buy, checkBudget, ...swarmTools] });
 }

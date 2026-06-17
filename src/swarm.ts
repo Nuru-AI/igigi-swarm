@@ -42,6 +42,7 @@ const HANDS = new Set([
   'mcp__hands__discover_services',
   'mcp__hands__buy_service',
   'mcp__hands__check_budget',
+  'mcp__hands__pay_agent',
 ]);
 const canUseTool = async (toolName: string, input: Record<string, unknown>) => {
   if (HANDS.has(toolName)) return { behavior: 'allow' as const, updatedInput: input };
@@ -60,22 +61,27 @@ const canUseTool = async (toolName: string, input: Record<string, unknown>) => {
 
 const SYSTEM = (capUsd: number) => `You are one sovereign agent in a swarm. You have a real on-chain wallet you control (non-custodial, ICP threshold-signed) seeded with ~$${capUsd} in stablecoins, and tools to discover and BUY real paid services across chains. Spend your OWN money to pursue the mandate well; be economical and stop when your wallet runs low. You never hold a private key; payments settle on-chain automatically. There is NO free internet and you cannot post, message humans, or take any action other than buying from the catalog. Your true spendable balance is reported after every purchase (walletBalanceUSD) — it is the hard limit.`;
 
-async function runAgent(principal: string, label: string, guard: SwarmGuard): Promise<void> {
+interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; }
+
+async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard): Promise<void> {
+  const { label, principal } = agent;
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') console.log(`💸 [${label}] $${e.amount.toFixed(4)} ${e.service.padEnd(16)} → wallet leftover $${e.remaining.toFixed(4)}${e.tx ? `  tx ${e.tx.slice(0, 12)}…` : ''}`);
     else console.log(`🛑 [${label}] BLOCKED ${e.service.padEnd(16)} ${e.reason}`);
   };
   const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);
   const sippar = new Sippar(budget, { principal, guard });
-  const w = await sippar.walletInfo();
-  console.log(`🤖 [${label}] ${principal.slice(0, 14)}… wallet ${w?.address ?? '(?)'} balance $${(w?.balanceUSD ?? 0).toFixed(4)}`);
+  // This agent's view of the swarm: the OTHER agents it can pay, by label.
+  const roster = Object.fromEntries(
+    allAgents.filter((x) => x.label !== label && x.address).map((x) => [x.label, x.address]),
+  );
 
   try {
     for await (const msg of query({
       prompt: MANDATE,
       options: {
-        systemPrompt: SYSTEM(w?.balanceUSD ?? PER_AGENT_CAP),
-        mcpServers: { hands: buildToolServer(budget, sippar) },
+        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nOther agents you can pay (pay_agent): ${Object.keys(roster).join(', ')}.` : ''),
+        mcpServers: { hands: buildToolServer(budget, sippar, roster) },
         settingSources: [],
         allowedTools: [...HANDS, 'Read'],
         disallowedTools: ['WebSearch', 'WebFetch', 'Bash', 'BashOutput', 'KillShell', 'Write', 'Edit', 'NotebookEdit', 'Glob', 'Grep', 'Task', 'Agent', 'Skill', 'Workflow', 'SlashCommand', 'TodoWrite'],
@@ -111,7 +117,19 @@ async function main() {
   process.on('SIGINT', () => { console.log('\n🛑 SIGINT — halting swarm'); guard.halt(); });
   const timer = setTimeout(() => { console.log('\n⏱️  run timeout — halting swarm'); guard.halt(); }, RUN_TIMEOUT_MS);
 
-  await Promise.allSettled(PRINCIPALS.map((p, i) => runAgent(p, `A${i + 1}`, guard)));
+  // Resolve every agent's sovereign wallet first, so they can find each other.
+  const agents: AgentRec[] = [];
+  for (let i = 0; i < PRINCIPALS.length; i++) {
+    const principal = PRINCIPALS[i];
+    const label = `A${i + 1}`;
+    const probe = new Sippar(new Budget(PER_AGENT_CAP, PER_TX_MAX), { principal, guard });
+    const w = await probe.walletInfo();
+    agents.push({ label, principal, address: w?.address ?? '', balanceUSD: w?.balanceUSD ?? 0 });
+    console.log(`🤖 [${label}] ${principal.slice(0, 14)}… wallet ${w?.address ?? '(?)'} balance $${(w?.balanceUSD ?? 0).toFixed(4)}`);
+  }
+  console.log();
+
+  await Promise.allSettled(agents.map((a) => runAgent(a, agents, guard)));
   clearTimeout(timer);
 
   console.log(`\n=== Swarm done ===  total spent $${guard.spent.toFixed(4)} / $${SWARM_CAP_USD}${guard.halted_ ? '  (HALTED)' : ''}`);

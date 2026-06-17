@@ -123,4 +123,36 @@ export class Sippar {
       return { success: false, service: svc.id, amountPaid: 0, error: String((e as Error).message) };
     }
   }
+
+  /**
+   * Pay another agent (the swarm's internal economy — hire / tip / commission).
+   * Gated by the kill switch + this agent's per-tx/budget cap; the money stays
+   * inside the swarm, so it does NOT draw down the external spend ceiling.
+   */
+  async payAgent(toAddress: string, amountUSD: number): Promise<PayResult> {
+    const label = `→${toAddress.slice(0, 8)}…`;
+    if (!this.principal) return { success: false, service: label, amountPaid: 0, error: 'agent has no sovereign wallet' };
+    try {
+      this.guard?.assertAlive(); // kill switch (not the external ceiling — internal transfer)
+      this.budget.assertCanSpend(label, amountUSD);
+    } catch (e) {
+      const reason = String((e as Error).message);
+      this.budget.blocked(label, amountUSD, reason);
+      return { success: false, service: label, amountPaid: 0, error: reason };
+    }
+    try {
+      const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/transfer`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Sippar-Access': ACCESS },
+        body: JSON.stringify({ fromPrincipal: this.principal, toAddress, amountUSD }),
+      });
+      const env: any = await res.json().catch(() => ({}));
+      const data: any = env?.data ?? env;
+      const ok = !!data?.success && data?.status !== '0x0';
+      if (ok) this.budget.commit(label, amountUSD, data?.tx);
+      return { success: ok, service: label, amountPaid: ok ? amountUSD : 0, tx: data?.tx, walletBalanceUSD: typeof data?.fromBalanceUSD === 'number' ? data.fromBalanceUSD : undefined, error: data?.error };
+    } catch (e) {
+      return { success: false, service: label, amountPaid: 0, error: String((e as Error).message) };
+    }
+  }
 }
