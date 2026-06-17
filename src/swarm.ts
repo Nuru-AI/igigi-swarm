@@ -21,6 +21,7 @@ import { Budget, type BudgetEvent } from './budget.js';
 import { Sippar } from './sippar.js';
 import { SwarmGuard } from './swarm-guard.js';
 import { buildToolServer } from './tools.js';
+import { Marketplace } from './marketplace.js';
 
 // Keep large MCP results inline (no temp-file spill).
 process.env.MAX_MCP_OUTPUT_TOKENS ||= '200000';
@@ -44,6 +45,9 @@ const HANDS = new Set([
   'mcp__hands__buy_service',
   'mcp__hands__check_budget',
   'mcp__hands__pay_agent',
+  'mcp__hands__post_finding',
+  'mcp__hands__list_findings',
+  'mcp__hands__buy_finding',
 ]);
 const canUseTool = async (toolName: string, input: Record<string, unknown>) => {
   if (HANDS.has(toolName)) return { behavior: 'allow' as const, updatedInput: input };
@@ -64,7 +68,7 @@ const SYSTEM = (capUsd: number) => `You are one sovereign agent in a swarm. You 
 
 interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; }
 
-async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard): Promise<void> {
+async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard, market: Marketplace): Promise<void> {
   const { label, principal } = agent;
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') console.log(`💸 [${label}] $${e.amount.toFixed(4)} ${e.service.padEnd(16)} → wallet leftover $${e.remaining.toFixed(4)}${e.tx ? `  tx ${e.tx.slice(0, 12)}…` : ''}`);
@@ -81,8 +85,8 @@ async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuar
     for await (const msg of query({
       prompt: MANDATE,
       options: {
-        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nOther agents you can pay (pay_agent): ${Object.keys(roster).join(', ')}.` : ''),
-        mcpServers: { hands: buildToolServer(budget, sippar, roster) },
+        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market: you can SELL your research with post_finding (others pay you on-chain and get the content), and you can list_findings / buy_finding to purchase another agent's work instead of doing it yourself. Trading can be cheaper than working alone — use it when it makes sense. You can also pay_agent directly.` : ''),
+        mcpServers: { hands: buildToolServer(budget, sippar, Object.keys(roster).length ? { selfLabel: label, selfAddr: agent.address, roster, marketplace: market } : undefined) },
         settingSources: [],
         allowedTools: [...HANDS, 'Read'],
         disallowedTools: ['WebSearch', 'WebFetch', 'Bash', 'BashOutput', 'KillShell', 'Write', 'Edit', 'NotebookEdit', 'Glob', 'Grep', 'Task', 'Agent', 'Skill', 'Workflow', 'SlashCommand', 'TodoWrite'],
@@ -136,7 +140,8 @@ async function main() {
   }
   console.log();
 
-  await Promise.allSettled(agents.map((a) => runAgent(a, agents, guard)));
+  const market = new Marketplace(); // shared findings-market (in-process; payments are real on-chain)
+  await Promise.allSettled(agents.map((a) => runAgent(a, agents, guard, market)));
   clearTimeout(timer);
 
   const u = guard.usageSummary;

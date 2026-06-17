@@ -24,6 +24,27 @@ const ACCESS = process.env.SIPPAR_ACCESS_TOKEN || '';
 // shown at startup; its on-chain balance is the agent's true hard cap.
 const ENV_PRINCIPAL = process.env.AGENT_PRINCIPAL || '';
 
+/**
+ * Search APIs return huge JSON that spills to a temp file the agent can't slice,
+ * so it falls back to training memory and hallucinates (Run 1 failure mode).
+ * Extract the REAL results (title/url/snippet) into a compact, consumable shape —
+ * the actual sources a briefing needs — so synthesis is grounded in PAID data.
+ * Handles Brave (data.web.results) and Tavily (data.results + answer).
+ */
+function compactSearchResponse(response: any): any {
+  const d = response?.data ?? response;
+  const raw = d?.results ?? d?.web?.results ?? [];
+  const results = (Array.isArray(raw) ? raw : []).slice(0, 8).map((r: any) => ({
+    title: r?.title,
+    url: r?.url,
+    snippet: String(r?.content ?? r?.description ?? r?.snippet ?? '').slice(0, 400),
+  })).filter((r: any) => r.title || r.url);
+  if (!results.length) return response; // unknown shape — leave as-is
+  const out: any = { results };
+  if (d?.answer) out.answer = d.answer; // Tavily's synthesized answer
+  return out;
+}
+
 export interface SipparOpts {
   /** This agent's ICP principal (its sovereign wallet). Defaults to env AGENT_PRINCIPAL. */
   principal?: string;
@@ -118,7 +139,8 @@ export class Sippar {
         this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx);
         this.guard?.commit(amountPaid || svc.price);
       }
-      return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response: data?.response, error: data?.error, walletBalanceUSD: typeof data?.agentBalanceUSD === 'number' ? data.agentBalanceUSD : undefined };
+      const response = svc.category === 'search' ? compactSearchResponse(data?.response) : data?.response;
+      return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response, error: data?.error, walletBalanceUSD: typeof data?.agentBalanceUSD === 'number' ? data.agentBalanceUSD : undefined };
     } catch (e) {
       return { success: false, service: svc.id, amountPaid: 0, error: String((e as Error).message) };
     }

@@ -7,12 +7,21 @@ import { tool, createSdkMcpServer } from '@anthropic-ai/claude-agent-sdk';
 import { z } from 'zod';
 import { Budget } from './budget.js';
 import { Sippar } from './sippar.js';
+import { Marketplace } from './marketplace.js';
+
+export interface SwarmContext {
+  selfLabel: string;                  // this agent's label (e.g. "A1")
+  selfAddr: string;                   // this agent's wallet (where buyers pay it)
+  roster: Record<string, string>;     // other agents: label -> address
+  marketplace: Marketplace;           // shared findings-market
+}
 
 /**
- * @param roster other agents this agent can pay, as { label: address }. When
- *   provided (swarm mode), a `pay_agent` tool is added — the internal economy.
+ * @param swarm when provided (swarm mode), adds the internal-economy tools:
+ *   pay_agent (direct payment) + post_finding / list_findings / buy_finding
+ *   (sell & buy work between agents — real on-chain payment for delivered content).
  */
-export function buildToolServer(budget: Budget, sippar: Sippar, roster?: Record<string, string>) {
+export function buildToolServer(budget: Budget, sippar: Sippar, swarm?: SwarmContext) {
   const discover = tool(
     'discover_services',
     'List real services you can buy, optionally filtered by category and max price. Returns id, name, category, price (USD), chain, and the input shape.',
@@ -52,18 +61,47 @@ export function buildToolServer(budget: Budget, sippar: Sippar, roster?: Record<
     },
   );
 
-  // Swarm mode: let this agent pay other agents (hire/tip/commission).
-  const swarmTools = roster && Object.keys(roster).length > 0
+  // Swarm mode: the internal economy — pay other agents + a findings-market
+  // where agents SELL work to each other (real on-chain payment for content).
+  const swarmTools = swarm
     ? [
         tool(
           'pay_agent',
-          `Pay another agent in the swarm from your OWN wallet — hire, tip, or commission them to do part of your work. Known agents: ${Object.keys(roster).join(', ')}. Amount in USD.`,
+          `Pay another agent directly from your OWN wallet (tip / commission). Known agents: ${Object.keys(swarm.roster).join(', ')}. Amount in USD.`,
           { recipient: z.string(), amount: z.number(), reason: z.string().optional() },
           async ({ recipient, amount }) => {
-            const addr = roster[recipient];
-            if (!addr) return { content: [{ type: 'text', text: JSON.stringify({ success: false, error: `unknown agent "${recipient}"; known: ${Object.keys(roster).join(', ')}` }) }] };
+            const addr = swarm.roster[recipient];
+            if (!addr) return { content: [{ type: 'text', text: JSON.stringify({ success: false, error: `unknown agent "${recipient}"; known: ${Object.keys(swarm.roster).join(', ')}` }) }] };
             const r = await sippar.payAgent(addr, amount);
             return { content: [{ type: 'text', text: JSON.stringify(r) }] };
+          },
+        ),
+        tool(
+          'post_finding',
+          'SELL a finding/work-product to other agents: post a public summary + a price (USD). Buyers pay you on-chain and receive the full content. This is how you EARN — sell research you paid to gather.',
+          { summary: z.string(), content: z.string(), price: z.number() },
+          async ({ summary, content, price }) => {
+            const id = swarm.marketplace.post(swarm.selfLabel, swarm.selfAddr, summary, content, price);
+            return { content: [{ type: 'text', text: JSON.stringify({ posted: true, id, price }) }] };
+          },
+        ),
+        tool(
+          'list_findings',
+          'See findings OTHER agents are selling (id, seller, summary, price). Buying one with buy_finding can be cheaper than doing the research yourself.',
+          {},
+          async () => ({ content: [{ type: 'text', text: JSON.stringify(swarm.marketplace.list(swarm.selfLabel)) }] }),
+        ),
+        tool(
+          'buy_finding',
+          'Pay another agent for their posted finding (real on-chain payment from your wallet) and receive its full content.',
+          { id: z.number() },
+          async ({ id }) => {
+            const item = swarm.marketplace.get(id);
+            if (!item) return { content: [{ type: 'text', text: JSON.stringify({ success: false, error: `no finding #${id}` }) }] };
+            if (item.seller === swarm.selfLabel) return { content: [{ type: 'text', text: JSON.stringify({ success: false, error: 'cannot buy your own finding' }) }] };
+            const pay = await sippar.payAgent(item.sellerAddr, item.priceUSD);
+            if (!pay.success) return { content: [{ type: 'text', text: JSON.stringify({ success: false, error: `payment failed: ${pay.error}` }) }] };
+            return { content: [{ type: 'text', text: JSON.stringify({ success: true, paidTo: item.seller, amountUSD: item.priceUSD, tx: pay.tx, content: item.content }) }] };
           },
         ),
       ]
