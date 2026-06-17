@@ -16,13 +16,36 @@ import { existsSync } from 'node:fs';
 export class SwarmGuard {
   private totalSpent = 0;
   private halted = false;
+  private tokensIn = 0;
+  private tokensOut = 0;
+  private notionalCostUsd = 0; // what the reasoning WOULD cost via API (we're on subscription)
 
   constructor(
     readonly totalCapUsd: number,
     /** Presence of this file halts the swarm (the kill switch). */
     readonly killFile: string,
     private readonly onEvent: (msg: string) => void = () => {},
+    /** Compute ceiling: halt the swarm if total Claude tokens exceed this. */
+    readonly tokenCap: number = Infinity,
   ) {}
+
+  /** Record an agent's Claude usage (from the SDK result message). May trip the token ceiling. */
+  recordUsage(inputTokens: number, outputTokens: number, costUsd: number): void {
+    this.tokensIn += inputTokens;
+    this.tokensOut += outputTokens;
+    this.notionalCostUsd += costUsd;
+    if (this.tokens > this.tokenCap) {
+      this.onEvent(`🛑 TOKEN CEILING — ${this.tokens} tokens > cap ${this.tokenCap}; halting swarm`);
+      this.halted = true;
+    }
+  }
+
+  get tokens(): number {
+    return this.tokensIn + this.tokensOut;
+  }
+  get usageSummary(): { tokensIn: number; tokensOut: number; tokens: number; notionalCostUsd: number } {
+    return { tokensIn: this.tokensIn, tokensOut: this.tokensOut, tokens: this.tokens, notionalCostUsd: this.notionalCostUsd };
+  }
 
   /** Throws if the swarm has been halted (flag set or kill-file present). */
   assertAlive(): void {

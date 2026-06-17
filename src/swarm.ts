@@ -33,6 +33,7 @@ const PER_TX_MAX = Number(process.env.PER_TX_MAX_USD || '0.04');
 const KILL_FILE = process.env.SWARM_KILL_FILE || './SWARM_KILL';        // create this to halt
 const MAX_TURNS = Number(process.env.SWARM_MAX_TURNS || '30');
 const RUN_TIMEOUT_MS = Number(process.env.SWARM_TIMEOUT_MS || String(15 * 60 * 1000)); // wall-clock cap
+const TOKEN_CAP = Number(process.env.SWARM_TOKEN_CAP || '2000000'); // compute ceiling: halt if total Claude tokens exceed this
 const MANDATE = process.argv.slice(2).join(' ') ||
   'You have a small budget and real hands (paid services across chains). Be useful with it — produce something of value. Spend economically and stop when your wallet is low.';
 
@@ -90,11 +91,17 @@ async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuar
         maxTurns: MAX_TURNS,
       },
     })) {
-      if (guard.halted_) break; // kill switch tripped elsewhere
+      if (guard.halted_) break; // kill switch / token ceiling tripped elsewhere
       if (msg.type === 'assistant') {
         for (const block of msg.message.content) {
           if (block.type === 'text' && block.text.trim()) console.log(`\n🤖 [${label}] ${block.text.trim()}`);
         }
+      } else if (msg.type === 'result') {
+        const u = (msg as any).usage ?? {};
+        const inTok = (u.input_tokens ?? 0) + (u.cache_read_input_tokens ?? 0) + (u.cache_creation_input_tokens ?? 0);
+        const outTok = u.output_tokens ?? 0;
+        guard.recordUsage(inTok, outTok, (msg as any).total_cost_usd ?? 0);
+        console.log(`🧮 [${label}] turns ${(msg as any).num_turns ?? '?'} · tokens ${inTok + outTok} · swarm total ${guard.tokens}/${guard.tokenCap}`);
       }
     }
   } catch (e) {
@@ -111,7 +118,7 @@ async function main() {
   console.log(`Agents: ${PRINCIPALS.length}  ·  swarm ceiling: $${SWARM_CAP_USD}  ·  per-agent: $${PER_AGENT_CAP}  ·  kill-file: ${KILL_FILE}`);
   console.log(`Mandate: ${MANDATE}\n`);
 
-  const guard = new SwarmGuard(SWARM_CAP_USD, KILL_FILE, (m) => console.log(m));
+  const guard = new SwarmGuard(SWARM_CAP_USD, KILL_FILE, (m) => console.log(m), TOKEN_CAP);
 
   // Kill switch on Ctrl-C, and a hard wall-clock cap.
   process.on('SIGINT', () => { console.log('\n🛑 SIGINT — halting swarm'); guard.halt(); });
@@ -132,7 +139,8 @@ async function main() {
   await Promise.allSettled(agents.map((a) => runAgent(a, agents, guard)));
   clearTimeout(timer);
 
-  console.log(`\n=== Swarm done ===  total spent $${guard.spent.toFixed(4)} / $${SWARM_CAP_USD}${guard.halted_ ? '  (HALTED)' : ''}`);
+  const u = guard.usageSummary;
+  console.log(`\n=== Swarm done === money $${guard.spent.toFixed(4)}/$${SWARM_CAP_USD} · Claude ${u.tokens} tokens (notional $${u.notionalCostUsd.toFixed(4)}, free on subscription) / cap ${TOKEN_CAP}${guard.halted_ ? ' · HALTED' : ''}`);
 }
 
 main().catch((e) => { console.error('SWARM FAILED', e); process.exit(1); });
