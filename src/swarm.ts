@@ -39,6 +39,11 @@ const MODEL = process.env.SWARM_MODEL || 'claude-sonnet-4-6'; // pinned for pred
 const STAGGER_MS = Number(process.env.SWARM_STAGGER_MS || '90000'); // delay each agent after the first, so sellers post before buyers shop (a continuous swarm has this naturally)
 const MANDATE = process.argv.slice(2).join(' ') ||
   'You have a small budget and real hands (paid services across chains). Be useful with it — produce something of value. Spend economically and stop when your wallet is low.';
+// Per-agent role mandates ("||"-separated), parallel to SWARM_PRINCIPALS. When set,
+// agent i gets ROLES[i] instead of the shared MANDATE — lets agents have
+// complementary, dependent tasks (e.g. a producer of a unique deliverable + a
+// consumer that must buy it), which creates real demand in the findings-market.
+const ROLES = (process.env.SWARM_ROLES || '').split('||').map((s) => s.trim()).filter(Boolean);
 
 // Tool confinement — identical to the single-agent harness. The ONLY way to reach
 // the outside world is buying from the allowlist; no web/shell/file/posting tools.
@@ -68,7 +73,7 @@ const canUseTool = async (toolName: string, input: Record<string, unknown>) => {
 
 const SYSTEM = (capUsd: number) => `You are one sovereign agent in a swarm. You have a real on-chain wallet you control (non-custodial, ICP threshold-signed) seeded with ~$${capUsd} in stablecoins, and tools to discover and BUY real paid services across chains. Spend your OWN money to pursue the mandate well; be economical and stop when your wallet runs low. You never hold a private key; payments settle on-chain automatically. There is NO free internet and you cannot post, message humans, or take any action other than buying from the catalog. Your true spendable balance is reported after every purchase (walletBalanceUSD) — it is the hard limit.`;
 
-interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; }
+interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; mandate: string; }
 
 async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard, market: Marketplace, startDelayMs = 0): Promise<void> {
   const { label, principal } = agent;
@@ -90,7 +95,7 @@ async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuar
 
   try {
     for await (const msg of query({
-      prompt: MANDATE,
+      prompt: agent.mandate,
       options: {
         systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market. ALWAYS run list_findings FIRST before buying any service — buying another agent's existing finding is usually cheaper than paying for your own search, and may be the only grounded option if your wallet is small. If the market is empty but you cannot afford your own search, do NOT fabricate — call check_budget / list_findings again after a moment; other agents may post a finding you can buy shortly. You can SELL your own research with post_finding (others pay you on-chain and receive the content) to recoup cost. You can also pay_agent directly. Trade when it makes economic sense.` : ''),
         mcpServers: { hands: buildToolServer(budget, sippar, Object.keys(roster).length ? { selfLabel: label, selfAddr: agent.address, roster, marketplace: market } : undefined) },
@@ -143,8 +148,9 @@ async function main() {
     const label = `A${i + 1}`;
     const probe = new Sippar(new Budget(PER_AGENT_CAP, PER_TX_MAX), { principal, guard });
     const w = await probe.walletInfo();
-    agents.push({ label, principal, address: w?.address ?? '', balanceUSD: w?.balanceUSD ?? 0 });
-    console.log(`🤖 [${label}] ${principal.slice(0, 14)}… wallet ${w?.address ?? '(?)'} balance $${(w?.balanceUSD ?? 0).toFixed(4)}`);
+    const mandate = ROLES[i] || MANDATE;
+    agents.push({ label, principal, address: w?.address ?? '', balanceUSD: w?.balanceUSD ?? 0, mandate });
+    console.log(`🤖 [${label}] ${principal.slice(0, 14)}… wallet ${w?.address ?? '(?)'} balance $${(w?.balanceUSD ?? 0).toFixed(4)}${ROLES[i] ? `  role: ${ROLES[i].slice(0, 60)}…` : ''}`);
   }
   console.log();
 
