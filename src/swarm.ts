@@ -36,6 +36,7 @@ const MAX_TURNS = Number(process.env.SWARM_MAX_TURNS || '30');
 const RUN_TIMEOUT_MS = Number(process.env.SWARM_TIMEOUT_MS || String(15 * 60 * 1000)); // wall-clock cap
 const TOKEN_CAP = Number(process.env.SWARM_TOKEN_CAP || '2000000'); // compute ceiling: halt if total Claude tokens exceed this
 const MODEL = process.env.SWARM_MODEL || 'claude-sonnet-4-6'; // pinned for predictability + lighter subscription rate-limit use than Opus
+const STAGGER_MS = Number(process.env.SWARM_STAGGER_MS || '90000'); // delay each agent after the first, so sellers post before buyers shop (a continuous swarm has this naturally)
 const MANDATE = process.argv.slice(2).join(' ') ||
   'You have a small budget and real hands (paid services across chains). Be useful with it — produce something of value. Spend economically and stop when your wallet is low.';
 
@@ -69,8 +70,13 @@ const SYSTEM = (capUsd: number) => `You are one sovereign agent in a swarm. You 
 
 interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; }
 
-async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard, market: Marketplace): Promise<void> {
+async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard, market: Marketplace, startDelayMs = 0): Promise<void> {
   const { label, principal } = agent;
+  if (startDelayMs > 0) {
+    console.log(`⏳ [${label}] starts in ${Math.round(startDelayMs / 1000)}s (letting sellers post to the market first)`);
+    await new Promise((r) => setTimeout(r, startDelayMs));
+    if (guard.halted_) return;
+  }
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') console.log(`💸 [${label}] $${e.amount.toFixed(4)} ${e.service.padEnd(16)} → wallet leftover $${e.remaining.toFixed(4)}${e.tx ? `  tx ${e.tx.slice(0, 12)}…` : ''}`);
     else console.log(`🛑 [${label}] BLOCKED ${e.service.padEnd(16)} ${e.reason}`);
@@ -86,7 +92,7 @@ async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuar
     for await (const msg of query({
       prompt: MANDATE,
       options: {
-        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market. ALWAYS run list_findings FIRST before buying any service — buying another agent's existing finding is usually cheaper than paying for your own search, and may be the only grounded option if your wallet is small. You can SELL your own research with post_finding (others pay you on-chain and receive the content) to recoup cost. You can also pay_agent directly. Trade when it makes economic sense.` : ''),
+        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market. ALWAYS run list_findings FIRST before buying any service — buying another agent's existing finding is usually cheaper than paying for your own search, and may be the only grounded option if your wallet is small. If the market is empty but you cannot afford your own search, do NOT fabricate — call check_budget / list_findings again after a moment; other agents may post a finding you can buy shortly. You can SELL your own research with post_finding (others pay you on-chain and receive the content) to recoup cost. You can also pay_agent directly. Trade when it makes economic sense.` : ''),
         mcpServers: { hands: buildToolServer(budget, sippar, Object.keys(roster).length ? { selfLabel: label, selfAddr: agent.address, roster, marketplace: market } : undefined) },
         settingSources: [],
         allowedTools: [...HANDS, 'Read'],
@@ -143,7 +149,8 @@ async function main() {
   console.log();
 
   const market = new Marketplace(); // shared findings-market (in-process; payments are real on-chain)
-  await Promise.allSettled(agents.map((a) => runAgent(a, agents, guard, market)));
+  // Stagger: agent i waits i×STAGGER, so earlier agents can post findings before later ones shop.
+  await Promise.allSettled(agents.map((a, i) => runAgent(a, agents, guard, market, i * STAGGER_MS)));
   clearTimeout(timer);
 
   const u = guard.usageSummary;
