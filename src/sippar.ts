@@ -18,6 +18,10 @@ import { VERIFIED_SERVICES, type Service } from './services.js';
 
 const SIPPAR_BASE = process.env.SIPPAR_BASE_URL || 'https://sippar.network';
 const ACCESS = process.env.SIPPAR_ACCESS_TOKEN || '';
+// When set, the agent pays from ITS OWN sovereign threshold wallet (this ICP
+// principal's derived address) instead of the shared treasury. Fund the wallet
+// shown at startup; its on-chain balance is the agent's true hard cap.
+const AGENT_PRINCIPAL = process.env.AGENT_PRINCIPAL || '';
 
 export interface PayResult {
   success: boolean;
@@ -31,6 +35,26 @@ export interface PayResult {
 
 export class Sippar {
   constructor(private readonly budget: Budget) {}
+
+  /** Is the agent spending from its own sovereign wallet (vs the shared treasury)? */
+  get sovereign(): boolean {
+    return !!AGENT_PRINCIPAL;
+  }
+
+  /** The agent's own threshold-derived wallet (for funding). Null if not sovereign. */
+  async walletInfo(): Promise<{ principal: string; address: string } | null> {
+    if (!AGENT_PRINCIPAL) return null;
+    try {
+      const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/address/${AGENT_PRINCIPAL}`, {
+        headers: { 'X-Sippar-Access': ACCESS },
+      });
+      const data: any = await res.json().catch(() => ({}));
+      const d = data?.data ?? data;
+      return d?.address ? { principal: AGENT_PRINCIPAL, address: d.address } : null;
+    } catch {
+      return null;
+    }
+  }
 
   /** The discovery menu the agent chooses from (the render-verified economy). */
   discover(opts?: { category?: string; maxPrice?: number }): Service[] {
@@ -60,7 +84,7 @@ export class Sippar {
       const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/pay`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Sippar-Access': ACCESS },
-        body: JSON.stringify({ serviceUrl: svc.url, payload, maxAmountUSD: svc.price * 1.5, preferTempo: svc.chain === 'tempo' }),
+        body: JSON.stringify({ serviceUrl: svc.url, payload, maxAmountUSD: svc.price * 1.5, preferTempo: svc.chain === 'tempo', ...(AGENT_PRINCIPAL ? { agentPrincipal: AGENT_PRINCIPAL } : {}) }),
       });
       const env: any = await res.json().catch(() => ({}));
       // Endpoint wraps its payload in createSuccessResponse -> { success, data, timestamp }.

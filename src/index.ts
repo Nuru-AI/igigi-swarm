@@ -50,6 +50,13 @@ async function main() {
   const sippar = new Sippar(budget);
   const hands = buildToolServer(budget, sippar);
 
+  if (sippar.sovereign) {
+    const w = await sippar.walletInfo();
+    if (w) console.log(`Sovereign wallet: ${w.address}  (agent ${w.principal.slice(0, 16)}… — pays from its OWN balance, fund with USDC.e on Tempo)\n`);
+  } else {
+    console.log(`(paying from shared treasury — set AGENT_PRINCIPAL for a sovereign wallet)\n`);
+  }
+
   // Hard gate (runs below the model). Allow the paid hands + a read-only escape
   // valve for inspecting purchased results; deny everything else by default.
   const HANDS_TOOLS = new Set([
