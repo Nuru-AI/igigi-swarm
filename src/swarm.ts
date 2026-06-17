@@ -35,6 +35,7 @@ const KILL_FILE = process.env.SWARM_KILL_FILE || './SWARM_KILL';        // creat
 const MAX_TURNS = Number(process.env.SWARM_MAX_TURNS || '30');
 const RUN_TIMEOUT_MS = Number(process.env.SWARM_TIMEOUT_MS || String(15 * 60 * 1000)); // wall-clock cap
 const TOKEN_CAP = Number(process.env.SWARM_TOKEN_CAP || '2000000'); // compute ceiling: halt if total Claude tokens exceed this
+const MODEL = process.env.SWARM_MODEL || 'claude-sonnet-4-6'; // pinned for predictability + lighter subscription rate-limit use than Opus
 const MANDATE = process.argv.slice(2).join(' ') ||
   'You have a small budget and real hands (paid services across chains). Be useful with it — produce something of value. Spend economically and stop when your wallet is low.';
 
@@ -85,12 +86,13 @@ async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuar
     for await (const msg of query({
       prompt: MANDATE,
       options: {
-        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market: you can SELL your research with post_finding (others pay you on-chain and get the content), and you can list_findings / buy_finding to purchase another agent's work instead of doing it yourself. Trading can be cheaper than working alone — use it when it makes sense. You can also pay_agent directly.` : ''),
+        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market. ALWAYS run list_findings FIRST before buying any service — buying another agent's existing finding is usually cheaper than paying for your own search, and may be the only grounded option if your wallet is small. You can SELL your own research with post_finding (others pay you on-chain and receive the content) to recoup cost. You can also pay_agent directly. Trade when it makes economic sense.` : ''),
         mcpServers: { hands: buildToolServer(budget, sippar, Object.keys(roster).length ? { selfLabel: label, selfAddr: agent.address, roster, marketplace: market } : undefined) },
         settingSources: [],
         allowedTools: [...HANDS, 'Read'],
         disallowedTools: ['WebSearch', 'WebFetch', 'Bash', 'BashOutput', 'KillShell', 'Write', 'Edit', 'NotebookEdit', 'Glob', 'Grep', 'Task', 'Agent', 'Skill', 'Workflow', 'SlashCommand', 'TodoWrite'],
         canUseTool,
+        model: MODEL,
         permissionMode: 'default',
         maxTurns: MAX_TURNS,
       },
@@ -119,7 +121,7 @@ async function main() {
     console.error('No agents. Set SWARM_PRINCIPALS=p1,p2,p3 (funded sovereign wallets) in .env.');
     process.exit(1);
   }
-  console.log(`Agents: ${PRINCIPALS.length}  ·  swarm ceiling: $${SWARM_CAP_USD}  ·  per-agent: $${PER_AGENT_CAP}  ·  kill-file: ${KILL_FILE}`);
+  console.log(`Agents: ${PRINCIPALS.length}  ·  model: ${MODEL}  ·  swarm ceiling: $${SWARM_CAP_USD}  ·  per-agent: $${PER_AGENT_CAP}  ·  kill-file: ${KILL_FILE}`);
   console.log(`Mandate: ${MANDATE}\n`);
 
   const guard = new SwarmGuard(SWARM_CAP_USD, KILL_FILE, (m) => console.log(m), TOKEN_CAP);
