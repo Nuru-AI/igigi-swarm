@@ -14,6 +14,7 @@
  * deployed yet, this is the single integration point to wire.
  */
 import { Budget } from './budget.js';
+import { SwarmGuard } from './swarm-guard.js';
 import { VERIFIED_SERVICES, type Service } from './services.js';
 
 const SIPPAR_BASE = process.env.SIPPAR_BASE_URL || 'https://sippar.network';
@@ -21,7 +22,14 @@ const ACCESS = process.env.SIPPAR_ACCESS_TOKEN || '';
 // When set, the agent pays from ITS OWN sovereign threshold wallet (this ICP
 // principal's derived address) instead of the shared treasury. Fund the wallet
 // shown at startup; its on-chain balance is the agent's true hard cap.
-const AGENT_PRINCIPAL = process.env.AGENT_PRINCIPAL || '';
+const ENV_PRINCIPAL = process.env.AGENT_PRINCIPAL || '';
+
+export interface SipparOpts {
+  /** This agent's ICP principal (its sovereign wallet). Defaults to env AGENT_PRINCIPAL. */
+  principal?: string;
+  /** Swarm-wide guard (kill switch + total ceiling). Optional for single-agent runs. */
+  guard?: SwarmGuard;
+}
 
 export interface PayResult {
   success: boolean;
@@ -35,11 +43,17 @@ export interface PayResult {
 }
 
 export class Sippar {
-  constructor(private readonly budget: Budget) {}
+  private readonly principal: string;
+  private readonly guard?: SwarmGuard;
+
+  constructor(private readonly budget: Budget, opts: SipparOpts = {}) {
+    this.principal = opts.principal ?? ENV_PRINCIPAL;
+    this.guard = opts.guard;
+  }
 
   /** Is the agent spending from its own sovereign wallet (vs the shared treasury)? */
   get sovereign(): boolean {
-    return !!AGENT_PRINCIPAL;
+    return !!this.principal;
   }
 
   /**
@@ -47,14 +61,14 @@ export class Sippar {
    * true spendable funds — the real hard cap). Null if not sovereign.
    */
   async walletInfo(): Promise<{ principal: string; address: string; balanceUSD?: number } | null> {
-    if (!AGENT_PRINCIPAL) return null;
+    if (!this.principal) return null;
     try {
-      const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/address/${AGENT_PRINCIPAL}`, {
+      const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/address/${this.principal}`, {
         headers: { 'X-Sippar-Access': ACCESS },
       });
       const data: any = await res.json().catch(() => ({}));
       const d = data?.data ?? data;
-      return d?.address ? { principal: AGENT_PRINCIPAL, address: d.address, balanceUSD: typeof d.balanceUSD === 'number' ? d.balanceUSD : undefined } : null;
+      return d?.address ? { principal: this.principal, address: d.address, balanceUSD: typeof d.balanceUSD === 'number' ? d.balanceUSD : undefined } : null;
     } catch {
       return null;
     }
@@ -74,8 +88,10 @@ export class Sippar {
     const svc = VERIFIED_SERVICES.find((s) => s.id === serviceId);
     if (!svc) return { success: false, service: serviceId, amountPaid: 0, error: 'unknown service' };
 
-    // 1. HARD CAP — below the agent's reasoning. Throws if it would breach.
+    // 1. HARD CAPS — below the agent's reasoning. Swarm guard (kill switch +
+    //    total ceiling) AND this agent's own budget. Either throwing blocks the buy.
     try {
+      this.guard?.assertCanSpend(svc.price);
       this.budget.assertCanSpend(svc.id, svc.price);
     } catch (e) {
       const reason = String((e as Error).message);
@@ -88,7 +104,7 @@ export class Sippar {
       const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/pay`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Sippar-Access': ACCESS },
-        body: JSON.stringify({ serviceUrl: svc.url, payload, maxAmountUSD: svc.price * 1.5, preferTempo: svc.chain === 'tempo', ...(AGENT_PRINCIPAL ? { agentPrincipal: AGENT_PRINCIPAL } : {}) }),
+        body: JSON.stringify({ serviceUrl: svc.url, payload, maxAmountUSD: svc.price * 1.5, preferTempo: svc.chain === 'tempo', ...(this.principal ? { agentPrincipal: this.principal } : {}) }),
       });
       const env: any = await res.json().catch(() => ({}));
       // Endpoint wraps its payload in createSuccessResponse -> { success, data, timestamp }.
@@ -98,7 +114,10 @@ export class Sippar {
       // Success = the service actually responded 2xx (not just the HTTP envelope).
       const serviceOk = data?.serviceStatus === undefined || data.serviceStatus < 400;
       const ok = !!data?.success && serviceOk;
-      if (ok) this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx);
+      if (ok) {
+        this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx);
+        this.guard?.commit(amountPaid || svc.price);
+      }
       return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response: data?.response, error: data?.error, walletBalanceUSD: typeof data?.agentBalanceUSD === 'number' ? data.agentBalanceUSD : undefined };
     } catch (e) {
       return { success: false, service: svc.id, amountPaid: 0, error: String((e as Error).message) };
