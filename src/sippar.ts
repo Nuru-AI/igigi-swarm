@@ -31,6 +31,7 @@ export interface PayResult {
   tx?: string;
   response?: unknown;
   error?: string;
+  walletBalanceUSD?: number; // agent's true on-chain balance AFTER this payment (sovereign mode)
 }
 
 export class Sippar {
@@ -41,8 +42,11 @@ export class Sippar {
     return !!AGENT_PRINCIPAL;
   }
 
-  /** The agent's own threshold-derived wallet (for funding). Null if not sovereign. */
-  async walletInfo(): Promise<{ principal: string; address: string } | null> {
+  /**
+   * The agent's own threshold-derived wallet + its live on-chain balance (its
+   * true spendable funds — the real hard cap). Null if not sovereign.
+   */
+  async walletInfo(): Promise<{ principal: string; address: string; balanceUSD?: number } | null> {
     if (!AGENT_PRINCIPAL) return null;
     try {
       const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/address/${AGENT_PRINCIPAL}`, {
@@ -50,7 +54,7 @@ export class Sippar {
       });
       const data: any = await res.json().catch(() => ({}));
       const d = data?.data ?? data;
-      return d?.address ? { principal: AGENT_PRINCIPAL, address: d.address } : null;
+      return d?.address ? { principal: AGENT_PRINCIPAL, address: d.address, balanceUSD: typeof d.balanceUSD === 'number' ? d.balanceUSD : undefined } : null;
     } catch {
       return null;
     }
@@ -95,7 +99,7 @@ export class Sippar {
       const serviceOk = data?.serviceStatus === undefined || data.serviceStatus < 400;
       const ok = !!data?.success && serviceOk;
       if (ok) this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx);
-      return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response: data?.response, error: data?.error };
+      return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response: data?.response, error: data?.error, walletBalanceUSD: typeof data?.agentBalanceUSD === 'number' ? data.agentBalanceUSD : undefined };
     } catch (e) {
       return { success: false, service: svc.id, amountPaid: 0, error: String((e as Error).message) };
     }

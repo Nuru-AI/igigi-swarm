@@ -34,9 +34,18 @@ export function buildToolServer(budget: Budget, sippar: Sippar) {
 
   const checkBudget = tool(
     'check_budget',
-    'Check your remaining budget and what you have bought so far.',
+    'Check your real spendable funds: your on-chain wallet balance (the true hard cap) plus the local spend ledger. Spend against walletBalanceUSD when present — it is ground truth.',
     {},
-    async () => ({ content: [{ type: 'text', text: JSON.stringify(budget.summary()) }] }),
+    async () => {
+      const summary: any = budget.summary();
+      const w = await sippar.walletInfo();
+      if (w?.balanceUSD != null) {
+        summary.walletBalanceUSD = w.balanceUSD;
+        summary.walletAddress = w.address;
+        summary.note = 'walletBalanceUSD is your TRUE on-chain spendable balance — you cannot spend more than this regardless of the cap.';
+      }
+      return { content: [{ type: 'text', text: JSON.stringify(summary) }] };
+    },
   );
 
   return createSdkMcpServer({ name: 'sippar-hands', version: '0.1.0', tools: [discover, buy, checkBudget] });

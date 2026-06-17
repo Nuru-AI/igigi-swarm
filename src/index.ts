@@ -50,9 +50,14 @@ async function main() {
   const sippar = new Sippar(budget);
   const hands = buildToolServer(budget, sippar);
 
+  let sovereignNote = '';
   if (sippar.sovereign) {
     const w = await sippar.walletInfo();
-    if (w) console.log(`Sovereign wallet: ${w.address}  (agent ${w.principal.slice(0, 16)}… — pays from its OWN balance, fund with USDC.e on Tempo)\n`);
+    if (w) {
+      console.log(`Sovereign wallet: ${w.address}  (agent ${w.principal.slice(0, 16)}… — pays from its OWN balance)`);
+      console.log(`On-chain balance: $${(w.balanceUSD ?? 0).toFixed(4)} USDC.e  ← your true hard cap\n`);
+      sovereignNote = `\n\nYou are paying from your OWN sovereign wallet (${w.address}). Its on-chain balance is $${(w.balanceUSD ?? 0).toFixed(4)} — this is your TRUE spendable limit; you physically cannot spend more, regardless of the budget cap. The balance is reported back after every purchase (walletBalanceUSD) and via check_budget. Stop before you run it dry.`;
+    }
   } else {
     console.log(`(paying from shared treasury — set AGENT_PRINCIPAL for a sovereign wallet)\n`);
   }
@@ -82,7 +87,7 @@ async function main() {
   for await (const msg of query({
     prompt: GOAL,
     options: {
-      systemPrompt: SYSTEM,
+      systemPrompt: SYSTEM + sovereignNote,
       mcpServers: { hands },
       // ISOLATION: load NO filesystem settings — no user/project skills, MCP
       // servers, or CLAUDE.md. Without this the spawned CLI inherits the host's
