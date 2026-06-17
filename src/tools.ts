@@ -22,9 +22,12 @@ export function buildToolServer(budget: Budget, sippar: Sippar) {
   const buy = tool(
     'buy_service',
     'Pay for and call a service by id with a JSON payload (match its input shape). Payment is threshold-signed by Sippar across chains; it is rejected automatically if it would exceed your budget. Returns the service response.',
-    { service_id: z.string(), payload: z.record(z.any()).default({}) },
+    { service_id: z.string(), payload: z.record(z.string(), z.any()).default({}) },
     async ({ service_id, payload }) => {
       const r = await sippar.pay(service_id, payload);
+      // Return the FULL service response — no truncation. If the CLI spills a
+      // large result to a temp file, the agent reads it with the allowed Read
+      // tool (reading already-paid-for data is consistent with the paid-only rule).
       return { content: [{ type: 'text', text: JSON.stringify(r) }] };
     },
   );

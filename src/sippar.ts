@@ -62,9 +62,14 @@ export class Sippar {
         headers: { 'Content-Type': 'application/json', 'X-Sippar-Access': ACCESS },
         body: JSON.stringify({ serviceUrl: svc.url, payload, maxAmountUSD: svc.price * 1.5, preferTempo: svc.chain === 'tempo' }),
       });
-      const data: any = await res.json().catch(() => ({}));
+      const env: any = await res.json().catch(() => ({}));
+      // Endpoint wraps its payload in createSuccessResponse -> { success, data, timestamp }.
+      // Unwrap to the inner settlement result (fall back to the envelope if not wrapped).
+      const data: any = env?.data ?? env;
       const amountPaid = Number(data?.amountPaid ?? 0);
-      const ok = !!data?.success;
+      // Success = the service actually responded 2xx (not just the HTTP envelope).
+      const serviceOk = data?.serviceStatus === undefined || data.serviceStatus < 400;
+      const ok = !!data?.success && serviceOk;
       if (ok) this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx);
       return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response: data?.response, error: data?.error };
     } catch (e) {
