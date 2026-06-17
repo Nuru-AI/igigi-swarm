@@ -14,6 +14,7 @@ export interface SwarmContext {
   selfAddr: string;                   // this agent's wallet (where buyers pay it)
   roster: Record<string, string>;     // other agents: label -> address
   marketplace: Marketplace;           // shared findings-market
+  remember?: (note: string) => void;  // persist a note to durable memory (S2)
 }
 
 /**
@@ -104,6 +105,19 @@ export function buildToolServer(budget: Budget, sippar: Sippar, swarm?: SwarmCon
             return { content: [{ type: 'text', text: JSON.stringify({ success: true, paidTo: item.seller, amountUSD: item.priceUSD, tx: pay.tx, content: item.content }) }] };
           },
         ),
+        ...(swarm.remember
+          ? [
+              tool(
+                'remember',
+                'Save a note to your DURABLE memory — it persists to your next run so you can continue your own thread (what you did, learned, earned, who you traded with, your current goal/plan). Use it before you finish.',
+                { note: z.string() },
+                async ({ note }) => {
+                  swarm.remember!(note);
+                  return { content: [{ type: 'text', text: JSON.stringify({ remembered: true }) }] };
+                },
+              ),
+            ]
+          : []),
       ]
     : [];
 

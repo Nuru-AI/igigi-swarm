@@ -22,6 +22,7 @@ import { Sippar } from './sippar.js';
 import { SwarmGuard } from './swarm-guard.js';
 import { buildToolServer } from './tools.js';
 import { Marketplace } from './marketplace.js';
+import { AgentStore } from './agent-store.js';
 
 // Keep large MCP results inline (no temp-file spill).
 process.env.MAX_MCP_OUTPUT_TOKENS ||= '200000';
@@ -55,6 +56,7 @@ const HANDS = new Set([
   'mcp__hands__post_finding',
   'mcp__hands__list_findings',
   'mcp__hands__buy_finding',
+  'mcp__hands__remember',
 ]);
 const canUseTool = async (toolName: string, input: Record<string, unknown>) => {
   if (HANDS.has(toolName)) return { behavior: 'allow' as const, updatedInput: input };
@@ -75,8 +77,9 @@ const SYSTEM = (capUsd: number) => `You are one sovereign agent in a swarm. You 
 
 interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; mandate: string; }
 
-async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard, market: Marketplace, startDelayMs = 0): Promise<void> {
+async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuard, market: Marketplace, store: AgentStore, startDelayMs = 0): Promise<void> {
   const { label, principal } = agent;
+  const state = store.load(principal); // durable memory across runs (S2)
   if (startDelayMs > 0) {
     console.log(`⏳ [${label}] starts in ${Math.round(startDelayMs / 1000)}s (letting sellers post to the market first)`);
     await new Promise((r) => setTimeout(r, startDelayMs));
@@ -97,8 +100,11 @@ async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuar
     for await (const msg of query({
       prompt: agent.mandate,
       options: {
-        systemPrompt: SYSTEM(agent.balanceUSD) + (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market. ALWAYS run list_findings FIRST before buying any service — buying another agent's existing finding is usually cheaper than paying for your own search, and may be the only grounded option if your wallet is small. If the market is empty but you cannot afford your own search, do NOT fabricate — call check_budget / list_findings again after a moment; other agents may post a finding you can buy shortly. You can SELL your own research with post_finding (others pay you on-chain and receive the content) to recoup cost. You can also pay_agent directly. Trade when it makes economic sense.` : ''),
-        mcpServers: { hands: buildToolServer(budget, sippar, Object.keys(roster).length ? { selfLabel: label, selfAddr: agent.address, roster, marketplace: market } : undefined) },
+        systemPrompt:
+          SYSTEM(agent.balanceUSD) +
+          `\n\n[YOUR DURABLE MEMORY]\n${AgentStore.memoryBrief(state)}\nBefore you finish, call remember(...) to save what you did / learned / earned and your next goal, so your future self can continue.` +
+          (Object.keys(roster).length ? `\n\nYou are in a swarm with other agents: ${Object.keys(roster).join(', ')}. There is a shared findings-market. ALWAYS run list_findings FIRST before buying any service — buying another agent's existing finding is usually cheaper than paying for your own search, and may be the only grounded option if your wallet is small. If the market is empty but you cannot afford your own search, do NOT fabricate — call check_budget / list_findings again after a moment; other agents may post a finding you can buy shortly. You can SELL your own research with post_finding (others pay you on-chain and receive the content) to recoup cost. You can also pay_agent directly. Trade when it makes economic sense.` : ''),
+        mcpServers: { hands: buildToolServer(budget, sippar, Object.keys(roster).length ? { selfLabel: label, selfAddr: agent.address, roster, marketplace: market, remember: (note: string) => store.remember(state, note) } : undefined) },
         settingSources: [],
         allowedTools: [...HANDS, 'Read'],
         disallowedTools: ['WebSearch', 'WebFetch', 'Bash', 'BashOutput', 'KillShell', 'Write', 'Edit', 'NotebookEdit', 'Glob', 'Grep', 'Task', 'Agent', 'Skill', 'Workflow', 'SlashCommand', 'TodoWrite'],
@@ -123,6 +129,17 @@ async function runAgent(agent: AgentRec, allAgents: AgentRec[], guard: SwarmGuar
     }
   } catch (e) {
     console.log(`⚠️  [${label}] ended: ${String((e as Error).message)}`);
+  } finally {
+    // Persist this run into durable memory so the agent resumes its thread next time.
+    const endBal = (await sippar.walletInfo())?.balanceUSD ?? agent.balanceUSD;
+    const spent = budget.summary().spent;
+    const inflow = Math.max(0, endBal - agent.balanceUSD + spent); // payments received (e.g. sold findings)
+    state.runs += 1;
+    state.cumulativeSpentUSD += spent;
+    state.cumulativeEarnedUSD += inflow;
+    state.label = label;
+    store.remember(state, `Run ${state.runs}: wallet $${agent.balanceUSD.toFixed(4)} → $${endBal.toFixed(4)}; external spend $${spent.toFixed(4)}; received $${inflow.toFixed(4)}.`);
+    console.log(`💾 [${label}] memory saved (run ${state.runs}, ${state.journal.length} notes, cum earned $${state.cumulativeEarnedUSD.toFixed(4)})`);
   }
 }
 
@@ -155,8 +172,9 @@ async function main() {
   console.log();
 
   const market = new Marketplace(); // shared findings-market (in-process; payments are real on-chain)
+  const store = new AgentStore();   // durable per-agent memory across runs (S2)
   // Stagger: agent i waits i×STAGGER, so earlier agents can post findings before later ones shop.
-  await Promise.allSettled(agents.map((a, i) => runAgent(a, agents, guard, market, i * STAGGER_MS)));
+  await Promise.allSettled(agents.map((a, i) => runAgent(a, agents, guard, market, store, i * STAGGER_MS)));
   clearTimeout(timer);
 
   const u = guard.usageSummary;
