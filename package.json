@@ -8,6 +8,7 @@
     "start": "tsx src/index.ts",
     "dev": "tsx watch src/index.ts",
     "swarm": "tsx src/swarm.ts",
+    "economy": "tsx src/economy.ts",
     "team": "tsx src/team.ts",
     "farcaster": "tsx src/farcaster.ts",
     "memory-spike": "tsx src/memory-spike.ts",
