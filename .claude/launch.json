@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "swarm-dashboard",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dashboard"],
+      "port": 7878
+    }
+  ]
+}

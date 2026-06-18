@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sippar Swarm — live</title>
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#11161f; --panel2:#161d28; --line:#222c3a;
+    --ink:#e6edf3; --dim:#8b98a8; --faint:#5b6675;
+    --buy:#3fb950; --pay:#58a6ff; --sell:#d2a8ff; --block:#f0883e; --think:#7d8a9c;
+    --accent:#2f81f7;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  header{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--panel)}
+  header h1{font-size:15px;margin:0;font-weight:600;letter-spacing:.3px}
+  header h1 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--faint);margin-right:8px;vertical-align:middle}
+  header h1 .dot.live{background:var(--buy);box-shadow:0 0 8px var(--buy);animation:pulse 1.4s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  .stat{display:flex;flex-direction:column;gap:1px}
+  .stat .k{color:var(--faint);font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+  .stat .v{font-size:16px;font-weight:600}
+  .wrap{display:grid;grid-template-columns:minmax(280px,360px) 1fr;gap:0;height:calc(100vh - 53px)}
+  .agents{padding:14px;overflow:auto;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline}
+  .card .lbl{font-size:15px;font-weight:700}
+  .card .st{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--faint)}
+  .card .st.running{color:var(--buy)} .card .st.done{color:var(--dim)}
+  .bal{font-size:22px;font-weight:700;margin:6px 0 2px}
+  .bar{height:6px;border-radius:3px;background:var(--panel2);overflow:hidden;margin:6px 0}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,#3fb950,#2f81f7);transition:width .5s}
+  .meta{display:flex;gap:14px;color:var(--dim);font-size:11px;margin-top:6px}
+  .meta b{color:var(--ink);font-weight:600}
+  .role{color:var(--faint);font-size:11px;margin-top:7px;border-top:1px solid var(--line);padding-top:7px;max-height:48px;overflow:hidden}
+  .said{color:var(--think);font-size:11px;margin-top:6px;font-style:italic;max-height:42px;overflow:hidden}
+  .addr{color:var(--faint);font-size:10px}
+  .addr a{color:var(--accent);text-decoration:none}
+  .feed{overflow:auto;padding:6px 0}
+  .row{display:grid;grid-template-columns:64px 30px 1fr auto;gap:10px;padding:6px 18px;border-bottom:1px solid #161c26;align-items:baseline}
+  .row:hover{background:var(--panel)}
+  .row .ts{color:var(--faint);font-size:10px}
+  .row .ag{font-weight:700}
+  .row .msg{color:var(--ink);word-break:break-word}
+  .row .msg .svc{color:var(--dim)}
+  .row .amt{font-weight:600;white-space:nowrap}
+  .row.buy .amt{color:var(--buy)} .row.pay .amt,.row.market_buy .amt{color:var(--pay)}
+  .row.market_post .amt{color:var(--sell)} .row.blocked .amt{color:var(--block)}
+  .row.decision .msg{color:var(--think);font-style:italic}
+  .row.lifecycle{background:#0d1620}.row.lifecycle .msg{color:var(--accent)}
+  .tx{color:var(--accent);text-decoration:none;font-size:11px}
+  .tx:hover{text-decoration:underline}
+  .rec{color:var(--sell);font-size:10px;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:6px;white-space:nowrap}
+  .empty{color:var(--faint);padding:40px 18px;text-align:center}
+  kbd{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:11px}
+</style>
+</head>
+<body>
+<header>
+  <h1><span id="dot" class="dot"></span>Sippar Swarm</h1>
+  <div class="stat"><span class="k">spent / ceiling</span><span class="v"><span id="money">$0.0000</span><span id="cap" style="color:var(--faint);font-size:12px"></span></span></div>
+  <div class="stat"><span class="k">Claude tokens (free)</span><span class="v" id="tokens">0</span></div>
+  <div class="stat"><span class="k">model</span><span class="v" id="model" style="font-size:13px">—</span></div>
+  <div class="stat"><span class="k">status</span><span class="v" id="status" style="font-size:13px">waiting</span></div>
+  <div class="stat"><span class="k">elapsed</span><span class="v" id="elapsed" style="font-size:14px">—</span></div>
+  <div class="stat" style="margin-left:auto"><span class="k">mandate</span><span id="mandate" style="color:var(--dim);max-width:380px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span></div>
+</header>
+<div class="wrap">
+  <div class="agents" id="agents"><div class="empty">Waiting for a swarm run…<br><br>Start it with <kbd>npm run swarm</kbd></div></div>
+  <div class="feed" id="feed"><div class="empty">events stream here</div></div>
+</div>
+<script>
+const EXPLORER = {
+  tempo:'https://explore.tempo.xyz/tx/', base:'https://basescan.org/tx/',
+  arbitrum:'https://arbiscan.io/tx/', optimism:'https://optimistic.etherscan.io/tx/',
+  polygon:'https://polygonscan.com/tx/', bnb:'https://bscscan.com/tx/',
+  solana:'https://solscan.io/tx/', stellar:'https://stellar.expert/explorer/public/tx/',
+  ethereum:'https://etherscan.io/tx/',
+};
+const agents = new Map();   // label -> state
+let money = 0, hadEvents = false;
+// clock: covers live runs (ticks) + replay of a finished run (shows true duration)
+let runStartMs = null, runEndMs = null, lastEventMs = null, lastEventRealMs = 0;
+
+const $ = id => document.getElementById(id);
+const fmt = n => '$' + Number(n||0).toFixed(4);
+const short = (s,n=10) => s && s.length>n ? s.slice(0,n)+'…' : (s||'');
+const txLink = (tx,chain) => tx ? `<a class="tx" target="_blank" href="${(EXPLORER[chain]||EXPLORER.tempo)}${tx}">${short(tx,12)} ↗</a>` : '';
+const fmtDur = ms => { if(ms==null||ms<0) return '—'; const s=Math.floor(ms/1000); const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60; return (h?h+':'+String(m).padStart(2,'0'):m)+':'+String(ss).padStart(2,'0'); };
+function tickClock(){
+  if(runStartMs==null){ $('elapsed').textContent='—'; return; }
+  if(runEndMs!=null){ $('elapsed').textContent=fmtDur(runEndMs-runStartMs); return; } // frozen at true duration
+  // live: base on last event's run-time + real time since it arrived
+  const base = (lastEventMs!=null?lastEventMs:runStartMs) - runStartMs;
+  $('elapsed').textContent = fmtDur(base + (Date.now()-lastEventRealMs));
+}
+setInterval(tickClock, 1000);
+
+function reset(){
+  agents.clear(); money=0; hadEvents=false;
+  runStartMs=null; runEndMs=null; lastEventMs=null;
+  $('agents').innerHTML='<div class="empty">new run starting…</div>';
+  $('feed').innerHTML='<div class="empty">events stream here</div>';
+  $('money').textContent='$0.0000'; $('tokens').textContent='0'; $('elapsed').textContent='—';
+}
+
+function upsertAgent(label, patch){
+  let a = agents.get(label);
+  if(!a){ a = {label, start:0, est:0, spent:0, earned:0, role:'', said:'', status:'running', address:'', principal:''}; agents.set(label,a); }
+  Object.assign(a, patch);
+  renderAgents();
+}
+
+function renderAgents(){
+  const el = $('agents');
+  if(!agents.size){ return; }
+  el.innerHTML = [...agents.values()].sort((x,y)=>x.label.localeCompare(y.label)).map(a=>{
+    const pct = a.start>0 ? Math.max(0,Math.min(100, a.est/a.start*100)) : 0;
+    const addr = a.address ? `<div class="addr">${short(a.address,14)} · <a target="_blank" href="https://explore.tempo.xyz/address/${a.address}">wallet ↗</a></div>` : '';
+    return `<div class="card">
+      <div class="top"><span class="lbl">${a.label}</span><span class="st ${a.status}">${a.status}</span></div>
+      <div class="bal">${fmt(a.est)}</div>
+      ${addr}
+      <div class="bar"><i style="width:${pct}%"></i></div>
+      <div class="meta"><span>spent <b>${fmt(a.spent)}</b></span><span>earned <b style="color:${a.earned>0?'var(--buy)':'var(--ink)'}">${fmt(a.earned)}</b></span><span>start <b>${fmt(a.start)}</b></span></div>
+      ${a.role?`<div class="role" title="${esc(a.role)}">📋 ${esc(a.role)}</div>`:''}
+      ${a.said?`<div class="said">💭 ${esc(a.said)}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function esc(s){ return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function feedRow(kind, ag, msg, amt, extra=''){
+  const f = $('feed');
+  if(!hadEvents){ f.innerHTML=''; hadEvents=true; }
+  const ts = new Date().toLocaleTimeString('en-GB');
+  const div = document.createElement('div');
+  div.className = 'row ' + kind;
+  div.innerHTML = `<span class="ts">${ts}</span><span class="ag">${ag||''}</span><span class="msg">${msg} ${extra}</span><span class="amt">${amt||''}</span>`;
+  f.prepend(div);
+  while(f.children.length>400) f.removeChild(f.lastChild);
+}
+
+function handle(e){
+  if(e.t){ lastEventMs = Date.parse(e.t); lastEventRealMs = Date.now(); }
+  switch(e.kind){
+    case '_reset': reset(); break;
+    case 'swarm_start':
+      runStartMs = e.t?Date.parse(e.t):Date.now(); runEndMs=null;
+      $('cap').textContent = ' / ' + fmt(e.capUSD);
+      $('model').textContent = e.model || '—';
+      $('mandate').textContent = e.mandate || '';
+      $('status').textContent = 'running'; $('dot').className='dot live';
+      $('agents').innerHTML='';
+      (e.agents||[]).forEach(a => upsertAgent(a.label, {start:a.balanceUSD, est:a.balanceUSD, role:a.role||'', address:a.address||'', principal:a.principal||''}));
+      feedRow('lifecycle','','🚀 swarm launched — '+(e.agents||[]).length+' sovereign agents, ceiling '+fmt(e.capUSD), '');
+      break;
+    case 'agent_start':
+      upsertAgent(e.agent, {start:e.balanceUSD, est:e.balanceUSD, role:e.role||'', address:e.address||'', principal:e.principal||'', status:'running'});
+      feedRow('lifecycle', e.agent, '▶ online · wallet '+fmt(e.balanceUSD), '');
+      break;
+    case 'decision':
+      upsertAgent(e.agent, {said:e.text});
+      feedRow('decision', e.agent, esc(e.text.length>240?e.text.slice(0,240)+'…':e.text), '');
+      break;
+    case 'buy':{
+      money += e.amountUSD; $('money').textContent = fmt(money);
+      const a = agents.get(e.agent); if(a){ a.spent+=e.amountUSD; a.est=Math.max(0,a.est-e.amountUSD); renderAgents(); }
+      const rec = e.recordId ? ' <span class="rec" title="certified ICP threshold-signing record — verifiable against the IC root key">✓ rec #'+esc(e.recordId)+'</span>' : '';
+      feedRow('buy', e.agent, '🛒 bought <span class="svc">'+esc(e.service)+'</span>', '−'+fmt(e.amountUSD), txLink(e.tx,e.chain)+rec);
+      break;}
+    case 'transfer':{
+      const a = agents.get(e.agent); if(a){ a.spent+=e.amountUSD; a.est=Math.max(0,a.est-e.amountUSD); }
+      const r = agents.get(e.toLabel); if(r){ r.earned+=e.amountUSD; r.est+=e.amountUSD; }
+      renderAgents();
+      feedRow('pay', e.agent, '💸 paid <b>'+esc(e.toLabel||short(e.to,8))+'</b>'+(e.reason?' · '+esc(e.reason):''), '−'+fmt(e.amountUSD), txLink(e.tx,'tempo'));
+      break;}
+    case 'market_post':
+      feedRow('market_post', e.agent, '🏷️ listed #'+e.id+' <span class="svc">'+esc(e.summary)+'</span>', fmt(e.priceUSD));
+      break;
+    case 'market_buy':{
+      const a = agents.get(e.agent); if(a){ a.spent+=e.amountUSD; a.est=Math.max(0,a.est-e.amountUSD); }
+      const r = agents.get(e.seller); if(r){ r.earned+=e.amountUSD; r.est+=e.amountUSD; }
+      renderAgents();
+      feedRow('market_buy', e.agent, '🤝 bought finding #'+e.id+' from <b>'+esc(e.seller)+'</b>', '−'+fmt(e.amountUSD), txLink(e.tx,'tempo'));
+      break;}
+    case 'blocked':
+      feedRow('blocked', e.agent, '⛔ blocked <span class="svc">'+esc(e.service)+'</span> · '+esc(e.reason), '');
+      break;
+    case 'usage':
+      $('tokens').textContent = (e.swarmTokens||0).toLocaleString();
+      break;
+    case 'agent_end':
+      upsertAgent(e.agent, {est:e.balanceUSD, status:'done'});
+      feedRow('lifecycle', e.agent, '⏹ done · wallet '+fmt(e.balanceUSD)+' · spent '+fmt(e.spentUSD)+' · earned '+fmt(e.earnedUSD), '');
+      break;
+    case 'round':
+      $('status').textContent = 'night · round '+e.round; $('dot').className='dot live';
+      feedRow('lifecycle','','🌙 round '+e.round+' · solvent '+e.solvent+'/'+e.agents+' · spent '+fmt(e.spent)+'/'+fmt(e.capUSD)+' · ~'+e.minsLeft+'m left','');
+      break;
+    case 'swarm_end':
+      runEndMs = e.t?Date.parse(e.t):Date.now(); tickClock();
+      $('status').textContent = e.halted?'halted':'complete'; $('dot').className='dot';
+      $('money').textContent = fmt(e.moneyUSD);
+      feedRow('lifecycle','','🏁 swarm '+(e.halted?'HALTED':'complete')+' · money '+fmt(e.moneyUSD)+' / '+fmt(e.capUSD)+' · '+(e.tokens||0).toLocaleString()+' tokens (free) · '+fmtDur(runEndMs-runStartMs), '');
+      break;
+  }
+}
+
+let es, reconnectT;
+function connect(){
+  if (es) { try{ es.close(); }catch{} }
+  clearTimeout(reconnectT);
+  es = new EventSource('/events');
+  es.onopen = () => { /* server replays the whole feed on connect (_reset) */ };
+  es.onmessage = ev => { try{ handle(JSON.parse(ev.data)); }catch{} };
+  es.onerror = () => {
+    // EventSource native retry is unreliable behind some proxies — reconnect explicitly.
+    $('status').textContent='reconnecting…'; $('dot').className='dot';
+    try{ es.close(); }catch{}
+    reconnectT = setTimeout(connect, 2000);
+  };
+}
+connect();
+// Recover the stream when the tab regains focus or the network returns.
+document.addEventListener('visibilitychange', () => { if (!document.hidden) connect(); });
+window.addEventListener('online', connect);
+setInterval(() => { if (es && es.readyState === 2) connect(); }, 10000); // watchdog: revive a closed stream
+</script>
+</body>
+</html>

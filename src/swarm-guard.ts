@@ -20,6 +20,8 @@ export class SwarmGuard {
   private tokensOut = 0;
   private notionalCostUsd = 0; // what the reasoning WOULD cost via API (we're on subscription)
 
+  private failStreak = 0;
+
   constructor(
     readonly totalCapUsd: number,
     /** Presence of this file halts the swarm (the kill switch). */
@@ -27,7 +29,39 @@ export class SwarmGuard {
     private readonly onEvent: (msg: string) => void = () => {},
     /** Compute ceiling: halt the swarm if total Claude tokens exceed this. */
     readonly tokenCap: number = Infinity,
+    /** Unattended watchdog: halt after this many CONSECUTIVE failed payments
+     *  (a broken-service loop, dead RPC, signer fault). Default: never. */
+    readonly errorHaltStreak: number = Infinity,
   ) {}
+
+  /**
+   * Record a payment outcome for the unattended error-streak watchdog. A run of
+   * consecutive failures (no successes in between) means something is wrong that
+   * no human is watching at 3am — halt rather than burn the night on it.
+   */
+  recordOutcome(ok: boolean): void {
+    if (ok) { this.failStreak = 0; return; }
+    this.failStreak++;
+    if (this.failStreak >= this.errorHaltStreak) {
+      this.onEvent(`🛑 ERROR STREAK — ${this.failStreak} consecutive failed payments; halting swarm`);
+      this.halted = true;
+    }
+  }
+
+  get failureStreak(): number {
+    return this.failStreak;
+  }
+
+  /** Non-throwing kill check (for the between-rounds pause): trips on flag OR kill-file. */
+  tripped(): boolean {
+    if (this.halted) return true;
+    if (existsSync(this.killFile)) {
+      this.onEvent(`🛑 KILL SWITCH tripped (${this.killFile}) — halting swarm`);
+      this.halted = true;
+      return true;
+    }
+    return false;
+  }
 
   /** Record an agent's Claude usage (from the SDK result message). May trip the token ceiling. */
   recordUsage(inputTokens: number, outputTokens: number, costUsd: number): void {

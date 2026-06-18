@@ -61,6 +61,7 @@ export interface PayResult {
   response?: unknown;
   error?: string;
   walletBalanceUSD?: number; // agent's true on-chain balance AFTER this payment (sovereign mode)
+  signingRecordId?: string;  // certified ICP threshold-signing record id (the "third receipt")
 }
 
 export class Sippar {
@@ -136,11 +137,12 @@ export class Sippar {
       const serviceOk = data?.serviceStatus === undefined || data.serviceStatus < 400;
       const ok = !!data?.success && serviceOk;
       if (ok) {
-        this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx);
+        this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx, data?.chain ?? svc.chain, data?.signingRecordId);
         this.guard?.commit(amountPaid || svc.price);
       }
+      this.guard?.recordOutcome(ok); // unattended error-streak watchdog
       const response = svc.category === 'search' ? compactSearchResponse(data?.response) : data?.response;
-      return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response, error: data?.error, walletBalanceUSD: typeof data?.agentBalanceUSD === 'number' ? data.agentBalanceUSD : undefined };
+      return { success: ok, service: svc.id, amountPaid: amountPaid || svc.price, chain: data?.chain, tx: data?.paymentTx, response, error: data?.error, walletBalanceUSD: typeof data?.agentBalanceUSD === 'number' ? data.agentBalanceUSD : undefined, signingRecordId: data?.signingRecordId };
     } catch (e) {
       return { success: false, service: svc.id, amountPaid: 0, error: String((e as Error).message) };
     }
@@ -171,8 +173,62 @@ export class Sippar {
       const env: any = await res.json().catch(() => ({}));
       const data: any = env?.data ?? env;
       const ok = !!data?.success && data?.status !== '0x0';
-      if (ok) this.budget.commit(label, amountUSD, data?.tx);
+      if (ok) this.budget.commit(label, amountUSD, data?.tx, 'tempo');
       return { success: ok, service: label, amountPaid: ok ? amountUSD : 0, tx: data?.tx, walletBalanceUSD: typeof data?.fromBalanceUSD === 'number' ? data.fromBalanceUSD : undefined, error: data?.error };
+    } catch (e) {
+      return { success: false, service: label, amountPaid: 0, error: String((e as Error).message) };
+    }
+  }
+
+  /**
+   * Buy a service on ANOTHER chain via Sippar's cross-chain relay — the agent
+   * stays 100% on Tempo. Sippar debits the agent's OWN Tempo wallet (USDC.e) to
+   * the Sippar Tempo treasury, then pays the destination service from Sippar's
+   * treasury on `destChain` (Base/Solana/Stellar/…). No funds on any other chain.
+   * This is the correct relay model (S4) — pay local, Sippar fronts the dest.
+   * Same caps as buy(); the relay's fee (~3%) is included in the debited amount.
+   */
+  async relayPay(
+    serviceUrl: string,
+    destChain: string,
+    opts: { maxAmountUSD: number; payload?: unknown; method?: 'GET' | 'POST' },
+  ): Promise<PayResult> {
+    const label = `relay:${destChain}`;
+    if (!this.principal) return { success: false, service: label, amountPaid: 0, error: 'agent has no sovereign wallet' };
+    const maxAmountUSD = opts.maxAmountUSD || 0.05;
+    try {
+      this.guard?.assertCanSpend(maxAmountUSD);
+      this.budget.assertCanSpend(label, maxAmountUSD);
+    } catch (e) {
+      const reason = String((e as Error).message);
+      this.budget.blocked(label, maxAmountUSD, reason);
+      return { success: false, service: label, amountPaid: 0, error: reason };
+    }
+    try {
+      const res = await fetch(`${SIPPAR_BASE}/api/sippar/agent/relay-pay`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Sippar-Access': ACCESS },
+        body: JSON.stringify({
+          agentPrincipal: this.principal,
+          serviceUrl,
+          destChain,
+          maxAmountUSD,
+          ...(opts.payload != null ? { payload: opts.payload } : {}),
+          ...(opts.method ? { method: opts.method } : {}),
+        }),
+      });
+      const env: any = await res.json().catch(() => ({}));
+      const data: any = env?.data ?? env;
+      const ok = !!data?.success && (data?.serviceStatus === undefined || data.serviceStatus < 400);
+      // amountDebited = what left the agent's Tempo wallet (service cost + relay fee).
+      const amt = Number(data?.amountDebitedUSD ?? data?.incomingAmountUSD ?? maxAmountUSD);
+      const tx = data?.outgoingTx ?? data?.incomingTx; // dest-chain receipt preferred
+      if (ok) {
+        this.budget.commit(label, amt, tx, destChain, data?.signingRecordId);
+        this.guard?.commit(amt);
+      }
+      this.guard?.recordOutcome(ok); // unattended error-streak watchdog
+      return { success: ok, service: `relay:${destChain}`, amountPaid: ok ? amt : 0, chain: destChain, tx, response: data?.response, error: data?.error, walletBalanceUSD: typeof data?.agentBalanceUSD === 'number' ? data.agentBalanceUSD : undefined, signingRecordId: data?.signingRecordId };
     } catch (e) {
       return { success: false, service: label, amountPaid: 0, error: String((e as Error).message) };
     }

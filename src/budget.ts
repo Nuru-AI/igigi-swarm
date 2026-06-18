@@ -12,7 +12,7 @@
  */
 export class Budget {
   private spent = 0;
-  private readonly ledger: Array<{ service: string; amount: number; tx?: string; at: string }> = [];
+  private readonly ledger: Array<{ service: string; amount: number; tx?: string; chain?: string; recordId?: string; at: string }> = [];
 
   constructor(
     readonly capUsd: number,
@@ -35,9 +35,9 @@ export class Budget {
   }
 
   /** Record an actual settled payment. */
-  commit(service: string, amount: number, tx?: string): void {
+  commit(service: string, amount: number, tx?: string, chain?: string, recordId?: string): void {
     this.spent += amount;
-    const entry = { service, amount, tx, at: new Date().toISOString() };
+    const entry = { service, amount, tx, chain, recordId, at: new Date().toISOString() };
     this.ledger.push(entry);
     this.onEvent({ type: 'spent', ...entry, remaining: this.remaining, spent: this.spent });
   }
@@ -52,5 +52,5 @@ export class Budget {
 }
 
 export type BudgetEvent =
-  | { type: 'spent'; service: string; amount: number; tx?: string; at: string; remaining: number; spent: number }
+  | { type: 'spent'; service: string; amount: number; tx?: string; chain?: string; recordId?: string; at: string; remaining: number; spent: number }
   | { type: 'blocked'; service: string; amount: number; reason: string; at: string; remaining: number; spent: number };

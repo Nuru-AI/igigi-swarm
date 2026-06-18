@@ -4,3 +4,6 @@ dist/
 *.log
 SWARM_KILL
 .swarm-state/
+.dev-sandbox/
+.farcaster-state/
+runs/
