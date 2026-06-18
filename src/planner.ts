@@ -19,7 +19,8 @@ HARD RULES:
 - Exactly ONE final "sink" task = the deliverable, whose produces key NOTHING else consumes; it should consume the main intermediate outputs (it synthesizes them).
 - At least one source task with consumes:[].
 - priceUSD between 0.005 and 0.03.
-- Produce about N tasks (given below). Favor a layered shape: a few sources → some middle tasks that combine them → one sink.`;
+- Produce about N tasks (given below).
+- ★ DEPTH IS REQUIRED. Build a LAYERED DAG, not a flat fan-in. For N≥6 you MUST have at least 3 layers and at least 2 INTERMEDIATE tasks — a task that BOTH consumes another task's output AND is itself consumed by a later task. Shape: sources (consumes:[]) → intermediate tasks that combine/refine source outputs → more intermediates or the sink. Avoid "many sources all feeding one sink" — that has no depth.`;
 
 function extractJson(s: string): string | null {
   const a = s.indexOf('{');
@@ -29,7 +30,7 @@ function extractJson(s: string): string | null {
 
 export async function decompose(goal: string, n: number, model: string): Promise<Task[]> {
   let lastErr = 'no output';
-  for (let attempt = 0; attempt < 2; attempt++) {
+  for (let attempt = 0; attempt < 3; attempt++) {
     let text = '';
     for await (const msg of query({
       prompt: `GOAL: ${goal}\n\nDecompose into about ${n} subtasks as a dependency DAG. JSON only.`,
@@ -49,7 +50,15 @@ export async function decompose(goal: string, n: number, model: string): Promise
       priceUSD: Math.min(0.03, Math.max(0.005, Number(t.priceUSD ?? 0.01))),
     }));
     const v = validatePlan(tasks);
-    if (v.ok) return tasks;
+    if (v.ok) {
+      // Depth gate: a real scale test needs intermediates (tasks that both consume and are consumed).
+      if (n >= 6) {
+        const consumed = new Set(tasks.flatMap((t) => t.consumes));
+        const intermediates = tasks.filter((t) => t.consumes.length > 0 && consumed.has(t.produces)).length;
+        if (intermediates < 2) { lastErr = `too shallow: only ${intermediates} intermediate task(s) — need ≥2 layers of depth`; console.log(`  planner attempt ${attempt + 1} ${lastErr} — retrying`); continue; }
+      }
+      return tasks;
+    }
     lastErr = v.error ?? 'invalid';
     console.log(`  planner attempt ${attempt + 1} invalid: ${lastErr} — retrying`);
   }

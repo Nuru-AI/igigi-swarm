@@ -24,12 +24,12 @@ import { decompose } from './planner.js';
 process.env.MAX_MCP_OUTPUT_TOKENS ||= '200000';
 
 const PRINCIPALS = (process.env.SWARM_PRINCIPALS || process.env.AGENT_PRINCIPAL || '').split(',').map((s) => s.trim()).filter(Boolean);
-const SWARM_CAP_USD = Number(process.env.SWARM_CAP_USD || '1.00');
-const PER_AGENT_CAP = Number(process.env.BUDGET_CAP_USD || '0.20');
-const PER_TX_MAX = Number(process.env.PER_TX_MAX_USD || '0.04');
+const SWARM_CAP_USD = Number(process.env.SWARM_CAP_USD || '2.00'); // swarm-wide safety ceiling (per-wave); actual spend is far lower
+const PER_AGENT_CAP = Number(process.env.BUDGET_CAP_USD || '0.50'); // above the funded wallet, so the WALLET (real on-chain balance) binds — never an artificial cap that blocks A2A buy_input
+const PER_TX_MAX = Number(process.env.PER_TX_MAX_USD || '0.10');   // covers pricier data services (e.g. coingecko $0.06)
 const KILL_FILE = process.env.SWARM_KILL_FILE || './SWARM_KILL';
 const MAX_TURNS = Number(process.env.SWARM_MAX_TURNS || '40');
-const RUN_TIMEOUT_MS = Number(process.env.SWARM_TIMEOUT_MS || String(20 * 60 * 1000));
+const RUN_TIMEOUT_MS = Number(process.env.SWARM_TIMEOUT_MS || String(30 * 60 * 1000));
 const TOKEN_CAP = Number(process.env.SWARM_TOKEN_CAP || '4000000');
 const MODEL = process.env.SWARM_MODEL || 'claude-sonnet-4-6';
 const ERROR_HALT_STREAK = Number(process.env.SWARM_ERROR_HALT_STREAK || '12');
@@ -98,10 +98,13 @@ You are AWARDED specific tasks in the DAG (you cannot do other agents' tasks). O
 HOW TO WORK (loop until you have no awarded task left):
 1. list_open_tasks — your awarded tasks whose inputs are ready. If it is EMPTY, your input is still being produced by a peer — call wait_for_task (it blocks until your input is ready; do NOT poll in a loop and do NOT give up — your inputs WILL arrive). Never fabricate inputs.
 2. claim_task(id) — take ONE.
-3. For EACH key it consumes: buy_input(key) — this pays the peer who produced it (on-chain) and returns their content. You literally cannot submit without buying every input.
-4. Produce your task's output: combine the bought inputs, and use buy_service for real external data. (think/LLM-synthesis services may be flaky — if so, just write the output yourself from the real data you bought.)
-5. ★ THE MOMENT you have your output text, IMMEDIATELY call submit_task(id, output). Do NOT look for other tasks first, do NOT wait, do NOT keep researching — SUBMIT what you have. An unsubmitted task blocks your whole team and you do not get paid until you submit.
-Only AFTER submitting, list_open_tasks again for another awarded task; if none, call wait_for_task (a downstream task may unlock) — but if wait_for_task returns boardRemaining 0 or your work is done, you are FINISHED. Earn by producing what others need; spend buying what you need. Keep your own messages short.`;
+3. ★ FIRST, for EACH key your task consumes: buy_input(key) — pays the peer who produced it (on-chain) and returns their content. Buy ALL your inputs BEFORE anything else — they are cheap and mandatory; you cannot submit without them. Never let other spending crowd them out.
+4. Produce your task's output:
+   - If your task CONSUMES inputs (it is an ANALYSIS / SYNTHESIS / intermediate task), the bought inputs ARE your data. ANALYZE and COMBINE them. Do NOT buy external services to re-gather data you already bought — that wastes your budget and time. Write the analysis yourself from the inputs.
+   - Only a SOURCE task (consumes nothing) should buy external data via buy_service. Buy the minimum you need; one or two calls, not many.
+   - (think/LLM services may be flaky — if so, just write the output yourself.)
+5. ★ THE MOMENT you have your output text, IMMEDIATELY call submit_task(id, output). Do NOT look for other tasks first, do NOT keep researching — SUBMIT. An unsubmitted task blocks the whole team and you are not paid until you submit.
+Only AFTER submitting, list_open_tasks for another awarded task; if none, call wait_for_task. If wait_for_task returns boardRemaining 0 (or your awarded work is done), you are FINISHED — stop. Earn by producing what peers need; keep your own messages short.`;
 
 interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; }
 
