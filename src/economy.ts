@@ -36,6 +36,10 @@ const ERROR_HALT_STREAK = Number(process.env.SWARM_ERROR_HALT_STREAK || '12');
 const CLAIM_TTL_MS = Number(process.env.ECONOMY_CLAIM_TTL_MS || String(5 * 60 * 1000));
 const GOAL = process.argv.slice(2).join(' ') ||
   'Produce a concise, well-sourced market brief on the current crypto + AI-compute landscape, grounded in real data.';
+// AGENT_ENGINE=deepseek runs each agent's reasoning on a Sippar-paid x402/MPP LLM (no Claude); 'claude' = the SDK.
+const AGENT_ENGINE = (process.env.AGENT_ENGINE || 'claude').toLowerCase();
+const DEEPSEEK_MODEL = process.env.DEEPSEEK_MODEL || 'deepseek-chat';
+const DS_MAX_TURNS = Number(process.env.DEEPSEEK_MAX_TURNS || '30');
 
 const HANDS = new Set([
   'mcp__hands__discover_services', 'mcp__hands__buy_service', 'mcp__hands__think', 'mcp__hands__check_budget',
@@ -154,6 +158,236 @@ async function runAgent(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, fe
   }
 }
 
+// ── OFF-CLAUDE ENGINE: same economy, but the agent's whole reasoning loop runs on
+// a Sippar-paid x402/MPP LLM (DeepSeek). No Claude SDK, no Claude tokens. The tools
+// are the SAME board/settlement primitives, exposed as OpenAI function schemas. ──
+function extractMessage(resp: any): any {
+  return resp?.choices?.[0]?.message ?? resp?.data?.choices?.[0]?.message ?? resp?.message ?? null;
+}
+
+async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
+  const { label, principal } = agent;
+  const selfAddr = agent.address;
+  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, engine: 'deepseek' });
+  const onEvent = (e: BudgetEvent) => {
+    if (e.type === 'spent') {
+      // The DeepSeek inference turns settle as service 'deepseek'; tool buys settle as their own service / '→addr'.
+      if (e.service !== 'deepseek' && !e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining });
+    } else { feed.emit('blocked', { agent: label, service: e.service, amountUSD: e.amount, reason: e.reason }); }
+  };
+  const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);
+  const sippar = new Sippar(budget, { principal, guard });
+
+  const TOOLS = [
+    { type: 'function', function: { name: 'list_open_tasks', description: 'List the tasks AWARDED TO YOU that are claimable now (inputs ready). Empty = a peer is still producing your input.', parameters: { type: 'object', properties: {} } } },
+    { type: 'function', function: { name: 'wait_for_task', description: 'Block until one of your awarded tasks is claimable (a peer produced your input), or timeout. Use instead of polling.', parameters: { type: 'object', properties: { max_seconds: { type: 'number' } } } } },
+    { type: 'function', function: { name: 'claim_task', description: 'Claim an awarded open task by id.', parameters: { type: 'object', properties: { id: { type: 'string' } }, required: ['id'] } } },
+    { type: 'function', function: { name: 'buy_input', description: 'Buy a completed input your task consumes from the peer who produced it (pays them on-chain) and returns the content. Required before submit.', parameters: { type: 'object', properties: { produces_key: { type: 'string' } }, required: ['produces_key'] } } },
+    { type: 'function', function: { name: 'discover_services', description: 'List the REAL buyable data services with their exact ids and input shapes. Call this before buy_service if unsure of a service_id.', parameters: { type: 'object', properties: { category: { type: 'string' }, max_price: { type: 'number' } } } } },
+    { type: 'function', function: { name: 'buy_service', description: 'Buy real external data (settles on-chain) for a SOURCE task. Use a REAL service_id from discover_services. Known ones: "brave" payload {"q":"query"}; "tavily" payload {"query":"query"}; "alphavantage" payload {"function":"GLOBAL_QUOTE","symbol":"NVDA"}; "heurist" payload {"q":"query"}.', parameters: { type: 'object', properties: { service_id: { type: 'string' }, payload: { type: 'object' } }, required: ['service_id', 'payload'] } } },
+    { type: 'function', function: { name: 'submit_task', description: 'Submit your task output text. Completes it, lets peers buy it, unblocks downstream. Must have bought every input first.', parameters: { type: 'object', properties: { id: { type: 'string' }, output: { type: 'string' } }, required: ['id', 'output'] } } },
+  ];
+  const DISPATCH: Record<string, (a: any) => Promise<unknown>> = {
+    list_open_tasks: async () => board.listOpen(label),
+    wait_for_task: async ({ max_seconds }) => {
+      const deadline = Date.now() + Math.min(240, Math.max(10, Number(max_seconds) || 120)) * 1000;
+      let open = board.listOpen(label);
+      while (open.length === 0 && Date.now() < deadline && board.remaining() > 0 && !guard.halted_) { await new Promise((r) => setTimeout(r, 4000)); open = board.listOpen(label); }
+      return { ready: open.length > 0, tasks: open, boardRemaining: board.remaining() };
+    },
+    claim_task: async ({ id }) => board.claim(label, id),
+    buy_input: async ({ produces_key }) => {
+      if (!produces_key) return { error: 'produces_key required (a non-empty key). Never call with empty arguments.' };
+      const inp = board.inputFor(produces_key);
+      if (!inp) return { error: `no completed producer for "${produces_key}" yet — wait_for_task` };
+      if (inp.producerAddr === selfAddr) { board.recordPurchase(label, produces_key); return { success: true, note: 'your own output (free)', content: inp.output }; }
+      const pay = await sippar.payAgent(inp.producerAddr!, inp.priceUSD);
+      if (!pay.success) return { success: false, error: `payment failed: ${pay.error}` };
+      board.recordPurchase(label, produces_key);
+      feed.emit('market_buy', { agent: label, seller: inp.producerLabel, id: inp.id, amountUSD: pay.amountPaid, tx: pay.tx });
+      return { success: true, paidTo: inp.producerLabel, amountUSD: pay.amountPaid, tx: pay.tx, content: inp.output };
+    },
+    discover_services: async ({ category, max_price }) => sippar.discover({ category, maxPrice: max_price }),
+    buy_service: async ({ service_id, payload }) => {
+      if (!service_id || !payload || !Object.keys(payload).length) return { error: 'service_id + non-empty payload required (a real id from discover_services). Never call with empty arguments.' };
+      const r = await sippar.pay(service_id, payload);
+      return { success: r.success, paid: r.amountPaid, tx: r.tx, data: r.success ? r.response : undefined, error: r.error };
+    },
+    submit_task: async ({ id, output }) => {
+      if (!output || String(output).length < 20) return { error: 'output must be your full result text (>=20 chars).' };
+      const r = board.submit(label, id || board.listOpen(label)[0]?.id || '', output, selfAddr);
+      if (r.ok) feed.emit('market_post', { agent: label, id, summary: `produced ${id}`, priceUSD: 0 });
+      return r;
+    },
+  };
+
+  const messages: any[] = [
+    { role: 'system', content: SYSTEM(agent.balanceUSD, GOAL) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
+    { role: 'user', content: 'Work the board toward the shared goal now: claim, buy your inputs from peers, produce, submit.' },
+  ];
+  let infCalls = 0, infSpend = 0, noTool = 0;
+  try {
+    for (let turn = 1; turn <= DS_MAX_TURNS && !guard.halted_; turn++) {
+      // 'required' forces a tool call every turn (weak models otherwise narrate instead of acting); nudge below is the backstop.
+      const r = await sippar.pay('deepseek', { model: DEEPSEEK_MODEL, messages, tools: TOOLS, tool_choice: noTool > 0 ? 'required' : 'auto' });
+      if (!r.success) { console.log(`✖ [${label}] inference failed: ${r.error}`); break; }
+      infCalls++; infSpend += r.amountPaid ?? 0;
+      const m = extractMessage(r.response);
+      if (!m) { console.log(`✖ [${label}] no message`); break; }
+      messages.push({ role: 'assistant', content: m.content ?? '', tool_calls: m.tool_calls });
+      if (m.content && String(m.content).trim()) { console.log(`🤖 [${label}] ${String(m.content).trim().slice(0, 160)}`); feed.emit('decision', { agent: label, text: String(m.content).trim() }); }
+      if (m.tool_calls?.length) {
+        noTool = 0;
+        for (const call of m.tool_calls) {
+          let args: any = {}; try { args = JSON.parse(call.function.arguments || '{}'); } catch { /* */ }
+          const fn = DISPATCH[call.function.name];
+          const result = fn ? await fn(args) : { error: `unknown tool ${call.function.name}` };
+          const s = JSON.stringify(result);
+          console.log(`🔧 [${label}] ${call.function.name}(${JSON.stringify(args).slice(0, 60)}) → ${s.slice(0, 90)}`);
+          messages.push({ role: 'tool', tool_call_id: call.id, content: s.slice(0, 6000) });
+        }
+        if (board.allDone()) break;
+        continue;
+      }
+      // No tool call this turn. Stop only if genuinely finished (exact "DONE", or whole board done, or no work left) —
+      // NOT just because the word "done" appears in narration. Else the model narrated instead of acting — force it.
+      const txt = String(m.content ?? '').trim().toUpperCase();
+      if (board.allDone() || txt.replace(/[^A-Z]/g, '') === 'DONE' || (board.listOpen(label).length === 0 && board.remaining() === 0)) break;
+      if (++noTool >= 4) { console.log(`✖ [${label}] stuck (narrating, not acting) — stopping`); break; }
+      messages.push({ role: 'user', content: 'You did NOT call any tool. Narration does nothing — only tool calls make progress. Call a tool NOW (list_open_tasks, wait_for_task, claim_task, buy_input, or submit_task). Do not describe what you will do; just call the tool.' });
+    }
+  } catch (e) {
+    console.log(`⚠️  [${label}] ended: ${String((e as Error).message)}`);
+  } finally {
+    const endBal = (await sippar.walletInfo())?.balanceUSD ?? agent.balanceUSD;
+    const spent = budget.summary().spent;
+    feed.emit('usage', { agent: label, turns: infCalls, engine: 'deepseek', inferenceUSD: infSpend });
+    feed.emit('agent_end', { agent: label, balanceUSD: endBal, spentUSD: spent });
+    console.log(`🏁 [${label}] end $${endBal.toFixed(4)} · spent $${spent.toFixed(4)} · ${infCalls} DeepSeek calls ($${infSpend.toFixed(4)}, 0 Claude tokens)`);
+  }
+}
+
+// ── OFF-CLAUDE ENGINE v2: CodeAgent (per Gemini research / smolagents). The model
+// is a STRONG CODER but weak at the multi-turn JSON tool_call protocol — so instead
+// of JSON tool-calls, it writes ONE JS code block that orchestrates the supply-chain
+// functions (claim/buy_input/buy_service/submit), executed in a restricted vm sandbox
+// (no require/process/fetch — only the bound functions). Plays to DeepSeek's strength.
+const CODE_SYSTEM = (goal: string) => `You are an autonomous agent in a team building toward a shared goal via a task DAG. You do your work by WRITING ONE JavaScript async code block that calls these async functions (all return promises — ALWAYS use await):
+- list_open_tasks() -> array of YOUR claimable awarded tasks: [{id,title,produces,consumes,priceUSD}]
+- claim_task(id) -> {ok}
+- wait_for_task(maxSeconds) -> {ready, tasks, boardRemaining}   // blocks until one of your tasks is claimable (a peer produced your input)
+- buy_input(produces_key) -> {success, content}   // buy a peer's completed output (pays them on-chain). Required for EACH key your task "consumes".
+- buy_service(service_id, payload) -> {success, data}   // buy real external data for a SOURCE task. Real ids: "alphavantage" {symbol:"NVDA"}, "brave" {q:"..."}, "tavily" {query:"..."}, "heurist" {q:"..."}
+- submit_task(id, outputText) -> {ok}   // complete your task; outputText must be your REAL result (>= 40 chars)
+- log(message)   // print progress
+
+THE GOAL: ${goal}
+
+Write ONE \`\`\`js code block that completes YOUR awarded task end to end:
+  let list = await list_open_tasks();
+  while (list.length === 0) { await wait_for_task(90); list = await list_open_tasks(); if ((await wait_for_task(1)).boardRemaining === 0) return; }
+  const t = list[0];
+  await claim_task(t.id);
+  const parts = [];
+  for (const key of t.consumes) { const r = await buy_input(key); parts.push(r.content); }      // buy EVERY input
+  if (t.consumes.length === 0) { const d = await buy_service("alphavantage", {symbol:"NVDA"}); parts.push(JSON.stringify(d.data)); }  // SOURCE: buy real data ONCE
+  const output = /* write a concise, sourced result string from parts */ ("..." );
+  await submit_task(t.id, output);
+
+Rules: output ONLY the code block, no prose before/after. Use try/catch and call log() so progress and errors are visible. Use ONLY the functions above — NO require, process, fetch, import, or network. Build the output text yourself from what you bought; never invent data.`;
+
+function extractCodeBlock(resp: any): string | null {
+  const text = String(extractMessage(resp)?.content ?? '');
+  const fence = text.match(/```(?:js|javascript|typescript)?\s*\n?([\s\S]*?)```/);
+  if (fence) return fence[1];
+  return /await |claim_task|submit_task/.test(text) ? text : null;
+}
+
+// Execute the model's code in the HOST realm via AsyncFunction so `await` on our
+// bound async functions works natively (vm can't await cross-realm host promises).
+// NOTE: in-process, not security-sandboxed — fine for this non-adversarial spike;
+// a production version runs untrusted code in isolated-vm / a subprocess / E2B.
+async function execCode(code: string, api: Record<string, any>, timeoutMs: number): Promise<{ ok: boolean; error?: string; logs: string[] }> {
+  const logs: string[] = [];
+  const boundLog = (m: any) => { logs.push(String(m).slice(0, 200)); api.log(m); };
+  const names = ['list_open_tasks', 'claim_task', 'wait_for_task', 'buy_input', 'buy_service', 'submit_task', 'log'];
+  const fns = [api.list_open_tasks, api.claim_task, api.wait_for_task, api.buy_input, api.buy_service, api.submit_task, boundLog];
+  const AsyncFunction = Object.getPrototypeOf(async function () { /* */ }).constructor as any;
+  try {
+    const fn = new AsyncFunction(...names, `"use strict";\n${code}`);
+    await Promise.race([fn(...fns), new Promise((_, rej) => setTimeout(() => rej(new Error('exec wall-clock timeout')), timeoutMs))]);
+    return { ok: true, logs };
+  } catch (e: any) { return { ok: false, error: String(e?.message ?? e), logs }; }
+}
+
+async function runAgentDeepSeekCode(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
+  const { label, principal } = agent;
+  const selfAddr = agent.address;
+  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, engine: 'deepseek-code' });
+  const onEvent = (e: BudgetEvent) => {
+    if (e.type === 'spent') { if (e.service !== 'deepseek' && !e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining }); }
+    else feed.emit('blocked', { agent: label, service: e.service, amountUSD: e.amount, reason: e.reason });
+  };
+  const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);
+  const sippar = new Sippar(budget, { principal, guard });
+  let mySubmitted = false;
+  const api = {
+    list_open_tasks: async () => board.listOpen(label),
+    claim_task: async (id: string) => board.claim(label, id),
+    wait_for_task: async (maxSeconds: number) => {
+      const deadline = Date.now() + Math.min(240, Math.max(5, Number(maxSeconds) || 90)) * 1000;
+      let open = board.listOpen(label);
+      while (open.length === 0 && Date.now() < deadline && board.remaining() > 0 && !guard.halted_) { await new Promise((r) => setTimeout(r, 4000)); open = board.listOpen(label); }
+      return { ready: open.length > 0, tasks: open, boardRemaining: board.remaining() };
+    },
+    buy_input: async (key: string) => {
+      const inp = board.inputFor(key);
+      if (!inp) return { success: false, error: `no completed producer for "${key}" yet` };
+      if (inp.producerAddr === selfAddr) { board.recordPurchase(label, key); return { success: true, content: inp.output }; }
+      const pay = await sippar.payAgent(inp.producerAddr!, inp.priceUSD);
+      if (!pay.success) return { success: false, error: pay.error };
+      board.recordPurchase(label, key);
+      feed.emit('market_buy', { agent: label, seller: inp.producerLabel, id: inp.id, amountUSD: pay.amountPaid, tx: pay.tx });
+      return { success: true, content: inp.output };
+    },
+    buy_service: async (service_id: string, payload: any) => {
+      const r = await sippar.pay(service_id, payload ?? {});
+      return { success: r.success, data: r.success ? r.response : undefined, error: r.error };
+    },
+    submit_task: async (id: string, outputText: string) => {
+      const r = board.submit(label, id, String(outputText ?? ''), selfAddr);
+      if (r.ok) { mySubmitted = true; feed.emit('market_post', { agent: label, id, summary: `produced ${id}`, priceUSD: 0 }); }
+      return r;
+    },
+    log: (m: any) => { const s = String(m).slice(0, 200); console.log(`📝 [${label}] ${s}`); feed.emit('decision', { agent: label, text: s }); },
+  };
+
+  const messages: any[] = [{ role: 'system', content: CODE_SYSTEM(GOAL) }, { role: 'user', content: 'Write the ```js code block to complete your awarded task now.' }];
+  let infCalls = 0, infSpend = 0;
+  try {
+    for (let round = 1; round <= 4 && !guard.halted_ && !mySubmitted && !board.allDone(); round++) {
+      const r = await sippar.pay('deepseek', { model: DEEPSEEK_MODEL, messages });
+      if (!r.success) { console.log(`✖ [${label}] inference failed: ${r.error}`); break; }
+      infCalls++; infSpend += r.amountPaid ?? 0;
+      const code = extractCodeBlock(r.response);
+      if (!code) { messages.push({ role: 'user', content: 'Output ONLY a ```js code block.' }); continue; }
+      console.log(`🧩 [${label}] round ${round}: exec ${code.length}-char code block`);
+      const res = await execCode(code, api, 300000);
+      console.log(`   [${label}] → submitted=${mySubmitted} ${res.ok ? 'ok' : 'err: ' + res.error}`);
+      if (mySubmitted || board.allDone()) break;
+      messages.push({ role: 'assistant', content: '```js\n' + code + '\n```' });
+      messages.push({ role: 'user', content: `Your task is NOT submitted yet. Execution — ${res.ok ? 'ran without throwing' : 'ERROR: ' + res.error} | logs: ${res.logs.join(' | ').slice(0, 600)}. Output a corrected \`\`\`js code block that finishes by calling submit_task(t.id, output).` });
+    }
+  } catch (e) { console.log(`⚠️  [${label}] ended: ${String((e as Error).message)}`); }
+  finally {
+    const endBal = (await sippar.walletInfo())?.balanceUSD ?? agent.balanceUSD;
+    const spent = budget.summary().spent;
+    feed.emit('usage', { agent: label, turns: infCalls, engine: 'deepseek-code', inferenceUSD: infSpend });
+    feed.emit('agent_end', { agent: label, balanceUSD: endBal, spentUSD: spent });
+    console.log(`🏁 [${label}] end $${endBal.toFixed(4)} · spent $${spent.toFixed(4)} · submitted=${mySubmitted} · ${infCalls} code-gen calls ($${infSpend.toFixed(4)}, 0 Claude tokens)`);
+  }
+}
+
 async function main() {
   console.log(`\n=== Swarm Task-Economy — agents pay each other up a dependency DAG ===`);
   if (PRINCIPALS.length === 0) { console.error('Set SWARM_PRINCIPALS=p1,p2,... (funded sovereign wallets) in .env.'); process.exit(1); }
@@ -194,7 +428,9 @@ async function main() {
   });
 
   // 3) Run all agents concurrently — the DAG orders them (no stagger needed).
-  await Promise.allSettled(agents.map((a) => runAgent(a, board, guard, feed)));
+  const run = AGENT_ENGINE === 'deepseek-code' ? runAgentDeepSeekCode : AGENT_ENGINE === 'deepseek' ? runAgentDeepSeek : runAgent;
+  console.log(`engine: ${AGENT_ENGINE === 'deepseek-code' ? `DeepSeek CodeAgent (${DEEPSEEK_MODEL}) — code-gen + sandboxed exec, 0 Claude tokens` : AGENT_ENGINE === 'deepseek' ? `DeepSeek JSON tool-calls (${DEEPSEEK_MODEL}) — 0 Claude tokens` : `Claude SDK (${MODEL})`}\n`);
+  await Promise.allSettled(agents.map((a) => run(a, board, guard, feed)));
   clearTimeout(timer);
 
   // 4) Observe.
