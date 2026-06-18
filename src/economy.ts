@@ -39,7 +39,7 @@ const GOAL = process.argv.slice(2).join(' ') ||
 
 const HANDS = new Set([
   'mcp__hands__discover_services', 'mcp__hands__buy_service', 'mcp__hands__think', 'mcp__hands__check_budget',
-  'mcp__economy__list_open_tasks', 'mcp__economy__claim_task', 'mcp__economy__buy_input', 'mcp__economy__submit_task',
+  'mcp__economy__list_open_tasks', 'mcp__economy__wait_for_task', 'mcp__economy__claim_task', 'mcp__economy__buy_input', 'mcp__economy__submit_task',
 ]);
 const canUseTool = async (toolName: string, input: Record<string, unknown>) => {
   if (HANDS.has(toolName)) return { behavior: 'allow' as const, updatedInput: input };
@@ -57,6 +57,16 @@ function taskServer(board: TaskBoard, label: string, selfAddr: string, sippar: S
   return createSdkMcpServer({ name: 'economy', version: '0.1.0', tools: [
     tool('list_open_tasks', 'List the tasks AWARDED TO YOU that you can claim right now (every input they need has been produced). Shows produces, consumes, the price a consumer pays you, and which input keys to buy first. If empty, your upstream peers are still producing your inputs — wait and re-check.', {},
       async () => ({ content: [{ type: 'text', text: JSON.stringify(board.listOpen(label)) }] })),
+    tool('wait_for_task', 'Block efficiently until one of YOUR awarded tasks becomes claimable (a peer has produced your input) or until timeout — use this INSTEAD of polling list_open_tasks in a loop, so you do not waste your turns. Returns your claimable tasks when ready.', { max_seconds: z.number().default(180) },
+      async ({ max_seconds }) => {
+        const deadline = Date.now() + Math.min(300, Math.max(10, max_seconds)) * 1000;
+        let open = board.listOpen(label);
+        while (open.length === 0 && Date.now() < deadline && board.remaining() > 0) {
+          await new Promise((r) => setTimeout(r, 4000));
+          open = board.listOpen(label);
+        }
+        return { content: [{ type: 'text', text: JSON.stringify({ ready: open.length > 0, tasks: open, boardRemaining: board.remaining() }) }] };
+      }),
     tool('claim_task', 'Claim an open task (exclusive; auto-releases if you do not submit in time). Then buy_input everything it consumes, produce its output, and submit_task.', { id: z.string() },
       async ({ id }) => ({ content: [{ type: 'text', text: JSON.stringify(board.claim(label, id)) }] })),
     tool('buy_input', 'Buy a completed input your task needs from the peer who produced it — pays them on-chain (real A2A settlement) and returns the content. You CANNOT submit a task until you have bought every input it consumes.', { produces_key: z.string() },
@@ -86,12 +96,12 @@ THE GOAL: ${goal}
 You are AWARDED specific tasks in the DAG (you cannot do other agents' tasks). Other agents own the rest. So you will often need an input that a PEER must produce first — you buy it from them.
 
 HOW TO WORK (loop until you have no awarded task left):
-1. list_open_tasks — your awarded tasks whose inputs are ready. If empty, a peer is still producing your input — wait briefly and re-check (do NOT fabricate).
+1. list_open_tasks — your awarded tasks whose inputs are ready. If it is EMPTY, your input is still being produced by a peer — call wait_for_task (it blocks until your input is ready; do NOT poll in a loop and do NOT give up — your inputs WILL arrive). Never fabricate inputs.
 2. claim_task(id) — take ONE.
 3. For EACH key it consumes: buy_input(key) — this pays the peer who produced it (on-chain) and returns their content. You literally cannot submit without buying every input.
-4. Produce your task's output: combine the bought inputs, and use buy_service for real external data or think (cheap paid LLM) for heavy synthesis. Keep YOUR OWN messages short — offload heavy work to think; your own reasoning is the scarce resource.
-5. submit_task(id, output) — you EARN when peers buy your output.
-Then list_open_tasks again and claim another. If nothing is claimable yet, your upstream peers are still producing — wait briefly and re-list; do NOT fabricate inputs. Earn by producing what others need; spend buying what you need.`;
+4. Produce your task's output: combine the bought inputs, and use buy_service for real external data. (think/LLM-synthesis services may be flaky — if so, just write the output yourself from the real data you bought.)
+5. ★ THE MOMENT you have your output text, IMMEDIATELY call submit_task(id, output). Do NOT look for other tasks first, do NOT wait, do NOT keep researching — SUBMIT what you have. An unsubmitted task blocks your whole team and you do not get paid until you submit.
+Only AFTER submitting, list_open_tasks again for another awarded task; if none, call wait_for_task (a downstream task may unlock) — but if wait_for_task returns boardRemaining 0 or your work is done, you are FINISHED. Earn by producing what others need; spend buying what you need. Keep your own messages short.`;
 
 interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; }
 
