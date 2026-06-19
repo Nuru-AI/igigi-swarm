@@ -11,3 +11,4 @@ runs/
 # session helper scripts / staging
 .locus-*.sh
 fund-base.mjs
+locus-docs/

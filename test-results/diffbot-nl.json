@@ -1,0 +1,119 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.0042,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001068c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a3542f1846a3542ce9420c000000000000000000000b9537d11c60e8b5080c0b8418a6348e2236cf4e3ed7688310a30c737766f415d504777e56d5220b9ed80a27867a014a8d0d6e79b2ab754c22c909a92ee4a5ce1b01e3d5d88003a5d9473a6e61c",
+    "response": {
+      "success": true,
+      "data": {
+        "sentiment": 0.72384983,
+        "entities": [
+          {
+            "name": "Apple Inc.",
+            "diffbotUri": "https://diffbot.com/entity/EHb0_0NEcMwyY8b083taTTw",
+            "confidence": 0.9275875,
+            "salience": 0.9687693,
+            "sentiment": 0.558398,
+            "isCustom": false,
+            "allUris": [
+              "http://www.wikidata.org/entity/Q312"
+            ],
+            "allTypes": [
+              {
+                "name": "organization",
+                "diffbotUri": "https://diffbot.com/entity/EN1ClYEdMMQCxB6AWTkT3mA",
+                "dbpediaUri": "http://dbpedia.org/ontology/Organisation"
+              }
+            ],
+            "mentions": [
+              {
+                "text": "Apple Inc.",
+                "beginOffset": 0,
+                "endOffset": 10,
+                "confidence": 0.9275875
+              }
+            ],
+            "location": {
+              "latitude": 37.331676,
+              "longitude": -122.01111,
+              "precision": 0.1
+            }
+          },
+          {
+            "name": "Steve Jobs",
+            "diffbotUri": "https://diffbot.com/entity/EyauXV2QZOW2fEP8Cb_Hoxg",
+            "confidence": 0.97558254,
+            "salience": 0.88514555,
+            "sentiment": 0,
+            "isCustom": false,
+            "allUris": [
+              "http://www.wikidata.org/entity/Q19837"
+            ],
+            "allTypes": [
+              {
+                "name": "person",
+                "diffbotUri": "https://diffbot.com/entity/E4aFoJie0MN6dcs_yDRFwXQ",
+                "dbpediaUri": "http://dbpedia.org/ontology/Person"
+              }
+            ],
+            "mentions": [
+              {
+                "text": "Steve Jobs",
+                "beginOffset": 72,
+                "endOffset": 82,
+                "confidence": 0.97558254
+              }
+            ]
+          },
+          {
+            "name": "Cupertino",
+            "diffbotUri": "https://diffbot.com/entity/Exd-cghOPMcCHRez564r5EA",
+            "confidence": 0.9088318,
+            "salience": 0.82003385,
+            "sentiment": 0,
+            "isCustom": false,
+            "allUris": [
+              "http://www.wikidata.org/entity/Q189471"
+            ],
+            "allTypes": [
+              {
+                "name": "location",
+                "diffbotUri": "https://diffbot.com/entity/EiCyWUm4lNziqgLHx47iAIQ",
+                "dbpediaUri": "http://dbpedia.org/ontology/Place"
+              },
+              {
+                "name": "administrative area",
+                "diffbotUri": "https://diffbot.com/entity/EcTIu1tWKPouIa6qZtSpc4A",
+                "dbpediaUri": "http://dbpedia.org/ontology/PopulatedPlace"
+              },
+              {
+                "name": "city",
+                "diffbotUri": "https://diffbot.com/entity/EzdJrGHiyMWu0XbSn101rFA",
+                "dbpediaUri": "http://dbpedia.org/ontology/City"
+              }
+            ],
+            "mentions": [
+              {
+                "text": "Cupertino, California",
+                "beginOffset": 31,
+                "endOffset": 52,
+                "confidence": 0.9088318
+              }
+            ],
+            "location": {
+              "latitude": 37.3175,
+              "longitude": -122.04195,
+              "precision": 5.3851647
+            }
+          }
+        ]
+      }
+    },
+    "agentBalanceUSD": 0.000903
+  },
+  "timestamp": "2026-06-19T13:23:46.901Z"
+}

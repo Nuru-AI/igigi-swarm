@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.008,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001f40c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a355637846a3556149420c000000000000000000000b9537d11c60e8b5080c0b8413edcca0744ab0a8b025f8c1116bf7f37debca052dab5396db4fb42067ffafbf05cc2f30d9492d9e147073d9d58b70a78a7e6fc6885e83cfb88307428a1bd296a1c",
+    "response": {
+      "success": true,
+      "data": {
+        "Realtime Currency Exchange Rate": {
+          "1. From_Currency Code": "USD",
+          "2. From_Currency Name": "United States Dollar",
+          "3. To_Currency Code": "EUR",
+          "4. To_Currency Name": "Euro",
+          "5. Exchange Rate": "0.87196987",
+          "6. Last Refreshed": "2026-06-19 14:45:57",
+          "7. Time Zone": "UTC",
+          "8. Bid Price": "0.87194371",
+          "9. Ask Price": "0.87197013"
+        }
+      }
+    },
+    "agentBalanceUSD": 0.079878
+  },
+  "timestamp": "2026-06-19T14:45:57.647Z"
+}

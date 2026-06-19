@@ -1,0 +1,105 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.01393,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff0000000000000000000000000000000000000000000000000000000000000366ac0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a35443b846a3544189420c000000000000000000000b9537d11c60e8b5080c0b8411fc35ead7712f119a0163346c8e30272db28c114329da0da3dfa750aa9278b41710ae3c4b531425ae3a911447b265ca8ce00070f37639068db4b4cd8960538731b",
+    "response": {
+      "success": true,
+      "data": {
+        "id": "25e48382-cf8f-4250-8c57-363f3ebf2a7c",
+        "model": "sonar",
+        "created": 1781875755,
+        "usage": {
+          "prompt_tokens": 15,
+          "completion_tokens": 47,
+          "total_tokens": 62,
+          "search_context_size": "low",
+          "cost": {
+            "input_tokens_cost": 1e-05,
+            "output_tokens_cost": 5e-05,
+            "request_cost": 0.005,
+            "total_cost": 0.00506
+          }
+        },
+        "citations": [
+          "https://eco.com/support/en/articles/12160492-what-is-tempo-blockchain-stripe-s-stablecoin-powered-enterprise-payment-network",
+          "https://www.paradigm.xyz/2025/09/tempo-payments-first-blockchain",
+          "https://x.com/tempo?lang=en",
+          "https://tempo.xyz",
+          "https://www.youtube.com/watch?v=RLPRC1pPyzM",
+          "https://fortune.com/2026/04/21/stripe-and-paradigm-tempo-advisory-stablecoin-adoption/"
+        ],
+        "search_results": [
+          {
+            "title": "What Is Tempo Blockchain? Stripe's Stablecoin-Powered Enterprise ...",
+            "url": "https://eco.com/support/en/articles/12160492-what-is-tempo-blockchain-stripe-s-stablecoin-powered-enterprise-payment-network",
+            "date": "2026-05-28",
+            "last_updated": "2026-06-17",
+            "snippet": "By combining Stripe's enterprise distribution with Paradigm's crypto expertise in a purpose-built blockchain architecture, Tempo addresses\u00a0...",
+            "source": "web"
+          },
+          {
+            "title": "Tempo: The Blockchain Designed for Payments - Paradigm",
+            "url": "https://www.paradigm.xyz/2025/09/tempo-payments-first-blockchain",
+            "date": "2025-09-04",
+            "last_updated": "2026-06-06",
+            "snippet": "Tempo is purpose-built for stablecoins and real-world payments, born from Stripe's experience in global payments and Paradigm's expertise in\u00a0...",
+            "source": "web"
+          },
+          {
+            "title": "Tempo (@tempo) / Posts / X - Twitter",
+            "url": "https://x.com/tempo?lang=en",
+            "date": "2026-06-19",
+            "last_updated": "2026-01-27",
+            "snippet": "Tempo is a purpose-built L1 from Stripe and @Paradigm. Sub-second finality, stablecoin-native gas, built for agent commerce. What agents can do\u00a0...",
+            "source": "web"
+          },
+          {
+            "title": "Tempo: the blockchain for payments at scale",
+            "url": "https://tempo.xyz",
+            "last_updated": "2026-06-16",
+            "snippet": "Incubated by Paradigm and Stripe, Tempo was designed with input from category-defining fintechs, banks, and commerce platforms serving billions worldwide.",
+            "source": "web"
+          },
+          {
+            "title": "The payments blockchain by Paradigm and Stripe Ft. Simon Taylor",
+            "url": "https://www.youtube.com/watch?v=RLPRC1pPyzM",
+            "date": "2025-09-08",
+            "last_updated": "2025-09-11",
+            "snippet": "Tempo Interview - The payments blockchain by Paradigm and Stripe Ft. Simon Taylor Tokenized is sponsored by Visa A world leader in digital\u00a0...",
+            "source": "web"
+          },
+          {
+            "title": "Stripe and Paradigm-backed blockchain Tempo launches advisory ...",
+            "url": "https://fortune.com/2026/04/21/stripe-and-paradigm-tempo-advisory-stablecoin-adoption/",
+            "date": "2026-04-21",
+            "last_updated": "2026-06-18",
+            "snippet": "Tempo, the new blockchain backed by payments company Stripe and VC firm Paradigm, has launched a \u201cstablecoin advisory\u201d to help businesses\u00a0...",
+            "source": "web"
+          }
+        ],
+        "object": "chat.completion",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Tempo is a **payments-first Layer 1 blockchain** incubated by **Stripe** and **Paradigm**, designed for **stablecoin-based, real-world payments** with fast settlement and low-cost transactions.[2][4]"
+            },
+            "delta": {
+              "role": "assistant",
+              "content": ""
+            },
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    "agentBalanceUSD": 0.21271
+  },
+  "timestamp": "2026-06-19T13:29:16.209Z"
+}

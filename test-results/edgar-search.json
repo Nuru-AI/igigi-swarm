@@ -1,0 +1,4763 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.008,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001f40c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a354348846a3543259420c000000000000000000000b9537d11c60e8b5080c0b841c1a3e51e5f0cdbe8f5f1bc709f31876c7b1bc6bdae77ef6a5f0dcf1f5016056e1a0ea77f3862c09c1243419841679905d3f69390c55810ff116885b6094cd3981b",
+    "response": {
+      "success": true,
+      "data": {
+        "took": 1121,
+        "timed_out": false,
+        "_shards": {
+          "total": 50,
+          "successful": 50,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 10000,
+            "relation": "gte"
+          },
+          "max_score": 19.36934,
+          "hits": [
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-21-000289:ex_99-1.htm",
+              "_score": 19.36934,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2021-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 5,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-06-01",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-21-000289",
+                "film_num": [
+                  "21982165"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "EX-99",
+                "file_description": "INSIDER TRADING POLICY",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-22-000273:form_10-ka.htm",
+              "_score": 18.827728,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2022-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2022-05-31",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001161697-22-000273",
+                "film_num": [
+                  "22982316"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K/A AMENDMENT NO. 1 TO ANNUAL REPORT FOR 02-28-2022",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001477932-26-002727:cctc_10ka.htm",
+              "_score": 18.653751,
+              "_source": {
+                "ciks": [
+                  "0001477960"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-56634"
+                ],
+                "display_names": [
+                  "Catalyst Crew Technologies Corp.  (CCTC)  (CIK 0001477960)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-05-04",
+                "biz_states": [],
+                "sics": [
+                  "7370"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001477932-26-002727",
+                "film_num": [
+                  "26936253"
+                ],
+                "biz_locations": [
+                  "Piso 4 Oficina 4-d, Urb Boleit"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K/A",
+                "inc_states": [],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-21-000289:form_10-k.htm",
+              "_score": 18.591007,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2021-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-06-01",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-21-000289",
+                "film_num": [
+                  "21982165"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K ANNUAL REPORT FOR 02-28-2021",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001683168-26-002984:loan_i10k-123125.htm",
+              "_score": 18.43106,
+              "_source": {
+                "ciks": [
+                  "0001594968"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-56529"
+                ],
+                "display_names": [
+                  "Loan Artificial Intelligence Corp.  (LAAI, VEST)  (CIK 0001594968)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-04-15",
+                "biz_states": [],
+                "sics": [
+                  "7900"
+                ],
+                "form": "10-K",
+                "adsh": "0001683168-26-002984",
+                "film_num": [
+                  "26863833"
+                ],
+                "biz_locations": [
+                  "Admiralty"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K FOR DEC 2025",
+                "inc_states": [
+                  "FL"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-19-000352:form_10-k.htm",
+              "_score": 18.420708,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2019-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-08-26",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-19-000352",
+                "film_num": [
+                  "191053454"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K ANNUAL REPORT FOR 02-28-2019",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-19-015506:form10-k.htm",
+              "_score": 18.408422,
+              "_source": {
+                "ciks": [
+                  "0000825322"
+                ],
+                "period_ending": "2019-06-30",
+                "file_num": [
+                  "000-30202"
+                ],
+                "display_names": [
+                  "MPHASE TECHNOLOGIES INC  (XDSL)  (CIK 0000825322)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-10-15",
+                "biz_states": [
+                  "MD"
+                ],
+                "sics": [
+                  "3690"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-19-015506",
+                "film_num": [
+                  "191151026"
+                ],
+                "biz_locations": [
+                  "Gaithersburg, MD"
+                ],
+                "file_type": "10-K",
+                "file_description": null,
+                "inc_states": [
+                  "NJ"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-20-000345:form_10-k.htm",
+              "_score": 18.401485,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2020-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2020-07-31",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001161697-20-000345",
+                "film_num": [
+                  "201066750"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K/A AMENDMENT NO. 1 TO ANNUAL REPORT FOR 02-29-2020",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-20-000334:form_10-k.htm",
+              "_score": 18.396816,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2020-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2020-07-28",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-20-000334",
+                "film_num": [
+                  "201053716"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K ANNUAL REPORT FOR 02-29-2020",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-19-000466:form_10-k.htm",
+              "_score": 18.379696,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2019-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-11-04",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001161697-19-000466",
+                "film_num": [
+                  "191188566"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K/A AMENDMENT NO. 2 TO ANNUAL REPORT FOR 02-28-2019",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-19-000356:form_10-k.htm",
+              "_score": 18.359367,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2019-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-08-29",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001161697-19-000356",
+                "film_num": [
+                  "191066219"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K/A AMENDMENT NO. 1 TO ANNUAL REPORT FOR 02-28-2019",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-20-000363:form_10-k.htm",
+              "_score": 18.322897,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2020-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2020-08-10",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001161697-20-000363",
+                "film_num": [
+                  "201089328"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K/A AMENDMENT NO. 2 TO ANNUAL REPORT FOR 02-29-2020",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-26-027796:form10-k.htm",
+              "_score": 18.191267,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2026-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-06-09",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-26-027796",
+                "film_num": [
+                  "261074250"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-21-000294:form_10-k.htm",
+              "_score": 18.184757,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2021-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-06-01",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001161697-21-000294",
+                "film_num": [
+                  "21984444"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K/A AMENDMENT NO. 1 TO ANNUAL REPORT FOR 02-28-2021",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-24-021767:form10-ka.htm",
+              "_score": 18.14508,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2024-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-05-29",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001493152-24-021767",
+                "film_num": [
+                  "24997747"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "10-K/A",
+                "file_description": null,
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-23-000356:form_10-k.htm",
+              "_score": 18.132553,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2023-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-06-14",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-23-000356",
+                "film_num": [
+                  "231014045"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K ANNUAL REPORT FOR 02-28-2023",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001641172-25-012903:form10-k.htm",
+              "_score": 18.099228,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2025-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-05-29",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001641172-25-012903",
+                "film_num": [
+                  "251004918"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-24-021634:form10-k.htm",
+              "_score": 18.096947,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2024-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-05-28",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-24-021634",
+                "film_num": [
+                  "24992954"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "10-K",
+                "file_description": null,
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-22-000270:form_10-k.htm",
+              "_score": 18.039982,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2022-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2022-05-27",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-22-000270",
+                "film_num": [
+                  "22977876"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K ANNUAL REPORT FOR 02-28-2022",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001193125-26-091708:rdvt-20251231.htm",
+              "_score": 17.793556,
+              "_source": {
+                "ciks": [
+                  "0001720116"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-38407"
+                ],
+                "display_names": [
+                  "Red Violet, Inc.  (RDVT)  (CIK 0001720116)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-04",
+                "biz_states": [
+                  "FL"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001193125-26-091708",
+                "film_num": [
+                  "26722251"
+                ],
+                "biz_locations": [
+                  "Boca Raton, FL"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-19-004553:f10k2018_aedanfinancial.htm",
+              "_score": 17.69643,
+              "_source": {
+                "ciks": [
+                  "0001709587"
+                ],
+                "period_ending": "2018-12-31",
+                "file_num": [
+                  "000-55807"
+                ],
+                "display_names": [
+                  "Aedan Financial Corp  (CIK 0001709587)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-03-20",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "6770"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-19-004553",
+                "film_num": [
+                  "19694888"
+                ],
+                "biz_locations": [
+                  "San Francisco, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-19-014347:f10k2018a1_aedanfinancial.htm",
+              "_score": 17.693972,
+              "_source": {
+                "ciks": [
+                  "0001709587"
+                ],
+                "period_ending": "2018-12-31",
+                "file_num": [
+                  "000-55807"
+                ],
+                "display_names": [
+                  "Aedan Financial Corp  (CIK 0001709587)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-08-01",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "6770"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001213900-19-014347",
+                "film_num": [
+                  "19992370"
+                ],
+                "biz_locations": [
+                  "San Francisco, CA"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "AMENDMENT NO. 1 TO ANNUAL REPORT",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001683168-24-002276:kinetic_i10k-123123.htm",
+              "_score": 17.648216,
+              "_source": {
+                "ciks": [
+                  "0001945619"
+                ],
+                "period_ending": "2023-12-31",
+                "file_num": [
+                  "000-56478"
+                ],
+                "display_names": [
+                  "Kinetic Seas Inc.  (ECGR)  (CIK 0001945619)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-04-10",
+                "biz_states": [
+                  "GA"
+                ],
+                "sics": [
+                  "6770"
+                ],
+                "form": "10-K",
+                "adsh": "0001683168-24-002276",
+                "film_num": [
+                  "24835783"
+                ],
+                "biz_locations": [
+                  "Atlanta, GA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "CO"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001683168-24-006662:kinetic_i10ka1-123123.htm",
+              "_score": 17.644688,
+              "_source": {
+                "ciks": [
+                  "0001945619"
+                ],
+                "period_ending": "2023-12-31",
+                "file_num": [
+                  "000-56478"
+                ],
+                "display_names": [
+                  "Kinetic Seas Inc.  (ECGR)  (CIK 0001945619)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-09-26",
+                "biz_states": [
+                  "IL"
+                ],
+                "sics": [
+                  "6770"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001683168-24-006662",
+                "film_num": [
+                  "241327704"
+                ],
+                "biz_locations": [
+                  "Schaumburg, IL"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "FORM 10-K AMENDMENT 1 FOR DECEMBER 2023",
+                "inc_states": [
+                  "CO"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001628280-26-020560:ihamconsolidation-fy2025ex.htm",
+              "_score": 17.581268,
+              "_source": {
+                "ciks": [
+                  "0001287750"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "814-00663"
+                ],
+                "display_names": [
+                  "ARES CAPITAL CORP  (ARCC)  (CIK 0001287750)"
+                ],
+                "xsl": null,
+                "sequence": "6",
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-23",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [],
+                "form": "10-K/A",
+                "adsh": "0001628280-26-020560",
+                "film_num": [
+                  "26782965"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "EX-99.3",
+                "file_description": "EX-99.3",
+                "inc_states": [
+                  "MD"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-23-000356:ex_23-2.htm",
+              "_score": 17.575226,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2023-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 4,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-06-14",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-23-000356",
+                "film_num": [
+                  "231014045"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "EX-23",
+                "file_description": "CONSENT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM FOR FORM S-1 (333-271031)",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-24-021634:ex23-1.htm",
+              "_score": 17.541565,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2024-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 3,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-05-28",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-24-021634",
+                "film_num": [
+                  "24992954"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "EX-23.1",
+                "file_description": null,
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001477932-25-007240:nexscient_10k.htm",
+              "_score": 17.541382,
+              "_source": {
+                "ciks": [
+                  "0001976663"
+                ],
+                "period_ending": "2025-06-30",
+                "file_num": [
+                  "333-274532"
+                ],
+                "display_names": [
+                  "Nexscient, Inc.  (NXNT)  (CIK 0001976663)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-09-30",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001477932-25-007240",
+                "film_num": [
+                  "251360681"
+                ],
+                "biz_locations": [
+                  "Los Angeles, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-24-021767:ex23-1.htm",
+              "_score": 17.503183,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2024-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 3,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-05-29",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001493152-24-021767",
+                "film_num": [
+                  "24997747"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "EX-23.1",
+                "file_description": null,
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001641172-25-012903:ex23-1.htm",
+              "_score": 17.491741,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2025-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": "3",
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-05-29",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001641172-25-012903",
+                "film_num": [
+                  "251004918"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "EX-23.1",
+                "file_description": "EX-23.1",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-25-098514:ea025668101ex21-1_singular.htm",
+              "_score": 17.48998,
+              "_source": {
+                "ciks": [
+                  "0001422892"
+                ],
+                "period_ending": "2025-06-30",
+                "file_num": [
+                  "001-34024"
+                ],
+                "display_names": [
+                  "Singularity Future Technology Ltd.  (SGLY)  (CIK 0001422892)"
+                ],
+                "xsl": null,
+                "sequence": "3",
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-10-14",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "4731"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-25-098514",
+                "film_num": [
+                  "251390761"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "EX-21.1",
+                "file_description": "LIST OF SUBSIDIARIES OF THE COMPANY",
+                "inc_states": [],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001013762-25-003420:ea0232620-10k_linkhome.htm",
+              "_score": 17.489824,
+              "_source": {
+                "ciks": [
+                  "0002017758"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "333-280379"
+                ],
+                "display_names": [
+                  "Linkhome Holdings Inc.  (LHAI)  (CIK 0002017758)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-03-27",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "6531"
+                ],
+                "form": "10-K",
+                "adsh": "0001013762-25-003420",
+                "film_num": [
+                  "25780010"
+                ],
+                "biz_locations": [
+                  "Irvine, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-21-025336:form10-k.htm",
+              "_score": 17.465628,
+              "_source": {
+                "ciks": [
+                  "0000825322"
+                ],
+                "period_ending": "2021-06-30",
+                "file_num": [
+                  "000-30202"
+                ],
+                "display_names": [
+                  "MPHASE TECHNOLOGIES, INC.  (XDSL)  (CIK 0000825322)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-10-13",
+                "biz_states": [
+                  "MD"
+                ],
+                "sics": [
+                  "3690"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-21-025336",
+                "film_num": [
+                  "211321864"
+                ],
+                "biz_locations": [
+                  "Gaithersburg, MD"
+                ],
+                "file_type": "10-K",
+                "file_description": null,
+                "inc_states": [
+                  "NJ"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001628280-26-025356:domo-20260131.htm",
+              "_score": 17.371017,
+              "_source": {
+                "ciks": [
+                  "0001505952"
+                ],
+                "period_ending": "2026-01-31",
+                "file_num": [
+                  "001-38553"
+                ],
+                "display_names": [
+                  "DOMO, INC.  (DOMO)  (CIK 0001505952)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-04-16",
+                "biz_states": [
+                  "UT"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001628280-26-025356",
+                "film_num": [
+                  "26865486"
+                ],
+                "biz_locations": [
+                  "American Fork, UT"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-16-010132:form10-k.htm",
+              "_score": 17.241577,
+              "_source": {
+                "ciks": [
+                  "0001583138"
+                ],
+                "period_ending": "2015-06-30",
+                "file_num": [
+                  "333-190431"
+                ],
+                "display_names": [
+                  "Pulse Evolution Corp  (CIK 0001583138)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2016-05-20",
+                "biz_states": [
+                  "FL"
+                ],
+                "sics": [
+                  "7819"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-16-010132",
+                "film_num": [
+                  "161665548"
+                ],
+                "biz_locations": [
+                  "Port St. Lucie, Fl, FL"
+                ],
+                "file_type": "10-K",
+                "file_description": null,
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001683168-26-004391:kinetic_i10k-123125.htm",
+              "_score": 17.239517,
+              "_source": {
+                "ciks": [
+                  "0001945619"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-56478"
+                ],
+                "display_names": [
+                  "Kinetic Seas Inc.  (KSEZ)  (CIK 0001945619)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-05-29",
+                "biz_states": [
+                  "IL"
+                ],
+                "sics": [
+                  "6770"
+                ],
+                "form": "10-K",
+                "adsh": "0001683168-26-004391",
+                "film_num": [
+                  "261044733"
+                ],
+                "biz_locations": [
+                  "Schaumburg, IL"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K FOR DEC 2025",
+                "inc_states": [
+                  "CO"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-21-000239:form10-k.htm",
+              "_score": 17.185818,
+              "_source": {
+                "ciks": [
+                  "0000825322"
+                ],
+                "period_ending": "2020-06-30",
+                "file_num": [
+                  "000-30202"
+                ],
+                "display_names": [
+                  "MPHASE TECHNOLOGIES INC  (XDSL)  (CIK 0000825322)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-01-05",
+                "biz_states": [
+                  "MD"
+                ],
+                "sics": [
+                  "3690"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-21-000239",
+                "film_num": [
+                  "21507300"
+                ],
+                "biz_locations": [
+                  "Gaithersburg, MD"
+                ],
+                "file_type": "10-K",
+                "file_description": null,
+                "inc_states": [
+                  "NJ"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001505952-25-000045:domo-20250131.htm",
+              "_score": 17.18005,
+              "_source": {
+                "ciks": [
+                  "0001505952"
+                ],
+                "period_ending": "2025-01-31",
+                "file_num": [
+                  "001-38553"
+                ],
+                "display_names": [
+                  "DOMO, INC.  (DOMO)  (CIK 0001505952)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-04-04",
+                "biz_states": [
+                  "UT"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001505952-25-000045",
+                "film_num": [
+                  "25811833"
+                ],
+                "biz_locations": [
+                  "American Fork, UT"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001193125-26-114266:ck0001784700-ex99_1.htm",
+              "_score": 17.170574,
+              "_source": {
+                "ciks": [
+                  "0001784700"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-56450"
+                ],
+                "display_names": [
+                  "Varagon Capital Corp  (CIK 0001784700)"
+                ],
+                "xsl": null,
+                "sequence": "8",
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-18",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [],
+                "form": "10-K",
+                "adsh": "0001193125-26-114266",
+                "film_num": [
+                  "26770331"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "EX-99.1",
+                "file_description": "EX-99.1",
+                "inc_states": [
+                  "MD"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-26-034538:ea0281818-10k_linkhome.htm",
+              "_score": 17.068165,
+              "_source": {
+                "ciks": [
+                  "0002017758"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-42652"
+                ],
+                "display_names": [
+                  "Linkhome Holdings Inc.  (LHAI)  (CIK 0002017758)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-26",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "6531"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-26-034538",
+                "film_num": [
+                  "26796283"
+                ],
+                "biz_locations": [
+                  "Irvine, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001683168-25-002782:kinetic_i10k-123124.htm",
+              "_score": 17.0142,
+              "_source": {
+                "ciks": [
+                  "0001945619"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "000-56478"
+                ],
+                "display_names": [
+                  "Kinetic Seas Inc.  (KSEZ)  (CIK 0001945619)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-04-24",
+                "biz_states": [
+                  "IL"
+                ],
+                "sics": [
+                  "6770"
+                ],
+                "form": "10-K",
+                "adsh": "0001683168-25-002782",
+                "film_num": [
+                  "25867244"
+                ],
+                "biz_locations": [
+                  "Schaumburg, IL"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "CO"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-26-059081:ea0291456-10ka1_linkhome.htm",
+              "_score": 17.01403,
+              "_source": {
+                "ciks": [
+                  "0002017758"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-42652"
+                ],
+                "display_names": [
+                  "Linkhome Holdings Inc.  (LHAI)  (CIK 0002017758)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-05-19",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "6531"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001213900-26-059081",
+                "film_num": [
+                  "26999849"
+                ],
+                "biz_locations": [
+                  "Irvine, CA"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "AMENDMENT NO. 1 TO FORM 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001654954-25-002032:inuvo_10k.htm",
+              "_score": 16.893353,
+              "_source": {
+                "ciks": [
+                  "0000829323"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "001-32442"
+                ],
+                "display_names": [
+                  "Inuvo, Inc.  (INUV)  (CIK 0000829323)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-02-27",
+                "biz_states": [
+                  "AR"
+                ],
+                "sics": [
+                  "7310"
+                ],
+                "form": "10-K",
+                "adsh": "0001654954-25-002032",
+                "film_num": [
+                  "25680513"
+                ],
+                "biz_locations": [
+                  "Little Rock, AR"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-22-059573:f10k2022_dataseainc.htm",
+              "_score": 16.77144,
+              "_source": {
+                "ciks": [
+                  "0001631282"
+                ],
+                "period_ending": "2022-06-30",
+                "file_num": [
+                  "001-38767"
+                ],
+                "display_names": [
+                  "DATASEA INC.  (DTSS)  (CIK 0001631282)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2022-09-28",
+                "biz_states": [
+                  "F4"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-22-059573",
+                "film_num": [
+                  "221272845"
+                ],
+                "biz_locations": [
+                  "Beijing, F4"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001628280-25-009448:semr-20241231.htm",
+              "_score": 16.752537,
+              "_source": {
+                "ciks": [
+                  "0001831840"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "001-40276"
+                ],
+                "display_names": [
+                  "SEMrush Holdings, Inc.  (SEMR)  (CIK 0001831840)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-03-03",
+                "biz_states": [
+                  "MA"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001628280-25-009448",
+                "film_num": [
+                  "25698506"
+                ],
+                "biz_locations": [
+                  "Boston, MA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001104659-26-020655:inod-20251231x10k.htm",
+              "_score": 16.695347,
+              "_source": {
+                "ciks": [
+                  "0000903651"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-35774"
+                ],
+                "display_names": [
+                  "INNODATA INC  (INOD)  (CIK 0000903651)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-02-26",
+                "biz_states": [
+                  "NJ"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K",
+                "adsh": "0001104659-26-020655",
+                "film_num": [
+                  "26690613"
+                ],
+                "biz_locations": [
+                  "Ridgefield Park, NJ"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001096906-26-000430:fccn-20251231_10k.htm",
+              "_score": 16.671045,
+              "_source": {
+                "ciks": [
+                  "0001131903"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-50274"
+                ],
+                "display_names": [
+                  "SPECTRAL CAPITAL Corp  (FCCN)  (CIK 0001131903)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-31",
+                "biz_states": [
+                  "WA"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K",
+                "adsh": "0001096906-26-000430",
+                "film_num": [
+                  "26820951"
+                ],
+                "biz_locations": [
+                  "Seattle, WA"
+                ],
+                "file_type": "10-K",
+                "file_description": "SPECTRAL CAPITAL CORPORATION - FORM 10-K SEC FILING",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001628280-26-013259:semr-20251231.htm",
+              "_score": 16.657421,
+              "_source": {
+                "ciks": [
+                  "0001831840"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-40276"
+                ],
+                "display_names": [
+                  "SEMrush Holdings, Inc.  (SEMR)  (CIK 0001831840)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-02",
+                "biz_states": [
+                  "MA"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001628280-26-013259",
+                "film_num": [
+                  "26708331"
+                ],
+                "biz_locations": [
+                  "Boston, MA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001018724-26-000004:amzn-20251231.htm",
+              "_score": 16.63618,
+              "_source": {
+                "ciks": [
+                  "0001018724"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-22513"
+                ],
+                "display_names": [
+                  "AMAZON COM INC  (AMZN)  (CIK 0001018724)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-02-06",
+                "biz_states": [
+                  "WA"
+                ],
+                "sics": [
+                  "5961"
+                ],
+                "form": "10-K",
+                "adsh": "0001018724-26-000004",
+                "film_num": [
+                  "26604493"
+                ],
+                "biz_locations": [
+                  "Seattle, WA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-23-079920:f10k2023_datasea.htm",
+              "_score": 16.622654,
+              "_source": {
+                "ciks": [
+                  "0001631282"
+                ],
+                "period_ending": "2023-06-30",
+                "file_num": [
+                  "001-38767"
+                ],
+                "display_names": [
+                  "DATASEA INC.  (DTSS)  (CIK 0001631282)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-09-27",
+                "biz_states": [
+                  "F4"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-23-079920",
+                "film_num": [
+                  "231285100"
+                ],
+                "biz_locations": [
+                  "Beijing, F4"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001193125-26-237024:crvl-20260331.htm",
+              "_score": 16.607813,
+              "_source": {
+                "ciks": [
+                  "0000874866"
+                ],
+                "period_ending": "2026-03-31",
+                "file_num": [
+                  "000-19291"
+                ],
+                "display_names": [
+                  "CORVEL CORP  (CRVL)  (CIK 0000874866)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-05-22",
+                "biz_states": [
+                  "OR"
+                ],
+                "sics": [
+                  "6411"
+                ],
+                "form": "10-K",
+                "adsh": "0001193125-26-237024",
+                "film_num": [
+                  "261014414"
+                ],
+                "biz_locations": [
+                  "Portland, OR"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0000050863-18-000007:a12302017q4-ex991.htm",
+              "_score": 16.604172,
+              "_source": {
+                "ciks": [
+                  "0000050863"
+                ],
+                "period_ending": "2017-12-30",
+                "file_num": [
+                  "000-06217"
+                ],
+                "display_names": [
+                  "INTEL CORP  (INTC)  (CIK 0000050863)"
+                ],
+                "xsl": null,
+                "sequence": 13,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2018-02-16",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "3674"
+                ],
+                "form": "10-K",
+                "adsh": "0000050863-18-000007",
+                "film_num": [
+                  "18619739"
+                ],
+                "biz_locations": [
+                  "Santa Clara, CA"
+                ],
+                "file_type": "EX-99.1",
+                "file_description": "EXHIBIT 99.1",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0000033185-26-000010:efx-20251231.htm",
+              "_score": 16.540512,
+              "_source": {
+                "ciks": [
+                  "0000033185"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-06605"
+                ],
+                "display_names": [
+                  "EQUIFAX INC  (EFX)  (CIK 0000033185)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-02-19",
+                "biz_states": [
+                  "GA"
+                ],
+                "sics": [
+                  "7320"
+                ],
+                "form": "10-K",
+                "adsh": "0000033185-26-000010",
+                "film_num": [
+                  "26655069"
+                ],
+                "biz_locations": [
+                  "Atlanta, GA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "GA"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0000950170-24-021671:zeta-20231231.htm",
+              "_score": 16.426857,
+              "_source": {
+                "ciks": [
+                  "0001851003"
+                ],
+                "period_ending": "2023-12-31",
+                "file_num": [
+                  "001-40464"
+                ],
+                "display_names": [
+                  "Zeta Global Holdings Corp.  (ZETA)  (CIK 0001851003)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-02-28",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0000950170-24-021671",
+                "film_num": [
+                  "24690258"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001691421-26-000016:lmnd-20251231.htm",
+              "_score": 16.334944,
+              "_source": {
+                "ciks": [
+                  "0001691421"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-39367"
+                ],
+                "display_names": [
+                  "Lemonade, Inc.  (LMND)  (CIK 0001691421)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-02-25",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "6331"
+                ],
+                "form": "10-K",
+                "adsh": "0001691421-26-000016",
+                "film_num": [
+                  "26678984"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001096906-25-001012:fccn-20241231.htm",
+              "_score": 16.296333,
+              "_source": {
+                "ciks": [
+                  "0001131903"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "000-50274"
+                ],
+                "display_names": [
+                  "SPECTRAL CAPITAL Corp  (FCCN)  (CIK 0001131903)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-06-24",
+                "biz_states": [
+                  "WA"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K",
+                "adsh": "0001096906-25-001012",
+                "film_num": [
+                  "251066394"
+                ],
+                "biz_locations": [
+                  "Seattle, WA"
+                ],
+                "file_type": "10-K",
+                "file_description": "SPECTRAL CAPITAL CORPORATION - FORM 10-K SEC FILING",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001691421-23-000032:lmnd-20221231.htm",
+              "_score": 16.285248,
+              "_source": {
+                "ciks": [
+                  "0001691421"
+                ],
+                "period_ending": "2022-12-31",
+                "file_num": [
+                  "001-39367"
+                ],
+                "display_names": [
+                  "Lemonade, Inc.  (LMND, LMND-WT)  (CIK 0001691421)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-03-03",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "6331"
+                ],
+                "form": "10-K",
+                "adsh": "0001691421-23-000032",
+                "film_num": [
+                  "23701517"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-18-017153:ex10-6.htm",
+              "_score": 16.278893,
+              "_source": {
+                "ciks": [
+                  "0001500242"
+                ],
+                "period_ending": "2018-08-31",
+                "file_num": [
+                  "000-54236"
+                ],
+                "display_names": [
+                  "UBI Blockchain Internet LTD-DE  (CIK 0001500242)"
+                ],
+                "xsl": null,
+                "sequence": 3,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2018-12-07",
+                "biz_states": [
+                  "K3"
+                ],
+                "sics": [
+                  "2860"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-18-017153",
+                "film_num": [
+                  "181221966"
+                ],
+                "biz_locations": [
+                  "Hong Kong, K3"
+                ],
+                "file_type": "EX-10.6",
+                "file_description": null,
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001166388-20-000014:vrnt-20200131xform10xk.htm",
+              "_score": 16.271984,
+              "_source": {
+                "ciks": [
+                  "0001166388"
+                ],
+                "period_ending": "2020-01-31",
+                "file_num": [
+                  "001-34807"
+                ],
+                "display_names": [
+                  "VERINT SYSTEMS INC  (VRNT)  (CIK 0001166388)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2020-03-31",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "7373"
+                ],
+                "form": "10-K",
+                "adsh": "0001166388-20-000014",
+                "film_num": [
+                  "20762077"
+                ],
+                "biz_locations": [
+                  "Melville, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-26-036897:ea0283159-10k_domin.htm",
+              "_score": 16.271978,
+              "_source": {
+                "ciks": [
+                  "0000012239"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-41845"
+                ],
+                "display_names": [
+                  "Dominari Holdings Inc.  (DOMH)  (CIK 0000012239)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-31",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "6211"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-26-036897",
+                "film_num": [
+                  "26817153"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001437749-25-036795:hnna20250930_10k.htm",
+              "_score": 16.245485,
+              "_source": {
+                "ciks": [
+                  "0001145255"
+                ],
+                "period_ending": "2025-09-30",
+                "file_num": [
+                  "001-36423"
+                ],
+                "display_names": [
+                  "HENNESSY ADVISORS INC  (HNNA, HNNAZ)  (CIK 0001145255)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-12-03",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "6282"
+                ],
+                "form": "10-K",
+                "adsh": "0001437749-25-036795",
+                "film_num": [
+                  "251546669"
+                ],
+                "biz_locations": [
+                  "Novato, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0000950170-25-027338:zeta-20241231.htm",
+              "_score": 16.236559,
+              "_source": {
+                "ciks": [
+                  "0001851003"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "001-40464"
+                ],
+                "display_names": [
+                  "Zeta Global Holdings Corp.  (ZETA)  (CIK 0001851003)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-02-26",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0000950170-25-027338",
+                "film_num": [
+                  "25666222"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001654954-24-002423:inuvo_10k.htm",
+              "_score": 16.222206,
+              "_source": {
+                "ciks": [
+                  "0000829323"
+                ],
+                "period_ending": "2023-12-31",
+                "file_num": [
+                  "001-32442"
+                ],
+                "display_names": [
+                  "Inuvo, Inc.  (INUV)  (CIK 0000829323)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-02-29",
+                "biz_states": [
+                  "AR"
+                ],
+                "sics": [
+                  "7310"
+                ],
+                "form": "10-K",
+                "adsh": "0001654954-24-002423",
+                "film_num": [
+                  "24704781"
+                ],
+                "biz_locations": [
+                  "Little Rock, AR"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001193125-26-067030:saia-20251231.htm",
+              "_score": 16.219988,
+              "_source": {
+                "ciks": [
+                  "0001177702"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-49983"
+                ],
+                "display_names": [
+                  "SAIA INC  (SAIA)  (CIK 0001177702)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-02-24",
+                "biz_states": [
+                  "GA"
+                ],
+                "sics": [
+                  "4213"
+                ],
+                "form": "10-K",
+                "adsh": "0001193125-26-067030",
+                "film_num": [
+                  "26671796"
+                ],
+                "biz_locations": [
+                  "Johns Creek, GA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-18-017153:ex10-5.htm",
+              "_score": 16.212982,
+              "_source": {
+                "ciks": [
+                  "0001500242"
+                ],
+                "period_ending": "2018-08-31",
+                "file_num": [
+                  "000-54236"
+                ],
+                "display_names": [
+                  "UBI Blockchain Internet LTD-DE  (CIK 0001500242)"
+                ],
+                "xsl": null,
+                "sequence": 2,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2018-12-07",
+                "biz_states": [
+                  "K3"
+                ],
+                "sics": [
+                  "2860"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-18-017153",
+                "film_num": [
+                  "181221966"
+                ],
+                "biz_locations": [
+                  "Hong Kong, K3"
+                ],
+                "file_type": "EX-10.5",
+                "file_description": null,
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-26-065803:ea0293498-10ka_spectral.htm",
+              "_score": 16.178722,
+              "_source": {
+                "ciks": [
+                  "0001131903"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "000-50274"
+                ],
+                "display_names": [
+                  "SPECTRAL CAPITAL Corp  (FCCN)  (CIK 0001131903)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-06-05",
+                "biz_states": [
+                  "WA"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001213900-26-065803",
+                "film_num": [
+                  "261069065"
+                ],
+                "biz_locations": [
+                  "Seattle, WA"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "AMENDMENT NO. 1 TO FORM 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-21-050298:f10k2021_dataseainc.htm",
+              "_score": 16.147387,
+              "_source": {
+                "ciks": [
+                  "0001631282"
+                ],
+                "period_ending": "2021-06-30",
+                "file_num": [
+                  "001-38767"
+                ],
+                "display_names": [
+                  "DATASEA INC.  (DTSS)  (CIK 0001631282)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-09-28",
+                "biz_states": [
+                  "F4"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-21-050298",
+                "film_num": [
+                  "211286876"
+                ],
+                "biz_locations": [
+                  "Beijing, F4"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001166388-19-000013:vrnt-20190131xform10xk.htm",
+              "_score": 16.132114,
+              "_source": {
+                "ciks": [
+                  "0001166388"
+                ],
+                "period_ending": "2019-01-31",
+                "file_num": [
+                  "001-34807"
+                ],
+                "display_names": [
+                  "VERINT SYSTEMS INC  (VRNT)  (CIK 0001166388)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-03-28",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "7373"
+                ],
+                "form": "10-K",
+                "adsh": "0001166388-19-000013",
+                "film_num": [
+                  "19709344"
+                ],
+                "biz_locations": [
+                  "Melville, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001477932-26-002711:nbbi_10k.htm",
+              "_score": 16.124243,
+              "_source": {
+                "ciks": [
+                  "0001130781"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-33325"
+                ],
+                "display_names": [
+                  "BMP AI Technologies, Inc.  (BMPA)  (CIK 0001130781)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-05-01",
+                "biz_states": [],
+                "sics": [
+                  "7812"
+                ],
+                "form": "10-K",
+                "adsh": "0001477932-26-002711",
+                "film_num": [
+                  "26931653"
+                ],
+                "biz_locations": [
+                  "Las Vegas"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001023731-24-000042:eght-20240331.htm",
+              "_score": 16.106033,
+              "_source": {
+                "ciks": [
+                  "0001023731"
+                ],
+                "period_ending": "2024-03-31",
+                "file_num": [
+                  "001-38312"
+                ],
+                "display_names": [
+                  "8X8 INC /DE/  (EGHT)  (CIK 0001023731)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-05-21",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K",
+                "adsh": "0001023731-24-000042",
+                "film_num": [
+                  "24970600"
+                ],
+                "biz_locations": [
+                  "Campbell, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0000950170-22-005763:etwo-ex99_1.htm",
+              "_score": 16.096214,
+              "_source": {
+                "ciks": [
+                  "0001800347"
+                ],
+                "period_ending": "2020-12-31",
+                "file_num": [
+                  "001-39272"
+                ],
+                "display_names": [
+                  "E2open Parent Holdings, Inc.  (ETWO, ETWO-WT)  (CIK 0001800347)"
+                ],
+                "xsl": null,
+                "sequence": 6,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2022-04-19",
+                "biz_states": [
+                  "TX"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K/A",
+                "adsh": "0000950170-22-005763",
+                "film_num": [
+                  "22832900"
+                ],
+                "biz_locations": [
+                  "Austin, TX"
+                ],
+                "file_type": "EX-99.1",
+                "file_description": "EX-99.1",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001104659-21-061271:tm2111896d3_ex99-1.htm",
+              "_score": 16.093092,
+              "_source": {
+                "ciks": [
+                  "0001800347"
+                ],
+                "period_ending": "2020-12-31",
+                "file_num": [
+                  "001-39272"
+                ],
+                "display_names": [
+                  "E2open Parent Holdings, Inc.  (ETWO, ETWO-WT)  (CIK 0001800347)"
+                ],
+                "xsl": null,
+                "sequence": 7,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-05-05",
+                "biz_states": [
+                  "TX"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K",
+                "adsh": "0001104659-21-061271",
+                "film_num": [
+                  "21890872"
+                ],
+                "biz_locations": [
+                  "Austin, TX"
+                ],
+                "file_type": "EX-99.1",
+                "file_description": "EXHIBIT 99.1",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001641172-25-000677:ex10-21.htm",
+              "_score": 16.048561,
+              "_source": {
+                "ciks": [
+                  "0001577445"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "001-42497"
+                ],
+                "display_names": [
+                  "Odysight.ai Inc.  (ODYS)  (CIK 0001577445)"
+                ],
+                "xsl": null,
+                "sequence": "4",
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-03-26",
+                "biz_states": [
+                  "AZ"
+                ],
+                "sics": [
+                  "3827"
+                ],
+                "form": "10-K",
+                "adsh": "0001641172-25-000677",
+                "film_num": [
+                  "25770091"
+                ],
+                "biz_locations": [
+                  "Scottsdale, AZ"
+                ],
+                "file_type": "EX-10.21",
+                "file_description": null,
+                "inc_states": [],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-26-011691:ex10-23.htm",
+              "_score": 16.040792,
+              "_source": {
+                "ciks": [
+                  "0001577445"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-42497"
+                ],
+                "display_names": [
+                  "Odysight.ai Inc.  (ODYS)  (CIK 0001577445)"
+                ],
+                "xsl": null,
+                "sequence": "3",
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-19",
+                "biz_states": [
+                  "AZ"
+                ],
+                "sics": [
+                  "7373"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-26-011691",
+                "film_num": [
+                  "26775313"
+                ],
+                "biz_locations": [
+                  "Scottsdale, AZ"
+                ],
+                "file_type": "EX-10.23",
+                "file_description": "EX-10.23",
+                "inc_states": [],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001553350-23-000241:duot_10k.htm",
+              "_score": 16.030096,
+              "_source": {
+                "ciks": [
+                  "0001396536"
+                ],
+                "period_ending": "2022-12-31",
+                "file_num": [
+                  "001-39227"
+                ],
+                "display_names": [
+                  "DUOS TECHNOLOGIES GROUP, INC.  (DUOT)  (CIK 0001396536)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-03-31",
+                "biz_states": [
+                  "FL"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001553350-23-000241",
+                "film_num": [
+                  "23788941"
+                ],
+                "biz_locations": [
+                  "Jacksonville, FL"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "FL"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001628280-26-016543:voyg-20251231.htm",
+              "_score": 16.01796,
+              "_source": {
+                "ciks": [
+                  "0001788060"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-42694"
+                ],
+                "display_names": [
+                  "Voyager Technologies, Inc./DE  (VOYG)  (CIK 0001788060)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-10",
+                "biz_states": [
+                  "CO"
+                ],
+                "sics": [
+                  "3760"
+                ],
+                "form": "10-K",
+                "adsh": "0001628280-26-016543",
+                "film_num": [
+                  "26740514"
+                ],
+                "biz_locations": [
+                  "Denver, CO"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001185185-25-001887:dbmm10k083125.htm",
+              "_score": 15.994191,
+              "_source": {
+                "ciks": [
+                  "0001127475"
+                ],
+                "period_ending": "2025-08-31",
+                "file_num": [
+                  "000-52838"
+                ],
+                "display_names": [
+                  "Digital Brand Media & Marketing Group, Inc.  (DBMM)  (CIK 0001127475)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-11-28",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "7389"
+                ],
+                "form": "10-K",
+                "adsh": "0001185185-25-001887",
+                "film_num": [
+                  "251536393"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "FL"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0000006951-24-000044:amat-20241027.htm",
+              "_score": 15.9831295,
+              "_source": {
+                "ciks": [
+                  "0000006951"
+                ],
+                "period_ending": "2024-10-27",
+                "file_num": [
+                  "000-06920"
+                ],
+                "display_names": [
+                  "APPLIED MATERIALS INC /DE  (AMAT)  (CIK 0000006951)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-12-13",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "3674"
+                ],
+                "form": "10-K",
+                "adsh": "0000006951-24-000044",
+                "film_num": [
+                  "241548257"
+                ],
+                "biz_locations": [
+                  "Santa Clara, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DC"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0000790526-23-000003:rdnt-20221231.htm",
+              "_score": 15.968172,
+              "_source": {
+                "ciks": [
+                  "0000790526"
+                ],
+                "period_ending": "2022-12-31",
+                "file_num": [
+                  "001-33307"
+                ],
+                "display_names": [
+                  "RadNet, Inc.  (RDNT)  (CIK 0000790526)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-03-01",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "8071"
+                ],
+                "form": "10-K",
+                "adsh": "0000790526-23-000003",
+                "film_num": [
+                  "23695229"
+                ],
+                "biz_locations": [
+                  "Los Angeles, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001757073-26-000011:nvst-20251231.htm",
+              "_score": 15.959351,
+              "_source": {
+                "ciks": [
+                  "0001757073"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-39054"
+                ],
+                "display_names": [
+                  "Envista Holdings Corp  (NVST)  (CIK 0001757073)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-02-12",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "3843"
+                ],
+                "form": "10-K",
+                "adsh": "0001757073-26-000011",
+                "film_num": [
+                  "26626478"
+                ],
+                "biz_locations": [
+                  "Brea, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001691421-25-000031:lmnd-20241231.htm",
+              "_score": 15.955077,
+              "_source": {
+                "ciks": [
+                  "0001691421"
+                ],
+                "period_ending": "2024-12-31",
+                "file_num": [
+                  "001-39367"
+                ],
+                "display_names": [
+                  "Lemonade, Inc.  (LMND, LMND-WT)  (CIK 0001691421)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-02-26",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "6331"
+                ],
+                "form": "10-K",
+                "adsh": "0001691421-25-000031",
+                "film_num": [
+                  "25670466"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001654954-26-001943:inuvo_10k.htm",
+              "_score": 15.89756,
+              "_source": {
+                "ciks": [
+                  "0000829323"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "001-32442"
+                ],
+                "display_names": [
+                  "Inuvo, Inc.  (INUV)  (CIK 0000829323)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-05",
+                "biz_states": [
+                  "AR"
+                ],
+                "sics": [
+                  "7310"
+                ],
+                "form": "10-K",
+                "adsh": "0001654954-26-001943",
+                "film_num": [
+                  "26727421"
+                ],
+                "biz_locations": [
+                  "Little Rock, AR"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001213900-22-055586:f10k2022_lzginter.htm",
+              "_score": 15.871573,
+              "_source": {
+                "ciks": [
+                  "0001126115"
+                ],
+                "period_ending": "2022-05-31",
+                "file_num": [
+                  "000-53994"
+                ],
+                "display_names": [
+                  "LZG INTERNATIONAL, INC.  (CIK 0001126115)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2022-09-13",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001213900-22-055586",
+                "film_num": [
+                  "221240645"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "FL"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001188112-11-000819:ex99-1.htm",
+              "_score": 15.863387,
+              "_source": {
+                "ciks": [
+                  "0001141788"
+                ],
+                "period_ending": "2010-12-31",
+                "file_num": [
+                  "333-62216"
+                ],
+                "display_names": [
+                  "HEALTH DISCOVERY CORP  (HDVY)  (CIK 0001141788)"
+                ],
+                "xsl": null,
+                "sequence": 6,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2011-03-31",
+                "biz_states": [
+                  "GA"
+                ],
+                "sics": [
+                  "6794"
+                ],
+                "form": "10-K",
+                "adsh": "0001188112-11-000819",
+                "film_num": [
+                  "11726760"
+                ],
+                "biz_locations": [
+                  "Savannah, GA"
+                ],
+                "file_type": "EX-99.1",
+                "file_description": "EXHIBIT 99.1",
+                "inc_states": [
+                  "2Q"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001691421-24-000026:lmnd-20231231.htm",
+              "_score": 15.85696,
+              "_source": {
+                "ciks": [
+                  "0001691421"
+                ],
+                "period_ending": "2023-12-31",
+                "file_num": [
+                  "001-39367"
+                ],
+                "display_names": [
+                  "Lemonade, Inc.  (LMND, LMND-WT)  (CIK 0001691421)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-02-28",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "6331"
+                ],
+                "form": "10-K",
+                "adsh": "0001691421-24-000026",
+                "film_num": [
+                  "24696021"
+                ],
+                "biz_locations": [
+                  "New York, NY"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001079973-25-001605:ghst_10k-063025.htm",
+              "_score": 15.817806,
+              "_source": {
+                "ciks": [
+                  "0001121795"
+                ],
+                "period_ending": "2025-06-30",
+                "file_num": [
+                  "000-31705"
+                ],
+                "display_names": [
+                  "GHST World Inc.  (GHST)  (CIK 0001121795)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-10-14",
+                "biz_states": [
+                  "FL"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001079973-25-001605",
+                "film_num": [
+                  "251392521"
+                ],
+                "biz_locations": [
+                  "Palm Beach Gardens, FL"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-23-000281:form10-ka.htm",
+              "_score": 15.816519,
+              "_source": {
+                "ciks": [
+                  "0001889450"
+                ],
+                "period_ending": "2021-12-31",
+                "file_num": [
+                  "001-41289"
+                ],
+                "display_names": [
+                  "FutureTech II Acquisition Corp.  (FTII, FTIIU, FTIIW)  (CIK 0001889450)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-01-04",
+                "biz_states": [
+                  "NY"
+                ],
+                "sics": [
+                  "6770"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001493152-23-000281",
+                "film_num": [
+                  "23505214"
+                ],
+                "biz_locations": [
+                  "New Rochelle, NY"
+                ],
+                "file_type": "10-K/A",
+                "file_description": null,
+                "inc_states": [],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-26-020948:form10-ka.htm",
+              "_score": 15.765678,
+              "_source": {
+                "ciks": [
+                  "0001388295"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-56565"
+                ],
+                "display_names": [
+                  "OneMeta Inc.  (ONEI)  (CIK 0001388295)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-05-04",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K/A",
+                "adsh": "0001493152-26-020948",
+                "film_num": [
+                  "26934197"
+                ],
+                "biz_locations": [
+                  "Newport Beach, CA"
+                ],
+                "file_type": "10-K/A",
+                "file_description": "10-K/A",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-26-016782:form10-k.htm",
+              "_score": 15.73315,
+              "_source": {
+                "ciks": [
+                  "0001388295"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-56565"
+                ],
+                "display_names": [
+                  "OneMeta Inc.  (ONEI)  (CIK 0001388295)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-04-15",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-26-016782",
+                "film_num": [
+                  "26863972"
+                ],
+                "biz_locations": [
+                  "Newport Beach, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001199835-26-000084:lsmg-10k.htm",
+              "_score": 15.70285,
+              "_source": {
+                "ciks": [
+                  "0001319643"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "000-53676"
+                ],
+                "display_names": [
+                  "FinTrade Sherpa, Inc.  (FTSP)  (CIK 0001319643)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-03-31",
+                "biz_states": [
+                  "TX"
+                ],
+                "sics": [
+                  "1040"
+                ],
+                "form": "10-K",
+                "adsh": "0001199835-26-000084",
+                "film_num": [
+                  "26815769"
+                ],
+                "biz_locations": [
+                  "Cypress, TX"
+                ],
+                "file_type": "10-K",
+                "file_description": "LODE-STAR MINING INC. 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001628280-24-008035:rdnt-20231231.htm",
+              "_score": 15.686649,
+              "_source": {
+                "ciks": [
+                  "0000790526"
+                ],
+                "period_ending": "2023-12-31",
+                "file_num": [
+                  "001-33307"
+                ],
+                "display_names": [
+                  "RadNet, Inc.  (RDNT)  (CIK 0000790526)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-02-29",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "8071"
+                ],
+                "form": "10-K",
+                "adsh": "0001628280-24-008035",
+                "film_num": [
+                  "24704783"
+                ],
+                "biz_locations": [
+                  "Los Angeles, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "DE"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001079973-24-000473:duot_10k-123123.htm",
+              "_score": 15.651859,
+              "_source": {
+                "ciks": [
+                  "0001396536"
+                ],
+                "period_ending": "2023-12-31",
+                "file_num": [
+                  "001-39227"
+                ],
+                "display_names": [
+                  "DUOS TECHNOLOGIES GROUP, INC.  (DUOT)  (CIK 0001396536)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-04-01",
+                "biz_states": [
+                  "FL"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001079973-24-000473",
+                "film_num": [
+                  "24809853"
+                ],
+                "biz_locations": [
+                  "Jacksonville, FL"
+                ],
+                "file_type": "10-K",
+                "file_description": "ANNUAL REPORT",
+                "inc_states": [
+                  "FL"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001193125-26-068600:trin-20251231.htm",
+              "_score": 15.636066,
+              "_source": {
+                "ciks": [
+                  "0001786108"
+                ],
+                "period_ending": "2025-12-31",
+                "file_num": [
+                  "814-01341"
+                ],
+                "display_names": [
+                  "Trinity Capital Inc.  (TRIN, TRINI, TRINZ)  (CIK 0001786108)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2026-02-25",
+                "biz_states": [
+                  "AZ"
+                ],
+                "sics": [],
+                "form": "10-K",
+                "adsh": "0001193125-26-068600",
+                "film_num": [
+                  "26674262"
+                ],
+                "biz_locations": [
+                  "Phoenix, AZ"
+                ],
+                "file_type": "10-K",
+                "file_description": "10-K",
+                "inc_states": [
+                  "MD"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-23-012663:form10-k.htm",
+              "_score": 15.627645,
+              "_source": {
+                "ciks": [
+                  "0001084475"
+                ],
+                "period_ending": "2022-12-31",
+                "file_num": [
+                  "000-30786"
+                ],
+                "display_names": [
+                  "Video River Networks, Inc.  (NIHK)  (CIK 0001084475)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-04-18",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "6500"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-23-012663",
+                "film_num": [
+                  "23825270"
+                ],
+                "biz_locations": [
+                  "Las Vegas, NV"
+                ],
+                "file_type": "10-K",
+                "file_description": null,
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001493152-24-021634:ex21-1.htm",
+              "_score": 15.614535,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2024-02-29",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 2,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2024-05-28",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001493152-24-021634",
+                "film_num": [
+                  "24992954"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "EX-21.1",
+                "file_description": null,
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001079973-18-000628:hghc_10k-073118.htm",
+              "_score": 15.606716,
+              "_source": {
+                "ciks": [
+                  "0001482554"
+                ],
+                "period_ending": "2018-07-31",
+                "file_num": [
+                  "000-54439"
+                ],
+                "display_names": [
+                  "Hartford Great Health Corp.  (HFUS)  (CIK 0001482554)"
+                ],
+                "xsl": null,
+                "sequence": 1,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2018-11-14",
+                "biz_states": [
+                  "CA"
+                ],
+                "sics": [
+                  "7374"
+                ],
+                "form": "10-K",
+                "adsh": "0001079973-18-000628",
+                "film_num": [
+                  "181183085"
+                ],
+                "biz_locations": [
+                  "Rosemead, CA"
+                ],
+                "file_type": "10-K",
+                "file_description": "FORM 10-K",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-19-000352:ex_21-1.htm",
+              "_score": 15.603695,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2019-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 2,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2019-08-26",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-19-000352",
+                "film_num": [
+                  "191053454"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "EX-21",
+                "file_description": "LIST OF SUBSIDIARIES",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-21-000289:ex_21-1.htm",
+              "_score": 15.592344,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2021-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 2,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2021-06-01",
+                "biz_states": [
+                  "NV"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-21-000289",
+                "film_num": [
+                  "21982165"
+                ],
+                "biz_locations": [
+                  "Reno, NV"
+                ],
+                "file_type": "EX-21",
+                "file_description": "LIST OF SUBSIDIARIES",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001641172-25-012903:ex21-1.htm",
+              "_score": 15.590029,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2025-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": "2",
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2025-05-29",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "7372"
+                ],
+                "form": "10-K",
+                "adsh": "0001641172-25-012903",
+                "film_num": [
+                  "251004918"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "EX-21.1",
+                "file_description": "EX-21.1",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            },
+            {
+              "_index": "edgar_file",
+              "_id": "0001161697-23-000356:ex_21-1.htm",
+              "_score": 15.589809,
+              "_source": {
+                "ciks": [
+                  "0001498148"
+                ],
+                "period_ending": "2023-02-28",
+                "file_num": [
+                  "000-55079"
+                ],
+                "display_names": [
+                  "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)"
+                ],
+                "xsl": null,
+                "sequence": 2,
+                "root_forms": [
+                  "10-K"
+                ],
+                "file_date": "2023-06-14",
+                "biz_states": [
+                  "MI"
+                ],
+                "sics": [
+                  "3714"
+                ],
+                "form": "10-K",
+                "adsh": "0001161697-23-000356",
+                "film_num": [
+                  "231014045"
+                ],
+                "biz_locations": [
+                  "Ferndale, MI"
+                ],
+                "file_type": "EX-21",
+                "file_description": "LIST OF SUBSIDIARIES",
+                "inc_states": [
+                  "NV"
+                ],
+                "items": []
+              }
+            }
+          ]
+        },
+        "aggregations": {
+          "entity_filter": {
+            "doc_count_error_upper_bound": 50,
+            "sum_other_doc_count": 15291,
+            "buckets": [
+              {
+                "key": "Artificial Intelligence Technology Solutions Inc.  (AITX)  (CIK 0001498148)",
+                "doc_count": 71
+              },
+              {
+                "key": "ADOBE INC.  (ADBE)  (CIK 0000796343)",
+                "doc_count": 12
+              },
+              {
+                "key": "AXON ENTERPRISE, INC.  (AXON)  (CIK 0001069183)",
+                "doc_count": 12
+              },
+              {
+                "key": "Alarm.com Holdings, Inc.  (ALRM)  (CIK 0001459200)",
+                "doc_count": 12
+              },
+              {
+                "key": "8X8 INC /DE/  (EGHT)  (CIK 0001023731)",
+                "doc_count": 11
+              },
+              {
+                "key": "AMERICAN SOFTWARE INC  (AMSWA)  (CIK 0000713425)",
+                "doc_count": 11
+              },
+              {
+                "key": "CORVEL CORP  (CRVL)  (CIK 0000874866)",
+                "doc_count": 11
+              },
+              {
+                "key": "ADVANCED MICRO DEVICES INC  (AMD)  (CIK 0000002488)",
+                "doc_count": 10
+              },
+              {
+                "key": "AUTOMATIC DATA PROCESSING INC  (ADP)  (CIK 0000008670)",
+                "doc_count": 10
+              },
+              {
+                "key": "Accenture plc  (ACN)  (CIK 0001467373)",
+                "doc_count": 10
+              },
+              {
+                "key": "Alphabet Inc.  (GOOG, GOOGL)  (CIK 0001652044)",
+                "doc_count": 10
+              },
+              {
+                "key": "BLACKBAUD INC  (BLKB)  (CIK 0001280058)",
+                "doc_count": 10
+              },
+              {
+                "key": "AMERICAN EXPRESS CO  (AXP)  (CIK 0000004962)",
+                "doc_count": 9
+              },
+              {
+                "key": "APPIAN CORP  (APPN)  (CIK 0001441683)",
+                "doc_count": 9
+              },
+              {
+                "key": "APPLIED MATERIALS INC /DE  (AMAT)  (CIK 0000006951)",
+                "doc_count": 9
+              },
+              {
+                "key": "AgEagle Aerial Systems Inc.  (UAVS)  (CIK 0000008504)",
+                "doc_count": 9
+              },
+              {
+                "key": "BLACKBOXSTOCKS INC.  (BLBX)  (CIK 0001567900)",
+                "doc_count": 9
+              },
+              {
+                "key": "Fidelity National Information Services, Inc.  (FIS)  (CIK 0001136893)",
+                "doc_count": 9
+              },
+              {
+                "key": "1 800 FLOWERS COM INC  (FLWS)  (CIK 0001084869)",
+                "doc_count": 8
+              },
+              {
+                "key": "3M CO  (MMM)  (CIK 0000066740)",
+                "doc_count": 8
+              },
+              {
+                "key": "ADOBE SYSTEMS INC  (ADBE)  (CIK 0000796343)",
+                "doc_count": 8
+              },
+              {
+                "key": "ALIMERA SCIENCES INC  (ALIM)  (CIK 0001267602)",
+                "doc_count": 8
+              },
+              {
+                "key": "AMAZON COM INC  (AMZN)  (CIK 0001018724)",
+                "doc_count": 8
+              },
+              {
+                "key": "AMBARELLA INC  (AMBA)  (CIK 0001280263)",
+                "doc_count": 8
+              },
+              {
+                "key": "AMERICAN PUBLIC EDUCATION INC  (APEI)  (CIK 0001201792)",
+                "doc_count": 8
+              },
+              {
+                "key": "AMTECH SYSTEMS INC  (ASYS)  (CIK 0000720500)",
+                "doc_count": 8
+              },
+              {
+                "key": "ANAVEX LIFE SCIENCES CORP.  (AVXL)  (CIK 0001314052)",
+                "doc_count": 8
+              },
+              {
+                "key": "ASGN Inc  (ASGN)  (CIK 0000890564)",
+                "doc_count": 8
+              },
+              {
+                "key": "Absci Corp  (ABSI)  (CIK 0001672688)",
+                "doc_count": 8
+              },
+              {
+                "key": "Aptiv PLC  (APTV)  (CIK 0001521332)",
+                "doc_count": 8
+              }
+            ]
+          },
+          "sic_filter": {
+            "doc_count_error_upper_bound": 59,
+            "sum_other_doc_count": 6375,
+            "buckets": [
+              {
+                "key": "7372",
+                "doc_count": 1340
+              },
+              {
+                "key": "2834",
+                "doc_count": 942
+              },
+              {
+                "key": "6770",
+                "doc_count": 652
+              },
+              {
+                "key": "7389",
+                "doc_count": 531
+              },
+              {
+                "key": "6798",
+                "doc_count": 456
+              },
+              {
+                "key": "7374",
+                "doc_count": 411
+              },
+              {
+                "key": "6022",
+                "doc_count": 395
+              },
+              {
+                "key": "3841",
+                "doc_count": 363
+              },
+              {
+                "key": "3674",
+                "doc_count": 361
+              },
+              {
+                "key": "2836",
+                "doc_count": 342
+              },
+              {
+                "key": "7370",
+                "doc_count": 284
+              },
+              {
+                "key": "6021",
+                "doc_count": 258
+              },
+              {
+                "key": "6199",
+                "doc_count": 210
+              },
+              {
+                "key": "7373",
+                "doc_count": 203
+              },
+              {
+                "key": "6331",
+                "doc_count": 189
+              },
+              {
+                "key": "6282",
+                "doc_count": 187
+              },
+              {
+                "key": "7371",
+                "doc_count": 176
+              },
+              {
+                "key": "1311",
+                "doc_count": 152
+              },
+              {
+                "key": "4911",
+                "doc_count": 147
+              },
+              {
+                "key": "3714",
+                "doc_count": 142
+              },
+              {
+                "key": "8742",
+                "doc_count": 122
+              },
+              {
+                "key": "8071",
+                "doc_count": 115
+              },
+              {
+                "key": "7363",
+                "doc_count": 110
+              },
+              {
+                "key": "6411",
+                "doc_count": 91
+              },
+              {
+                "key": "6311",
+                "doc_count": 89
+              },
+              {
+                "key": "5812",
+                "doc_count": 79
+              },
+              {
+                "key": "3842",
+                "doc_count": 78
+              },
+              {
+                "key": "6500",
+                "doc_count": 78
+              },
+              {
+                "key": "3663",
+                "doc_count": 77
+              },
+              {
+                "key": "4931",
+                "doc_count": 72
+              }
+            ]
+          },
+          "biz_states_filter": {
+            "doc_count_error_upper_bound": 4,
+            "sum_other_doc_count": 1419,
+            "buckets": [
+              {
+                "key": "CA",
+                "doc_count": 3040
+              },
+              {
+                "key": "NY",
+                "doc_count": 1815
+              },
+              {
+                "key": "TX",
+                "doc_count": 1154
+              },
+              {
+                "key": "MA",
+                "doc_count": 858
+              },
+              {
+                "key": "FL",
+                "doc_count": 789
+              },
+              {
+                "key": "IL",
+                "doc_count": 509
+              },
+              {
+                "key": "PA",
+                "doc_count": 468
+              },
+              {
+                "key": "VA",
+                "doc_count": 438
+              },
+              {
+                "key": "NJ",
+                "doc_count": 415
+              },
+              {
+                "key": "CO",
+                "doc_count": 392
+              },
+              {
+                "key": "GA",
+                "doc_count": 340
+              },
+              {
+                "key": "CT",
+                "doc_count": 314
+              },
+              {
+                "key": "WA",
+                "doc_count": 287
+              },
+              {
+                "key": "NV",
+                "doc_count": 280
+              },
+              {
+                "key": "MD",
+                "doc_count": 277
+              },
+              {
+                "key": "OH",
+                "doc_count": 274
+              },
+              {
+                "key": "AZ",
+                "doc_count": 246
+              },
+              {
+                "key": "MI",
+                "doc_count": 238
+              },
+              {
+                "key": "NC",
+                "doc_count": 236
+              },
+              {
+                "key": "MN",
+                "doc_count": 214
+              },
+              {
+                "key": "TN",
+                "doc_count": 185
+              },
+              {
+                "key": "UT",
+                "doc_count": 184
+              },
+              {
+                "key": "WI",
+                "doc_count": 145
+              },
+              {
+                "key": "IN",
+                "doc_count": 118
+              },
+              {
+                "key": "A6",
+                "doc_count": 116
+              },
+              {
+                "key": "DE",
+                "doc_count": 112
+              },
+              {
+                "key": "F4",
+                "doc_count": 111
+              },
+              {
+                "key": "MO",
+                "doc_count": 111
+              },
+              {
+                "key": "X0",
+                "doc_count": 77
+              },
+              {
+                "key": "D0",
+                "doc_count": 71
+              }
+            ]
+          },
+          "form_filter": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "10-K",
+                "doc_count": 15280
+              }
+            ]
+          }
+        },
+        "query": {
+          "_source": {
+            "exclude": [
+              "doc_text"
+            ]
+          },
+          "query": {
+            "bool": {
+              "must": [
+                {
+                  "match_phrase": {
+                    "doc_text": "artificial"
+                  }
+                },
+                {
+                  "match_phrase": {
+                    "doc_text": "intelligence"
+                  }
+                }
+              ],
+              "must_not": [],
+              "should": [],
+              "filter": [
+                {
+                  "terms": {
+                    "root_forms": [
+                      "10-K"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "from": 0,
+          "size": 100,
+          "aggregations": {
+            "form_filter": {
+              "terms": {
+                "field": "root_forms",
+                "size": 30
+              }
+            },
+            "entity_filter": {
+              "terms": {
+                "field": "display_names.raw",
+                "size": 30
+              }
+            },
+            "sic_filter": {
+              "terms": {
+                "field": "sics",
+                "size": 30
+              }
+            },
+            "biz_states_filter": {
+              "terms": {
+                "field": "biz_states",
+                "size": 30
+              }
+            }
+          }
+        }
+      }
+    },
+    "agentBalanceUSD": 0.009014
+  },
+  "timestamp": "2026-06-19T13:25:12.784Z"
+}

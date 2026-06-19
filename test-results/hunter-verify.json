@@ -1,0 +1,223 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.008,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001f40c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a3557ba846a3557979420c000000000000000000000b9537d11c60e8b5080c0b841f71d61c8314bd16c388d1ee7560d7ae9582404b5c744373c34a58e9158b6579f38dc425fee0752f6be48d804d60b985f172817621869b67a2c73e1acab2fe66b1b",
+    "response": {
+      "success": true,
+      "data": {
+        "data": {
+          "status": "valid",
+          "score": 100,
+          "email": "patrick@stripe.com",
+          "regexp": true,
+          "gibberish": false,
+          "disposable": false,
+          "webmail": false,
+          "mx_records": true,
+          "smtp_server": true,
+          "smtp_check": true,
+          "accept_all": false,
+          "block": false,
+          "sources": [
+            {
+              "domain": "anandchowdhary.com",
+              "uri": "https://anandchowdhary.com/open-source/2023/deliverabilityguide-com",
+              "extracted_on": "2026-06-17",
+              "last_seen_on": "2026-06-17",
+              "still_on_page": true
+            },
+            {
+              "domain": "linkedin.com",
+              "uri": "https://www.google.com/search?q=site:linkedin.com%20patrick%20bosmans%20stripe",
+              "extracted_on": "2025-11-21",
+              "last_seen_on": "2026-06-10",
+              "still_on_page": true
+            },
+            {
+              "domain": "patrickcollison.com",
+              "uri": "https://patrickcollison.com/bookshelf",
+              "extracted_on": "2016-02-11",
+              "last_seen_on": "2026-06-02",
+              "still_on_page": true
+            },
+            {
+              "domain": "microconf.gen.co",
+              "uri": "https://microconf.gen.co/patrick-collison",
+              "extracted_on": "2019-01-07",
+              "last_seen_on": "2026-05-23",
+              "still_on_page": true
+            },
+            {
+              "domain": "icloudnewz.blogspot.com",
+              "uri": "https://icloudnewz.blogspot.com/2018/01/follow-nathan-hubbard-josh-elman-and.html",
+              "extracted_on": "2019-11-30",
+              "last_seen_on": "2026-04-15",
+              "still_on_page": true
+            },
+            {
+              "domain": "icloudnewz.blogspot.com",
+              "uri": "https://icloudnewz.blogspot.com/2017/11/follow-patrick-collison-mike-birbiglia.html",
+              "extracted_on": "2020-03-25",
+              "last_seen_on": "2026-04-13",
+              "still_on_page": true
+            },
+            {
+              "domain": "icloudnewz.blogspot.com",
+              "uri": "https://icloudnewz.blogspot.com/2017/12/follow-nathan-hubbard-josh-elman-and.html",
+              "extracted_on": "2019-11-30",
+              "last_seen_on": "2026-04-10",
+              "still_on_page": true
+            },
+            {
+              "domain": "icloudnewz.blogspot.com",
+              "uri": "https://icloudnewz.blogspot.com/2018/02/follow-patrick-collison-mike-birbiglia.html",
+              "extracted_on": "2019-11-30",
+              "last_seen_on": "2026-04-10",
+              "still_on_page": true
+            },
+            {
+              "domain": "icloudnewz.blogspot.com",
+              "uri": "https://icloudnewz.blogspot.com/2018/03/follow-nathan-hubbard-josh-elman-and.html",
+              "extracted_on": "2020-03-25",
+              "last_seen_on": "2026-03-31",
+              "still_on_page": true
+            },
+            {
+              "domain": "medium.com",
+              "uri": "https://medium.com/cs183c-blitzscaling-class-collection/cs183c-session-11-patrick-collison-stripe-84057f358ecb",
+              "extracted_on": "2017-09-05",
+              "last_seen_on": "2024-12-03",
+              "still_on_page": true
+            },
+            {
+              "domain": "nitter.securitypraxis.eu",
+              "uri": "https://nitter.securitypraxis.eu/patrickc",
+              "extracted_on": "2021-06-07",
+              "last_seen_on": "2021-06-07",
+              "still_on_page": false
+            },
+            {
+              "domain": "paganresearch.io",
+              "uri": "https://paganresearch.io/details/stripe",
+              "extracted_on": "2019-05-08",
+              "last_seen_on": "2021-02-08",
+              "still_on_page": false
+            },
+            {
+              "domain": "peerreach.com",
+              "uri": "https://peerreach.com/patrickc",
+              "extracted_on": "2019-11-07",
+              "last_seen_on": "2021-01-21",
+              "still_on_page": false
+            },
+            {
+              "domain": "apify.com",
+              "uri": "https://apify.com/vdrmota/twitter-scraper",
+              "extracted_on": "2019-08-28",
+              "last_seen_on": "2021-01-13",
+              "still_on_page": false
+            },
+            {
+              "domain": "indiehackers.com",
+              "uri": "https://indiehackers.com/forum/stripe-forum-e701f4b334",
+              "extracted_on": "2018-12-25",
+              "last_seen_on": "2018-12-25",
+              "still_on_page": false
+            },
+            {
+              "domain": "patrickcollison.com",
+              "uri": "https://patrickcollison.com/culture",
+              "extracted_on": "2018-09-13",
+              "last_seen_on": "2018-11-09",
+              "still_on_page": false
+            },
+            {
+              "domain": "github.com",
+              "uri": "https://github.com/stripe/stripe-python/commit/40814b421daf66ca45ff44af3cde00ede4e2ee13",
+              "extracted_on": "2016-11-01",
+              "last_seen_on": "2018-02-25",
+              "still_on_page": false
+            },
+            {
+              "domain": "venturenews.co",
+              "uri": "https://venturenews.co",
+              "extracted_on": "2017-08-10",
+              "last_seen_on": "2017-08-10",
+              "still_on_page": false
+            },
+            {
+              "domain": "nutter.life",
+              "uri": "https://nutter.life/patrickc",
+              "extracted_on": "2022-06-04",
+              "last_seen_on": "2022-06-04",
+              "still_on_page": false
+            },
+            {
+              "domain": "bird.trom.tf",
+              "uri": "https://bird.trom.tf/patrickc",
+              "extracted_on": "2021-06-05",
+              "last_seen_on": "2022-06-07",
+              "still_on_page": false
+            },
+            {
+              "domain": "nitter.moooi.jp",
+              "uri": "https://nitter.moooi.jp/patrickc",
+              "extracted_on": "2021-07-12",
+              "last_seen_on": "2022-07-12",
+              "still_on_page": false
+            },
+            {
+              "domain": "nitter.poast.org",
+              "uri": "https://nitter.poast.org/patrickc",
+              "extracted_on": "2022-01-21",
+              "last_seen_on": "2022-07-21",
+              "still_on_page": false
+            },
+            {
+              "domain": "nitter.fdn.fr",
+              "uri": "https://nitter.fdn.fr/patrickc",
+              "extracted_on": "2021-06-08",
+              "last_seen_on": "2023-03-09",
+              "still_on_page": false
+            },
+            {
+              "domain": "fetch.amplemarket.com",
+              "uri": "https://fetch.amplemarket.com/midas",
+              "extracted_on": "2017-08-30",
+              "last_seen_on": "2024-02-07",
+              "still_on_page": false
+            },
+            {
+              "domain": "patrickcollison.com",
+              "uri": "https://patrickcollison.com/svhistory",
+              "extracted_on": "2015-10-13",
+              "last_seen_on": "2024-07-06",
+              "still_on_page": false
+            },
+            {
+              "domain": "github.com",
+              "uri": "https://github.com/stripe/stripe-python/blob/master/stripe/__init__.py",
+              "extracted_on": "2017-09-30",
+              "last_seen_on": "2025-04-01",
+              "still_on_page": false
+            }
+          ],
+          "result": "deliverable",
+          "_deprecation_notice": "Using result is deprecated, use status instead"
+        },
+        "meta": {
+          "params": {
+            "email": "patrick@stripe.com"
+          }
+        }
+      }
+    },
+    "agentBalanceUSD": 0.098344
+  },
+  "timestamp": "2026-06-19T14:52:26.896Z"
+}

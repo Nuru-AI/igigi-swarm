@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.006,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001770c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a355602846a3555df9420c000000000000000000000b9537d11c60e8b5080c0b841701abf46f65a81dc8068061cdf262d7f3aaef39a2c76ec123970e50f7c5235f4349a7fa62a34912e7bed61716eece371431ed3c6e6b119b206a1e2a89e30505c1b",
+    "response": {
+      "success": true,
+      "data": {
+        "coord": {
+          "lon": 139.7671,
+          "lat": 35.6812
+        },
+        "list": [
+          {
+            "main": {
+              "aqi": 2
+            },
+            "components": {
+              "co": 116.39,
+              "no": 0,
+              "no2": 3.45,
+              "o3": 81.58,
+              "so2": 5,
+              "pm2_5": 11.6,
+              "pm10": 16.1,
+              "nh3": 0
+            },
+            "dt": 1781880305
+          }
+        ]
+      }
+    },
+    "agentBalanceUSD": 0.106806
+  },
+  "timestamp": "2026-06-19T14:45:06.348Z"
+}
