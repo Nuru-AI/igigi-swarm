@@ -62,9 +62,17 @@ const DS_MAX_TURNS = Number(process.env.DEEPSEEK_MAX_TURNS || '30');
 // (on-thesis: each thought settles on-chain). 'openrouter' = a stronger off-cap brain (e.g. Kimi
 // K2-Thinking, purpose-built for multi-turn agentic tool-calling) — NOT x402-payable, but the
 // Sippar thesis is the A2A WORK settlements (buy_input/buy_service), which stay on-chain regardless.
-const INFER_PROVIDER = (process.env.INFERENCE_PROVIDER || (process.env.OPENROUTER_API_KEY ? 'openrouter' : 'sippar-deepseek')).toLowerCase();
+const INFER_PROVIDER = (process.env.INFERENCE_PROVIDER || (process.env.OPENROUTER_API_KEY ? 'openrouter' : process.env.LOCUS_API_KEY ? 'locus-anthropic' : 'sippar-deepseek')).toLowerCase();
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'moonshotai/kimi-k2-thinking';
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || '';
+// 'locus-anthropic' = Claude via the Locus Wrapped API (Bearer key, billed per-call in USDC from
+// the Locus Base wallet). No Claude weekly cap (API-billed), no ICP signature per thought (Locus
+// debits its own wallet) — so the signer stays reserved for the A2A edges. Anthropic is Wrapped-only
+// (not on MPP). Uses the Anthropic Messages format (system top-level, input_schema tools).
+const LOCUS_API_KEY = process.env.LOCUS_API_KEY || '';
+const LOCUS_ANTHROPIC_MODEL = process.env.LOCUS_ANTHROPIC_MODEL || 'claude-sonnet-4-6';
+const LOCUS_ANTHROPIC_URL = process.env.LOCUS_ANTHROPIC_URL || 'https://api.paywithlocus.com/api/wrapped/anthropic/messages';
+const LOCUS_MAX_TOKENS = Number(process.env.LOCUS_MAX_TOKENS || '1024');
 // On the on-chain path, which Sippar MPP service rail is the brain, and which model on it.
 // Default deepseek-chat ($0.004). The 'groq' rail forwards stronger Groq-hosted tool-callers
 // (openai/gpt-oss-120b, qwen/qwen3-32b, meta-llama/llama-4-scout, $0.008) — verified to return
@@ -76,7 +84,7 @@ const INFERENCE_MODEL = process.env.INFERENCE_MODEL || '';
 // those so non-OpenAI brains can run the multi-turn loop on-chain. Override with FLATTEN_TOOL_HISTORY=0/1.
 const FLATTEN_TOOL_HISTORY = process.env.FLATTEN_TOOL_HISTORY != null
   ? process.env.FLATTEN_TOOL_HISTORY === '1'
-  : (INFERENCE_SERVICE === 'groq' && !/gpt-oss/i.test(INFERENCE_MODEL));
+  : ((INFERENCE_SERVICE === 'groq' && !/gpt-oss/i.test(INFERENCE_MODEL)) || INFER_PROVIDER === 'locus-anthropic');
 
 const HANDS = new Set([
   'mcp__hands__discover_services', 'mcp__hands__buy_service', 'mcp__hands__think', 'mcp__hands__check_budget',
@@ -220,6 +228,41 @@ async function inferLLM(sippar: Sippar, payload: { model?: string; messages: any
 }
 
 async function inferOnce(sippar: Sippar, payload: { model?: string; messages: any[]; tools?: any[]; tool_choice?: any }): Promise<{ success: boolean; response?: any; amountPaid?: number; error?: string }> {
+  if (INFER_PROVIDER === 'locus-anthropic') {
+    if (!LOCUS_API_KEY) return { success: false, error: 'INFERENCE_PROVIDER=locus-anthropic but LOCUS_API_KEY is not set' };
+    // Translate our OpenAI-shaped payload -> Anthropic Messages format (FLATTEN keeps history as
+    // plain alternating user/assistant text, so no tool-role/tool_use round-trip needed here).
+    const all = payload.messages || [];
+    const system = all.filter((m) => m.role === 'system').map((m) => (typeof m.content === 'string' ? m.content : JSON.stringify(m.content))).join('\n\n');
+    const conv: any[] = [];
+    for (const m of all) {
+      if (m.role === 'system') continue;
+      const role = m.role === 'assistant' ? 'assistant' : 'user';
+      const content = typeof m.content === 'string' && m.content.trim() ? m.content : (m.content ? JSON.stringify(m.content) : '(continue)');
+      const last = conv[conv.length - 1];
+      if (last && last.role === role) last.content += '\n' + content; // coalesce -> strict alternation (Anthropic requires it)
+      else conv.push({ role, content });
+    }
+    while (conv.length && conv[0].role !== 'user') conv.shift(); // Anthropic: first message must be 'user'
+    const tools = (payload.tools || []).map((t: any) => ({ name: t.function.name, description: t.function.description, input_schema: t.function.parameters || { type: 'object', properties: {} } }));
+    const tc = payload.tool_choice;
+    const tool_choice = tc === 'required' ? { type: 'any' } : tc === 'none' ? { type: 'none' } : (tc && tc.type ? tc : { type: 'auto' });
+    const body: any = { model: INFERENCE_MODEL || LOCUS_ANTHROPIC_MODEL, max_tokens: LOCUS_MAX_TOKENS, messages: conv };
+    if (system) body.system = system;
+    if (tools.length) { body.tools = tools; body.tool_choice = tool_choice; }
+    try {
+      const res = await fetch(LOCUS_ANTHROPIC_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${LOCUS_API_KEY}` }, body: JSON.stringify(body) });
+      const env: any = await res.json().catch(() => ({}));
+      const data = env?.data ?? env; // Locus wraps { success, data: <anthropic-response> }
+      if (!res.ok || data?.error || env?.error) return { success: false, error: (data?.error?.message ?? data?.error ?? env?.error?.message ?? env?.error ?? `Locus HTTP ${res.status}`) };
+      const content = Array.isArray(data?.content) ? data.content : [];
+      const text = content.filter((b: any) => b.type === 'text').map((b: any) => b.text).join('');
+      const tool_calls = content.filter((b: any) => b.type === 'tool_use').map((b: any) => ({ id: b.id, type: 'function', function: { name: b.name, arguments: JSON.stringify(b.input || {}) } }));
+      const message: any = { role: 'assistant', content: text };
+      if (tool_calls.length) message.tool_calls = tool_calls;
+      return { success: true, response: { choices: [{ message }] }, amountPaid: 0 }; // billed off the Locus wallet, not the agent's
+    } catch (e) { return { success: false, error: String((e as Error).message) }; }
+  }
   if (INFER_PROVIDER === 'openrouter') {
     if (!OPENROUTER_KEY) return { success: false, error: 'INFERENCE_PROVIDER=openrouter but OPENROUTER_API_KEY is not set' };
     try {
@@ -633,7 +676,10 @@ async function main() {
 
   // 3) Run all agents concurrently — the DAG orders them (no stagger needed).
   const run = AGENT_ENGINE === 'deepseek-code' ? runAgentDeepSeekCode : AGENT_ENGINE === 'deepseek' ? runAgentDeepSeek : runAgent;
-  const brain = AGENT_ENGINE === 'claude' ? `Claude SDK (${MODEL})` : INFER_PROVIDER === 'openrouter' ? `OpenRouter brain (${OPENROUTER_MODEL}) — off-cap, A2A still on-chain` : `Sippar MPP rail '${INFERENCE_SERVICE}' (${INFERENCE_MODEL || DEEPSEEK_MODEL}) — each thought on-chain`;
+  const brain = AGENT_ENGINE === 'claude' ? `Claude SDK (${MODEL})`
+    : INFER_PROVIDER === 'locus-anthropic' ? `Claude via Locus Wrapped API (${INFERENCE_MODEL || LOCUS_ANTHROPIC_MODEL}) — off-cap (USDC-billed), A2A on-chain`
+    : INFER_PROVIDER === 'openrouter' ? `OpenRouter brain (${OPENROUTER_MODEL}) — off-cap, A2A still on-chain`
+    : `Sippar MPP rail '${INFERENCE_SERVICE}' (${INFERENCE_MODEL || DEEPSEEK_MODEL}) — each thought on-chain`;
   console.log(`engine: ${AGENT_ENGINE === 'deepseek-code' ? 'CodeAgent code-gen' : AGENT_ENGINE === 'deepseek' ? 'JSON tool-calls' : 'Claude SDK'} · brain: ${brain}${AGENT_ENGINE !== 'claude' && INFER_PROVIDER !== 'openrouter' ? ` · history=${FLATTEN_TOOL_HISTORY ? 'flattened' : 'native-tool-role'}` : ''} · 0 Claude tokens${AGENT_ENGINE === 'claude' ? '' : ' (agents)'}\n`);
   // Stagger agent starts to spread the inference-rail load — at 5+ concurrent agents the Locus
   // rail times out ("inference failed") and breaks the deep DAG layers. The DAG still orders the

@@ -7,3 +7,7 @@ SWARM_KILL
 .dev-sandbox/
 .farcaster-state/
 runs/
+
+# session helper scripts / staging
+.locus-*.sh
+fund-base.mjs
