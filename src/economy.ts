@@ -336,7 +336,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
       if (!pay.success) return { success: false, error: `payment failed: ${pay.error}` };
       board.recordPurchase(label, produces_key);
       bought.set(ck, inp.output);
-      feed.emit('market_buy', { agent: label, seller: inp.producerLabel, id: inp.id, amountUSD: pay.amountPaid, tx: pay.tx });
+      feed.emit('market_buy', { agent: label, seller: inp.producerLabel, id: inp.id, produces: produces_key, contentPreview: String(inp.output ?? '').slice(0, 600), amountUSD: pay.amountPaid, tx: pay.tx });
       return { success: true, paidTo: inp.producerLabel, amountUSD: pay.amountPaid, tx: pay.tx, content: inp.output, note: 'Bought. Once you have all inputs, synthesize and call submit_task.' };
     },
     discover_services: async ({ category, max_price }) => sippar.discover({ category, maxPrice: max_price }),
@@ -353,7 +353,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
       forceSubmit = false;
       if (!output || String(output).length < 20) return { error: 'output must be your full result text (>=20 chars).' };
       const r = board.submit(label, id || board.listOpen(label)[0]?.id || '', output, selfAddr);
-      if (r.ok) feed.emit('market_post', { agent: label, id, summary: `produced ${id}`, priceUSD: 0 });
+      if (r.ok) feed.emit('market_post', { agent: label, id, produces: board.snapshot().find((s) => s.id === id)?.produces, outputPreview: String(output ?? '').slice(0, 4000), summary: `produced ${id}`, priceUSD: 0 });
       return r;
     },
   };
@@ -681,8 +681,8 @@ async function main() {
 
   feed.emit('swarm_start', {
     capUSD: SWARM_CAP_USD, perAgentUSD: PER_AGENT_CAP, model: MODEL, mandate: `TASK-ECONOMY: ${GOAL}`,
-    agents: agents.map((a) => ({ label: a.label, principal: a.principal, address: a.address, balanceUSD: a.balanceUSD })),
-    plan: plan.map((t) => ({ id: t.id, produces: t.produces, consumes: t.consumes, priceUSD: t.priceUSD })),
+    agents: agents.map((a, ai) => ({ label: a.label, principal: a.principal, address: a.address, balanceUSD: a.balanceUSD, assignedTasks: plan.filter((_, i) => i % agents.length === ai).map((t) => t.id) })),
+    plan: plan.map((t) => ({ id: t.id, title: t.title, produces: t.produces, consumes: t.consumes, priceUSD: t.priceUSD })),
   });
 
   // 3) Run all agents concurrently — the DAG orders them (no stagger needed).
@@ -722,10 +722,10 @@ async function main() {
   const u = guard.usageSummary;
   const snap = board.snapshot();
   const done = snap.filter((s) => s.status === 'completed').length;
-  feed.emit('swarm_end', { moneyUSD: guard.spent, capUSD: SWARM_CAP_USD, tokens: u.tokens, halted: guard.halted_, tasksDone: done, tasksTotal: snap.length });
+  const deliverable = board.sink();
+  feed.emit('swarm_end', { moneyUSD: guard.spent, capUSD: SWARM_CAP_USD, tokens: u.tokens, halted: guard.halted_, tasksDone: done, tasksTotal: snap.length, deliverable: deliverable ? { id: deliverable.id, produces: deliverable.produces, output: String(deliverable.output ?? '').slice(0, 8000) } : null });
   console.log(`\n=== Task-economy done ===  tasks ${done}/${snap.length} completed · money $${guard.spent.toFixed(4)}/$${SWARM_CAP_USD} · ${u.tokens} Claude tokens${guard.halted_ ? ' · HALTED' : ''}`);
   console.log(`   board: ${snap.map((s) => `${s.id}:${s.status}${s.by ? '(' + s.by + ')' : ''}`).join('  ')}`);
-  const deliverable = board.sink();
   if (deliverable?.output) console.log(`\n=== DELIVERABLE (${deliverable.id}) ===\n${deliverable.output.slice(0, 1200)}`);
   console.log(`\n📡 feed written: ${feed.file}`);
 }
