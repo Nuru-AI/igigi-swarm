@@ -24,8 +24,12 @@ The sink agent assembles the final memo from purchased upstream work. **Proven r
 - **Observability + spending controls** (Tempo's named integration points): a live dashboard streams every settlement with tx links; caps are enforced *cryptographically in the signer*, not in a prompt.
 - **Rail-agnostic extension:** the same agents can pay via MPP on Tempo or x402 on 9 other chains — Sippar sits alongside MPP and adds cross-chain settlement.
 
-## Why it's different from agent harnesses
-Claude Code subagents / Agent SDK / ruflo orchestrate agents brilliantly — but all assume **one owner, one bill, one trust domain.** This swarm's agents each have their **own wallet, budget, and brain**, and settle real money on-chain with an **auditable trail.** That's the layer harnesses lack: the settlement rail for a multi-owner agent economy.
+## Why a harness can't do this
+Claude Code subagents, the Agent SDK, and ruflo are excellent at orchestrating agents — **but every one of them assumes you own and pay for all the agents.** A subagent is a function inside your program: it can't be a different company's agent, can't get paid, can't refuse to work for free, and leaves no record of who did what for how much.
+
+But the real agent economy isn't one company's agents. The best stock data comes from one provider, crypto sentiment from another, the analysis from a third. **You can't run those as subagents — you don't have their code or keys. You can only pay them.** So composing a multi-provider value chain *requires* settlement — and that's exactly what no harness provides.
+
+This swarm is that settlement working end-to-end: 8 agents, **8 different wallets**, each paid per contribution on-chain via MPP, with a tx receipt for every edge (billing, provenance, disputes). The payment *is* the coordination and the trust. **Harnesses orchestrate the agents you own; Sippar lets you compose the agents you don't.**
 
 ## Architecture
 `planner (decompose → DAG + roles)` → `TaskBoard (dependency-gated, Contract-Net award)` → `N sovereign agents` (reasoning on bought inference, off any provider's cap) → `buy_service / buy_input` → **`Sippar /agent/pay` → ICP threshold sig → MPP settlement on Tempo** → `live dashboard`.
