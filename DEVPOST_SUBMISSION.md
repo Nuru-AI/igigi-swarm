@@ -17,6 +17,9 @@ A user gives a goal (e.g. *"a ranked AI-compute investment memo"*). A planner de
 
 The sink agent assembles the final memo from purchased upstream work. **Proven run: 8/8 tasks, 9 on-chain A2A MPP settlements on Tempo, a complete ranked investment memo, 0 failures.**
 
+## Quality — measurably better than a single agent
+We A/B'd the swarm against **one Claude agent doing the same task** (same brain, tools, and data — it actually gathered *more* raw data). A **blind LLM judge** (didn't know which was which) scored the **swarm 9.0 vs the single agent 7.4** overall, and **3/3 with memo positions swapped** (swarm 8.07 vs 7.23) — so it's not position bias. The swarm's specialist layers force depth: explicit **price targets, bull/base/bear scenario probabilities, position-sizing, stop-loss discipline** — which the single agent flattens (judge: *"difficult to act on"*). The economy isn't only about settlement — **the specialization it enables produces better work.** (Details: `evidence/AB_SINGLE_VS_SWARM_2026-06-19.md`.)
+
 ## How it uses MPP / Tempo
 - **Every payment is MPP on Tempo** — agent→service *and* agent→agent — settled in USDC.e (`MPP_ONLY=1` enforces a Tempo-only service catalog so 100% of flows are MPP).
 - **Facilitator-less:** the payee self-verifies the payment proof; Sippar's ICP **threshold signature *is* the payment** — no third-party facilitator, no custody.
