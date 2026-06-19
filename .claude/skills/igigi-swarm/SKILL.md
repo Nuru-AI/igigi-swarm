@@ -11,16 +11,20 @@ The point of the demo is the leap nobody else made: an agent that can pay *anoth
 
 ## Demo flow (start here when presenting)
 
-When someone asks to run or demo the swarm, **open by asking what they want it to do**, and offer three concrete options so they don't have to invent a goal on the spot. Present them like this:
+**If the user already named a goal** (e.g. "build me an AI-compute investment memo"), don't re-ask — confirm the team and run it.
 
-> What should the swarm work on? A few options:
-> 1. **AI-compute investment memo** — rank NVIDIA, AMD, and crypto-AI tokens from live stock quotes, crypto sentiment, AI news, and semiconductor supply-chain signals. (the proven run; ~6 specialists)
-> 2. **Crypto-AI market briefing** — trending tokens, perpetual funding rates, recent AI news, and sentiment, into a ranked watchlist.
-> 3. **L2 competitive teardown** — compare three Ethereum L2s on activity, fees, and ecosystem from on-chain and market data.
->
-> Pick one, or give me your own goal.
+The goal validated end-to-end (proven on mainnet, with the A/B and grounding results) is the **AI-compute investment memo**:
 
-Recommend option 1 if they're unsure — it's the proven, multi-specialist run.
+> rank NVIDIA, AMD, and the leading crypto-AI tokens (buy/sell/hold) with rationale, from live stock quotes, crypto-AI sentiment, recent AI-sector news, and semiconductor supply-chain signals
+
+Default to that goal. It decomposes into ~6 specialists and exercises the full multi-source DAG. If the user is unsure what to run, offer it first:
+
+> What should the swarm work on?
+> 1. **AI-compute investment memo** (recommended — proven end-to-end): rank NVIDIA, AMD, and top crypto-AI tokens from live market data.
+> 2. Crypto-AI market briefing (experimental): trending tokens, funding rates, AI news, sentiment.
+> 3. L2 competitive teardown (experimental): compare three Ethereum L2s from on-chain + market data.
+
+Steer toward option 1 — it's the only one validated, so it's the safe choice for a live demo. Treat 2 and 3 as experimental; a custom goal works too but may decompose unpredictably.
 
 Once they answer, do these in order and **narrate each step out loud** (the lines in "What to say" below are the script):
 
