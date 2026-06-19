@@ -1,0 +1,477 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.00375,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000000ea6c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a355788846a3557659420c000000000000000000000b9537d11c60e8b5080c0b841a4e371ccdbafb70c22f05dd52f5e9c6fea90024d1c1835725813c15a11f8c27d1ff2862bd6c764fc536c50f4190841d4158867921c588affb2f70ec91bf7aeee1c",
+    "response": {
+      "success": true,
+      "data": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "id": "dXJuOm1ieGFkcjozYjAxOTk5NS05NTk0LTQ2NmItOWQ5OC1kMjBjNTQ1NzUwNDQ",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.989938,
+                40.729927
+              ]
+            },
+            "properties": {
+              "mapbox_id": "dXJuOm1ieGFkcjozYjAxOTk5NS05NTk0LTQ2NmItOWQ5OC1kMjBjNTQ1NzUwNDQ",
+              "feature_type": "address",
+              "full_address": "101 Astor Place, New York, New York 10003, United States",
+              "name": "101 Astor Place",
+              "name_preferred": "101 Astor Place",
+              "coordinates": {
+                "longitude": -73.989938,
+                "latitude": 40.729927,
+                "accuracy": "rooftop",
+                "routable_points": [
+                  {
+                    "name": "default",
+                    "latitude": 40.729664,
+                    "longitude": -73.990098
+                  }
+                ]
+              },
+              "place_formatted": "New York, New York 10003, United States",
+              "context": {
+                "address": {
+                  "mapbox_id": "dXJuOm1ieGFkcjozYjAxOTk5NS05NTk0LTQ2NmItOWQ5OC1kMjBjNTQ1NzUwNDQ",
+                  "address_number": "101",
+                  "street_name": "Astor Place",
+                  "name": "101 Astor Place"
+                },
+                "street": {
+                  "mapbox_id": "dXJuOm1ieGFkci1zdHI6M2IwMTk5OTUtOTU5NC00NjZiLTlkOTgtZDIwYzU0NTc1MDQ0",
+                  "name": "Astor Place"
+                },
+                "neighborhood": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpDeWFNN0E",
+                  "name": "East Village",
+                  "wikidata_id": "Q1043326"
+                },
+                "postcode": {
+                  "mapbox_id": "postcode.5731317093145952",
+                  "name": "10003"
+                },
+                "locality": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpGREtLN0E",
+                  "name": "Manhattan",
+                  "wikidata_id": "Q11299"
+                },
+                "place": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpEZTVJN0E",
+                  "name": "New York",
+                  "wikidata_id": "Q60"
+                },
+                "district": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBUU5tN0E",
+                  "name": "New York County",
+                  "wikidata_id": "Q500416"
+                },
+                "region": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+                  "name": "New York",
+                  "wikidata_id": "Q1384",
+                  "region_code": "NY",
+                  "region_code_full": "US-NY"
+                },
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "wikidata_id": "Q30",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA"
+                }
+              }
+            }
+          },
+          {
+            "type": "Feature",
+            "id": "dXJuOm1ieHBsYzpDeWFNN0E",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.98766,
+                40.728603
+              ]
+            },
+            "properties": {
+              "mapbox_id": "dXJuOm1ieHBsYzpDeWFNN0E",
+              "feature_type": "neighborhood",
+              "full_address": "East Village, New York, New York, United States",
+              "name": "East Village",
+              "name_preferred": "East Village",
+              "coordinates": {
+                "longitude": -73.98766,
+                "latitude": 40.728603
+              },
+              "place_formatted": "New York, New York, United States",
+              "bbox": [
+                -73.991921,
+                40.725204,
+                -73.982558,
+                40.734798
+              ],
+              "context": {
+                "postcode": {
+                  "mapbox_id": "postcode.5731317093145952",
+                  "name": "10003"
+                },
+                "locality": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpGREtLN0E",
+                  "name": "Manhattan",
+                  "wikidata_id": "Q11299"
+                },
+                "place": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpEZTVJN0E",
+                  "name": "New York",
+                  "wikidata_id": "Q60"
+                },
+                "district": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBUU5tN0E",
+                  "name": "New York County",
+                  "wikidata_id": "Q500416"
+                },
+                "region": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+                  "name": "New York",
+                  "wikidata_id": "Q1384",
+                  "region_code": "NY",
+                  "region_code_full": "US-NY"
+                },
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "wikidata_id": "Q30",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA"
+                },
+                "neighborhood": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpDeWFNN0E",
+                  "name": "East Village",
+                  "wikidata_id": "Q1043326"
+                }
+              }
+            }
+          },
+          {
+            "type": "Feature",
+            "id": "postcode.5731317093145952",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.991468,
+                40.729972
+              ]
+            },
+            "properties": {
+              "mapbox_id": "postcode.5731317093145952",
+              "feature_type": "postcode",
+              "full_address": "New York, New York 10003, United States",
+              "name": "10003",
+              "name_preferred": "10003",
+              "coordinates": {
+                "longitude": -73.991468,
+                "latitude": 40.729972
+              },
+              "place_formatted": "New York, New York, United States",
+              "context": {
+                "locality": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpGREtLN0E",
+                  "name": "Manhattan",
+                  "wikidata_id": "Q11299"
+                },
+                "place": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpEZTVJN0E",
+                  "name": "New York",
+                  "wikidata_id": "Q60"
+                },
+                "district": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBUU5tN0E",
+                  "name": "New York County",
+                  "wikidata_id": "Q500416"
+                },
+                "region": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+                  "name": "New York",
+                  "wikidata_id": "Q1384",
+                  "region_code": "NY",
+                  "region_code_full": "US-NY"
+                },
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "wikidata_id": "Q30",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA"
+                },
+                "postcode": {
+                  "mapbox_id": "postcode.5731317093145952",
+                  "name": "10003"
+                }
+              }
+            }
+          },
+          {
+            "type": "Feature",
+            "id": "dXJuOm1ieHBsYzpGREtLN0E",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.95709,
+                40.789352
+              ]
+            },
+            "properties": {
+              "mapbox_id": "dXJuOm1ieHBsYzpGREtLN0E",
+              "feature_type": "locality",
+              "full_address": "Manhattan, New York, United States",
+              "name": "Manhattan",
+              "name_preferred": "Manhattan",
+              "coordinates": {
+                "longitude": -73.95709,
+                "latitude": 40.789352
+              },
+              "place_formatted": "New York, United States",
+              "bbox": [
+                -74.04737,
+                40.681267,
+                -73.907,
+                40.882075
+              ],
+              "context": {
+                "place": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpEZTVJN0E",
+                  "name": "New York",
+                  "wikidata_id": "Q60"
+                },
+                "district": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBUU5tN0E",
+                  "name": "New York County",
+                  "wikidata_id": "Q500416"
+                },
+                "region": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+                  "name": "New York",
+                  "wikidata_id": "Q1384",
+                  "region_code": "NY",
+                  "region_code_full": "US-NY"
+                },
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "wikidata_id": "Q30",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA"
+                },
+                "locality": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpGREtLN0E",
+                  "name": "Manhattan",
+                  "wikidata_id": "Q11299"
+                }
+              }
+            }
+          },
+          {
+            "type": "Feature",
+            "id": "dXJuOm1ieHBsYzpEZTVJN0E",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -74.005994,
+                40.712749
+              ]
+            },
+            "properties": {
+              "mapbox_id": "dXJuOm1ieHBsYzpEZTVJN0E",
+              "feature_type": "place",
+              "full_address": "New York, New York, United States",
+              "name": "New York",
+              "name_preferred": "New York",
+              "coordinates": {
+                "longitude": -74.005994,
+                "latitude": 40.712749
+              },
+              "place_formatted": "New York, United States",
+              "bbox": [
+                -74.259633,
+                40.477399,
+                -73.700292,
+                40.917577
+              ],
+              "context": {
+                "district": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBUU5tN0E",
+                  "name": "New York County",
+                  "wikidata_id": "Q500416"
+                },
+                "region": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+                  "name": "New York",
+                  "wikidata_id": "Q1384",
+                  "region_code": "NY",
+                  "region_code_full": "US-NY"
+                },
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "wikidata_id": "Q30",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA"
+                },
+                "place": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpEZTVJN0E",
+                  "name": "New York",
+                  "wikidata_id": "Q60"
+                }
+              }
+            }
+          },
+          {
+            "type": "Feature",
+            "id": "dXJuOm1ieHBsYzpBUU5tN0E",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -73.985245,
+                40.744633
+              ]
+            },
+            "properties": {
+              "mapbox_id": "dXJuOm1ieHBsYzpBUU5tN0E",
+              "feature_type": "district",
+              "full_address": "New York County, New York, United States",
+              "name": "New York County",
+              "name_preferred": "New York County",
+              "coordinates": {
+                "longitude": -73.985245,
+                "latitude": 40.744633
+              },
+              "place_formatted": "New York, United States",
+              "bbox": [
+                -74.05179,
+                40.669244,
+                -73.907007,
+                40.885322
+              ],
+              "context": {
+                "region": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+                  "name": "New York",
+                  "wikidata_id": "Q1384",
+                  "region_code": "NY",
+                  "region_code_full": "US-NY"
+                },
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "wikidata_id": "Q30",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA"
+                },
+                "district": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBUU5tN0E",
+                  "name": "New York County",
+                  "wikidata_id": "Q500416"
+                }
+              }
+            }
+          },
+          {
+            "type": "Feature",
+            "id": "dXJuOm1ieHBsYzpBYVRz",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -75.465247,
+                42.751211
+              ]
+            },
+            "properties": {
+              "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+              "feature_type": "region",
+              "full_address": "New York, United States",
+              "name": "New York",
+              "name_preferred": "New York",
+              "coordinates": {
+                "longitude": -75.465247,
+                "latitude": 42.751211
+              },
+              "place_formatted": "United States",
+              "bbox": [
+                -79.763007,
+                40.458026,
+                -71.770857,
+                45.0217
+              ],
+              "context": {
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "wikidata_id": "Q30",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA"
+                },
+                "region": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpBYVRz",
+                  "name": "New York",
+                  "region_code": "NY",
+                  "region_code_full": "US-NY",
+                  "wikidata_id": "Q1384"
+                }
+              }
+            }
+          },
+          {
+            "type": "Feature",
+            "id": "dXJuOm1ieHBsYzpJdXc",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -97.922211,
+                39.381266
+              ]
+            },
+            "properties": {
+              "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+              "feature_type": "country",
+              "full_address": "United States",
+              "name": "United States",
+              "name_preferred": "United States",
+              "coordinates": {
+                "longitude": -97.922211,
+                "latitude": 39.381266
+              },
+              "bbox": [
+                -179.9,
+                18.829161,
+                -66.902733,
+                71.420291
+              ],
+              "context": {
+                "country": {
+                  "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                  "name": "United States",
+                  "country_code": "US",
+                  "country_code_alpha_3": "USA",
+                  "wikidata_id": "Q30"
+                }
+              }
+            }
+          }
+        ],
+        "attribution": "NOTICE: \u00a9 2026 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained."
+      }
+    },
+    "agentBalanceUSD": 0.227272
+  },
+  "timestamp": "2026-06-19T14:51:36.262Z"
+}

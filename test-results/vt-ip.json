@@ -1,0 +1,1141 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.055,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff0000000000000000000000000000000000000000000000000000000000000d6d8c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a35676d846a35674a9420c000000000000000000000b9537d11c60e8b5080c0b8415c2e2c6f74e8979d214e0b6ce50489d2d3a53447b75a7c1a5e439593c4e4514c6ba23cbaa8fb6250b79c9b15e4f519c1bfa3865464a32b84f566378093e981781c",
+    "response": {
+      "success": true,
+      "data": {
+        "data": {
+          "id": "8.8.8.8",
+          "type": "ip_address",
+          "links": {
+            "self": "https://www.virustotal.com/api/v3/ip_addresses/8.8.8.8"
+          },
+          "attributes": {
+            "jarm": "29d3fd00029d29d00042d43d00041d8f924f5255cbc229bc55efa16391dad6",
+            "last_https_certificate": {
+              "cert_signature": {
+                "signature_algorithm": "sha256RSA",
+                "signature": "8541d19e2413842ffbc4c449ffb4b7ffba6f71bfa33aa21e01aa2b87b245fdebf0a19cab48432dc4414c07fffcfab4fb1e3bddbaec7f20e89a0843e86fee318fa0e9607eab8779bba6c5d8860a71222c91a9a15caa5951f61b9af14f3c61ce576ce6619340bf421e299bdc7193804f0830f25a33588ed6bb6ce6a142654f18d4c9447bbe727ceda7c68b940b60a42696094b5c78f3dc98b2422e777347728dd472fbfaaa7fd91cb5e08b0a14aff72eddb0adf760b45fddd502b683f4838559cbd2c2c241cd9533fa323c7a1367ecec68ec27328037038f00a17e75423ea7323f4595daf40b9363574703194211f4bda78678e44c93c354900a2f0d54827cacc3"
+              },
+              "extensions": {
+                "key_usage": [
+                  "digitalSignature",
+                  "keyEncipherment"
+                ],
+                "extended_key_usage": [
+                  "serverAuth"
+                ],
+                "CA": false,
+                "subject_key_identifier": "3f921e7cd1b4a8d0a323655bd4ad611427bfaab8",
+                "authority_key_identifier": {
+                  "keyid": "de1b1eed7915d43e3724c321bbec34396d42b230"
+                },
+                "ca_information_access": {
+                  "OCSP": "http://o.pki.goog/wr2",
+                  "CA Issuers": "http://i.pki.goog/wr2.crt"
+                },
+                "subject_alternative_name": [
+                  "dns.google",
+                  "dns.google.com",
+                  "*.dns.google.com",
+                  "8888.google",
+                  "dns64.dns.google",
+                  "8.8.8.8",
+                  "8.8.4.4",
+                  "8.8.8.53",
+                  "2001:4860:4860::8888",
+                  "2001:4860:4860::8844",
+                  "2001:4860:4860::6464",
+                  "2001:4860:4860::64"
+                ],
+                "certificate_policies": [
+                  "2.23.140.1.2.1"
+                ],
+                "crl_distribution_points": [
+                  "http://c.pki.goog/wr2/oQ6nyr8F0m0.crl"
+                ],
+                "1.3.6.1.4.1.11129.2.4.2": "0481f100ef007500c2317e574519a345ee7f38deb29041ebc7c2215a22bf7fd5"
+              },
+              "validity": {
+                "not_after": "2026-08-17 08:39:13",
+                "not_before": "2026-05-25 08:39:14"
+              },
+              "size": 1466,
+              "version": "V3",
+              "public_key": {
+                "algorithm": "RSA",
+                "rsa": {
+                  "modulus": "c164e63009893aa1f28328c273819110d74f38e4cd1e6c7755eb61b77a5fa3dc951e0125befbf70bf49126cca2a1a471b3d5739153c6afd0b7da7d18f168afc7c2ec8fe5a650221b935ff94b00cebeb1c45bef12ca7911f747df37d8e68dde8f1ccfe2f0f4171a10bf73901b1748d1e3a4e1557c8964e5982667a26d4f141f49501ab2fe9e9b48fded8e9e91ca598eb162b5bf63286953095cb04e63faad6303ab7205d3280909612ca7db360821b014cd2b583f0f596df142d0d32e6efb5d6a515e13fe1c440b4eb449ae0705adc89f4bfbac61d153cea4b25bed9949dcc5a2c790f7e1d9bfba14e99722718b9ecee5f9c6b052bd5a0c16413c4259ff684f17",
+                  "exponent": "10001",
+                  "key_size": 2048
+                }
+              },
+              "thumbprint_sha256": "af5247c031bc32e1007b0d0878ef43d521ab56ebeede4bf84f5fd6a7c121018b",
+              "thumbprint": "8057c2c27e690aab65ebd9f3917589fd014aafa3",
+              "serial_number": "49ecbcc47ddf1c0a12f2687551c6ca0e",
+              "issuer": {
+                "C": "US",
+                "O": "Google Trust Services",
+                "CN": "WR2"
+              },
+              "subject": {
+                "CN": "dns.google"
+              }
+            },
+            "tags": [],
+            "whois_date": 1780877731,
+            "as_owner": "Google LLC",
+            "last_analysis_date": 1781879306,
+            "regional_internet_registry": "ARIN",
+            "last_analysis_results": {
+              "Acronis": {
+                "method": "blacklist",
+                "engine_name": "Acronis",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "0xSI_f33d": {
+                "method": "blacklist",
+                "engine_name": "0xSI_f33d",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Abusix": {
+                "method": "blacklist",
+                "engine_name": "Abusix",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "ADMINUSLabs": {
+                "method": "blacklist",
+                "engine_name": "ADMINUSLabs",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Axur": {
+                "method": "blacklist",
+                "engine_name": "Axur",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "ChainPatrol": {
+                "method": "blacklist",
+                "engine_name": "ChainPatrol",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Criminal IP": {
+                "method": "blacklist",
+                "engine_name": "Criminal IP",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "AILabs (MONITORAPP)": {
+                "method": "blacklist",
+                "engine_name": "AILabs (MONITORAPP)",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "AlienVault": {
+                "method": "blacklist",
+                "engine_name": "AlienVault",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "alphaMountain.ai": {
+                "method": "blacklist",
+                "engine_name": "alphaMountain.ai",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "AlphaSOC": {
+                "method": "blacklist",
+                "engine_name": "AlphaSOC",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Antiy-AVL": {
+                "method": "blacklist",
+                "engine_name": "Antiy-AVL",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "ArcSight Threat Intelligence": {
+                "method": "blacklist",
+                "engine_name": "ArcSight Threat Intelligence",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "AutoShun": {
+                "method": "blacklist",
+                "engine_name": "AutoShun",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Bfore.Ai PreCrime": {
+                "method": "blacklist",
+                "engine_name": "Bfore.Ai PreCrime",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "BitDefender": {
+                "method": "blacklist",
+                "engine_name": "BitDefender",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Bkav": {
+                "method": "blacklist",
+                "engine_name": "Bkav",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Blueliv": {
+                "method": "blacklist",
+                "engine_name": "Blueliv",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Certego": {
+                "method": "blacklist",
+                "engine_name": "Certego",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Chong Lua Dao": {
+                "method": "blacklist",
+                "engine_name": "Chong Lua Dao",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "CINS Army": {
+                "method": "blacklist",
+                "engine_name": "CINS Army",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Cluster25": {
+                "method": "blacklist",
+                "engine_name": "Cluster25",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "CRDF": {
+                "method": "blacklist",
+                "engine_name": "CRDF",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "CSIS Security Group": {
+                "method": "blacklist",
+                "engine_name": "CSIS Security Group",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Snort IP sample list": {
+                "method": "blacklist",
+                "engine_name": "Snort IP sample list",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "CMC Threat Intelligence": {
+                "method": "blacklist",
+                "engine_name": "CMC Threat Intelligence",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "CTX AI": {
+                "method": "blacklist",
+                "engine_name": "CTX AI",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Cyan": {
+                "method": "blacklist",
+                "engine_name": "Cyan",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Cyble": {
+                "method": "blacklist",
+                "engine_name": "Cyble",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "CyRadar": {
+                "method": "blacklist",
+                "engine_name": "CyRadar",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "DNS8": {
+                "method": "blacklist",
+                "engine_name": "DNS8",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Dr.Web": {
+                "method": "blacklist",
+                "engine_name": "Dr.Web",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Ermes": {
+                "method": "blacklist",
+                "engine_name": "Ermes",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "ESET": {
+                "method": "blacklist",
+                "engine_name": "ESET",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "ESTsecurity": {
+                "method": "blacklist",
+                "engine_name": "ESTsecurity",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "EmergingThreats": {
+                "method": "blacklist",
+                "engine_name": "EmergingThreats",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Emsisoft": {
+                "method": "blacklist",
+                "engine_name": "Emsisoft",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Forcepoint ThreatSeeker": {
+                "method": "blacklist",
+                "engine_name": "Forcepoint ThreatSeeker",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Fortinet": {
+                "method": "blacklist",
+                "engine_name": "Fortinet",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "G-Data": {
+                "method": "blacklist",
+                "engine_name": "G-Data",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "GCP Abuse Intelligence": {
+                "method": "blacklist",
+                "engine_name": "GCP Abuse Intelligence",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Google Safebrowsing": {
+                "method": "blacklist",
+                "engine_name": "Google Safebrowsing",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "GreenSnow": {
+                "method": "blacklist",
+                "engine_name": "GreenSnow",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "GreyNoise": {
+                "method": "blacklist",
+                "engine_name": "GreyNoise",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Gridinsoft": {
+                "method": "blacklist",
+                "engine_name": "Gridinsoft",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Guardpot": {
+                "method": "blacklist",
+                "engine_name": "Guardpot",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Heimdal Security": {
+                "method": "blacklist",
+                "engine_name": "Heimdal Security",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Hunt.io Intelligence": {
+                "method": "blacklist",
+                "engine_name": "Hunt.io Intelligence",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "IPsum": {
+                "method": "blacklist",
+                "engine_name": "IPsum",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Juniper Networks": {
+                "method": "blacklist",
+                "engine_name": "Juniper Networks",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Kaspersky": {
+                "method": "blacklist",
+                "engine_name": "Kaspersky",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "LevelBlue": {
+                "method": "blacklist",
+                "engine_name": "LevelBlue",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Lionic": {
+                "method": "blacklist",
+                "engine_name": "Lionic",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Lumu": {
+                "method": "blacklist",
+                "engine_name": "Lumu",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "MalwarePatrol": {
+                "method": "blacklist",
+                "engine_name": "MalwarePatrol",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "MalwareURL": {
+                "method": "blacklist",
+                "engine_name": "MalwareURL",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Malwared": {
+                "method": "blacklist",
+                "engine_name": "Malwared",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Mimecast": {
+                "method": "blacklist",
+                "engine_name": "Mimecast",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Netcraft": {
+                "method": "blacklist",
+                "engine_name": "Netcraft",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "OpenPhish": {
+                "method": "blacklist",
+                "engine_name": "OpenPhish",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Phishing Database": {
+                "method": "blacklist",
+                "engine_name": "Phishing Database",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "PhishFort": {
+                "method": "blacklist",
+                "engine_name": "PhishFort",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "PhishLabs": {
+                "method": "blacklist",
+                "engine_name": "PhishLabs",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Phishtank": {
+                "method": "blacklist",
+                "engine_name": "Phishtank",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "PREBYTES": {
+                "method": "blacklist",
+                "engine_name": "PREBYTES",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "PrecisionSec": {
+                "method": "blacklist",
+                "engine_name": "PrecisionSec",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Quick Heal": {
+                "method": "blacklist",
+                "engine_name": "Quick Heal",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Quttera": {
+                "method": "blacklist",
+                "engine_name": "Quttera",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "SafeToOpen": {
+                "method": "blacklist",
+                "engine_name": "SafeToOpen",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Sansec eComscan": {
+                "method": "blacklist",
+                "engine_name": "Sansec eComscan",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Scantitan": {
+                "method": "blacklist",
+                "engine_name": "Scantitan",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "SCUMWARE.org": {
+                "method": "blacklist",
+                "engine_name": "SCUMWARE.org",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Seclookup": {
+                "method": "blacklist",
+                "engine_name": "Seclookup",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "SecureBrain": {
+                "method": "blacklist",
+                "engine_name": "SecureBrain",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "SOCRadar": {
+                "method": "blacklist",
+                "engine_name": "SOCRadar",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Sophos": {
+                "method": "blacklist",
+                "engine_name": "Sophos",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "StopForumSpam": {
+                "method": "blacklist",
+                "engine_name": "StopForumSpam",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Sucuri SiteCheck": {
+                "method": "blacklist",
+                "engine_name": "Sucuri SiteCheck",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "ThreatHive": {
+                "method": "blacklist",
+                "engine_name": "ThreatHive",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "URLhaus": {
+                "method": "blacklist",
+                "engine_name": "URLhaus",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "URLQuery": {
+                "method": "blacklist",
+                "engine_name": "URLQuery",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "Viettel Threat Intelligence": {
+                "method": "blacklist",
+                "engine_name": "Viettel Threat Intelligence",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "VIPRE": {
+                "method": "blacklist",
+                "engine_name": "VIPRE",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "VX Vault": {
+                "method": "blacklist",
+                "engine_name": "VX Vault",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "ViriBack": {
+                "method": "blacklist",
+                "engine_name": "ViriBack",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Webroot": {
+                "method": "blacklist",
+                "engine_name": "Webroot",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Yandex Safebrowsing": {
+                "method": "blacklist",
+                "engine_name": "Yandex Safebrowsing",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "ZeroCERT": {
+                "method": "blacklist",
+                "engine_name": "ZeroCERT",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "desenmascara.me": {
+                "method": "blacklist",
+                "engine_name": "desenmascara.me",
+                "category": "harmless",
+                "result": "clean"
+              },
+              "Xcitium Verdict Cloud": {
+                "method": "blacklist",
+                "engine_name": "Xcitium Verdict Cloud",
+                "category": "undetected",
+                "result": "unrated"
+              },
+              "ZeroFox": {
+                "method": "blacklist",
+                "engine_name": "ZeroFox",
+                "category": "undetected",
+                "result": "unrated"
+              }
+            },
+            "last_analysis_stats": {
+              "malicious": 0,
+              "suspicious": 0,
+              "undetected": 36,
+              "harmless": 55,
+              "timeout": 0
+            },
+            "whois": "NetRange: 8.8.8.0 - 8.8.8.255\nCIDR: 8.8.8.0/24\nNetName: GOGL\nNetHandle: NET-8-8-8-0-2\nParent: NET8 (NET-8-0-0-0-0)\nNetType: Direct Allocation\nOriginAS: \nOrganization: Google LLC (GOGL)\nRegDate: 2023-12-28\nUpdated: 2023-12-28\nRef: https://rdap.arin.net/registry/ip/8.8.8.0\nOrgName: Google LLC\nOrgId: GOGL\nAddress: 1600 Amphitheatre Parkway\nCity: Mountain View\nStateProv: CA\nPostalCode: 94043\nCountry: US\nRegDate: 2000-03-30\nUpdated: 2019-10-31\nComment: Please note that the recommended way to file abuse complaints are located in the following links. \nComment: \nComment: To report abuse and illegal activity: https://www.google.com/contact/\nComment: \nComment: For legal requests: http://support.google.com/legal \nComment: \nComment: Regards, \nComment: The Google Team\nRef: https://rdap.arin.net/registry/entity/GOGL\nOrgAbuseHandle: ABUSE5250-ARIN\nOrgAbuseName: Abuse\nOrgAbusePhone: +1-650-253-0000 \nOrgAbuseEmail: network-abuse@google.com\nOrgAbuseRef: https://rdap.arin.net/registry/entity/ABUSE5250-ARIN\nOrgTechHandle: ZG39-ARIN\nOrgTechName: Google LLC\nOrgTechPhone: +1-650-253-0000 \nOrgTechEmail: arin-contact@google.com\nOrgTechRef: https://rdap.arin.net/registry/entity/ZG39-ARIN\n",
+            "last_https_certificate_date": 1781879376,
+            "reputation": 545,
+            "total_votes": {
+              "harmless": 276,
+              "malicious": 57
+            },
+            "asn": 15169,
+            "crowdsourced_context": [
+              {
+                "timestamp": 1694383565,
+                "details": "AsyncRAT botnet C2 server (confidence level: 100%)",
+                "title": "ThreatFox IOCs for 2023-09-10",
+                "severity": "medium",
+                "source": "ArcSight Threat Intelligence"
+              }
+            ],
+            "last_modification_date": 1781884756,
+            "network": "8.8.8.0/24",
+            "continent": "NA",
+            "country": "US",
+            "rdap": {
+              "object_class_name": "ip network",
+              "handle": "NET-8-8-8-0-2",
+              "start_address": "8.8.8.0",
+              "end_address": "8.8.8.255",
+              "ip_version": "v4",
+              "name": "GOGL",
+              "type": "DIRECT ALLOCATION",
+              "parent_handle": "NET-8-0-0-0-0",
+              "status": [
+                "active"
+              ],
+              "links": [
+                {
+                  "href": "https://rdap.arin.net/registry/ip/8.8.8.0",
+                  "rel": "self",
+                  "type": "application/rdap+json",
+                  "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                  "title": "",
+                  "media": "",
+                  "href_lang": []
+                },
+                {
+                  "href": "https://whois.arin.net/rest/net/NET-8-8-8-0-2",
+                  "rel": "alternate",
+                  "type": "application/xml",
+                  "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                  "title": "",
+                  "media": "",
+                  "href_lang": []
+                }
+              ],
+              "notices": [
+                {
+                  "title": "Terms of Service",
+                  "description": [
+                    "By using the ARIN RDAP/Whois service, you are agreeing to the RDAP/Whois Terms of Use"
+                  ],
+                  "links": [
+                    {
+                      "href": "https://www.arin.net/resources/registry/whois/tou/",
+                      "rel": "terms-of-service",
+                      "type": "text/html",
+                      "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                      "title": "",
+                      "media": "",
+                      "href_lang": []
+                    }
+                  ],
+                  "type": ""
+                },
+                {
+                  "title": "Whois Inaccuracy Reporting",
+                  "description": [
+                    "If you see inaccuracies in the results, please visit: "
+                  ],
+                  "links": [
+                    {
+                      "href": "https://www.arin.net/resources/registry/whois/inaccuracy_reporting/",
+                      "rel": "inaccuracy-report",
+                      "type": "text/html",
+                      "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                      "title": "",
+                      "media": "",
+                      "href_lang": []
+                    }
+                  ],
+                  "type": ""
+                },
+                {
+                  "title": "Copyright Notice",
+                  "description": [
+                    "Copyright 1997-2026, American Registry for Internet Numbers, Ltd."
+                  ],
+                  "links": [],
+                  "type": ""
+                }
+              ],
+              "events": [
+                {
+                  "event_action": "last changed",
+                  "event_date": "2023-12-28T17:24:56-05:00",
+                  "event_actor": "",
+                  "links": []
+                },
+                {
+                  "event_action": "registration",
+                  "event_date": "2023-12-28T17:24:33-05:00",
+                  "event_actor": "",
+                  "links": []
+                }
+              ],
+              "rdap_conformance": [
+                "nro_rdap_profile_0",
+                "rdap_level_0",
+                "cidr0",
+                "arin_originas0"
+              ],
+              "entities": [
+                {
+                  "object_class_name": "entity",
+                  "handle": "GOGL",
+                  "vcard_array": [
+                    {
+                      "name": "name",
+                      "type": "type",
+                      "values": [
+                        "values"
+                      ],
+                      "parameters": {}
+                    },
+                    {
+                      "name": "name",
+                      "type": "type",
+                      "values": [
+                        "values"
+                      ],
+                      "parameters": {}
+                    },
+                    {
+                      "name": "name",
+                      "type": "type",
+                      "values": [
+                        "values"
+                      ],
+                      "parameters": {}
+                    },
+                    {
+                      "name": "name",
+                      "type": "type",
+                      "values": [
+                        "values"
+                      ],
+                      "parameters": {}
+                    }
+                  ],
+                  "roles": [
+                    "registrant"
+                  ],
+                  "entities": [
+                    {
+                      "object_class_name": "entity",
+                      "handle": "ABUSE5250-ARIN",
+                      "vcard_array": [
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        }
+                      ],
+                      "roles": [
+                        "abuse"
+                      ],
+                      "remarks": [
+                        {
+                          "title": "Registration Comments",
+                          "description": [
+                            "Please note that the recommended way to file abuse complaints are located in the following links.",
+                            "",
+                            "To report abuse and illegal activity: https://www.google.com/contact/",
+                            "",
+                            "For legal requests: http://support.google.com/legal ",
+                            "",
+                            "Regards,",
+                            "The Google Team"
+                          ],
+                          "links": [],
+                          "type": ""
+                        },
+                        {
+                          "title": "Unvalidated POC",
+                          "description": [
+                            "ARIN has attempted to validate the data for this POC, but has received no response from the POC since 2025-08-01"
+                          ],
+                          "links": [],
+                          "type": ""
+                        }
+                      ],
+                      "links": [
+                        {
+                          "href": "https://rdap.arin.net/registry/entity/ABUSE5250-ARIN",
+                          "rel": "self",
+                          "type": "application/rdap+json",
+                          "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                          "title": "",
+                          "media": "",
+                          "href_lang": []
+                        },
+                        {
+                          "href": "https://whois.arin.net/rest/poc/ABUSE5250-ARIN",
+                          "rel": "alternate",
+                          "type": "application/xml",
+                          "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                          "title": "",
+                          "media": "",
+                          "href_lang": []
+                        }
+                      ],
+                      "events": [
+                        {
+                          "event_action": "last changed",
+                          "event_date": "2024-08-01T17:54:23-04:00",
+                          "event_actor": "",
+                          "links": []
+                        },
+                        {
+                          "event_action": "registration",
+                          "event_date": "2015-11-06T15:36:35-05:00",
+                          "event_actor": "",
+                          "links": []
+                        }
+                      ],
+                      "port43": "whois.arin.net",
+                      "public_ids": [],
+                      "entities": [],
+                      "as_event_actor": [],
+                      "status": [],
+                      "networks": [],
+                      "autnums": [],
+                      "url": "",
+                      "lang": "",
+                      "rdap_conformance": []
+                    },
+                    {
+                      "object_class_name": "entity",
+                      "handle": "ZG39-ARIN",
+                      "vcard_array": [
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "type",
+                          "values": [
+                            "values"
+                          ],
+                          "parameters": {}
+                        }
+                      ],
+                      "roles": [
+                        "administrative",
+                        "technical"
+                      ],
+                      "links": [
+                        {
+                          "href": "https://rdap.arin.net/registry/entity/ZG39-ARIN",
+                          "rel": "self",
+                          "type": "application/rdap+json",
+                          "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                          "title": "",
+                          "media": "",
+                          "href_lang": []
+                        },
+                        {
+                          "href": "https://whois.arin.net/rest/poc/ZG39-ARIN",
+                          "rel": "alternate",
+                          "type": "application/xml",
+                          "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                          "title": "",
+                          "media": "",
+                          "href_lang": []
+                        }
+                      ],
+                      "events": [
+                        {
+                          "event_action": "last changed",
+                          "event_date": "2025-11-10T07:10:31-05:00",
+                          "event_actor": "",
+                          "links": []
+                        },
+                        {
+                          "event_action": "registration",
+                          "event_date": "2000-11-30T13:54:08-05:00",
+                          "event_actor": "",
+                          "links": []
+                        }
+                      ],
+                      "status": [
+                        "validated"
+                      ],
+                      "port43": "whois.arin.net",
+                      "public_ids": [],
+                      "entities": [],
+                      "remarks": [],
+                      "as_event_actor": [],
+                      "networks": [],
+                      "autnums": [],
+                      "url": "",
+                      "lang": "",
+                      "rdap_conformance": []
+                    }
+                  ],
+                  "remarks": [
+                    {
+                      "title": "Registration Comments",
+                      "description": [
+                        "Please note that the recommended way to file abuse complaints are located in the following links. ",
+                        "",
+                        "To report abuse and illegal activity: https://www.google.com/contact/",
+                        "",
+                        "For legal requests: http://support.google.com/legal ",
+                        "",
+                        "Regards, ",
+                        "The Google Team"
+                      ],
+                      "links": [],
+                      "type": ""
+                    }
+                  ],
+                  "links": [
+                    {
+                      "href": "https://rdap.arin.net/registry/entity/GOGL",
+                      "rel": "self",
+                      "type": "application/rdap+json",
+                      "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                      "title": "",
+                      "media": "",
+                      "href_lang": []
+                    },
+                    {
+                      "href": "https://whois.arin.net/rest/org/GOGL",
+                      "rel": "alternate",
+                      "type": "application/xml",
+                      "value": "https://rdap.arin.net/registry/ip/8.8.8.8",
+                      "title": "",
+                      "media": "",
+                      "href_lang": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "event_action": "last changed",
+                      "event_date": "2019-10-31T15:45:45-04:00",
+                      "event_actor": "",
+                      "links": []
+                    },
+                    {
+                      "event_action": "registration",
+                      "event_date": "2000-03-30T00:00:00-05:00",
+                      "event_actor": "",
+                      "links": []
+                    }
+                  ],
+                  "port43": "whois.arin.net",
+                  "public_ids": [],
+                  "as_event_actor": [],
+                  "status": [],
+                  "networks": [],
+                  "autnums": [],
+                  "url": "",
+                  "lang": "",
+                  "rdap_conformance": []
+                }
+              ],
+              "port43": "whois.arin.net",
+              "cidr0_cidrs": [
+                {
+                  "v4prefix": "8.8.8.0",
+                  "length": 24,
+                  "v6prefix": ""
+                }
+              ],
+              "country": "",
+              "arin_originas0_originautnums": [],
+              "remarks": []
+            }
+          }
+        }
+      }
+    },
+    "agentBalanceUSD": 0.13568
+  },
+  "timestamp": "2026-06-19T15:59:24.742Z"
+}

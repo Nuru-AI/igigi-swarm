@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "data": {
+    "success": false,
+    "paymentSucceeded": true,
+    "serviceStatus": 502,
+    "amountPaid": 0.006,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001770c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a354257846a3542349420c000000000000000000000b9537d11c60e8b5080c0b841c602aac22004268f55869a5e4a182d136c230ee88a1308290d0c53c4e1b5cc121c4d2bcfaff195838d3a8593e7cf1a99153fb9560c9ec39d0bf13fec1d466d301b",
+    "response": {
+      "success": false,
+      "error": "Upstream API call failed",
+      "paymentId": "3671d8b6-e70a-4fa6-8ef2-cb9f0ee295bf"
+    },
+    "agentBalanceUSD": 0.042115
+  },
+  "timestamp": "2026-06-19T13:21:14.207Z"
+}

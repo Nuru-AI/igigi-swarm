@@ -1,0 +1,165 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.035,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff000000000000000000000000000000000000000000000000000000000000088b8c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a355758846a3557359420c000000000000000000000b9537d11c60e8b5080c0b841e63802318c6add7ee8ed37b260a3497c68ce72bda81c4dd617b5cfdcc432658a61e00ec1b28a2dd73960396fb770fef5f5ce9c5879de551650a25a9334607b141b",
+    "response": {
+      "success": true,
+      "data": {
+        "type": "news",
+        "query": {
+          "original": "Tempo blockchain Stripe Paradigm",
+          "spellcheck_off": false,
+          "show_strict_warning": false
+        },
+        "results": [
+          {
+            "type": "news_result",
+            "title": "What Is Tempo Blockchain? Stripe\u2019s Stablecoin-Powered Enterprise Payment Network | Support",
+            "url": "https://eco.com/support/en/articles/12160492-what-is-tempo-blockchain-stripe-s-stablecoin-powered-enterprise-payment-network",
+            "description": "Tempo represents the most significant development in blockchain payments infrastructure since stablecoins themselves, combining Stripe's massive merchant network with Paradigm's crypto expertise to create a purpose-built Layer 1 blockchain optimized exclusively for enterprise payments.",
+            "age": "3 weeks ago",
+            "page_age": "2026-05-28T00:00:00",
+            "profile": {
+              "name": "Eco",
+              "url": "https://eco.com/support/en/articles/12160492-what-is-tempo-blockchain-stripe-s-stablecoin-powered-enterprise-payment-network"
+            },
+            "meta_url": {
+              "scheme": "https",
+              "netloc": "eco.com",
+              "hostname": "eco.com",
+              "favicon": "https://imgs.search.brave.com/Epiww7vslaYPVEL_6gzOfSvnkHww9HV3Ir40__6XrsQ/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMjIzNmFjOTk1/MWI2ODliZThmYTRm/Y2Q1Nzc5NzhkYmRm/MWUwYjFkY2ZjNWRj/MGM4MWVkMmU3NDY0/ODQ4ZDE2MC9lY28u/Y29tLw",
+              "path": "\u203a support  \u203a en  \u203a articles  \u203a 12160492-what-is-tempo-blockchain-stripe-s-stablecoin-powered-enterprise-payment-network"
+            },
+            "thumbnail": {
+              "src": "https://imgs.search.brave.com/ur78K7E6-g1w4gX39nXeVTqtYNmHO2mDayaj6xv4H4o/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9kb3du/bG9hZHMuaW50ZXJj/b21jZG4uY29tL2kv/by9ic3d4YzQ5eC84/NzI0OTcvN2ZiNjE4/YzM5NGRjOGIwMGVi/NTRlODliM2ViZi9j/ZjkxMGI1NTRjY2U5/ZWJlZTc0YmUxZDRl/YjVhOWViNS5qcGc"
+            },
+            "extra_snippets": [
+              "Matt Huang, Paradigm's co-founder and managing partner, leads Tempo as CEO while continuing his existing role leading Paradigm alongside Alana Palmedo. This dual role provides unprecedented continuity between crypto innovation and enterprise execution. \u200b \u00b7 Tempo blockchain represents more than incremental innovation, it's a fundamental reimagining of payment infrastructure for the digital economy. By combining Stripe's enterprise distribution with Paradigm's crypto expertise in a purpose-built blockchain architecture, Tempo addresses the core limitations that have prevented widespread enterprise adoption of blockchain payment systems.",
+              "Tempo is a payments-first blockchain incubated by Stripe and Paradigm, designed to address the growing need for optimized stablecoin infrastructure as digital dollars go mainstream.",
+              "The blockchain's enterprise-first approach, regulatory compliance features, and seamless integration with existing financial infrastructure make it a cornerstone technology for the next generation of digital commerce. \u200b \u00b7 The partnership between Stripe (most recently valued at $159 billion in February 2026) and Paradigm (~$12.7 billion in assets) represents more than capital allocation, it's a strategic vertical integration play targeting the $190 trillion annual cross-border payment market.",
+              "Patrick Collison, Stripe's CEO, testified to Congress about Stripe's \"meaningful business interest in stablecoins as the underlying technology has matured,\" signaling the company's commitment to blockchain-based payment infrastructure as regulation crystallized. \u200b \u00b7 Paradigm's technical contributions extend beyond capital, leveraging their open-source development expertise from projects like Foundry, Reth, and Artemis."
+            ]
+          },
+          {
+            "type": "news_result",
+            "title": "Tempo: The Blockchain Designed for Payments - Paradigm",
+            "url": "https://www.paradigm.xyz/2025/09/tempo-payments-first-blockchain",
+            "description": "We just announced Tempo: a payments-first blockchain incubated by Stripe and Paradigm.",
+            "age": "September 4, 2025",
+            "page_age": "2025-09-04T15:52:00",
+            "profile": {
+              "name": "Paradigm",
+              "url": "https://www.paradigm.xyz/2025/09/tempo-payments-first-blockchain"
+            },
+            "meta_url": {
+              "scheme": "https",
+              "netloc": "paradigm.xyz",
+              "hostname": "www.paradigm.xyz",
+              "favicon": "https://imgs.search.brave.com/d0osEiiVFFMCfT-T7yb7vBkXlyTE1Re5ZO23XctRdJk/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvNjg1ODY4ZjU2/MzAyNDU5MDMwZmE3/YTQyM2ViMzc1ODY4/ZGNiMzdhOWRhMGJj/MmYyMzM4MjI3Njc0/OTc3OGFjYS93d3cu/cGFyYWRpZ20ueHl6/Lw",
+              "path": "\u203a 2025  \u203a 09  \u203a tempo-payments-first-blockchain"
+            },
+            "thumbnail": {
+              "src": "https://imgs.search.brave.com/Q2Jle2I24wiRUpUP6fkH4crjv4KmRwcsEbB95bimsyM/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9jZG4u/c2FuaXR5LmlvL2lt/YWdlcy9kZ3liY2Q4/My9wcm9kdWN0aW9u/L2U1ZmNlYWY1NDhk/ZWRmNjQ2Y2FkNWZj/NjRlYjYxNjgwNmZl/ZjE0MDMtNzIwMHg0/MDUwLnBuZz9hdXRv/PWZvcm1hdCZhbXA7/cT03NSZhbXA7dz0x/MjAwJmFtcDtmb3Jt/YXQ9cG5n"
+            },
+            "extra_snippets": [
+              "Paradigm is a frontier technology investment firm that builds and invests in crypto, AI, robotics, and across new frontiers from the earliest stages.",
+              "The payments-first blockchain incubated by Stripe and Paradigm",
+              "Tempo is purpose-built for stablecoins and real-world payments, born from Stripe\u2019s experience in global payments and Paradigm\u2019s expertise in crypto tech.",
+              "Tempo is an extension of this ethos. It is a new company with its own full-time team, jointly incubated by Stripe and Paradigm."
+            ]
+          },
+          {
+            "type": "news_result",
+            "title": "Stripe and Paradigm-backed blockchain Tempo launches advisory unit to promote stablecoin adoption | Fortune",
+            "url": "https://fortune.com/2026/04/21/stripe-and-paradigm-tempo-advisory-stablecoin-adoption/",
+            "description": "DoorDash, Visa, and Stripe are using Tempo for payments infrastructure",
+            "age": "April 21, 2026",
+            "page_age": "2026-04-21T13:00:00",
+            "profile": {
+              "name": "Fortune",
+              "url": "https://fortune.com/2026/04/21/stripe-and-paradigm-tempo-advisory-stablecoin-adoption/"
+            },
+            "meta_url": {
+              "scheme": "https",
+              "netloc": "fortune.com",
+              "hostname": "fortune.com",
+              "favicon": "https://imgs.search.brave.com/qpaf191ageaCLkoiVd7yZgjgunQBvqCCAoYKwHLz71U/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZDc2NDViM2Vj/Mjk2NzE1OGRlYTYy/MWUwYzg4NGI1NGE2/NDg0NzdhNzE5ZjM2/OGE3MmIwZTAyZDE2/NzBkNWU2Yi9mb3J0/dW5lLmNvbS8",
+              "path": "\u203a 2026  \u203a 04  \u203a 21  \u203a stripe-and-paradigm-tempo-advisory-stablecoin-adoption"
+            },
+            "thumbnail": {
+              "src": "https://imgs.search.brave.com/Q6RtoLDL1NmUglBLq-83QX5PSjyjKA-5BGx00u6OE3U/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9mb3J0/dW5lLmNvbS9pbWct/YXNzZXRzL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI2LzA0L0dl/dHR5SW1hZ2VzLTIx/NTY1NTEyMTEtZTE3/NzY3NDA1MTQ4Nzgu/anBnP3Jlc2l6ZT0x/MjAwLDYwMA"
+            },
+            "extra_snippets": [
+              "Tempo, the new blockchain backed by payments company Stripe and VC firm Paradigm, has launched a \u201cstablecoin advisory\u201d to help businesses and financial institutions adopt stablecoins.",
+              "Circle\u2019s successful initial public offering as well as renewed interest in stablecoins from major firms like Meta, X, and Google underscore how bullish much of the tech and business world is on blockchain payments. With the backing of payments giant Stripe, Tempo is attempting to become a central player in making stablecoins mainstream.",
+              "Stripe, Coastal Community Bank and the financial services platform ARQ are all building stablecoin infrastructure with Tempo. Visa, Felix, Fifth Third Bank, and Howard Hughes Holdings are all also bringing payments operations onto Tempo, the blockchain project said in a note shared with Fortune.",
+              "The decision to design stablecoin products for external partners follows on earlier work Tempo did with its \u201cdesign partners\u201d for the blockchain itself, which included OpenAI, Shopify, and Visa. Tempo\u2019s ascendence and corporate partnerships are indicative of a larger trend where well-heeled, corporate firms\u2014from Robinhood to Stripe\u2014are making their way into blockchain, traditionally the territory of anti-establishmentarians and iconoclasts."
+            ]
+          },
+          {
+            "type": "news_result",
+            "title": "Stripe-backed crypto startup Tempo releases AI payments protocol, launches blockchain | Fortune",
+            "url": "https://fortune.com/2026/03/18/stripe-tempo-paradigm-mpp-ai-payments-protocol/",
+            "description": "The fintech giant Stripe along with Tempo, a blockchain startup incubated by the payments company as well as the venture firm Paradigm, launched a new payments protocol on Wednesday to make it easier for AI actors to send and receive money. Dubbed the \u201cMachine Payments Protocol,\u201d the ...",
+            "age": "March 18, 2026",
+            "page_age": "2026-03-18T13:00:00",
+            "profile": {
+              "name": "Fortune",
+              "url": "https://fortune.com/2026/03/18/stripe-tempo-paradigm-mpp-ai-payments-protocol/"
+            },
+            "meta_url": {
+              "scheme": "https",
+              "netloc": "fortune.com",
+              "hostname": "fortune.com",
+              "favicon": "https://imgs.search.brave.com/qpaf191ageaCLkoiVd7yZgjgunQBvqCCAoYKwHLz71U/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZDc2NDViM2Vj/Mjk2NzE1OGRlYTYy/MWUwYzg4NGI1NGE2/NDg0NzdhNzE5ZjM2/OGE3MmIwZTAyZDE2/NzBkNWU2Yi9mb3J0/dW5lLmNvbS8",
+              "path": "\u203a 2026  \u203a 03  \u203a 18  \u203a stripe-tempo-paradigm-mpp-ai-payments-protocol"
+            },
+            "thumbnail": {
+              "src": "https://imgs.search.brave.com/7S5sydQl8UBdSj2IA1vJdpG7uBW9mMrLJKu6HZzPhfc/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9mb3J0/dW5lLmNvbS9pbWct/YXNzZXRzL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI2LzAzL0dl/dHR5SW1hZ2VzLTIy/NTY2OTE1OTUtZTE3/NzM4Mzc4OTgzNDIu/anBnP3Jlc2l6ZT0x/MjAwLDYwMA"
+            },
+            "extra_snippets": [
+              "The fintech giant Stripe along with Tempo, a blockchain startup incubated by the payments company as well as the venture firm Paradigm, launched a new payments protocol on Wednesday to make it easier for AI actors to send and receive money. Dubbed the \u201cMachine Payments Protocol,\u201d the open-source network supports payments in both fiat and cryptocurrency.",
+              "While the new AI payments network currently runs only on top of Tempo, which is also the name of the blockchain developed by the Stripe-backed startup, it\u2019s designed to operate across multiple blockchains and payments rails, not just one. On Wednesday, Tempo simultaneously announced that its blockchain went live after operating in a test phase over the past three-and-a-half months. \u201cAgentic payments is very early, and we still are figuring out the best way to structure these,\u201d Matt Huang, cofounder of Tempo and managing partner at Paradigm, told Fortune.",
+              "Tempo, incubated by Stripe and the venture firm Paradigm, raised $500 million at a $5 billion valuation in 2025.",
+              "Tempo, which raised $500 million at a $5 billion valuation in 2025 from Silicon Valley heavyweights like Joshua Kushner\u2019s Thrive Capital, has positioned itself to ride this new wave of commerce. The startup\u2019s blockchain is designed for high-speed payments and stablecoins, or cryptocurrencies pegged to real-world assets like the U.S. dollar. The protocol Tempo designed with Stripe isn\u2019t the only existing framework for agentic payments."
+            ]
+          },
+          {
+            "type": "news_result",
+            "title": "Stripe Launches Tempo Blockchain to Power AI-Driven Payments - PaymentsJournal",
+            "url": "https://www.paymentsjournal.com/stripe-launches-tempo-blockchain-to-power-ai-driven-payments/",
+            "description": "Stripe has been an avid investor across these areas, including the acquisition of stablecoin infrastructure firm Bridge and its expansion into agentic commerce through integrations with buy now, pay later leaders in recent years. Last year, the payments firm unveiled Tempo, a blockchain effort launched in a collaboration with digital assets firm Paradigm...",
+            "age": "March 20, 2026",
+            "page_age": "2026-03-20T16:34:50",
+            "profile": {
+              "name": "PaymentsJournal",
+              "url": "https://www.paymentsjournal.com/stripe-launches-tempo-blockchain-to-power-ai-driven-payments/"
+            },
+            "meta_url": {
+              "scheme": "https",
+              "netloc": "paymentsjournal.com",
+              "hostname": "www.paymentsjournal.com",
+              "favicon": "https://imgs.search.brave.com/DuKr9QfLzp-d_OOz31eUFPt-CR4RZKZhmxjgNYAM38M/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZWEyYjUyNDAy/N2FiZGFmNmJlNmUy/NDU3MmQxMDA1NDM5/OWVjNmFjYWYyMzIx/ODI1Y2VkNWE4MTA1/MjlkZTFhNy93d3cu/cGF5bWVudHNqb3Vy/bmFsLmNvbS8",
+              "path": "\u203a stripe-launches-tempo-blockchain-to-power-ai-driven-payments"
+            },
+            "thumbnail": {
+              "src": "https://imgs.search.brave.com/lx2xis_WbZDhdu4-dUmFt66t0lJlsQ6ACQ1c2xvh5uk/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly93d3cu/cGF5bWVudHNqb3Vy/bmFsLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyNi8wMy9n/bG9iYWwtYnVzaW5l/c3MtaW50ZXJuZXQt/bmV0d29yay1jb25u/ZWN0aW9uLWlvdC1p/bnRlcm5ldC10aGlu/Z3MtYnVzaW5lc3Mt/aW50ZWxsaWdlbmNl/LWNvbmNlcHQtYnVz/aW5lcy1nbG9iYWwt/bmV0d29yay1mdXR1/cmlzdGljLXRlY2hu/b2xvZ3ktYmFja2dy/b3VuZC1haS1nZW5l/cmF0aXZlLXNjYWxl/ZC5qcGc"
+            },
+            "extra_snippets": [
+              "Stripe is betting that the next evolution of payments won\u2019t be drive by humans, but by autonomous AI agents transacting on blockchain rails.",
+              "Tempo was built to facilitate high volumes of payments, and as the blockchain brings its mainnet online, there are reportedly over 100 services integrated. Stripe highlighted Tempo\u2019s capability to reshape cross-border payouts, payments, and remittances, and the blockchain could even play a role in embedded finance and tokenized deposits.",
+              "Stripe and OpenAI first unveiled plans for the protocol last year after partnering to bring direct payments to ChatGPT. While the protocol runs on Tempo\u2019s blockchain, MPP was designed to integrate with other payments rails, including digital wallets and cryptocurrencies."
+            ]
+          }
+        ]
+      }
+    },
+    "agentBalanceUSD": 0.27395
+  },
+  "timestamp": "2026-06-19T14:50:47.825Z"
+}

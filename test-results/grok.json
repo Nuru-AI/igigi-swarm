@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.002359,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000000937c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a354415846a3543f29420c000000000000000000000b9537d11c60e8b5080c0b8419a08e2da62d1907ffb9886f3b6e59849c1684947872af053f23e48b4803742b943d1452783b9b1c705b6459f189a869683630ec646aaae92ea6dd90b34ec04571b",
+    "response": {
+      "success": true,
+      "data": {
+        "id": "8d536d9d-2954-95bd-ac97-70d736b41e23",
+        "object": "chat.completion",
+        "created": 1781875716,
+        "model": "grok-4.3",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Tempo is a high-performance layer-1 blockchain optimized for real-world asset (RWA) tokenization, institutional settlements, and regulatory-compliant finance.",
+              "reasoning_content": "The user asks: \"In one sentence, what is the Tempo blockchain?\"\nThe query is: \"In one sentence, what is the Tempo blockchain?\" and I need to answer in one sentence with confidence.\n\nI need to know what Tempo blockchain is. From my knowledge, Tempo is a blockchain platform or specifically, Tempo is a layer-1 blockchain designed for high-throughput transactions, perhaps related to gaming or DeFi.\n\nUpon accurate recall: Tempo is a blockchain built by the team behind \"Tempo\" as a protocol for decentralized applications, but let's be precise.",
+              "refusal": null
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 140,
+          "completion_tokens": 29,
+          "total_tokens": 761,
+          "prompt_tokens_details": {
+            "text_tokens": 140,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "cached_tokens": 128
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 592,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "num_sources_used": 0,
+          "cost_in_usd_ticks": 15931000
+        },
+        "system_fingerprint": "fp_eb3c003fc66c14ed",
+        "service_tier": "default"
+      }
+    },
+    "agentBalanceUSD": 0.263592
+  },
+  "timestamp": "2026-06-19T13:28:41.758Z"
+}

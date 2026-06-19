@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.001,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff000000000000000000000000000000000000000000000000000000000000003e8c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a356718846a3566f59420c000000000000000000000b9537d11c60e8b5080c0b841a3c70ccea112708b82ed971e89ffd50dcbb4d48caaf803b8fda3c8ca6f09862e47427d36ca6743b78d815e7ea2ef61353fdaa0e632a3f050e093a8db777adce21c",
+    "response": {
+      "success": true,
+      "data": {
+        "data": [
+          {
+            "embedding": "DOQA/cbOJib42wf82QAD+BDr5Askyi0Z/woRDBEs/t0L5doAHtoN4hwmEQQV/80I/QAX7tcL7xj/LPwl1enj1CD3+RhK5fvx6+PF6hge0+v83vUGHx/VKfj6Fu7f8x4F0gHtDN8n1s3o9gkW+BrF+vsa4hsV4RLtI/wVBh4aMOn2GB0e1R7sB/gJAQz77PIi3hEI5fo2KwzzFh3m8PQA/hDqFxgZFxId7xMOzCLzKhLmFEkbEvIW8QwS3vYD6gUhDyzjFSr7Cj4j7usCAhL4HiwNGAXyA9rQ9g8eBhvz7f8YENn3/Rsx6ibaELnq4vcn6fnuHhzwFPTm+vYF2xX63wfv6hb3AQj34ff5/fz/MecW/BQA8f8V18S06uclLvvz++vb7DAO9CHK/CG4AAb65eDrIPEi/ewW8/T05PPjCfQQIB8c//gTJg8AQPcn/AgK7Q/6Ix3d4/nuzwb8FNEFCQf87sooAssNMBb09en7CTkACvcIAfvz2gLt+Rbd1B4F9vwQ++IH9CAI/ATm4SjyHA3k9fTeNPzr4h7ZKgfo69/A9PPvCQYw+yQMDOYmEjjo+QTpDwLd+vbw6RABEyEz4yjP6wsK1hrY+yPzAhUeQAkeyg3pLh34/h402hcu1gbp+d8r0tvTFjX5F+4aAjQnBg79+R8R6vQGHiHYBiUTzQIZSd0OFeMDCCEaCTcE9CokF+L/whZA/hfrAv3d+uvz/Q0aLC8BEAkG2+jO/R3l8fv28f8AHw3k6v41ChjBAPEHHC4q6/UiORzc3vb90wn0AwDQ0AT14eEB5P4MBh4GNezzBfAIEQ318+sa2APk5PMmDg8u/PEs4/3w+AEy9O7j+vn9I9AjGQ0NCOIjGOEB9g798AwCGQfg7eQd1OwZBxb1Jf/vFRTuMxEDLx4bDP3k5AUjweILEzAP9vT9JRXyDx463/0jGQbyxAHz9gPw/xECBBP8+fYM4/PqCgz1FhbrDN4iCdsK9gnrA/fxHAzl4hbo2sTs/NT28wIMEyMSE+cF//8j3trz0+z3+BEEFOoDydAl9gLpBB728x35Ox3gFfIO3+b4GwEZBxsN5hYUCggm6Qsr2yO/Bgv8AR8PEwQBAR7/OCb2wuoIIBcUFe308/3+8PvqCRfsKxz22eD99e0NGhzkEPL/+ikaOyz6+//e3MUOF+cABBMK/vECHNgHDvACCBAR5STdDzLY/fLn8/4eDBsBLO4A8te4BfMQFQMFABYK+Pb6D9sWMfgN/e7h2Osu4P0JLRL/1voIIfTy6hEHFBXmEjIR7wD5BuIU5QYpF/0kAAv1AALJ0u3TEggR5xsLK+30IcQ62fjgOdwVB/oOCjgIBAvHC+4K/zT+/t7iGA==",
+            "index": 0,
+            "object": "embedding"
+          }
+        ],
+        "model": "pplx-embed-v1-0.6b",
+        "object": "list",
+        "usage": {
+          "cost": {
+            "currency": "USD",
+            "input_cost": 2.4e-08,
+            "total_cost": 2.4e-08
+          },
+          "prompt_tokens": 6,
+          "total_tokens": 6
+        }
+      }
+    },
+    "agentBalanceUSD": 0.419536
+  },
+  "timestamp": "2026-06-19T15:58:02.013Z"
+}

@@ -1,0 +1,126 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.012,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000002ee0c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a354338846a3543159420c000000000000000000000b9537d11c60e8b5080c0b8411f35370911b72cc08e3447e8a90d54f8b3be7510aaf42ae0b11a00c2145d28945727d7d2294b22d73dce65645839a854cbca3c2b2ac9500add93b3a84b945a511b",
+    "response": {
+      "success": true,
+      "data": {
+        "error": false,
+        "sources": [
+          {
+            "source": "SDN",
+            "name": "OFAC SDN List",
+            "publishDate": "2026-06-11",
+            "downloadDate": "2026-06-19T00:10:00"
+          }
+        ],
+        "results": [
+          {
+            "id": "1",
+            "name": "Vladimir Putin",
+            "matchCount": 1,
+            "matches": [
+              {
+                "score": 99,
+                "matchSummary": {
+                  "matchFields": [
+                    {
+                      "similarity": "STRONG",
+                      "fieldName": "Name",
+                      "caseField": "Vladimir Putin",
+                      "sanctionField": "Vladimir Vladimirovich PUTIN",
+                      "sanctionFieldNote": "Primary"
+                    }
+                  ]
+                },
+                "sanction": {
+                  "id": "sdn-35096",
+                  "type": "person",
+                  "categories": [
+                    "sanction"
+                  ],
+                  "source": "SDN",
+                  "sourceId": "35096",
+                  "name": "Vladimir Vladimirovich PUTIN",
+                  "nameFormatted": "vladimir vladimirovich putin",
+                  "entityLink": "https://www.ofac-api.com/entities/sdn-35096",
+                  "alias": [
+                    {
+                      "id": "55207",
+                      "name": "Vladimir PUTIN",
+                      "firstName": "Vladimir",
+                      "lastName": "PUTIN",
+                      "nameFormatted": "vladimir putin",
+                      "comment": "strong"
+                    }
+                  ],
+                  "additionalSanctions": [
+                    "Secondary sanctions risk: See Section 11 of Executive Order 14024."
+                  ],
+                  "programs": [
+                    "RUSSIA-EO14024"
+                  ],
+                  "addresses": [
+                    {
+                      "id": "52704",
+                      "address1": "Kremlin",
+                      "city": "Moscow",
+                      "country": "RU",
+                      "fullAddress": "Kremlin Moscow RU"
+                    },
+                    {
+                      "id": "52705",
+                      "address1": "Novo-Ogaryevo",
+                      "stateOrProvince": "Moscow Region",
+                      "country": "RU",
+                      "fullAddress": "Novo-Ogaryevo Moscow Region RU"
+                    },
+                    {
+                      "id": "52706",
+                      "address1": "Bocharov Ruchey",
+                      "city": "Sochi",
+                      "country": "RU",
+                      "fullAddress": "Bocharov Ruchey Sochi RU"
+                    },
+                    {
+                      "id": "52707",
+                      "address1": "Valdai",
+                      "stateOrProvince": "Novgorod Region",
+                      "country": "RU",
+                      "fullAddress": "Valdai Novgorod Region RU"
+                    }
+                  ],
+                  "personDetails": {
+                    "firstName": "Vladimir Vladimirovich",
+                    "lastName": "PUTIN",
+                    "title": "President of the Russian Federation",
+                    "gender": "Male",
+                    "birthDates": [
+                      "07 Oct 1952"
+                    ],
+                    "birthPlaces": [
+                      "Leningrad, Russia"
+                    ],
+                    "citizenships": [
+                      "RU"
+                    ],
+                    "nationalities": [
+                      "RU"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "agentBalanceUSD": 0.01799
+  },
+  "timestamp": "2026-06-19T13:24:56.792Z"
+}
