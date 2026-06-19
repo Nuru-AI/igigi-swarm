@@ -49,6 +49,13 @@ function compactSearchResponse(response: any): any {
   return out;
 }
 
+/** Pull human-readable text out of a service response for the dashboard Receipt tab. */
+function extractResponseText(resp: any): string {
+  if (resp == null) return '';
+  const t = resp?.choices?.[0]?.message?.content ?? resp?.answer ?? resp?.data ?? resp;
+  try { return typeof t === 'string' ? t : JSON.stringify(t); } catch { return String(t); }
+}
+
 export interface SipparOpts {
   /** This agent's ICP principal (its sovereign wallet). Defaults to env AGENT_PRINCIPAL. */
   principal?: string;
@@ -141,7 +148,10 @@ export class Sippar {
       const serviceOk = data?.serviceStatus === undefined || data.serviceStatus < 400;
       const ok = !!data?.success && serviceOk;
       if (ok) {
-        this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx, data?.chain ?? svc.chain, data?.signingRecordId);
+        this.budget.commit(svc.id, amountPaid || svc.price, data?.paymentTx, data?.chain ?? svc.chain, data?.signingRecordId, {
+          prompt: (() => { try { return JSON.stringify(payload).slice(0, 2000); } catch { return String(payload).slice(0, 2000); } })(),
+          response: extractResponseText(data?.response).slice(0, 4000),
+        });
         this.guard?.commit(amountPaid || svc.price);
       }
       this.guard?.recordOutcome(ok); // unattended error-streak watchdog

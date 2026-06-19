@@ -176,7 +176,7 @@ async function runAgent(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, fe
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') {
       console.log(`💸 [${label}] $${e.amount.toFixed(4)} ${e.service.padEnd(16)} → leftover $${e.remaining.toFixed(4)}${e.tx ? `  tx ${e.tx.slice(0, 12)}…` : ''}`);
-      if (!e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining });
+      if (!e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining, prompt: e.prompt, response: e.response });
     } else { console.log(`🛑 [${label}] BLOCKED ${e.service} ${e.reason}`); feed.emit('blocked', { agent: label, service: e.service, amountUSD: e.amount, reason: e.reason }); }
   };
   const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);
@@ -306,7 +306,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') {
       // The DeepSeek inference turns settle as service 'deepseek'; tool buys settle as their own service / '→addr'.
-      if (e.service !== 'deepseek' && !e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining });
+      if (e.service !== 'deepseek' && !e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining, prompt: e.prompt, response: e.response });
     } else { feed.emit('blocked', { agent: label, service: e.service, amountUSD: e.amount, reason: e.reason }); }
   };
   const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);
@@ -570,7 +570,7 @@ async function runAgentDeepSeekCode(agent: AgentRec, board: TaskBoard, guard: Sw
   const selfAddr = agent.address;
   feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, engine: BRAIN_TAG });
   const onEvent = (e: BudgetEvent) => {
-    if (e.type === 'spent') { if (e.service !== 'deepseek' && !e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining }); }
+    if (e.type === 'spent') { if (e.service !== 'deepseek' && !e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining, prompt: e.prompt, response: e.response }); }
     else feed.emit('blocked', { agent: label, service: e.service, amountUSD: e.amount, reason: e.reason });
   };
   const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);

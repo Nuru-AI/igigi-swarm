@@ -34,12 +34,13 @@ export class Budget {
     }
   }
 
-  /** Record an actual settled payment. */
-  commit(service: string, amount: number, tx?: string, chain?: string, recordId?: string): void {
+  /** Record an actual settled payment. `meta` carries observability-only receipt
+   *  data (the request prompt + service response) for the dashboard Receipt tab. */
+  commit(service: string, amount: number, tx?: string, chain?: string, recordId?: string, meta?: { prompt?: string; response?: string }): void {
     this.spent += amount;
     const entry = { service, amount, tx, chain, recordId, at: new Date().toISOString() };
     this.ledger.push(entry);
-    this.onEvent({ type: 'spent', ...entry, remaining: this.remaining, spent: this.spent });
+    this.onEvent({ type: 'spent', ...entry, ...(meta || {}), remaining: this.remaining, spent: this.spent });
   }
 
   blocked(service: string, amount: number, reason: string): void {
@@ -52,5 +53,5 @@ export class Budget {
 }
 
 export type BudgetEvent =
-  | { type: 'spent'; service: string; amount: number; tx?: string; chain?: string; recordId?: string; at: string; remaining: number; spent: number }
+  | { type: 'spent'; service: string; amount: number; tx?: string; chain?: string; recordId?: string; at: string; remaining: number; spent: number; prompt?: string; response?: string }
   | { type: 'blocked'; service: string; amount: number; reason: string; at: string; remaining: number; spent: number };
