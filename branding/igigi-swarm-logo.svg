@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 360" role="img" aria-label="igigi-swarm logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 324" role="img" aria-label="igigi-swarm logo">
   <title>igigi-swarm</title>
   <desc>The igigi-swarm logo: an a2a-constellation mark above the wordmark igigi swarm, copper and terracotta on midnight navy.</desc>
   <defs>
@@ -6,8 +6,8 @@
     .wm{font-family:'Orbitron','Arial Black',sans-serif;font-weight:700}
     .lb{font-family:'Inter','Helvetica Neue',Arial,sans-serif}</style>
   </defs>
-  <rect width="320" height="360" rx="28" fill="#0E1A38"/>
-  <g transform="translate(100,52)">
+  <rect width="320" height="324" rx="28" fill="#0E1A38"/>
+  <g transform="translate(55,28) scale(1.75)">
     <g stroke="#D4A074" stroke-opacity="0.45" stroke-width="1.4" stroke-linecap="round">
       <line x1="60" y1="52" x2="34" y2="30"/><line x1="60" y1="52" x2="86" y2="30"/>
       <line x1="60" y1="52" x2="34" y2="74"/><line x1="60" y1="52" x2="86" y2="74"/>
@@ -21,6 +21,6 @@
     </g>
     <circle cx="60" cy="52" r="5" fill="#B87654"/>
   </g>
-  <text x="160" y="272" text-anchor="middle" class="wm" font-size="58" fill="#D4A074">igigi</text>
-  <text x="161" y="308" text-anchor="middle" class="lb" font-size="19" letter-spacing="15" fill="#94A0B8">swarm</text>
+  <text x="160" y="272" text-anchor="middle" class="wm" font-size="60" fill="#D4A074">igigi</text>
+  <text x="161" y="304" text-anchor="middle" class="lb" font-size="18" letter-spacing="14" fill="#94A0B8">swarm</text>
 </svg>
