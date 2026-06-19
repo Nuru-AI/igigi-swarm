@@ -17,6 +17,10 @@ import { Budget } from './budget.js';
 import { SwarmGuard } from './swarm-guard.js';
 import { VERIFIED_SERVICES, type Service } from './services.js';
 
+// MPP_ONLY=1 restricts the agents' service menu to Tempo MPP services — so EVERY payment in the
+// run (agent→service and agent→agent) settles on Tempo via MPP. Default: full cross-chain catalog.
+const CATALOG: Service[] = process.env.MPP_ONLY === '1' ? VERIFIED_SERVICES.filter((s) => s.chain === 'tempo') : VERIFIED_SERVICES;
+
 const SIPPAR_BASE = process.env.SIPPAR_BASE_URL || 'https://sippar.network';
 const ACCESS = process.env.SIPPAR_ACCESS_TOKEN || '';
 // When set, the agent pays from ITS OWN sovereign threshold wallet (this ICP
@@ -98,7 +102,7 @@ export class Sippar {
 
   /** The discovery menu the agent chooses from (the render-verified economy). */
   discover(opts?: { category?: string; maxPrice?: number }): Service[] {
-    return VERIFIED_SERVICES.filter(
+    return CATALOG.filter(
       (s) =>
         (!opts?.category || s.category === opts.category) &&
         (opts?.maxPrice == null || s.price <= opts.maxPrice),
@@ -107,7 +111,7 @@ export class Sippar {
 
   /** Buy a service. Cap is asserted BEFORE the signed payment is requested. */
   async pay(serviceId: string, payload: unknown): Promise<PayResult> {
-    const svc = VERIFIED_SERVICES.find((s) => s.id === serviceId);
+    const svc = CATALOG.find((s) => s.id === serviceId);
     if (!svc) return { success: false, service: serviceId, amountPaid: 0, error: 'unknown service' };
 
     // 1. HARD CAPS — below the agent's reasoning. Swarm guard (kill switch +
