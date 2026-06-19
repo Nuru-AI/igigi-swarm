@@ -27,7 +27,8 @@
  * so the upstream + payload are fine; it's a Locus MPP-directions endpoint issue
  * (mapbox geocode-forward/reverse via MPP work fine). clado/search + apollo/
  * people-search return 200 but ZERO results on this account (plan-limited) — not a
- * usable render, so not added.
+ * usable render, so not added. Hunter premium endpoints (domain-search,
+ * company-enrichment, email-finder) all 502; only email-count + email-verifier work.
  */
 export interface Service {
   id: string;
@@ -106,4 +107,20 @@ export const VERIFIED_SERVICES: Service[] = [
   { id: 'tavily-extract',   name: 'Tavily Extract',        category: 'web-data', price: 0.11, chain: 'tempo', url: 'https://tavily.mpp.paywithlocus.com/tavily/extract', description: 'Clean LLM-ready content from URLs', inputHint: { urls: '[url]' } },
   { id: 'apollo-org',       name: 'Apollo Org Enrichment', category: 'web-data', price: 0.008, chain: 'tempo', url: 'https://apollo.mpp.paywithlocus.com/apollo/org-enrichment', description: 'Company data (industry, size, funding, socials)', inputHint: { domain: 'string' } },
   { id: 'hunter-verify',    name: 'Hunter Email Verifier', category: 'web-data', price: 0.008, chain: 'tempo', url: 'https://hunter.mpp.paywithlocus.com/hunter/email-verifier', description: 'Email deliverability + confidence score', inputHint: { email: 'string' } },
+
+  // --- Round 4 (2026-06-19): depth pass on healthy upstreams, each PAID + RENDERED ---
+  // AlphaVantage (financial data — same proven-healthy provider)
+  { id: 'av-daily',         name: 'AlphaVantage Daily',    category: 'market-data', price: 0.008, chain: 'tempo', url: 'https://alphavantage.mpp.paywithlocus.com/alphavantage/time-series-daily', description: 'Daily OHLCV time series for an equity', inputHint: { symbol: 'AAPL', outputsize: 'compact|full' } },
+  { id: 'av-market-status', name: 'AlphaVantage Mkt Status', category: 'market-data', price: 0.008, chain: 'tempo', url: 'https://alphavantage.mpp.paywithlocus.com/alphavantage/market-status', description: 'Global market open/closed status', inputHint: {} },
+  { id: 'av-gainers',       name: 'AlphaVantage Gainers',  category: 'market-data', price: 0.008, chain: 'tempo', url: 'https://alphavantage.mpp.paywithlocus.com/alphavantage/top-gainers-losers', description: 'Top US gainers/losers/most-active', inputHint: {} },
+  { id: 'av-earnings',      name: 'AlphaVantage Earnings', category: 'market-data', price: 0.008, chain: 'tempo', url: 'https://alphavantage.mpp.paywithlocus.com/alphavantage/earnings', description: 'Annual/quarterly EPS history', inputHint: { symbol: 'AAPL' } },
+  { id: 'av-balance',       name: 'AlphaVantage Balance',  category: 'market-data', price: 0.008, chain: 'tempo', url: 'https://alphavantage.mpp.paywithlocus.com/alphavantage/balance-sheet', description: 'Annual/quarterly balance sheet', inputHint: { symbol: 'AAPL' } },
+  // CoinGecko (crypto data — same proven-healthy provider)
+  { id: 'coingecko-global', name: 'CoinGecko Global',      category: 'market-data', price: 0.06, chain: 'tempo', url: 'https://coingecko.mpp.paywithlocus.com/coingecko/global', description: 'Global market cap, volume, BTC dominance', inputHint: {} },
+  { id: 'coingecko-markets', name: 'CoinGecko Markets',    category: 'market-data', price: 0.06, chain: 'tempo', url: 'https://coingecko.mpp.paywithlocus.com/coingecko/coins-markets', description: 'Ranked coin market data (price, mcap, vol)', inputHint: { vs_currency: 'usd', per_page: '5', order: 'market_cap_desc' } },
+  // VirusTotal (security data — same proven-healthy provider)
+  { id: 'vt-url',           name: 'VirusTotal URL',        category: 'security', price: 0.055, chain: 'tempo', url: 'https://virustotal.mpp.paywithlocus.com/virustotal/url-report', description: 'URL reputation across 70+ engines', inputHint: { url: 'string' } },
+  { id: 'vt-ip',            name: 'VirusTotal IP',         category: 'security', price: 0.055, chain: 'tempo', url: 'https://virustotal.mpp.paywithlocus.com/virustotal/ip-report', description: 'IP reputation + ASN/cert/threat context', inputHint: { ip: 'string' } },
+  // Embeddings (Perplexity — same proven-healthy provider)
+  { id: 'pplx-embed',       name: 'Perplexity Embeddings', category: 'llm', price: 0.002, chain: 'tempo', url: 'https://perplexity.mpp.paywithlocus.com/perplexity/embed', description: 'Vector embeddings for semantic search/RAG', inputHint: { model: 'pplx-embed-v1-0.6b', input: 'string' } },
 ];

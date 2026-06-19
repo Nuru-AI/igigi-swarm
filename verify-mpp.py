@@ -59,6 +59,18 @@ CASES = {
     "tavily-extract":         ("https://tavily.mpp.paywithlocus.com/tavily/extract", 0.11, {"urls": ["https://en.wikipedia.org/wiki/Stripe,_Inc."]}),
     "apollo-org":             ("https://apollo.mpp.paywithlocus.com/apollo/org-enrichment", 0.008, {"domain": "stripe.com"}),
     "hunter-verify":          ("https://hunter.mpp.paywithlocus.com/hunter/email-verifier", 0.008, {"email": "patrick@stripe.com"}),
+    # round 4 — depth pass on already-healthy upstreams (cheap data/search the swarm uses)
+    "av-daily":               ("https://alphavantage.mpp.paywithlocus.com/alphavantage/time-series-daily", 0.008, {"symbol": "AAPL", "outputsize": "compact"}),
+    "av-market-status":       ("https://alphavantage.mpp.paywithlocus.com/alphavantage/market-status", 0.008, {}),
+    "av-gainers":             ("https://alphavantage.mpp.paywithlocus.com/alphavantage/top-gainers-losers", 0.008, {}),
+    "av-earnings":            ("https://alphavantage.mpp.paywithlocus.com/alphavantage/earnings", 0.008, {"symbol": "AAPL"}),
+    "av-balance":             ("https://alphavantage.mpp.paywithlocus.com/alphavantage/balance-sheet", 0.008, {"symbol": "AAPL"}),
+    "pplx-embed":             ("https://perplexity.mpp.paywithlocus.com/perplexity/embed", 0.002, {"model": "pplx-embed-v1-0.6b", "input": "Tempo blockchain stablecoin payments"}),
+    "hunter-find":            ("https://hunter.mpp.paywithlocus.com/hunter/email-finder", 0.013, {"domain": "stripe.com", "first_name": "Patrick", "last_name": "Collison"}),
+    "cg-global":              ("https://coingecko.mpp.paywithlocus.com/coingecko/global", 0.06, {}),
+    "cg-markets":             ("https://coingecko.mpp.paywithlocus.com/coingecko/coins-markets", 0.06, {"vs_currency": "usd", "per_page": 5, "order": "market_cap_desc"}),
+    "vt-url":                 ("https://virustotal.mpp.paywithlocus.com/virustotal/url-report", 0.055, {"url": "https://google.com"}),
+    "vt-ip":                  ("https://virustotal.mpp.paywithlocus.com/virustotal/ip-report", 0.055, {"ip": "8.8.8.8"}),
 }
 
 def run(cid):
