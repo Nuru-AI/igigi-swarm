@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 324" role="img" aria-label="igigi-swarm logo">
+  <title>igigi-swarm</title>
+  <desc>The igigi-swarm logo: an a2a-constellation mark above the wordmark igigi swarm, copper and terracotta on midnight navy.</desc>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap');
+    .wm{font-family:'Orbitron','Arial Black',sans-serif;font-weight:700}
+    .lb{font-family:'Inter','Helvetica Neue',Arial,sans-serif}</style>
+  </defs>
+  <rect width="320" height="324" rx="28" fill="#0E1A38"/>
+  <g transform="translate(55,28) scale(1.75)">
+    <g stroke="#D4A074" stroke-opacity="0.45" stroke-width="1.4" stroke-linecap="round">
+      <line x1="60" y1="52" x2="34" y2="30"/><line x1="60" y1="52" x2="86" y2="30"/>
+      <line x1="60" y1="52" x2="34" y2="74"/><line x1="60" y1="52" x2="86" y2="74"/>
+      <line x1="34" y1="30" x2="86" y2="30"/><line x1="34" y1="74" x2="86" y2="74"/>
+    </g>
+    <g fill="#D4A074">
+      <path transform="translate(34,30) rotate(40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+      <path transform="translate(86,30) rotate(140) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+      <path transform="translate(86,74) rotate(220) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+      <path transform="translate(34,74) rotate(-40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+    </g>
+    <circle cx="60" cy="52" r="5" fill="#B87654"/>
+  </g>
+  <text x="160" y="272" text-anchor="middle" class="wm" font-size="60" fill="#D4A074">igigi</text>
+  <text x="161" y="304" text-anchor="middle" class="lb" font-size="18" letter-spacing="14" fill="#94A0B8">swarm</text>
+</svg>
