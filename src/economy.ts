@@ -23,6 +23,24 @@ import { decompose } from './planner.js';
 
 process.env.MAX_MCP_OUTPUT_TOKENS ||= '200000';
 
+// The deepseek-code engine runs model-written code via AsyncFunction IN-PROCESS. A floating
+// (un-awaited) promise that rejects inside that code escapes execCode()'s Promise.race and,
+// since Node 15, would crash the WHOLE process — killing every other agent mid-run. Install a
+// global net so one bad block can't take down the swarm. execCode() scopes these per-exec
+// (via the shared buffer below) so the retry loop still sees the error and the model can fix it.
+const floatingRejections: { reason: string; at: number }[] = [];
+process.on('unhandledRejection', (reason: any) => {
+  const msg = String(reason?.stack ?? reason?.message ?? reason);
+  floatingRejections.push({ reason: msg.slice(0, 300), at: Date.now() });
+  console.log(`⚠️  unhandledRejection contained (model floating promise): ${msg.slice(0, 160)}`);
+});
+process.on('uncaughtException', (err: any) => {
+  // Last-resort net for a sync throw from a model timer/callback. The process state is
+  // technically undefined after this, but for this non-adversarial spike keeping the run
+  // alive beats losing every agent to one buggy block.
+  console.log(`⚠️  uncaughtException contained (run continues): ${String(err?.stack ?? err).slice(0, 160)}`);
+});
+
 const PRINCIPALS = (process.env.SWARM_PRINCIPALS || process.env.AGENT_PRINCIPAL || '').split(',').map((s) => s.trim()).filter(Boolean);
 const SWARM_CAP_USD = Number(process.env.SWARM_CAP_USD || '2.00'); // swarm-wide safety ceiling (per-wave); actual spend is far lower
 const PER_AGENT_CAP = Number(process.env.BUDGET_CAP_USD || '0.50'); // above the funded wallet, so the WALLET (real on-chain balance) binds — never an artificial cap that blocks A2A buy_input
@@ -40,6 +58,25 @@ const GOAL = process.argv.slice(2).join(' ') ||
 const AGENT_ENGINE = (process.env.AGENT_ENGINE || 'claude').toLowerCase();
 const DEEPSEEK_MODEL = process.env.DEEPSEEK_MODEL || 'deepseek-chat';
 const DS_MAX_TURNS = Number(process.env.DEEPSEEK_MAX_TURNS || '30');
+// The reasoning BRAIN is decoupled from the on-chain economy. Default = DeepSeek via Sippar MPP
+// (on-thesis: each thought settles on-chain). 'openrouter' = a stronger off-cap brain (e.g. Kimi
+// K2-Thinking, purpose-built for multi-turn agentic tool-calling) — NOT x402-payable, but the
+// Sippar thesis is the A2A WORK settlements (buy_input/buy_service), which stay on-chain regardless.
+const INFER_PROVIDER = (process.env.INFERENCE_PROVIDER || (process.env.OPENROUTER_API_KEY ? 'openrouter' : 'sippar-deepseek')).toLowerCase();
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'moonshotai/kimi-k2-thinking';
+const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || '';
+// On the on-chain path, which Sippar MPP service rail is the brain, and which model on it.
+// Default deepseek-chat ($0.004). The 'groq' rail forwards stronger Groq-hosted tool-callers
+// (openai/gpt-oss-120b, qwen/qwen3-32b, meta-llama/llama-4-scout, $0.008) — verified to return
+// real OpenAI tool_calls — giving a much stronger agentic brain that STILL settles on-chain.
+const INFERENCE_SERVICE = (process.env.INFERENCE_SERVICE || 'deepseek').toLowerCase();
+const INFERENCE_MODEL = process.env.INFERENCE_MODEL || '';
+// The Locus 'groq' proxy 502s on OpenAI tool-role message history for every NON-gpt-oss model
+// (qwen3, llama-4, …) but accepts a flattened plain-text history (verified). Auto-flatten for
+// those so non-OpenAI brains can run the multi-turn loop on-chain. Override with FLATTEN_TOOL_HISTORY=0/1.
+const FLATTEN_TOOL_HISTORY = process.env.FLATTEN_TOOL_HISTORY != null
+  ? process.env.FLATTEN_TOOL_HISTORY === '1'
+  : (INFERENCE_SERVICE === 'groq' && !/gpt-oss/i.test(INFERENCE_MODEL));
 
 const HANDS = new Set([
   'mcp__hands__discover_services', 'mcp__hands__buy_service', 'mcp__hands__think', 'mcp__hands__check_budget',
@@ -165,6 +202,47 @@ function extractMessage(resp: any): any {
   return resp?.choices?.[0]?.message ?? resp?.data?.choices?.[0]?.message ?? resp?.message ?? null;
 }
 
+// Single inference entry point for the off-Claude engines. Returns the SAME shape as sippar.pay
+// ({success, response:<OpenAI-completion>, amountPaid}) so extractMessage works either way.
+// - sippar-deepseek (default): DeepSeek via Sippar MPP — each call settles on-chain (on-thesis).
+// - openrouter: a stronger brain (Kimi K2-Thinking et al.) over OpenAI-compatible OpenRouter —
+//   off-cap, NOT on-chain; the on-chain A2A work settlements still flow through Sippar.
+async function inferLLM(sippar: Sippar, payload: { model?: string; messages: any[]; tools?: any[]; tool_choice?: any }): Promise<{ success: boolean; response?: any; amountPaid?: number; error?: string }> {
+  // The MPP rails are intermittently flaky (502/transient). Retry a few times before giving up,
+  // so one bad settlement doesn't kill an agent mid-loop.
+  let last: { success: boolean; response?: any; amountPaid?: number; error?: string } = { success: false, error: 'no attempt' };
+  for (let i = 0; i < 5; i++) {
+    last = await inferOnce(sippar, payload);
+    if (last.success) return last;
+    await new Promise((r) => setTimeout(r, 2000)); // ride out transient signer congestion (concurrent agents)
+  }
+  return last;
+}
+
+async function inferOnce(sippar: Sippar, payload: { model?: string; messages: any[]; tools?: any[]; tool_choice?: any }): Promise<{ success: boolean; response?: any; amountPaid?: number; error?: string }> {
+  if (INFER_PROVIDER === 'openrouter') {
+    if (!OPENROUTER_KEY) return { success: false, error: 'INFERENCE_PROVIDER=openrouter but OPENROUTER_API_KEY is not set' };
+    try {
+      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${OPENROUTER_KEY}`, 'X-Title': 'sippar-swarm' },
+        body: JSON.stringify({
+          model: OPENROUTER_MODEL,
+          messages: payload.messages,
+          ...(payload.tools ? { tools: payload.tools } : {}),
+          ...(payload.tool_choice ? { tool_choice: payload.tool_choice } : {}),
+        }),
+      });
+      const data: any = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.choices?.length) return { success: false, error: data?.error?.message || `OpenRouter HTTP ${res.status}` };
+      return { success: true, response: data, amountPaid: 0 }; // brain is off-chain; A2A buys still settle on Sippar
+    } catch (e) { return { success: false, error: String((e as Error).message) }; }
+  }
+  // On-chain path: pay the chosen LLM rail (deepseek | groq | mistral) per thought.
+  const model = INFERENCE_MODEL || payload.model || DEEPSEEK_MODEL;
+  return sippar.pay(INFERENCE_SERVICE, { ...payload, model });
+}
+
 async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
   const { label, principal } = agent;
   const selfAddr = agent.address;
@@ -177,6 +255,14 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
   };
   const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);
   const sippar = new Sippar(budget, { principal, guard });
+  // Cache successful buys so a model that re-calls buy_service/buy_input (gpt-oss loops on this)
+  // gets the cached data + a hard nudge to submit, instead of re-paying — saves a signature AND
+  // USDC each time. Keyed by svc:<id> / inp:<key>.
+  const bought = new Map<string, any>();
+  // Some models (gpt-oss) fixate on buy_service and never call submit_task on their own. When a
+  // buy returns a cache hit (the agent already has that data), flip this flag; the loop then
+  // FORCES tool_choice=submit_task next turn so the agent actually produces its output.
+  let forceSubmit = false;
 
   const TOOLS = [
     { type: 'function', function: { name: 'list_open_tasks', description: 'List the tasks AWARDED TO YOU that are claimable now (inputs ready). Empty = a peer is still producing your input.', parameters: { type: 'object', properties: {} } } },
@@ -184,7 +270,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
     { type: 'function', function: { name: 'claim_task', description: 'Claim an awarded open task by id.', parameters: { type: 'object', properties: { id: { type: 'string' } }, required: ['id'] } } },
     { type: 'function', function: { name: 'buy_input', description: 'Buy a completed input your task consumes from the peer who produced it (pays them on-chain) and returns the content. Required before submit.', parameters: { type: 'object', properties: { produces_key: { type: 'string' } }, required: ['produces_key'] } } },
     { type: 'function', function: { name: 'discover_services', description: 'List the REAL buyable data services with their exact ids and input shapes. Call this before buy_service if unsure of a service_id.', parameters: { type: 'object', properties: { category: { type: 'string' }, max_price: { type: 'number' } } } } },
-    { type: 'function', function: { name: 'buy_service', description: 'Buy real external data (settles on-chain) for a SOURCE task. Use a REAL service_id from discover_services. Known ones: "brave" payload {"q":"query"}; "tavily" payload {"query":"query"}; "alphavantage" payload {"function":"GLOBAL_QUOTE","symbol":"NVDA"}; "heurist" payload {"q":"query"}.', parameters: { type: 'object', properties: { service_id: { type: 'string' }, payload: { type: 'object' } }, required: ['service_id', 'payload'] } } },
+    { type: 'function', function: { name: 'buy_service', description: 'Buy real external data (settles on-chain) for a SOURCE task. Use a REAL service_id from discover_services. For stock data use "alphavantage" payload {"symbol":"NVDA"} ($0.008, real-time quote). For web/news/sentiment use "brave" payload {"q":"query"} ($0.035, PREFERRED) or "heurist" payload {"q":"query"} ($0.002). AVOID "tavily" ($0.09 — exceeds the per-tx budget cap and will be rejected). Buy each source ONCE, then submit_task.', parameters: { type: 'object', properties: { service_id: { type: 'string' }, payload: { type: 'object' } }, required: ['service_id', 'payload'] } } },
     { type: 'function', function: { name: 'submit_task', description: 'Submit your task output text. Completes it, lets peers buy it, unblocks downstream. Must have bought every input first.', parameters: { type: 'object', properties: { id: { type: 'string' }, output: { type: 'string' } }, required: ['id', 'output'] } } },
   ];
   const DISPATCH: Record<string, (a: any) => Promise<unknown>> = {
@@ -195,25 +281,33 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
       while (open.length === 0 && Date.now() < deadline && board.remaining() > 0 && !guard.halted_) { await new Promise((r) => setTimeout(r, 4000)); open = board.listOpen(label); }
       return { ready: open.length > 0, tasks: open, boardRemaining: board.remaining() };
     },
-    claim_task: async ({ id }) => board.claim(label, id),
+    claim_task: async ({ id }) => { forceSubmit = false; return board.claim(label, id); },
     buy_input: async ({ produces_key }) => {
       if (!produces_key) return { error: 'produces_key required (a non-empty key). Never call with empty arguments.' };
+      const ck = `inp:${produces_key}`;
+      if (bought.has(ck)) { forceSubmit = true; return { success: true, alreadyBought: true, content: bought.get(ck), note: `Already bought "${produces_key}" — do NOT buy it again. Once you have ALL your inputs, synthesize and call submit_task.` }; }
       const inp = board.inputFor(produces_key);
       if (!inp) return { error: `no completed producer for "${produces_key}" yet — wait_for_task` };
-      if (inp.producerAddr === selfAddr) { board.recordPurchase(label, produces_key); return { success: true, note: 'your own output (free)', content: inp.output }; }
+      if (inp.producerAddr === selfAddr) { board.recordPurchase(label, produces_key); bought.set(ck, inp.output); return { success: true, note: 'your own output (free). Once you have all inputs, call submit_task.', content: inp.output }; }
       const pay = await sippar.payAgent(inp.producerAddr!, inp.priceUSD);
       if (!pay.success) return { success: false, error: `payment failed: ${pay.error}` };
       board.recordPurchase(label, produces_key);
+      bought.set(ck, inp.output);
       feed.emit('market_buy', { agent: label, seller: inp.producerLabel, id: inp.id, amountUSD: pay.amountPaid, tx: pay.tx });
-      return { success: true, paidTo: inp.producerLabel, amountUSD: pay.amountPaid, tx: pay.tx, content: inp.output };
+      return { success: true, paidTo: inp.producerLabel, amountUSD: pay.amountPaid, tx: pay.tx, content: inp.output, note: 'Bought. Once you have all inputs, synthesize and call submit_task.' };
     },
     discover_services: async ({ category, max_price }) => sippar.discover({ category, maxPrice: max_price }),
     buy_service: async ({ service_id, payload }) => {
       if (!service_id || !payload || !Object.keys(payload).length) return { error: 'service_id + non-empty payload required (a real id from discover_services). Never call with empty arguments.' };
+      const ck = `svc:${service_id}`;
+      if (bought.has(ck)) { forceSubmit = true; return { success: true, alreadyBought: true, data: bought.get(ck), note: `You ALREADY bought "${service_id}" and have the data. Do NOT buy it again — call submit_task(id, output) NOW with your synthesized result.` }; }
       const r = await sippar.pay(service_id, payload);
-      return { success: r.success, paid: r.amountPaid, tx: r.tx, data: r.success ? r.response : undefined, error: r.error };
+      if (!r.success) return { success: false, paid: r.amountPaid, error: r.error };
+      bought.set(ck, r.response);
+      return { success: true, paid: r.amountPaid, tx: r.tx, data: r.response, note: 'You now have the data. Synthesize your output and call submit_task NEXT — do NOT buy this again.' };
     },
     submit_task: async ({ id, output }) => {
+      forceSubmit = false;
       if (!output || String(output).length < 20) return { error: 'output must be your full result text (>=20 chars).' };
       const r = board.submit(label, id || board.listOpen(label)[0]?.id || '', output, selfAddr);
       if (r.ok) feed.emit('market_post', { agent: label, id, summary: `produced ${id}`, priceUSD: 0 });
@@ -222,33 +316,47 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
   };
 
   const messages: any[] = [
-    { role: 'system', content: SYSTEM(agent.balanceUSD, GOAL) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
+    { role: 'system', content: SYSTEM(agent.balanceUSD, GOAL) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. When you submit_task, the output MUST be finished plain prose with the ACTUAL numbers and values copied from the data you bought — NEVER leave template placeholders like \${...}, {price}, or "X.XX". After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
     { role: 'user', content: 'Work the board toward the shared goal now: claim, buy your inputs from peers, produce, submit.' },
   ];
   let infCalls = 0, infSpend = 0, noTool = 0;
   try {
     for (let turn = 1; turn <= DS_MAX_TURNS && !guard.halted_; turn++) {
-      // 'required' forces a tool call every turn (weak models otherwise narrate instead of acting); nudge below is the backstop.
-      const r = await sippar.pay('deepseek', { model: DEEPSEEK_MODEL, messages, tools: TOOLS, tool_choice: noTool > 0 ? 'required' : 'auto' });
+      // 'required' forces a tool call every turn (weak models otherwise narrate); when forceSubmit
+      // is set (agent already has its data but won't submit), pin tool_choice to submit_task.
+      const toolChoice = forceSubmit ? { type: 'function', function: { name: 'submit_task' } } : (noTool > 0 ? 'required' : 'auto');
+      const r = await inferLLM(sippar, { model: DEEPSEEK_MODEL, messages, tools: TOOLS, tool_choice: toolChoice });
       if (!r.success) { console.log(`✖ [${label}] inference failed: ${r.error}`); break; }
       infCalls++; infSpend += r.amountPaid ?? 0;
       const m = extractMessage(r.response);
       if (!m) { console.log(`✖ [${label}] no message`); break; }
-      messages.push({ role: 'assistant', content: m.content ?? '', tool_calls: m.tool_calls });
       if (m.content && String(m.content).trim()) { console.log(`🤖 [${label}] ${String(m.content).trim().slice(0, 160)}`); feed.emit('decision', { agent: label, text: String(m.content).trim() }); }
       if (m.tool_calls?.length) {
         noTool = 0;
+        // Record the assistant turn. For non-gpt-oss groq models the rail 502s on OpenAI tool-role
+        // history, so FLATTEN: paraphrase the call(s) as assistant text + fold results into a user
+        // message. gpt-oss / deepseek use native tool messages.
+        if (FLATTEN_TOOL_HISTORY) {
+          const calls = m.tool_calls.map((c: any) => `${c.function.name}(${String(c.function.arguments || '{}').slice(0, 200)})`).join(', ');
+          messages.push({ role: 'assistant', content: (String(m.content || '').trim() ? String(m.content).trim() + ' ' : '') + `Calling ${calls}.` });
+        } else {
+          messages.push({ role: 'assistant', content: m.content ?? '', tool_calls: m.tool_calls });
+        }
+        const resultLines: string[] = [];
         for (const call of m.tool_calls) {
           let args: any = {}; try { args = JSON.parse(call.function.arguments || '{}'); } catch { /* */ }
           const fn = DISPATCH[call.function.name];
           const result = fn ? await fn(args) : { error: `unknown tool ${call.function.name}` };
           const s = JSON.stringify(result);
           console.log(`🔧 [${label}] ${call.function.name}(${JSON.stringify(args).slice(0, 60)}) → ${s.slice(0, 90)}`);
-          messages.push({ role: 'tool', tool_call_id: call.id, content: s.slice(0, 6000) });
+          if (FLATTEN_TOOL_HISTORY) resultLines.push(`Result of ${call.function.name}: ${s.slice(0, 4000)}`);
+          else messages.push({ role: 'tool', tool_call_id: call.id, content: s.slice(0, 6000) });
         }
+        if (FLATTEN_TOOL_HISTORY) messages.push({ role: 'user', content: resultLines.join('\n') + '\nContinue: call the next tool, or reply with the single word DONE if all your work is finished.' });
         if (board.allDone()) break;
         continue;
       }
+      messages.push({ role: 'assistant', content: m.content ?? '' });
       // No tool call this turn. Stop only if genuinely finished (exact "DONE", or whole board done, or no work left) —
       // NOT just because the word "done" appears in narration. Else the model narrated instead of acting — force it.
       const txt = String(m.content ?? '').trim().toUpperCase();
@@ -272,52 +380,111 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
 // of JSON tool-calls, it writes ONE JS code block that orchestrates the supply-chain
 // functions (claim/buy_input/buy_service/submit), executed in a restricted vm sandbox
 // (no require/process/fetch — only the bound functions). Plays to DeepSeek's strength.
-const CODE_SYSTEM = (goal: string) => `You are an autonomous agent in a team building toward a shared goal via a task DAG. You do your work by WRITING ONE JavaScript async code block that calls these async functions (all return promises — ALWAYS use await):
-- list_open_tasks() -> array of YOUR claimable awarded tasks: [{id,title,produces,consumes,priceUSD}]
-- claim_task(id) -> {ok}
-- wait_for_task(maxSeconds) -> {ready, tasks, boardRemaining}   // blocks until one of your tasks is claimable (a peer produced your input)
-- buy_input(produces_key) -> {success, content}   // buy a peer's completed output (pays them on-chain). Required for EACH key your task "consumes".
-- buy_service(service_id, payload) -> {success, data}   // buy real external data for a SOURCE task. Real ids: "alphavantage" {symbol:"NVDA"}, "brave" {q:"..."}, "tavily" {query:"..."}, "heurist" {q:"..."}
-- submit_task(id, outputText) -> {ok}   // complete your task; outputText must be your REAL result (>= 40 chars)
-- log(message)   // print progress
+const CODE_SYSTEM = (goal: string) => `You are an autonomous agent on a team building toward a shared goal. You complete ONE specific assigned task per message by WRITING ONE JavaScript async code block that calls these pre-bound async functions (already in scope — DO NOT define or import them; ALWAYS await them):
+- claim_task(id) -> {ok}                          // claim YOUR assigned task by its exact id
+- buy_input(key) -> {success, content}            // buy a peer's finished output (pays them on-chain). Use for EACH key your task consumes.
+- buy_service(id, payload) -> {success, data}     // buy real external data for a SOURCE task. ids: "alphavantage" {symbol:"NVDA"}, "brave" {q:"..."}, "tavily" {query:"..."}, "heurist" {q:"..."}
+- submit_task(id, outputText) -> {ok}             // finish your task; outputText is your REAL result, >= 40 chars
+- log(message)                                    // print progress
 
-THE GOAL: ${goal}
+THE TEAM GOAL: ${goal}
 
-Write ONE \`\`\`js code block that completes YOUR awarded task end to end:
-  let list = await list_open_tasks();
-  while (list.length === 0) { await wait_for_task(90); list = await list_open_tasks(); if ((await wait_for_task(1)).boardRemaining === 0) return; }
-  const t = list[0];
-  await claim_task(t.id);
-  const parts = [];
-  for (const key of t.consumes) { const r = await buy_input(key); parts.push(r.content); }      // buy EVERY input
-  if (t.consumes.length === 0) { const d = await buy_service("alphavantage", {symbol:"NVDA"}); parts.push(JSON.stringify(d.data)); }  // SOURCE: buy real data ONCE
-  const output = /* write a concise, sourced result string from parts */ ("..." );
-  await submit_task(t.id, output);
+You will be given ONE concrete task (its exact id, what it produces, and what it consumes). Write ONE \`\`\`js code block that completes THAT task: claim it, buy what it needs, build the real output from what you bought, and submit it.
 
-Rules: output ONLY the code block, no prose before/after. Use try/catch and call log() so progress and errors are visible. Use ONLY the functions above — NO require, process, fetch, import, or network. Build the output text yourself from what you bought; never invent data.`;
+HARD RULES — code that breaks these fails and gets discarded:
+1. Use the EXACT task id given to you (a string like "t2"). NEVER invent ids, point values, or fake "task completed" messages. There is no points system — only the functions above do anything; log() just prints.
+2. Use ONLY the pre-bound functions. NO require, import, process, fetch, setTimeout, or other globals. Do NOT redefine the functions or simulate them.
+3. Declare every variable with const/let before using it (in THIS block — nothing persists between blocks). await EVERY function call; never leave a floating promise.
+4. Build the real \`output\` from what buy_input/buy_service returned. NEVER invent data (no fake numbers, factorials, demos). Prefer a short readable summary of the key facts over a raw JSON dump, but keep the code SIMPLE. >= 40 chars.
+5. Wrap everything in one try/catch and \`await log(...)\` the error. Output ONLY the code block — no prose before or after.`;
+
+// Pick a concrete, real buy_service call for a SOURCE task from its title — so the harness
+// (not the weak model) decides the service id + payload, eliminating the recurring
+// "alphavantage is not defined" bare-identifier bug.
+function sourceServiceCall(task: { title: string; produces: string }): string {
+  const hay = `${task.title} ${task.produces}`.toLowerCase();
+  if (/stock|quote|price|ticker|equity|share|nasdaq|nyse|nvda|nvidia|aapl|tsla|msft/.test(hay)) {
+    const m = task.title.match(/\b([A-Z]{2,5})\b/);
+    return `await buy_service("alphavantage", { symbol: "${m ? m[1] : 'NVDA'}" })`;
+  }
+  const q = task.title.replace(/[^a-zA-Z0-9 ]/g, ' ').split(/\s+/).filter(Boolean).slice(0, 8).join(' ');
+  return `await buy_service("brave", { q: "${q || task.produces}" })`;
+}
+
+// The concrete, grounded task handed to the model each attempt — removes the "imagine a task"
+// hallucination, but lets the model author the block itself (it rebels against "copy exactly").
+// The exec scope binds the task ids and service ids as strings, so bare identifiers still work.
+function codeTaskPrompt(task: { id: string; title: string; produces: string; consumes: string[]; priceUSD: number }): string {
+  const isSource = task.consumes.length === 0;
+  const buyBlock = isSource
+    ? `  // SOURCE task — buy ONE real dataset, then build the output from it. Pick the service for "${task.title}":
+  const d = ${sourceServiceCall(task)};   // <- a concrete, ready-to-run call; adjust the query/symbol if you like
+  const parts = [ d && d.success ? JSON.stringify(d.data) : "" ].filter(Boolean);`
+    : `  const parts = [];
+  for (const key of ${JSON.stringify(task.consumes)}) { const r = await buy_input(key); if (r && r.success) parts.push(r.content); }   // buy EVERY input`;
+  return `YOUR ASSIGNED TASK (already claimable — every input is ready):
+  id: "${task.id}"
+  title: ${task.title}
+  produces: ${task.produces}
+  consumes: ${JSON.stringify(task.consumes)}   ${isSource ? '(SOURCE — no peer inputs; buy real external data)' : '(buy EACH key from your peers with buy_input)'}
+
+Write ONE \`\`\`js block that does exactly this, in order. Use the EXACT id "${task.id}" (quoted) and quoted service names:
+\`\`\`js
+try {
+  await claim_task("${task.id}");
+${buyBlock}
+  const output = /* a concise, REAL "${task.produces}" built ONLY from parts above (a short readable summary of the key facts, keep it simple), >= 40 chars — never invent data */ "";
+  await submit_task("${task.id}", output);
+  await log("submitted ${task.id}");
+} catch (e) {
+  await log("ERROR: " + (e && e.message ? e.message : e));
+}
+\`\`\`
+Output ONLY the code block. Fill in \`output\` from \`parts\` (the real purchased data). Do not add require/import/fetch or any other functions.`;
+}
 
 function extractCodeBlock(resp: any): string | null {
   const text = String(extractMessage(resp)?.content ?? '');
-  const fence = text.match(/```(?:js|javascript|typescript)?\s*\n?([\s\S]*?)```/);
-  if (fence) return fence[1];
-  return /await |claim_task|submit_task/.test(text) ? text : null;
+  const fence = text.match(/```(?:js|javascript|typescript|ts)?\s*\n?([\s\S]*?)```/i);
+  let code = fence ? fence[1] : (/await |claim_task|submit_task/.test(text) ? text : null);
+  if (code == null) return null;
+  // The model sometimes omits the fence and emits a bare "js" language-hint line — running that
+  // as code throws "js is not defined". Strip a stray leading language hint.
+  code = code.replace(/^\s*(?:js|javascript|ts|typescript)\s*\r?\n/i, '');
+  return code.trim();
 }
 
 // Execute the model's code in the HOST realm via AsyncFunction so `await` on our
 // bound async functions works natively (vm can't await cross-realm host promises).
 // NOTE: in-process, not security-sandboxed — fine for this non-adversarial spike;
 // a production version runs untrusted code in isolated-vm / a subprocess / E2B.
-async function execCode(code: string, api: Record<string, any>, timeoutMs: number): Promise<{ ok: boolean; error?: string; logs: string[] }> {
+async function execCode(code: string, api: Record<string, any>, timeoutMs: number, vars: Record<string, any> = {}): Promise<{ ok: boolean; error?: string; logs: string[] }> {
   const logs: string[] = [];
   const boundLog = (m: any) => { logs.push(String(m).slice(0, 200)); api.log(m); };
-  const names = ['list_open_tasks', 'claim_task', 'wait_for_task', 'buy_input', 'buy_service', 'submit_task', 'log'];
-  const fns = [api.list_open_tasks, api.claim_task, api.wait_for_task, api.buy_input, api.buy_service, api.submit_task, boundLog];
+  // Bind the functions PLUS the task-id and service-id STRINGS as in-scope variables, so the
+  // weak model's most common bug — bare identifiers like buy_service(alphavantage,…) or
+  // claim_task(t1) — resolves to the right string instead of throwing ReferenceError.
+  const names = ['list_open_tasks', 'claim_task', 'wait_for_task', 'buy_input', 'buy_service', 'submit_task', 'log', ...Object.keys(vars)];
+  const fns = [api.list_open_tasks, api.claim_task, api.wait_for_task, api.buy_input, api.buy_service, api.submit_task, boundLog, ...Object.values(vars)];
   const AsyncFunction = Object.getPrototypeOf(async function () { /* */ }).constructor as any;
+  const startIdx = floatingRejections.length;
+  let timer: NodeJS.Timeout | undefined;
   try {
-    const fn = new AsyncFunction(...names, `"use strict";\n${code}`);
-    await Promise.race([fn(...fns), new Promise((_, rej) => setTimeout(() => rej(new Error('exec wall-clock timeout')), timeoutMs))]);
-    return { ok: true, logs };
-  } catch (e: any) { return { ok: false, error: String(e?.message ?? e), logs }; }
+    const fn = new AsyncFunction(...names, `"use strict";\n${code}`); // SyntaxError throws here, caught below
+    await Promise.race([
+      fn(...fns),
+      new Promise((_, rej) => { timer = setTimeout(() => rej(new Error('exec wall-clock timeout')), timeoutMs); }),
+    ]);
+    // Let any un-awaited rejections from this block surface as unhandledRejection before we read them.
+    await new Promise((r) => setTimeout(r, 50));
+    const floats = floatingRejections.slice(startIdx).map((f) => f.reason);
+    if (floats.length) logs.push(`floating(un-awaited) rejection: ${floats.join(' ; ').slice(0, 300)}`);
+    return { ok: floats.length === 0, error: floats[0], logs };
+  } catch (e: any) {
+    return { ok: false, error: String(e?.message ?? e), logs };
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
 }
 
 async function runAgentDeepSeekCode(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
@@ -331,6 +498,12 @@ async function runAgentDeepSeekCode(agent: AgentRec, board: TaskBoard, guard: Sw
   const budget = new Budget(PER_AGENT_CAP, PER_TX_MAX, onEvent);
   const sippar = new Sippar(budget, { principal, guard });
   let mySubmitted = false;
+  const submittedIds = new Set<string>();
+  // Anti-invention guard for SOURCE tasks: board.submit only enforces buy_input for CONSUMED
+  // keys, so a source task (consumes:[]) could submit fabricated data. Require ≥1 real
+  // buy_service before a source submit. Reset per task by the outer loop.
+  let servicesBoughtThisTask = 0;
+  let currentConsumes: string[] = [];
   const api = {
     list_open_tasks: async () => board.listOpen(label),
     claim_task: async (id: string) => board.claim(label, id),
@@ -352,31 +525,62 @@ async function runAgentDeepSeekCode(agent: AgentRec, board: TaskBoard, guard: Sw
     },
     buy_service: async (service_id: string, payload: any) => {
       const r = await sippar.pay(service_id, payload ?? {});
+      if (r.success) servicesBoughtThisTask++;
       return { success: r.success, data: r.success ? r.response : undefined, error: r.error };
     },
     submit_task: async (id: string, outputText: string) => {
+      // Source tasks must be backed by real bought data — block fabricated submissions.
+      if (currentConsumes.length === 0 && servicesBoughtThisTask === 0)
+        return { ok: false, error: 'SOURCE task: call buy_service to fetch REAL data BEFORE submit_task — do not invent data.' };
       const r = board.submit(label, id, String(outputText ?? ''), selfAddr);
-      if (r.ok) { mySubmitted = true; feed.emit('market_post', { agent: label, id, summary: `produced ${id}`, priceUSD: 0 }); }
+      if (r.ok) { mySubmitted = true; submittedIds.add(id); feed.emit('market_post', { agent: label, id, summary: `produced ${id}`, priceUSD: 0 }); }
       return r;
     },
     log: (m: any) => { const s = String(m).slice(0, 200); console.log(`📝 [${label}] ${s}`); feed.emit('decision', { agent: label, text: s }); },
   };
 
-  const messages: any[] = [{ role: 'system', content: CODE_SYSTEM(GOAL) }, { role: 'user', content: 'Write the ```js code block to complete your awarded task now.' }];
   let infCalls = 0, infSpend = 0;
+  // Identifiers we bind into the exec scope as their own string value, so the model's bare-
+  // identifier slips (buy_service(alphavantage,…), claim_task(t1)) resolve instead of throwing.
+  const idVars: Record<string, any> = {};
+  for (const s of board.snapshot()) idVars[s.id] = s.id;
+  for (const svc of ['alphavantage', 'brave', 'tavily', 'heurist', 'mistral', 'deepseek', 'coingecko']) idVars[svc] = svc;
+  // Common bare tickers/symbols the model tends to drop unquoted into payloads, e.g. {symbol: NVDA}.
+  for (const sym of ['NVDA', 'NVIDIA', 'BTC', 'ETH', 'AAPL', 'TSLA', 'MSFT', 'AI', 'SOL']) idVars[sym] = sym;
   try {
-    for (let round = 1; round <= 4 && !guard.halted_ && !mySubmitted && !board.allDone(); round++) {
-      const r = await sippar.pay('deepseek', { model: DEEPSEEK_MODEL, messages });
-      if (!r.success) { console.log(`✖ [${label}] inference failed: ${r.error}`); break; }
-      infCalls++; infSpend += r.amountPaid ?? 0;
-      const code = extractCodeBlock(r.response);
-      if (!code) { messages.push({ role: 'user', content: 'Output ONLY a ```js code block.' }); continue; }
-      console.log(`🧩 [${label}] round ${round}: exec ${code.length}-char code block`);
-      const res = await execCode(code, api, 300000);
-      console.log(`   [${label}] → submitted=${mySubmitted} ${res.ok ? 'ok' : 'err: ' + res.error}`);
-      if (mySubmitted || board.allDone()) break;
-      messages.push({ role: 'assistant', content: '```js\n' + code + '\n```' });
-      messages.push({ role: 'user', content: `Your task is NOT submitted yet. Execution — ${res.ok ? 'ran without throwing' : 'ERROR: ' + res.error} | logs: ${res.logs.join(' | ').slice(0, 600)}. Output a corrected \`\`\`js code block that finishes by calling submit_task(t.id, output).` });
+    // Outer loop: work each task awarded to me, in dependency order. The HARNESS (not model
+    // code) deterministically waits until one of my tasks is claimable, then hands the model
+    // that ONE concrete task — so the weak model can't invent ids or stall on the wait protocol.
+    while (!guard.halted_ && !board.allDone()) {
+      let mine = board.listOpen(label).filter((t: any) => !submittedIds.has(t.id));
+      if (mine.length === 0) {
+        const deadline = Date.now() + 240000;
+        while (mine.length === 0 && Date.now() < deadline && board.remaining() > 0 && !guard.halted_) {
+          await new Promise((r) => setTimeout(r, 4000));
+          mine = board.listOpen(label).filter((t: any) => !submittedIds.has(t.id));
+        }
+      }
+      if (mine.length === 0) { console.log(`✔ [${label}] no more claimable tasks for me`); break; }
+      const task = mine[0];
+      servicesBoughtThisTask = 0; currentConsumes = task.consumes;
+      console.log(`🎯 [${label}] solving ${task.id} (${task.consumes.length === 0 ? 'source' : `consumes ${task.consumes.join(',')}`}) — ${task.title}`);
+      const messages: any[] = [{ role: 'system', content: CODE_SYSTEM(GOAL) }, { role: 'user', content: codeTaskPrompt(task) }];
+      // Inner retry-with-error loop (CodeAgent self-repair) for THIS task.
+      for (let attempt = 1; attempt <= 5 && !submittedIds.has(task.id) && !guard.halted_; attempt++) {
+        const r = await inferLLM(sippar, { model: DEEPSEEK_MODEL, messages });
+        if (!r.success) { console.log(`✖ [${label}] inference failed: ${r.error}`); break; }
+        infCalls++; infSpend += r.amountPaid ?? 0;
+        const code = extractCodeBlock(r.response);
+        if (!code) { messages.push({ role: 'user', content: 'Output ONLY a ```js code block, nothing else.' }); continue; }
+        console.log(`🧩 [${label}] ${task.id} attempt ${attempt}: exec ${code.length}-char block`);
+        const res = await execCode(code, api, 300000, { ...idVars, t: task });
+        const ok = submittedIds.has(task.id);
+        console.log(`   [${label}] ${task.id} → submitted=${ok} ${res.ok ? 'ok' : 'err: ' + res.error}`);
+        if (ok) break;
+        messages.push({ role: 'assistant', content: '```js\n' + code + '\n```' });
+        messages.push({ role: 'user', content: `Task "${task.id}" is STILL NOT submitted. Execution ${res.ok ? 'ran without throwing' : 'threw: ' + res.error}. logs: ${res.logs.join(' | ').slice(0, 600)}. Write a corrected \`\`\`js block that claims "${task.id}", buys its inputs, and ENDS with await submit_task("${task.id}", output). Use the exact id "${task.id}".` });
+      }
+      if (!submittedIds.has(task.id)) { console.log(`✖ [${label}] gave up on ${task.id} after retries`); break; }
     }
   } catch (e) { console.log(`⚠️  [${label}] ended: ${String((e as Error).message)}`); }
   finally {
@@ -429,8 +633,14 @@ async function main() {
 
   // 3) Run all agents concurrently — the DAG orders them (no stagger needed).
   const run = AGENT_ENGINE === 'deepseek-code' ? runAgentDeepSeekCode : AGENT_ENGINE === 'deepseek' ? runAgentDeepSeek : runAgent;
-  console.log(`engine: ${AGENT_ENGINE === 'deepseek-code' ? `DeepSeek CodeAgent (${DEEPSEEK_MODEL}) — code-gen + sandboxed exec, 0 Claude tokens` : AGENT_ENGINE === 'deepseek' ? `DeepSeek JSON tool-calls (${DEEPSEEK_MODEL}) — 0 Claude tokens` : `Claude SDK (${MODEL})`}\n`);
-  await Promise.allSettled(agents.map((a) => run(a, board, guard, feed)));
+  const brain = AGENT_ENGINE === 'claude' ? `Claude SDK (${MODEL})` : INFER_PROVIDER === 'openrouter' ? `OpenRouter brain (${OPENROUTER_MODEL}) — off-cap, A2A still on-chain` : `Sippar MPP rail '${INFERENCE_SERVICE}' (${INFERENCE_MODEL || DEEPSEEK_MODEL}) — each thought on-chain`;
+  console.log(`engine: ${AGENT_ENGINE === 'deepseek-code' ? 'CodeAgent code-gen' : AGENT_ENGINE === 'deepseek' ? 'JSON tool-calls' : 'Claude SDK'} · brain: ${brain}${AGENT_ENGINE !== 'claude' && INFER_PROVIDER !== 'openrouter' ? ` · history=${FLATTEN_TOOL_HISTORY ? 'flattened' : 'native-tool-role'}` : ''} · 0 Claude tokens${AGENT_ENGINE === 'claude' ? '' : ' (agents)'}\n`);
+  // Stagger agent starts to spread the inference-rail load — at 5+ concurrent agents the Locus
+  // rail times out ("inference failed") and breaks the deep DAG layers. The DAG still orders the
+  // real work; this just smooths the initial burst. SWARM_STAGGER_MS=0 keeps the old behaviour.
+  const STAGGER_MS = Number(process.env.SWARM_STAGGER_MS || '0');
+  await Promise.allSettled(agents.map((a, i) =>
+    (STAGGER_MS ? new Promise((r) => setTimeout(r, i * STAGGER_MS)) : Promise.resolve()).then(() => run(a, board, guard, feed))));
   clearTimeout(timer);
 
   // 4) Observe.
