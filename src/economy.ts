@@ -362,14 +362,25 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
     { role: 'system', content: SYSTEM(agent.balanceUSD, GOAL) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. When you submit_task, the output MUST be finished plain prose with the ACTUAL numbers and values copied from the data you bought — NEVER leave template placeholders like \${...}, {price}, or "X.XX". After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
     { role: 'user', content: 'Work the board toward the shared goal now: claim, buy your inputs from peers, produce, submit.' },
   ];
-  let infCalls = 0, infSpend = 0, noTool = 0;
+  let infCalls = 0, infSpend = 0, noTool = 0, infFails = 0;
   try {
     for (let turn = 1; turn <= DS_MAX_TURNS && !guard.halted_; turn++) {
       // 'required' forces a tool call every turn (weak models otherwise narrate); when forceSubmit
       // is set (agent already has its data but won't submit), pin tool_choice to submit_task.
       const toolChoice = forceSubmit ? { type: 'function', function: { name: 'submit_task' } } : (noTool > 0 ? 'required' : 'auto');
       const r = await inferLLM(sippar, { model: DEEPSEEK_MODEL, messages, tools: TOOLS, tool_choice: toolChoice });
-      if (!r.success) { console.log(`✖ [${label}] inference failed: ${r.error}`); break; }
+      if (!r.success) {
+        // Don't let one provider blip (rate-limit "Upstream API call failed") permanently kill the
+        // agent and strand its task. Back off (escalating) and retry the turn; the agent keeps its
+        // claim and finishes once the rate-limit window passes. Give up only after repeated failures.
+        if (++infFails >= 4) { console.log(`✖ [${label}] inference failed ${infFails}x (${r.error}) — giving up`); break; }
+        const wait = 8000 * infFails;
+        console.log(`⚠️  [${label}] inference failed (${infFails}/4): ${r.error} — backing off ${wait / 1000}s`);
+        await new Promise((res) => setTimeout(res, wait));
+        turn--; // a failed turn shouldn't consume the agent's working budget
+        continue;
+      }
+      infFails = 0;
       infCalls++; infSpend += r.amountPaid ?? 0;
       const m = extractMessage(r.response);
       if (!m) { console.log(`✖ [${label}] no message`); break; }
