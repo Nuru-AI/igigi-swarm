@@ -12,6 +12,28 @@
 import { createServer } from 'node:http';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { VERIFIED_SERVICES } from './services.js';
+
+// Static swarm metadata for the dashboard Catalog tab. Read-only; does NOT touch
+// the swarm engine or the feed schema — it just exposes the shared contract every
+// agent runs under (homogeneous peers: same prompt, same tools, same x402 menu;
+// they differ only by wallet + which DAG task they are awarded).
+const SWARM_META = {
+  note: 'Agents are homogeneous sovereign peers — identical system prompt, identical tool contract, identical service catalog. They differ only by their on-chain wallet and which task in the DAG they are awarded (and, when roles are enabled, a planner-assigned specialty). Coordination is a deterministic harness (taskboard DAG gating + round-robin), not an LLM.',
+  tools: [
+    { name: 'discover_services', group: 'hands', desc: 'List real x402 services it can buy (filter by category / max price).' },
+    { name: 'buy_service', group: 'hands', desc: 'Pay for + call a service by id; Sippar threshold-signs, budget-capped.' },
+    { name: 'think', group: 'hands', desc: 'Delegate heavy synthesis/code to a paid LLM (own reasoning is scarce).' },
+    { name: 'check_budget', group: 'hands', desc: 'Read true on-chain spendable balance + spend ledger.' },
+    { name: 'relay_pay', group: 'hands', desc: 'Buy an x402 service on another chain, paying only from Tempo.' },
+    { name: 'list_open_tasks', group: 'economy', desc: 'List awarded tasks whose inputs are ready.' },
+    { name: 'wait_for_task', group: 'economy', desc: 'Block until an awarded task becomes claimable.' },
+    { name: 'claim_task', group: 'economy', desc: 'Claim one open task (exclusive, auto-expires).' },
+    { name: 'buy_input', group: 'economy', desc: 'Buy a consumed input from the peer who produced it (A2A settle).' },
+    { name: 'submit_task', group: 'economy', desc: 'Submit output; peers can buy it, downstream unblocks.' },
+  ],
+  services: VERIFIED_SERVICES.map((s) => ({ id: s.id, name: s.name, category: s.category, price: s.price, chain: s.chain, description: s.description })),
+};
 
 const PORT = Number(process.env.PORT || '7878');
 const RUNS_DIR = process.env.RUNS_DIR || 'runs';
@@ -42,6 +64,12 @@ const server = createServer((req, res) => {
     } catch {
       res.writeHead(500).end('dashboard.html missing');
     }
+    return;
+  }
+
+  if (url.startsWith('/meta')) {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-cache' });
+    res.end(JSON.stringify(SWARM_META));
     return;
   }
 
