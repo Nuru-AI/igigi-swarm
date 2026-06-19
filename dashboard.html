@@ -95,8 +95,18 @@
   /* prominent goal bar (first thing a newcomer reads) */
   .goalbar{display:flex;align-items:center;gap:16px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(8,16,43,.55)}
   .goalbar .glabel{font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--copper);flex:0 0 auto}
-  .goalbar .gtext{color:var(--paper-dim);font-size:13.5px;line-height:1.4;flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .goalbar .gright{flex:0 0 auto;display:flex;align-items:center;gap:8px}
+  .goalbar{cursor:pointer}
+  .goalbar .gtext{color:var(--paper-dim);font-size:13.5px;line-height:1.4;flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .goalbar.open .gtext{-webkit-line-clamp:99;overflow:visible}
+  .goalbar .gcaret{flex:0 0 auto;color:var(--copper);font-size:12px;transition:transform .15s}
+  .goalbar.open .gcaret{transform:rotate(90deg)}
+  .goalbar .gright{flex:0 0 auto;display:flex;align-items:center;gap:8px;cursor:default}
+  /* Detailed mode drops the DAG so the activity timeline reads cleanly (DAG is the Overview hero) */
+  body:not(.ovw) .col-dag{display:none}
+  /* receipt expand sections */
+  .lout .rcsec{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--copper);margin:7px 0 3px}
+  .lout .rcbody{white-space:pre-wrap;word-break:break-word;margin-bottom:4px;color:var(--paper-dim)}
+  .lout em{color:var(--grey-dim);font-style:italic}
 
   /* grid */
   .grid{flex:1;display:grid;grid-template-columns:280px minmax(0,1fr) 330px;gap:14px;padding:14px;overflow:hidden}
@@ -424,9 +434,10 @@
     <div class="stat"><span class="k">status</span><span class="v" id="status" role="status" aria-live="polite" style="font-size:13px;color:var(--grey)">waiting</span></div>
   </header>
 
-  <div class="goalbar">
+  <div class="goalbar" id="goalbar" title="click to show the full swarm prompt">
     <span class="glabel">Goal</span>
     <span class="gtext" id="mandate">awaiting swarm launch</span>
+    <span class="gcaret" id="goalCaret" aria-hidden="true">▸</span>
     <span class="gright">
       <span class="chip" id="brainChip" title="Agents reason on bought, on-chain-settled inference. The exact model (DeepSeek / Kimi / Claude via OpenRouter) is set at launch and not reported in the feed."><span class="d" aria-hidden="true"></span><span id="brainTxt">—</span></span>
       <button class="infobtn" id="infoBtn" aria-expanded="false" aria-controls="explain" title="What is this?">i</button>
@@ -476,6 +487,7 @@
         <button class="tab" role="tab" aria-selected="false" aria-controls="body-market" data-tab="market">Market <span class="b" id="tabMarket">0</span></button>
         <button class="tab" role="tab" aria-selected="false" aria-controls="body-tasks" data-tab="tasks">Tasks <span class="b" id="tabTasks">0</span></button>
         <button class="tab" role="tab" aria-selected="false" aria-controls="body-deliver" data-tab="deliver">Result</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="body-receipt" data-tab="receipt">Receipt <span class="b" id="tabReceipt">0</span></button>
       </div>
 
       <div class="tabbody on" role="tabpanel" id="body-settle" data-body="settle" aria-label="On-chain A2A settlements">
@@ -485,6 +497,7 @@
       <div class="tabbody" role="tabpanel" id="body-market" data-body="market"><div id="market"><div class="empty">work products agents sell<br>each other appear here</div></div></div>
       <div class="tabbody" role="tabpanel" id="body-tasks" data-body="tasks"><div id="tasklist"><div class="empty">the shared task board<br>appears here</div></div></div>
       <div class="tabbody" role="tabpanel" id="body-deliver" data-body="deliver"><div id="deliver"><div class="empty">the assembled deliverable<br>appears here once the<br>final task is produced</div></div></div>
+      <div class="tabbody" role="tabpanel" id="body-receipt" data-body="receipt"><div id="receipt"><div class="empty">each external MPP / x402 service<br>an agent buys appears here<br>with its receipt</div></div></div>
     </section>
   </main>
 </div>
@@ -541,7 +554,7 @@ const listings = new Map();
 let money=0, settledTotal=0, settledCount=0, a2aCount=0, tasksTotal=0, tasksDone=0, capUSD=0;
 let hadFeed=false, hadSettle=false, feedFilter='all', metaLoaded=false, swarmModel='', deliv=null;
 let showThinking=false, userPickedTab=false, lastFeedEl=null, lastFeedKey='', lastFeedCount=1;
-let catSvcs=null, catalogChain='all', catalogCat='all';
+let catSvcs=null, catalogChain='all', catalogCat='all', receipts=[];
 let runStartMs=null, runEndMs=null, lastEventMs=null, lastEventRealMs=0;
 
 const $ = id => document.getElementById(id);
@@ -571,7 +584,7 @@ function tickClock(){
 setInterval(tickClock,1000);
 
 function reset(){
-  agents.clear(); dag.nodes.clear(); dag.edges=[]; dag.prodToTask.clear(); dag.depth.clear(); dag.rendered=false; listings.clear(); deliv=null;
+  agents.clear(); dag.nodes.clear(); dag.edges=[]; dag.prodToTask.clear(); dag.depth.clear(); dag.rendered=false; listings.clear(); deliv=null; receipts=[];
   money=0; settledTotal=0; settledCount=0; a2aCount=0; tasksTotal=0; tasksDone=0; capUSD=0;
   hadFeed=false; hadSettle=false; feedFilter='all';
   showThinking=false; userPickedTab=false; lastFeedEl=null; lastFeedKey=''; lastFeedCount=1;
@@ -582,6 +595,7 @@ function reset(){
   $('market').innerHTML='<div class="empty">work products agents sell<br>each other appear here</div>';
   $('tasklist').innerHTML='<div class="empty">the shared task board<br>appears here</div>';
   $('deliver').innerHTML='<div class="empty">the assembled deliverable<br>appears here once the<br>final task is produced</div>';
+  $('receipt').innerHTML='<div class="empty">each external MPP / x402 service<br>an agent buys appears here<br>with its receipt</div>'; $('goalbar').classList.remove('open');
   $('dagWrap').innerHTML='<div class="dag-empty">the task DAG renders here once a swarm starts</div>';
   $('filters').innerHTML='';
   $('money').textContent=pv(0); $('cap').textContent=''; $('gfill').style.width='0%';
@@ -589,7 +603,7 @@ function reset(){
   $('agentsLive').textContent='0/0'; $('setTotal').textContent=pv(0);
   $('agentsCnt').textContent=''; $('feedCnt').textContent=''; $('mandate').textContent='awaiting swarm launch';
   $('brainTxt').textContent='—';
-  $('tabSettle').textContent='0'; $('tabMarket').textContent='0'; $('tabTasks').textContent='0';
+  $('tabSettle').textContent='0'; $('tabMarket').textContent='0'; $('tabTasks').textContent='0'; $('tabReceipt').textContent='0';
   const tt=$('thinkToggle'); if(tt){ tt.classList.remove('on'); tt.setAttribute('aria-pressed','false'); tt.textContent='+ thinking'; }
   document.querySelectorAll('.tab.pulse').forEach(t=>t.classList.remove('pulse'));
   applyFeedFilter();
@@ -820,6 +834,27 @@ function mdToHtml(src){
   return html || '<p>(empty)</p>';
 }
 
+// receipt — every external MPP/x402 service an agent bought, with collapsible prompt+response
+function renderReceipts(){
+  $('tabReceipt').textContent=receipts.length;
+  if(!receipts.length) return;
+  $('receipt').innerHTML=receipts.map((r,i)=>{
+    const detail = (r.prompt||r.response)
+      ? `<div class="rcsec">prompt</div><div class="rcbody">${esc(r.prompt||'(not provided)')}</div><div class="rcsec">response</div><div class="rcbody">${esc(r.response||'(not provided)')}</div>`
+      : '<em>prompt + response are not emitted to the feed yet — have the swarm include them in the buy event to show here.</em>';
+    return `<div class="lrow expandable" data-rc="${i}" role="button" tabindex="0" aria-expanded="false" aria-label="${esc(r.service)} receipt">
+      <div class="l1"><span class="lid">${esc(nm(r.agent))}</span><span class="lprod">${esc(r.service)}</span><span class="lprice">${fmt(r.amount)}</span></div>
+      <div class="l2"><span>${esc(chainLabel(r.chain))}</span>${r.tx?txLink(r.tx,r.chain):''}${r.recordId?`<span class="badge sold">rec #${esc(r.recordId)}</span>`:''}</div>
+      <div class="lout">${detail}</div>
+    </div>`;
+  }).join('');
+}
+$('receipt').addEventListener('click',e=>{ const r=e.target.closest('.lrow.expandable'); if(r&&!e.target.closest('a')) toggleTaskRow(r); });
+$('receipt').addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ const r=e.target.closest('.lrow.expandable'); if(r){ e.preventDefault(); toggleTaskRow(r); } } });
+
+// goal bar: collapsed shows a one-line summary; click reveals the full swarm prompt
+$('goalbar').addEventListener('click',e=>{ if(e.target.closest('.gright')) return; $('goalbar').classList.toggle('open'); });
+
 // assembled deliverable
 function renderDeliverable(){
   if(!deliv) return;
@@ -977,6 +1012,7 @@ function handle(e){
     case 'buy':{
       money+=e.amountUSD; setGauge();
       const a=agents.get(e.agent); if(a){ a.spent+=e.amountUSD; a.est=Math.max(0,a.est-e.amountUSD); const s=(a.services[e.service]||(a.services[e.service]={n:0,usd:0})); s.n++; s.usd+=e.amountUSD; renderAgents(); flashAgent(e.agent); }
+      receipts.push({agent:e.agent,service:e.service,amount:e.amountUSD,tx:e.tx,chain:e.chain,recordId:e.recordId,prompt:e.prompt||e.payload,response:e.response||e.result}); renderReceipts();
       const rec=e.recordId?` <span class="rec" title="certified ICP threshold-signing record — verifiable against the IC root key">rec #${esc(e.recordId)}</span>`:'';
       feedRow('buy',e.agent,'buy','bought <span class="svc">'+esc(e.service)+'</span>','−'+fmt(e.amountUSD),txLink(e.tx,e.chain)+rec);
       break;}
