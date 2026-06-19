@@ -32,3 +32,24 @@ The deep-DAG agents (intermediate + sink) need the most inference turns, so they
 1. **Move the BRAIN to a higher-reliability inference rail** (OpenRouter / self-hosted vLLM), keep **A2A `buy_input`/`buy_service` settlements on-chain via Sippar** — the data endpoints already prove on-chain settlement is rock-solid; it's only LLM inference that's flaky. This is the "brain off-signer" architecture, now justified by **reliability data**, not just the ~70% signature-cost saving.
 2. **Phase D — MPP Sessions** (1 signature → N micropayments) to cut on-chain call volume.
 3. Stay fully on-chain but **cap concurrency at ~3 agents** per wave; run more waves sequentially.
+
+---
+
+## UPDATE — 5/5 with Claude-via-Locus (the fix)
+
+Re-ran the same 5-agent DAG with the brain = **Claude (claude-sonnet-4-6) via the Locus Wrapped API** (beta), A2A still on-chain. `INFERENCE_PROVIDER=locus-anthropic`, `SWARM_STAGGER_MS=10000`.
+
+- **5/5 tasks completed** — deep DAG fully closed (3 sources → intermediate t4 → sink t5).
+- **4 on-chain A2A settlements**: A4→A1 $0.007, A4→A2 $0.008, A5→A4 $0.015, A5→A4 $0.01 (money flows UP the DAG; real Tempo tx).
+- **0 Claude tokens** (off the weekly cap) — billed per-call in USDC from the Locus Base wallet, not the subscription.
+- **Real grounded deliverable** — investment brief citing live NVDA $210.69 +2.95%, 241M vol, AI-token mcap $22.7B, RNDR/TAO; no placeholders.
+- One agent hit a single "Upstream API call failed" (Locus→Anthropic concurrency hiccup); the board's claim-reassignment + 5×backoff retry absorbed it → still 5/5.
+
+### Why it worked where the cheap rails didn't
+- **Per-call reliability + quality**: Claude doesn't fumble the multi-turn protocol or invent data the way deepseek-chat/qwen did.
+- **Stagger (10s ramp)** spread peak inference concurrency so the provider didn't drop deep-layer agents (concurrent start → 2/5; staggered → 5/5).
+- **Brain off the signer**: inference billed by Locus (USDC, Base), so the ICP signer is reserved for A2A — no per-thought cycle burn.
+
+### Cost / ceiling
+- ~$1–1.8 USDC per 5-agent run on sonnet (~$0.02/call × ~12 calls × 5). Money-bound, no weekly cap, no signer cycles. Use `claude-haiku-4-5` to cut ~5–8×.
+- **Verdict: GO for scale with Claude-via-Locus + stagger.** The remaining limit is provider concurrency (mitigated by stagger/retry/board-reassignment), not our harness, the cap, or the signer. Run dozens in staggered waves; budget is the only knob.
