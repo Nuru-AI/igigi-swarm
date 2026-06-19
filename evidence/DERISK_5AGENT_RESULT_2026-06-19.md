@@ -53,3 +53,25 @@ Re-ran the same 5-agent DAG with the brain = **Claude (claude-sonnet-4-6) via th
 ### Cost / ceiling
 - ~$1–1.8 USDC per 5-agent run on sonnet (~$0.02/call × ~12 calls × 5). Money-bound, no weekly cap, no signer cycles. Use `claude-haiku-4-5` to cut ~5–8×.
 - **Verdict: GO for scale with Claude-via-Locus + stagger.** The remaining limit is provider concurrency (mitigated by stagger/retry/board-reassignment), not our harness, the cap, or the signer. Run dozens in staggered waves; budget is the only knob.
+
+---
+
+## UPDATE 2 — 8/8 at 8 agents on OpenRouter Claude (the scale unlock)
+
+The beta-5 ceiling was the Locus-beta Anthropic RPM tier, not our harness. Switching the brain to **Claude (anthropic/claude-sonnet-4.6) via OpenRouter** (high RPM, $20 credits) — A2A still on-chain on Tempo:
+
+- **8/8 tasks completed** — every layer of an 8-node, 4-layer DAG closed (sources → 2 intermediate layers → sink).
+- **7 on-chain A2A MPP settlements on Tempo**: A5→A1, A5→A3, A6→A2, A6→A4, A7→A5, A7→A6, A8→A7 — money flowing all the way up the supply chain, real tx.
+- **0 inference failures** at 8 concurrent agents (vs Locus-beta's cascade of "Upstream API call failed"). The rate-limit ceiling is gone.
+- 0 Claude subscription tokens for agents; deliverable = a real ranked AI-compute investment memo (NVDA/AMD + crypto-AI tokens, composite scoring).
+- Native OpenAI tool-role history works directly via OpenRouter's chat-completions API (no flatten / no fromClaudeMessages — that's the OpenRouter Agent SDK, not the raw API).
+
+### Brain options matrix (final)
+| Brain | Reliability @8 | Cap | Cost | Notes |
+|---|---|---|---|---|
+| Claude via OpenRouter | ✅ 8/8, 0 fails | none (RPM high) | OpenRouter credits (~$1/run) | the scale path |
+| Claude subscription (AGENT_ENGINE=claude) | ✅ (full Claude) | weekly token cap | free within cap | simplest if tokens available |
+| Claude via Locus beta | ⚠️ ≤5 agents | beta RPM tier | USDC | on-Locus, rate-limited at scale |
+| deepseek/groq MPP (Tempo) | ❌ weak/flaky | n/a | on-chain Tempo | maximal thesis, unreliable |
+
+**Verdict: scaling is solved.** Reliable 8-agent autonomous swarm with on-chain Tempo MPP settlements; the only knob is inference $ (OpenRouter) or subscription tokens. Dozens = bigger fleet, same setup.
