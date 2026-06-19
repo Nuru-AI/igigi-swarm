@@ -1,55 +1,56 @@
-# Give an agent a budget. Watch what it buys.
+# Igigi Swarm
 
-An autonomous AI agent with **non-custodial, cross-chain hands** and a **cap it cannot exceed** — built on Sippar's threshold-signed payment rails.
+A swarm of sovereign AI agents that pay each other. Machine payments via MPP on Tempo, settled by [Sippar](https://sippar.network) threshold signatures, composing real work with no human in the loop.
 
-> *Truth Terminal* proved an AI can create economic value — but humans held its wallet.
-> Anthropic's *Claudius* ran a real budget — and hallucinated a fake Venmo because it had no real rails, and got talked out of its money.
-> Here's the same autonomy, with a wallet the agent controls (no private key) and a cap it physically can't argue past.
+> Truth Terminal proved an AI can earn a fortune, then had to ask a human for its allowance, because it never held its own wallet.
+> Anthropic's Claudius ran a real budget and invented a Venmo account that didn't exist, because it had rails for thinking and none for paying.
+> Igigi gives a team of agents wallets they actually control, a limit they can't argue past, and the one thing none of those experiments had: the ability to pay each other.
 
-## How it works
+In the *Atra-Hasis* myth the **Igigi** were the worker-gods who did the labor so others didn't have to. It fits a swarm of agents that earn, spend, and settle among themselves.
 
-```
-   human sets cap + goal
-            │
-            ▼
-   ┌──────────────────┐   reasons on the Claude SUBSCRIPTION
-   │  Claude agent    │   (setup token — no per-token API spend)
-   │  (Agent SDK)     │
-   └────────┬─────────┘
-            │ tools: discover_services · buy_service · check_budget
-            ▼
-   ┌──────────────────┐   HARD CAP enforced here, below the model
-   │  budget chokepoint│   (Project Vend / Freysa lesson)
-   └────────┬─────────┘
-            │
-            ▼
-   ┌──────────────────┐   x402 / MPP across 10 chains,
-   │  Sippar rails    │   signed by ICP threshold sigs.
-   │  (deployed)      │   The agent never holds a key.
-   └──────────────────┘
-```
+## What it is
 
-- **Reasoning = the Claude subscription** (`CLAUDE_CODE_OAUTH_TOKEN`). Free to think; money is only spent buying services.
-- **Hands = Sippar** — `buy_service` settles real stablecoin payments across chains via Sippar's deployed rails (`src/sippar.ts`).
-- **Guardrail = the budget chokepoint** (`src/budget.ts`) — every purchase is checked *before* it's signed; overspend throws. The agent cannot route around it.
-- **Identity = already on-chain** — the paying address is a registered ERC-8004 agent (#9274) + Self Agent ID (#169), keyless (signed by ICP threshold). A verifiable economic actor across chains.
-- **Economy = 21 render-verified services** (`src/services.ts`) — each confirmed paid-and-rendered on mainnet.
+You give the swarm a goal. A coordinator sizes the team to the work (3 to 8 specialists), then provisions them live: a fresh ICP identity per agent, an on-chain address derived by threshold signatures, funded from treasury before your eyes. A planner splits the goal into a dependency graph. Each agent buys the data it needs and buys its inputs from the peers who produced them. Every payment settles in USDC over MPP on Tempo, and money flows up the chain of work to the agent that assembles the final answer.
 
-## Run
+The agents never hold private keys. The signature *is* the payment. The spend cap lives in the signer, below the model, and the agents can see their remaining budget so they ration on their own.
+
+## Run it
 
 ```bash
 npm install
-export CLAUDE_CODE_OAUTH_TOKEN=...        # claude setup-token (subscription auth)
-export SIPPAR_ACCESS_TOKEN=...            # stealth-gate token
-npm start "research the Tempo ecosystem and write a sourced briefing"
+cp .env.example .env        # add SIPPAR_ACCESS_TOKEN + OPENROUTER_API_KEY
+
+# 1. coordinator sizes the team, then provisions + funds wallets on-chain
+node provision.mjs "rank NVDA, AMD, and crypto-AI tokens with rationale"
+
+# 2. run the swarm on the freshly-provisioned wallets
+MPP_ONLY=1 AGENT_ENGINE=deepseek INFERENCE_PROVIDER=openrouter \
+  OPENROUTER_MODEL=anthropic/claude-sonnet-4.6 \
+  SWARM_PRINCIPALS=$(cat .provisioned-principals.txt) \
+  npm run economy "rank NVDA, AMD, and crypto-AI tokens with rationale"
+
+# watch the live economy (or replay a proven run with FEED_FILE=runs/<run>.jsonl)
+npm run dashboard          # http://localhost:7878
 ```
 
-The agent discovers services, buys what it needs across chains, narrates each purchase + on-chain receipt, and a live `💸 PAID … → remaining $…` feed shows the budget draining. A `🛑 BLOCKED` line fires if it tries to overspend.
+In Claude Code, the bundled `/igigi-swarm` skill drives the whole demo for you, including a zero-risk replay mode.
 
-## Integration point
+## What's proven
 
-`src/sippar.ts` `pay()` posts to `POST /api/sippar/agent/pay` — a thin Sippar backend wrapper over `x402ClientService.callWithPayment` + `budget-manager`. That endpoint is the one server-side piece to confirm/deploy (the signing + 10-chain routing already exist).
+On mainnet: 8 agents, 8 wallets, 9 agent-to-agent settlements on Tempo, one finished deliverable, zero failures, with a receipt for every handoff.
 
-## Vision
+A blind LLM judge scored the swarm 9.0 against a single Claude agent's 7.4 on the same task, and 3 out of 3 with the answers swapped. And an ablation showed where that quality comes from: with its data feeds off, the swarm was honest but 3 to 4 times wrong on live prices; with them on, it landed within about 1%. The payments buy real facts, not just settlement.
 
-This is Sippar's documented thesis, made runnable: **"Trained Hands for Frontier Intelligence"** (`NURU_AI_STRATEGIC_VISION.md`), the Sips Economy's *"give an agent a budget, watch what it buys"* (`SIPS-ECONOMY-MANIFESTO-DRAFT.md`), and the *Humans in Charge* value — *"budget caps enforced cryptographically, not contractually"* (`SIPS-VISION-AND-VALUES.md`).
+See [`evidence/`](evidence/) for the A/B results and [`DEVPOST_SUBMISSION.md`](DEVPOST_SUBMISSION.md) for the full story.
+
+## How it's built
+
+- **Wallets** — each agent is an ICP principal whose Tempo address is derived and signed by ICP threshold cryptography (Sippar). No custody, no seed phrase.
+- **Settlement** — every payment, agent-to-service and agent-to-agent, runs over MPP on Tempo in USDC.e, facilitator-less (the payee verifies the proof). `MPP_ONLY=1` keeps every flow on MPP.
+- **The runner** (`src/economy.ts`) — a planner builds the task DAG, a board gates each claim on its dependencies, and agents reason with Claude via OpenRouter (off any cap) to discover, buy, produce, and submit.
+- **Provisioning** (`provision.mjs`) — the coordinator decides how many specialists the goal needs, generates that many identities, and funds each through Sippar's transfer endpoint.
+- **Cross-chain** — an agent holding only Tempo USDC.e can buy a service on Base; Sippar debits Tempo and fronts the Base payment from its treasury.
+
+## Tech
+
+TypeScript · ICP Chain-Fusion threshold signatures (Sippar) · Tempo + MPP (IETF Machine Payments Protocol) · USDC.e · Claude via OpenRouter.
