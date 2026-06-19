@@ -681,12 +681,30 @@ async function main() {
     : INFER_PROVIDER === 'openrouter' ? `OpenRouter brain (${OPENROUTER_MODEL}) — off-cap, A2A still on-chain`
     : `Sippar MPP rail '${INFERENCE_SERVICE}' (${INFERENCE_MODEL || DEEPSEEK_MODEL}) — each thought on-chain`;
   console.log(`engine: ${AGENT_ENGINE === 'deepseek-code' ? 'CodeAgent code-gen' : AGENT_ENGINE === 'deepseek' ? 'JSON tool-calls' : 'Claude SDK'} · brain: ${brain}${AGENT_ENGINE !== 'claude' && INFER_PROVIDER !== 'openrouter' ? ` · history=${FLATTEN_TOOL_HISTORY ? 'flattened' : 'native-tool-role'}` : ''} · 0 Claude tokens${AGENT_ENGINE === 'claude' ? '' : ' (agents)'}\n`);
-  // Stagger agent starts to spread the inference-rail load — at 5+ concurrent agents the Locus
-  // rail times out ("inference failed") and breaks the deep DAG layers. The DAG still orders the
-  // real work; this just smooths the initial burst. SWARM_STAGGER_MS=0 keeps the old behaviour.
+  // Concurrency control. The inference provider rate-limits at a fixed ceiling (Locus-beta
+  // Claude ≈ 5 concurrent); 8-wide bursts get "Upstream API call failed" for everyone. So cap
+  // the number of agents in their active inference loop: MAX_CONCURRENT_AGENTS workers pull
+  // agents from a shared counter IN INDEX ORDER (DAG-early/source tasks first), the rest queue.
+  // Peak Claude-call rate stays under the limit while a large fleet still completes. 0 = no cap
+  // (old behaviour). SWARM_STAGGER_MS smooths each worker's start.
   const STAGGER_MS = Number(process.env.SWARM_STAGGER_MS || '0');
-  await Promise.allSettled(agents.map((a, i) =>
-    (STAGGER_MS ? new Promise((r) => setTimeout(r, i * STAGGER_MS)) : Promise.resolve()).then(() => run(a, board, guard, feed))));
+  const MAX_CONCURRENT = Number(process.env.MAX_CONCURRENT_AGENTS || '0');
+  if (MAX_CONCURRENT > 0 && MAX_CONCURRENT < agents.length) {
+    console.log(`   concurrency cap: max ${MAX_CONCURRENT} agents active at once (pool over ${agents.length})\n`);
+    let next = 0;
+    const worker = async (slot: number): Promise<void> => {
+      if (STAGGER_MS) await new Promise((r) => setTimeout(r, slot * STAGGER_MS)); // smooth the initial burst
+      while (!guard.halted_) {
+        const i = next++;
+        if (i >= agents.length) break;
+        await run(agents[i], board, guard, feed);
+      }
+    };
+    await Promise.allSettled(Array.from({ length: MAX_CONCURRENT }, (_, slot) => worker(slot)));
+  } else {
+    await Promise.allSettled(agents.map((a, i) =>
+      (STAGGER_MS ? new Promise((r) => setTimeout(r, i * STAGGER_MS)) : Promise.resolve()).then(() => run(a, board, guard, feed))));
+  }
   clearTimeout(timer);
 
   // 4) Observe.
