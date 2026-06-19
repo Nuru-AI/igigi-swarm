@@ -7,7 +7,28 @@ description: Launch or replay the live Igigi Swarm demo — an autonomous AI age
 
 This skill runs the demo end-to-end: a **coordinator** (a real model call) sizes the team to the goal, **provisions and funds sovereign agent wallets on-chain**, the **swarm runs** (each agent paying its peers via MPP on Tempo, settled by Sippar), and the **live dashboard** streams every settlement.
 
-The point of the demo is the leap nobody else made: an agent that can pay *another agent it doesn't own*. So the narration matters as much as the commands — surface what's happening as it happens.
+The point of the demo is the leap nobody else made: an agent that can pay *another agent it doesn't own*. So the narration matters as much as the commands. Surface what's happening as it happens.
+
+## Demo flow (start here when presenting)
+
+When someone asks to run or demo the swarm, **open by asking what they want it to do**, and offer three concrete options so they don't have to invent a goal on the spot. Present them like this:
+
+> What should the swarm work on? A few options:
+> 1. **AI-compute investment memo** — rank NVIDIA, AMD, and crypto-AI tokens from live stock quotes, crypto sentiment, AI news, and semiconductor supply-chain signals. (the proven run; ~6 specialists)
+> 2. **Crypto-AI market briefing** — trending tokens, perpetual funding rates, recent AI news, and sentiment, into a ranked watchlist.
+> 3. **L2 competitive teardown** — compare three Ethereum L2s on activity, fees, and ecosystem from on-chain and market data.
+>
+> Pick one, or give me your own goal.
+
+Recommend option 1 if they're unsure — it's the proven, multi-specialist run.
+
+Once they answer, do these in order and **narrate each step out loud** (the lines in "What to say" below are the script):
+
+1. **Confirm the team size.** Run provisioning; when the coordinator returns, say it plainly: *"This goal needs N specialists — here are their roles."* List them.
+2. **Show the wallets being created and funded.** As `provision.mjs` prints each line, call it out: *"Minting a sovereign wallet for the Equity Analyst… funding it on-chain from treasury… funded, here's the tx."* The point the audience must see is that these are **real on-chain wallets created on demand**, not mock accounts.
+3. **Hand off to the dashboard.** Give the URL and say *"open this to watch them pay each other."* Start the swarm so the dashboard fills with live settlements.
+
+Keep the prereq checks quiet/quick — the audience cares about the team forming and paying each other, not about `npm install`.
 
 ## Before you start (prereqs)
 
