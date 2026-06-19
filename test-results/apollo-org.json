@@ -1,0 +1,1893 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.008,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001f40c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a3557a8846a3557859420c000000000000000000000b9537d11c60e8b5080c0b8418ffb9f7f4e750722bb00f0885ca34f16de573d8aee7bd60093b61e89b408c0f701d285bbb179ecd40db6906bd0d61b882dece62157205621c682ab92d98e0a321c",
+    "response": {
+      "success": true,
+      "data": {
+        "organization": {
+          "id": "5d0a0fbff6512580bf33a120",
+          "name": "Stripe",
+          "website_url": "http://www.stripe.com",
+          "angellist_url": "http://angel.co/stripe",
+          "linkedin_url": "http://www.linkedin.com/company/stripe",
+          "twitter_url": "http://twitter.com/stripe",
+          "facebook_url": "https://www.facebook.com/StripeHQ",
+          "primary_phone": {
+            "number": "+1 415-298-5539",
+            "source": "Owler",
+            "sanitized_number": "+14152985539"
+          },
+          "languages": [
+            "English",
+            "Spanish",
+            "French",
+            "Japanese"
+          ],
+          "alexa_ranking": 200,
+          "phone": "+1 415-298-5539",
+          "linkedin_uid": "2135371",
+          "founded_year": 2010,
+          "publicly_traded_symbol": null,
+          "publicly_traded_exchange": null,
+          "logo_url": "https://zenprospect-production.s3.amazonaws.com/uploads/pictures/69a4886fcf5bc40001d6a14c/picture",
+          "crunchbase_url": null,
+          "primary_domain": "stripe.com",
+          "sic_codes": [
+            "7375",
+            "7374",
+            "7389"
+          ],
+          "naics_codes": [
+            "54151",
+            "522320",
+            "518210"
+          ],
+          "sanitized_phone": "+14152985539",
+          "industry": "information technology & services",
+          "estimated_num_employees": 8000,
+          "keywords": [
+            "payments",
+            "developer tools",
+            "cloud infrastructure",
+            "credit cards",
+            "consumer internet",
+            "enterprise software",
+            "software",
+            "internet",
+            "information technology",
+            "technology, information & internet",
+            "banking-as-a-service",
+            "global compliance",
+            "merchant onboarding tools",
+            "merchant dashboard",
+            "developer-friendly apis",
+            "risk assessment",
+            "machine learning",
+            "api security",
+            "financial services",
+            "data analytics",
+            "platform scalability",
+            "payment analytics",
+            "digital commerce",
+            "b2c",
+            "revenue sharing",
+            "payment methods",
+            "revenue management",
+            "global reach",
+            "digital wallets",
+            "payment automation",
+            "computer systems design and related services",
+            "online payments",
+            "api documentation",
+            "global payment methods",
+            "automated revenue recognition",
+            "payment ui customization",
+            "merchant services",
+            "b2b",
+            "instant payouts",
+            "embedded finance solutions",
+            "crypto payouts",
+            "financial automation",
+            "api platform",
+            "payment links",
+            "embedded finance",
+            "compliance tools",
+            "merchant onboarding",
+            "payment reconciliation tools",
+            "global expansion tools",
+            "developer apis",
+            "marketplace payments",
+            "cryptocurrency",
+            "fraud ai",
+            "e-commerce",
+            "fraud detection",
+            "compliance automation",
+            "api integration",
+            "no-code payment setup",
+            "payment link automation",
+            "virtual cards",
+            "automated tax",
+            "cross-border transactions",
+            "crypto payments",
+            "payment gateway",
+            "fraud prevention",
+            "government",
+            "d2c",
+            "no-code payments",
+            "cross-border payments",
+            "payment ui",
+            "tax automation",
+            "multi-currency support",
+            "marketplace monetization",
+            "payment gateway security",
+            "merchant analytics",
+            "merchant accounts",
+            "payment solutions",
+            "crypto payment integration",
+            "payment optimization",
+            "payment fraud detection",
+            "business formation",
+            "multi-party payments",
+            "fintech infrastructure",
+            "operational efficiency",
+            "payment processing",
+            "customer experience",
+            "api integration tools",
+            "subscription billing",
+            "fraud detection ai",
+            "risk management ai",
+            "marketplaces",
+            "global payments",
+            "automated tax compliance",
+            "multi-currency settlement",
+            "services",
+            "revenue automation",
+            "risk management",
+            "payment reconciliation",
+            "financial infrastructure",
+            "virtual card issuance",
+            "consulting",
+            "transaction security",
+            "retail",
+            "cryptocurrency payments",
+            "checkout solutions",
+            "invoicing",
+            "identity verification",
+            "business financing",
+            "transaction monitoring",
+            "ecommerce solutions",
+            "marketplace payouts",
+            "customer identity",
+            "revenue optimization",
+            "no-code integrations",
+            "payment management",
+            "revenue recognition",
+            "financial accounts",
+            "financial services marketplace",
+            "customer stories",
+            "business models",
+            "kyc compliance",
+            "aml compliance",
+            "startup support",
+            "banking as a service",
+            "payment infrastructure",
+            "business analytics",
+            "customer financing",
+            "financial connections",
+            "accelerated checkout",
+            "marketplace management",
+            "support services",
+            "custom reports",
+            "data synchronization",
+            "payment security",
+            "billing automation",
+            "terminal payments",
+            "finance",
+            "consumer goods",
+            "enterprises",
+            "computer software",
+            "information technology & services",
+            "internet infrastructure",
+            "consumers",
+            "artificial intelligence",
+            "computer & network security"
+          ],
+          "organization_revenue_printed": "5.1B",
+          "organization_revenue": 5120000000,
+          "industries": [
+            "information technology & services",
+            "financial services",
+            "computer software",
+            "internet"
+          ],
+          "secondary_industries": [
+            "financial services",
+            "computer software",
+            "internet"
+          ],
+          "snippets_loaded": true,
+          "industry_tag_id": "5567cd4773696439b10b0000",
+          "industry_tag_hash": {
+            "information technology & services": "5567cd4773696439b10b0000",
+            "financial services": "5567cdd67369643e64020000",
+            "computer software": "5567cd4e7369643b70010000",
+            "internet": "5567cd4d736964397e020000"
+          },
+          "retail_location_count": 0,
+          "raw_address": "354 Oyster Point Blvd, South San Francisco, California 94080, US",
+          "street_address": "354 Oyster Point Blvd",
+          "city": "South San Francisco",
+          "state": "California",
+          "postal_code": "94080-1912",
+          "country": "United States",
+          "owned_by_organization_id": null,
+          "short_description": "Stripe, Inc. is a financial infrastructure platform founded in 2010 by brothers John and Patrick Collison. Headquartered in San Francisco, California, with additional offices in Dublin, London, Paris, Singapore, and Tokyo, Stripe specializes in online payment processing and related services for businesses globally. The company simplifies online transactions through developer-friendly APIs, making it easier for businesses to integrate payment solutions.\n\nStripe's core offerings include payment processing, fraud detection with Stripe Radar, business formation through Stripe Atlas, and merchant cash advances via Stripe Capital. The platform also automates sales tax calculations with Stripe Tax and provides no-code checkout options through Payment Links. Stripe has expanded its services to support various markets and has made significant strides in areas like Bitcoin support and carbon removal initiatives with Stripe Climate. The company has gained a strong reputation among developers and businesses of all sizes, contributing to its substantial growth and high valuation.",
+          "suborganizations": [
+            {
+              "id": "5a9d764ca6da98d94d8c80d4",
+              "name": "OpenChannel",
+              "website_url": "http://www.openchannel.io"
+            },
+            {
+              "id": "62606e21fcdee001123738c2",
+              "name": "Privy",
+              "website_url": "http://www.privy.io"
+            },
+            {
+              "id": "55921e1c736964583ee21200",
+              "name": "Touchtech Payments (acquired by Stripe)",
+              "website_url": "http://www.touchtechpayments.com"
+            },
+            {
+              "id": "5a9d33fda6da98d97e743773",
+              "name": "Paystack",
+              "website_url": "http://www.paystack.com"
+            },
+            {
+              "id": "5a9f2bd4a6da98d99780e5b0",
+              "name": "Indie Hackers",
+              "website_url": "http://www.indiehackers.com"
+            },
+            {
+              "id": "5d135a941b8b76095acb6e22",
+              "name": "Recko | A Stripe company",
+              "website_url": "http://www.recko.io"
+            },
+            {
+              "id": "55edb38af3e5bb165200732e",
+              "name": "BBPOS | A Stripe company",
+              "website_url": "http://www.bbpos.com"
+            },
+            {
+              "id": "55edee97f3e5bb5b5b0054be",
+              "name": "Payable",
+              "website_url": null
+            },
+            {
+              "id": "54a1293d69702d979c0d9501",
+              "name": "TOTEMS | Data Analytics",
+              "website_url": "http://www.totems.co"
+            },
+            {
+              "id": "5dcc7ddbcd965c00d4993469",
+              "name": "Okay (acquired by Stripe)",
+              "website_url": "http://www.okayhq.com"
+            },
+            {
+              "id": "5f482bca96801f0001adb5ea",
+              "name": "Orum.io (We\u2019ve joined Stripe)",
+              "website_url": "http://www.orum.io"
+            },
+            {
+              "id": "63444fd1a6719600a40fec3a",
+              "name": "Bridge",
+              "website_url": "http://www.bridge.xyz"
+            },
+            {
+              "id": "6727ca260b702b000157e69c",
+              "name": "Runkit",
+              "website_url": "http://www.runkit.com"
+            },
+            {
+              "id": "5da543ddb7b6f10001090fd6",
+              "name": "Bouncer (acquired by Stripe)",
+              "website_url": "http://www.getbouncer.com"
+            },
+            {
+              "id": "55697c8c73696425c0403d00",
+              "name": "Privy.io",
+              "website_url": null
+            },
+            {
+              "id": "54a11af669702d8ed4180700",
+              "name": "TaxJar | A Stripe company",
+              "website_url": "http://www.taxjar.com"
+            },
+            {
+              "id": "54a1285269702d9b8b270e01",
+              "name": "Index (acquired by Stripe)",
+              "website_url": "http://www.index.com"
+            },
+            {
+              "id": "6821074fac23960001fe8c0c",
+              "name": "Payable",
+              "website_url": "http://www.payable.com"
+            },
+            {
+              "id": "5ebb20db84243e008cf249d3",
+              "name": "Metronome",
+              "website_url": "http://www.metronome.com"
+            },
+            {
+              "id": "60b3562c3172290001111032",
+              "name": "Lemon Squeezy",
+              "website_url": "http://www.lemonsqueezy.com"
+            },
+            {
+              "id": "63e12574f47c9600f2eeecdd",
+              "name": "Supaglue (we've joined Stripe!)",
+              "website_url": "http://www.supaglue.com"
+            },
+            {
+              "id": "685240217c61f30001cefdc3",
+              "name": "Indie Hackers Puerto Rico",
+              "website_url": "http://www.indiehackerspr.com"
+            }
+          ],
+          "num_suborganizations": 22,
+          "annual_revenue_printed": "5.1B",
+          "annual_revenue": 5120000000,
+          "total_funding": 9443867423,
+          "total_funding_printed": "9.4B",
+          "latest_funding_round_date": "2026-03-01T00:00:00.000+00:00",
+          "latest_funding_stage": "Venture (Round not Specified)",
+          "funding_events": [
+            {
+              "id": "6a076166792a21000119ce70",
+              "date": "2026-03-01T00:00:00.000+00:00",
+              "news_url": null,
+              "type": "Venture (Round not Specified)",
+              "investors": "",
+              "amount": "14.6M",
+              "currency": "$"
+            },
+            {
+              "id": "6965fc56f8c3e8000102cb6f",
+              "date": "2025-03-01T00:00:00.000+00:00",
+              "news_url": "https://www.ft.com/content/ba8c698b-3d47-405e-ae21-7a1f2bd796a1",
+              "type": "Venture (Round not Specified)",
+              "investors": "",
+              "amount": null,
+              "currency": "$"
+            },
+            {
+              "id": "669742ecf0b51c0001290e27",
+              "date": "2024-04-01T00:00:00.000+00:00",
+              "news_url": null,
+              "type": "Other",
+              "investors": "Sequoia Capital, Brookfield Asset Management, Foresite Capital Management, LLC, Paradigm, Founders Circle Capital",
+              "amount": "694.2M",
+              "currency": "$"
+            },
+            {
+              "id": "6430aa5922d3b4000159754f",
+              "date": "2023-03-01T00:00:00.000+00:00",
+              "news_url": "https://stripe.com/en-in/newsroom/news/stripe-series-i-employee-liquidity",
+              "type": "Venture (Round not Specified)",
+              "investors": "Founders Fund, Temasek, Goldman Sachs Asset Management, GIC, Thrive Capital, MSD Partners, General Catalyst, Baillie Gifford, Andreessen Horowitz",
+              "amount": "6.5B",
+              "currency": "$"
+            },
+            {
+              "id": "6a076166792a21000119ce7a",
+              "date": "2021-06-01T00:00:00.000+00:00",
+              "news_url": null,
+              "type": "Other",
+              "investors": "Shopify",
+              "amount": "350M",
+              "currency": "$"
+            },
+            {
+              "id": "604f71034f057f0001abaaaf",
+              "date": "2021-03-01T00:00:00.000+00:00",
+              "news_url": "https://www.cnbc.com/2021/03/14/stripe-valued-at-95-billion-in-600-million-funding-round.html",
+              "type": "Series H",
+              "investors": "Sequoia, Fidelity Investments, AXA, Baillie Gifford, Ireland National Treasury Management Agency, Allianz X",
+              "amount": "600M",
+              "currency": "$"
+            },
+            {
+              "id": "5e989dd2d79a23000182737d",
+              "date": "2020-04-01T00:00:00.000+00:00",
+              "news_url": "https://techcrunch.com/2020/04/16/stripe-raises-600m-at-36b-valuation-in-series-g-extension-says-it-has-2b-on-its-balance-sheet/",
+              "type": "Series G",
+              "investors": "Sequoia, General Catalyst, Andreessen Horowitz",
+              "amount": "600M",
+              "currency": "$"
+            },
+            {
+              "id": "5bac1db8324d440dce62ade3",
+              "date": "2018-09-01T00:00:00.000+00:00",
+              "news_url": "https://www.cnbc.com/2019/01/30/stripe-raises-100-million-from-tiger-global-at-22point5-billion-valuation.html",
+              "type": "Series E",
+              "investors": "Sequoia, Kleiner Perkins, Thrive Capital, Tiger Global, DST Global",
+              "amount": "245M",
+              "currency": "$"
+            },
+            {
+              "id": "584556b2f65125e662a2b50a",
+              "date": "2016-11-01T00:00:00.000+00:00",
+              "news_url": "https://techcrunch.com/2016/11/25/payments-provider-stripe-has-raised-another-150-at-a-9b-valuation/",
+              "type": "Series D",
+              "investors": "Sequoia, General Catalyst, CapitalG",
+              "amount": "150M",
+              "currency": "$"
+            },
+            {
+              "id": "55c55127736964187d6d0f00",
+              "date": "2015-07-01T00:00:00.000+00:00",
+              "news_url": "http://www.nytimes.com/2015/07/28/technology/stripe-digital-payments-start-up-raises-new-funding-and-partners-with-visa.html",
+              "type": "Series C",
+              "investors": "Visa, American Express Ventures, Square Peg Capital, Sequoia, Kleiner Perkins, SquareOne, Playfair Capital, American Express",
+              "amount": "100M",
+              "currency": "$"
+            },
+            {
+              "id": "55c5777773696456d8f95400",
+              "date": "2014-12-01T00:00:00.000+00:00",
+              "news_url": "http://techcrunch.com/2014/12/04/thrive-capital-bet-big-30-million-to-be-exact-on-stripe/",
+              "type": "Series C",
+              "investors": "Founders Fund, Khosla Ventures, Sequoia, Thrive Capital, Designer Fund, General Catalyst",
+              "amount": "70M",
+              "currency": "$"
+            },
+            {
+              "id": "55c576cb73696456d8173a00",
+              "date": "2014-01-01T00:00:00.000+00:00",
+              "news_url": "https://techcrunch.com/2014/01/22/with-an-eye-to-international-growth-payments-company-stripe-raises-80m-from-peter-thiel-khosla-and-sequoia-at-a-1-25b-valuation/",
+              "type": "Series C",
+              "investors": "Founders Fund, Khosla Ventures, Sequoia, Allen & Company, Playfair Capital",
+              "amount": "80M",
+              "currency": "$"
+            },
+            {
+              "id": "55c5757073696456d82e0d00",
+              "date": "2012-07-01T00:00:00.000+00:00",
+              "news_url": "https://techcrunch.com/2012/07/09/payments-startup-stripe-swipes-20m-from-general-catalyst-sequoia-thiel-and-more/",
+              "type": "Series B",
+              "investors": "Founders Fund, American Express Ventures, Sequoia, General Catalyst, Aaron Levie, Redpoint, Chris Dixon, Peter Thiel, Elad Gil",
+              "amount": "20M",
+              "currency": "$"
+            },
+            {
+              "id": "6965fc55f8c3e8000102cb4c",
+              "date": "2012-02-01T00:00:00.000+00:00",
+              "news_url": null,
+              "type": "Series A",
+              "investors": "Sequoia",
+              "amount": "18M",
+              "currency": "$"
+            },
+            {
+              "id": "59e677a0a6da986ef4f61377",
+              "date": "2011-03-01T00:00:00.000+00:00",
+              "news_url": "https://www.virtualincubator.us/mentors/amra-tareen",
+              "type": "Seed",
+              "investors": "Elon Musk, Founders Fund, Sequoia, SV Angel, Peter Thiel, Andreessen Horowitz",
+              "amount": "2M",
+              "currency": "$"
+            },
+            {
+              "id": "6965fc55f8c3e8000102cb46",
+              "date": "2010-08-01T00:00:00.000+00:00",
+              "news_url": null,
+              "type": "Seed",
+              "investors": "Y Combinator, Sam Altman",
+              "amount": null,
+              "currency": "$"
+            },
+            {
+              "id": "6965fc55f8c3e8000102cb43",
+              "date": "2009-09-01T00:00:00.000+00:00",
+              "news_url": null,
+              "type": "Seed",
+              "investors": "Y Combinator",
+              "amount": "130K",
+              "currency": "$"
+            }
+          ],
+          "technology_names": [
+            ".NET",
+            "3M 360 Encompass - Health Analytics Suite",
+            "AI",
+            "ANGEL LMS",
+            "AWS Analytics",
+            "AWS SDK for JavaScript",
+            "AWS Trusted Advisor",
+            "Active Campaign",
+            "Adform DMP",
+            "Adobe Creative Cloud",
+            "Affirm",
+            "Afterpay",
+            "Agiloft Service Desk Suite",
+            "Airflow",
+            "Aja Video Systems",
+            "Amazon AWS",
+            "Amazon AWS",
+            "Amazon AWS",
+            "Amazon Associates",
+            "Amazon DocumentDB",
+            "Amazon EC2",
+            "Amazon Linux 2",
+            "Amazon Managed Streaming for Apache Kafka (Amazon MSK)",
+            "Amazon Product Advertising API",
+            "Amazon Route 53",
+            "Amazon Route 53",
+            "Amazon S3",
+            "Anaplan",
+            "Android",
+            "Anthropic Claude",
+            "Apache Flink",
+            "Apache Hadoop HDFS",
+            "Apache Iceberg",
+            "Apache Kafka",
+            "Apache Pig",
+            "Apache Pinot",
+            "Apache Spark",
+            "Apex",
+            "Apple Business Manager",
+            "Apple School Manager",
+            "Apple macOS",
+            "Arlo",
+            "Atlassian Confluence",
+            "Atlassian Confluence",
+            "Azure Cost Management and Billing",
+            "Azure Data Lake Storage",
+            "BASE",
+            "BIRT",
+            "Bazel",
+            "Benchmark Gensuite\u00ae ESG Reporting",
+            "Bing",
+            "BirdDogHR",
+            "Bootstrapcdn",
+            "Braze",
+            "CAT",
+            "CSS",
+            "CallMiner Eureka",
+            "Capita",
+            "Certinia",
+            "Chainalysis KYT",
+            "ChatGPT",
+            "Chrome",
+            "CloudFlare Hosting",
+            "Cloudflare DNS",
+            "ConnectWise Control",
+            "Creo Elements/Pro",
+            "Cursor",
+            "CyberArk Enterprise Password Vault",
+            "DNN",
+            "Dash",
+            "Datadog",
+            "Dell EMC PowerStore",
+            "Demandware",
+            "Diligent Entities",
+            "Discord",
+            "DocuSign",
+            "Docusign CLM",
+            "Drawbridge",
+            "Elliptic",
+            "Ethereum",
+            "Excel4Apps",
+            "Exterro Privacy",
+            "Facebook",
+            "Figma",
+            "FlipHTML5",
+            "Fusion ERP Analytics",
+            "GRPC",
+            "GTreasury",
+            "Gem",
+            "Git",
+            "GitHub",
+            "Gmail",
+            "GoDaddy Domains",
+            "GoDaddy Hosting",
+            "GoDaddy Verified",
+            "Google",
+            "Google Apps",
+            "Google Checkout",
+            "Google Cloud",
+            "Google Cloud APIs",
+            "Google Forms",
+            "Google Identity Services APIs",
+            "Google Search Console",
+            "Google Sheets",
+            "Google Workspace",
+            "Grafana",
+            "GraphQL",
+            "Greenhouse.io",
+            "HTML Pro",
+            "Heartland Payment Systems",
+            "Highspot",
+            "Hive",
+            "Hubble",
+            "Hubspot",
+            "Infolinks",
+            "Instagram",
+            "Ironclad",
+            "Javascript",
+            "Jira",
+            "Kiosked",
+            "Klarna",
+            "Kotlin",
+            "Kroll PMS",
+            "Kubernetes",
+            "LangGraph",
+            "Langchain",
+            "LeafLink",
+            "LexisNexis CounselLink",
+            "Lexity",
+            "Linkconnector",
+            "LinkedIn Ads",
+            "Linkedin Marketing Solutions",
+            "Looker",
+            "MITRE ATT&CK",
+            "Marketo",
+            "Meta Ads Manager",
+            "Microsoft 365",
+            "Microsoft 365 Apps & Services",
+            "Microsoft Azure Hosting",
+            "Microsoft Email Providers",
+            "Microsoft Exchange",
+            "Microsoft Exchange Online",
+            "Microsoft Office 365",
+            "Mixpanel",
+            "Mobile Friendly",
+            "Mode",
+            "MongoDB",
+            "MySQL",
+            "MySQL",
+            "NewTek TriCaster",
+            "Next.js",
+            "Nginx",
+            "Objective-C",
+            "ObservePoint",
+            "Office365",
+            "OneTrust Tech Risk & Compliance",
+            "OpenAI",
+            "OpenAPI",
+            "Oracle Cloud Infrastructure Identity and Access Management",
+            "Oracle Financials Cloud",
+            "Outlook",
+            "PHP",
+            "Pandora FMS",
+            "Pipedrive",
+            "PitchBook",
+            "Polygon",
+            "Power BI Documenter",
+            "PowerBI Tiles",
+            "Presto",
+            "Privy",
+            "Prometheus",
+            "PyTorch",
+            "Python",
+            "R",
+            "REST",
+            "Radarstats",
+            "Rapid7 InsightVM",
+            "React",
+            "React Native",
+            "React Redux",
+            "Reddit for business",
+            "Ruby On Rails",
+            "S&P Capital IQ Pro",
+            "SOQL",
+            "SWIFT",
+            "Salesforce",
+            "Salesforce CRM Analytics",
+            "Scala",
+            "Secured MVC Forum on Windows 2012 R2",
+            "SentenceTransformers",
+            "Shareworks by Morgan Stanley",
+            "Shopify",
+            "Sizmek (MediaMind)",
+            "Slack",
+            "Specific Media",
+            "Splunk",
+            "Stack Overflow",
+            "Streamlit",
+            "Stripe",
+            "Stripe Billing",
+            "Stripe Connect",
+            "Stripe Terminal",
+            "Substack",
+            "Tableau",
+            "Temporal Cloud",
+            "TensorFlow",
+            "Terminalfour",
+            "TikTok",
+            "Twitter Ads",
+            "TypeScript",
+            "UltiPro",
+            "VMIX",
+            "Vtiger for G Suite",
+            "WebGL",
+            "Workday",
+            "Workday Prism Analytics",
+            "X (Twitter)",
+            "XGBoost",
+            "YouTube",
+            "Zip",
+            "Zoom Rooms",
+            "Zoomdata",
+            "go+",
+            "mO Jira OAuth SSO, Jira OpenID Connect SSO, Jira OIDC SSO",
+            "mabl"
+          ],
+          "current_technologies": [
+            {
+              "uid": "net",
+              "name": ".NET",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "3m_360_encompass_health_analytics_suite",
+              "name": "3M 360 Encompass - Health Analytics Suite",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "ai",
+              "name": "AI",
+              "category": "Other"
+            },
+            {
+              "uid": "angel_lms",
+              "name": "ANGEL LMS",
+              "category": "Education Management Software"
+            },
+            {
+              "uid": "aws_analytics",
+              "name": "AWS Analytics",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "aws_sdk_for_javascript",
+              "name": "AWS SDK for JavaScript",
+              "category": "CSS and JavaScript Libraries"
+            },
+            {
+              "uid": "aws_trusted_advisor",
+              "name": "AWS Trusted Advisor",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "active_campaign",
+              "name": "Active Campaign",
+              "category": "Marketing Automation"
+            },
+            {
+              "uid": "adform_dmp",
+              "name": "Adform DMP",
+              "category": "Data Management Platform"
+            },
+            {
+              "uid": "adobe_creative_cloud",
+              "name": "Adobe Creative Cloud",
+              "category": "Other"
+            },
+            {
+              "uid": "affirm",
+              "name": "Affirm",
+              "category": "Payments"
+            },
+            {
+              "uid": "afterpay",
+              "name": "Afterpay",
+              "category": "Payments"
+            },
+            {
+              "uid": "agiloft_service_desk_suite",
+              "name": "Agiloft Service Desk Suite",
+              "category": "Case Management"
+            },
+            {
+              "uid": "airflow",
+              "name": "Airflow",
+              "category": "Other"
+            },
+            {
+              "uid": "aja_video_systems",
+              "name": "Aja Video Systems",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "amazon_aws",
+              "name": "Amazon AWS",
+              "category": "Hosting"
+            },
+            {
+              "uid": "amazon_aws",
+              "name": "Amazon AWS",
+              "category": "Hosting"
+            },
+            {
+              "uid": "amazon_aws",
+              "name": "Amazon AWS",
+              "category": "Hosting"
+            },
+            {
+              "uid": "amazon_associates",
+              "name": "Amazon Associates",
+              "category": "Affiliate Advertising Network"
+            },
+            {
+              "uid": "amazon_documentdb",
+              "name": "Amazon DocumentDB",
+              "category": "Database"
+            },
+            {
+              "uid": "amazon_ec2",
+              "name": "Amazon EC2",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "amazon_linux_2",
+              "name": "Amazon Linux 2",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "amazon_managed_streaming_for_apache_kafka_amazon_msk",
+              "name": "Amazon Managed Streaming for Apache Kafka (Amazon MSK)",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "amazon_product_advertising_api",
+              "name": "Amazon Product Advertising API",
+              "category": "Affiliate Advertising Network"
+            },
+            {
+              "uid": "amazon_route_53",
+              "name": "Amazon Route 53",
+              "category": "Domain Name Services"
+            },
+            {
+              "uid": "amazon_route_53",
+              "name": "Amazon Route 53",
+              "category": "Domain Name Services"
+            },
+            {
+              "uid": "amazon_s3",
+              "name": "Amazon S3",
+              "category": "Content Delivery Networks"
+            },
+            {
+              "uid": "anaplan",
+              "name": "Anaplan",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "android",
+              "name": "Android",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "anthropic_claude",
+              "name": "Anthropic Claude",
+              "category": "Other"
+            },
+            {
+              "uid": "apache_flink",
+              "name": "Apache Flink",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "apache_hadoop_hdfs",
+              "name": "Apache Hadoop HDFS",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "apache_iceberg",
+              "name": "Apache Iceberg",
+              "category": "Data Management Platform"
+            },
+            {
+              "uid": "apache_kafka",
+              "name": "Apache Kafka",
+              "category": "Data Management Platform"
+            },
+            {
+              "uid": "apache_pig",
+              "name": "Apache Pig",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "apache_pinot",
+              "name": "Apache Pinot",
+              "category": "Database"
+            },
+            {
+              "uid": "apache_spark",
+              "name": "Apache Spark",
+              "category": "Database"
+            },
+            {
+              "uid": "apex",
+              "name": "Apex",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "apple_business_manager",
+              "name": "Apple Business Manager",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "apple_school_manager",
+              "name": "Apple School Manager",
+              "category": "Education Management Software"
+            },
+            {
+              "uid": "apple_macos",
+              "name": "Apple macOS",
+              "category": "Other"
+            },
+            {
+              "uid": "arlo",
+              "name": "Arlo",
+              "category": "Other"
+            },
+            {
+              "uid": "atlassian_confluence",
+              "name": "Atlassian Confluence",
+              "category": "CMS"
+            },
+            {
+              "uid": "atlassian_confluence",
+              "name": "Atlassian Confluence",
+              "category": "CMS"
+            },
+            {
+              "uid": "azure_cost_management_and_billing",
+              "name": "Azure Cost Management and Billing",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "azure_data_lake_storage",
+              "name": "Azure Data Lake Storage",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "base",
+              "name": "BASE",
+              "category": "Other"
+            },
+            {
+              "uid": "birt",
+              "name": "BIRT",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "bazel",
+              "name": "Bazel",
+              "category": "Deployment Tools"
+            },
+            {
+              "uid": "benchmark_gensuite_esg_reporting",
+              "name": "Benchmark Gensuite\u00ae ESG Reporting",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "bing",
+              "name": "Bing",
+              "category": "Search Appliances"
+            },
+            {
+              "uid": "birddoghr",
+              "name": "BirdDogHR",
+              "category": "HR Solutions"
+            },
+            {
+              "uid": "bootstrapcdn",
+              "name": "Bootstrapcdn",
+              "category": "CSS and JavaScript Libraries"
+            },
+            {
+              "uid": "braze",
+              "name": "Braze",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "cat",
+              "name": "CAT",
+              "category": "ERP"
+            },
+            {
+              "uid": "css",
+              "name": "CSS",
+              "category": "CSS and JavaScript Libraries"
+            },
+            {
+              "uid": "callminer_eureka",
+              "name": "CallMiner Eureka",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "capita",
+              "name": "Capita",
+              "category": "Other"
+            },
+            {
+              "uid": "certinia",
+              "name": "Certinia",
+              "category": "ERP"
+            },
+            {
+              "uid": "chainalysis_kyt",
+              "name": "Chainalysis KYT",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "chatgpt",
+              "name": "ChatGPT",
+              "category": "Chats"
+            },
+            {
+              "uid": "chrome",
+              "name": "Chrome",
+              "category": "Other"
+            },
+            {
+              "uid": "cloudflare_hosting",
+              "name": "CloudFlare Hosting",
+              "category": "Hosting"
+            },
+            {
+              "uid": "cloudflare_dns",
+              "name": "Cloudflare DNS",
+              "category": "Domain Name Services"
+            },
+            {
+              "uid": "connectwise_control",
+              "name": "ConnectWise Control",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "creo_elementspro",
+              "name": "Creo Elements/Pro",
+              "category": "Other"
+            },
+            {
+              "uid": "cursor",
+              "name": "Cursor",
+              "category": "Other"
+            },
+            {
+              "uid": "cyberark_enterprise_password_vault",
+              "name": "CyberArk Enterprise Password Vault",
+              "category": "Event Management"
+            },
+            {
+              "uid": "dnn",
+              "name": "DNN",
+              "category": "CMS"
+            },
+            {
+              "uid": "dash",
+              "name": "Dash",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "datadog",
+              "name": "Datadog",
+              "category": "Web Performance Monitoring"
+            },
+            {
+              "uid": "dell_emc_powerstore",
+              "name": "Dell EMC PowerStore",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "demandware",
+              "name": "Demandware",
+              "category": "E-commerce Platforms"
+            },
+            {
+              "uid": "diligent_entities",
+              "name": "Diligent Entities",
+              "category": "Other"
+            },
+            {
+              "uid": "discord",
+              "name": "Discord",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "docusign",
+              "name": "DocuSign",
+              "category": "Other"
+            },
+            {
+              "uid": "docusign_clm",
+              "name": "Docusign CLM",
+              "category": "Case Management"
+            },
+            {
+              "uid": "drawbridge",
+              "name": "Drawbridge",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "elliptic",
+              "name": "Elliptic",
+              "category": "Other"
+            },
+            {
+              "uid": "ethereum",
+              "name": "Ethereum",
+              "category": "Other"
+            },
+            {
+              "uid": "excel4apps",
+              "name": "Excel4Apps",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "exterro_privacy",
+              "name": "Exterro Privacy",
+              "category": "Security"
+            },
+            {
+              "uid": "facebook",
+              "name": "Facebook",
+              "category": "Social Media Marketing"
+            },
+            {
+              "uid": "figma",
+              "name": "Figma",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "fliphtml5",
+              "name": "FlipHTML5",
+              "category": "Content Management Platform"
+            },
+            {
+              "uid": "fusion_erp_analytics",
+              "name": "Fusion ERP Analytics",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "grpc",
+              "name": "GRPC",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "gtreasury",
+              "name": "GTreasury",
+              "category": "Financial Software"
+            },
+            {
+              "uid": "gem",
+              "name": "Gem",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "git",
+              "name": "Git",
+              "category": "Deployment Tools"
+            },
+            {
+              "uid": "github",
+              "name": "GitHub",
+              "category": "Hosting"
+            },
+            {
+              "uid": "gmail",
+              "name": "Gmail",
+              "category": "Email Providers"
+            },
+            {
+              "uid": "godaddy_domains",
+              "name": "GoDaddy Domains",
+              "category": "Domain Name Services"
+            },
+            {
+              "uid": "godaddy_hosting",
+              "name": "GoDaddy Hosting",
+              "category": "Hosting"
+            },
+            {
+              "uid": "godaddy_verified",
+              "name": "GoDaddy Verified",
+              "category": "Security"
+            },
+            {
+              "uid": "google",
+              "name": "Google",
+              "category": "Other"
+            },
+            {
+              "uid": "google_apps",
+              "name": "Google Apps",
+              "category": "Other"
+            },
+            {
+              "uid": "google_checkout",
+              "name": "Google Checkout",
+              "category": "Other"
+            },
+            {
+              "uid": "google_cloud",
+              "name": "Google Cloud",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "google_cloud_apis",
+              "name": "Google Cloud APIs",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "google_forms",
+              "name": "Google Forms",
+              "category": "Hosted Forms"
+            },
+            {
+              "uid": "google_identity_services_apis",
+              "name": "Google Identity Services APIs",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "google_search_console",
+              "name": "Google Search Console",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "google_sheets",
+              "name": "Google Sheets",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "google workspace",
+              "name": "Google Workspace",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "grafana",
+              "name": "Grafana",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "graphql",
+              "name": "GraphQL",
+              "category": "Database"
+            },
+            {
+              "uid": "greenhouse_io",
+              "name": "Greenhouse.io",
+              "category": "Recruitment"
+            },
+            {
+              "uid": "html_pro",
+              "name": "HTML Pro",
+              "category": "Web Presentation Tools"
+            },
+            {
+              "uid": "heartland_payment_systems",
+              "name": "Heartland Payment Systems",
+              "category": "E-commerce Platforms"
+            },
+            {
+              "uid": "highspot",
+              "name": "Highspot",
+              "category": "Content Management Platform"
+            },
+            {
+              "uid": "hive",
+              "name": "Hive",
+              "category": "Data Management Platform"
+            },
+            {
+              "uid": "hubble",
+              "name": "Hubble",
+              "category": "Other"
+            },
+            {
+              "uid": "hubspot",
+              "name": "Hubspot",
+              "category": "Marketing Automation"
+            },
+            {
+              "uid": "infolinks",
+              "name": "Infolinks",
+              "category": "Advertising Networks"
+            },
+            {
+              "uid": "instagram",
+              "name": "Instagram",
+              "category": "Social Sharing"
+            },
+            {
+              "uid": "ironclad",
+              "name": "Ironclad",
+              "category": "Case Management"
+            },
+            {
+              "uid": "javascript",
+              "name": "Javascript",
+              "category": "Other"
+            },
+            {
+              "uid": "jira",
+              "name": "Jira",
+              "category": "CMS"
+            },
+            {
+              "uid": "kiosked",
+              "name": "Kiosked",
+              "category": "Advertising Networks"
+            },
+            {
+              "uid": "klarna",
+              "name": "Klarna",
+              "category": "Payments"
+            },
+            {
+              "uid": "kotlin",
+              "name": "Kotlin",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "kroll_pms",
+              "name": "Kroll PMS",
+              "category": "Property Management Software"
+            },
+            {
+              "uid": "kubernetes",
+              "name": "Kubernetes",
+              "category": "Other"
+            },
+            {
+              "uid": "langgraph",
+              "name": "LangGraph",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "langchain",
+              "name": "Langchain",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "leaflink",
+              "name": "LeafLink",
+              "category": "E-commerce Platforms"
+            },
+            {
+              "uid": "lexisnexis_counsellink",
+              "name": "LexisNexis CounselLink",
+              "category": "ERP"
+            },
+            {
+              "uid": "lexity",
+              "name": "Lexity",
+              "category": "E-commerce Tools"
+            },
+            {
+              "uid": "linkconnector",
+              "name": "Linkconnector",
+              "category": "Affiliate Advertising Network"
+            },
+            {
+              "uid": "linkedin_ads",
+              "name": "LinkedIn Ads",
+              "category": "Advertising Networks"
+            },
+            {
+              "uid": "linkedin_display_ads__formerly_bizo",
+              "name": "Linkedin Marketing Solutions",
+              "category": "Advertising Networks"
+            },
+            {
+              "uid": "looker",
+              "name": "Looker",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "mitre_attck",
+              "name": "MITRE ATT&CK",
+              "category": "Event Management"
+            },
+            {
+              "uid": "marketo",
+              "name": "Marketo",
+              "category": "Marketing Automation"
+            },
+            {
+              "uid": "meta ads manager",
+              "name": "Meta Ads Manager",
+              "category": "Advertising Networks"
+            },
+            {
+              "uid": "microsoft_365",
+              "name": "Microsoft 365",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "microsoft_365_apps_services",
+              "name": "Microsoft 365 Apps & Services",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "microsoft",
+              "name": "Microsoft Azure Hosting",
+              "category": "Hosting"
+            },
+            {
+              "uid": "microsoft_email_providers",
+              "name": "Microsoft Email Providers",
+              "category": "Email Providers"
+            },
+            {
+              "uid": "microsoft_exchange",
+              "name": "Microsoft Exchange",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "microsoft_exchange_online",
+              "name": "Microsoft Exchange Online",
+              "category": "Email Providers"
+            },
+            {
+              "uid": "office_365",
+              "name": "Microsoft Office 365",
+              "category": "Other"
+            },
+            {
+              "uid": "mixpanel",
+              "name": "Mixpanel",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "mobile_friendly",
+              "name": "Mobile Friendly",
+              "category": "Other"
+            },
+            {
+              "uid": "mode",
+              "name": "Mode",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "mongodb",
+              "name": "MongoDB",
+              "category": "Database"
+            },
+            {
+              "uid": "mysql",
+              "name": "MySQL",
+              "category": "Database"
+            },
+            {
+              "uid": "mysql",
+              "name": "MySQL",
+              "category": "Database"
+            },
+            {
+              "uid": "newtek_tricaster",
+              "name": "NewTek TriCaster",
+              "category": "Live Streaming Platforms"
+            },
+            {
+              "uid": "nextjs",
+              "name": "Next.js",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "nginx",
+              "name": "Nginx",
+              "category": "Load Balancers"
+            },
+            {
+              "uid": "objectivec",
+              "name": "Objective-C",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "observepoint",
+              "name": "ObservePoint",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "office365",
+              "name": "Office365",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "onetrust_tech_risk_compliance",
+              "name": "OneTrust Tech Risk & Compliance",
+              "category": "ERP"
+            },
+            {
+              "uid": "openai",
+              "name": "OpenAI",
+              "category": "Other"
+            },
+            {
+              "uid": "openapi",
+              "name": "OpenAPI",
+              "category": "Other"
+            },
+            {
+              "uid": "oracle_cloud_infrastructure_identity_and_access_management",
+              "name": "Oracle Cloud Infrastructure Identity and Access Management",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "oracle_financials_cloud",
+              "name": "Oracle Financials Cloud",
+              "category": "ERP"
+            },
+            {
+              "uid": "outlook",
+              "name": "Outlook",
+              "category": "Email Providers"
+            },
+            {
+              "uid": "php",
+              "name": "PHP",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "pandora_fms",
+              "name": "Pandora FMS",
+              "category": "ERP"
+            },
+            {
+              "uid": "pipedrive",
+              "name": "Pipedrive",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "pitchbook",
+              "name": "PitchBook",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "polygon",
+              "name": "Polygon",
+              "category": "Other"
+            },
+            {
+              "uid": "power_bi_documenter",
+              "name": "Power BI Documenter",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "powerbi_tiles",
+              "name": "PowerBI Tiles",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "presto",
+              "name": "Presto",
+              "category": "Database"
+            },
+            {
+              "uid": "privy",
+              "name": "Privy",
+              "category": "Other"
+            },
+            {
+              "uid": "prometheus",
+              "name": "Prometheus",
+              "category": "Database"
+            },
+            {
+              "uid": "pytorch",
+              "name": "PyTorch",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "python",
+              "name": "Python",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "r",
+              "name": "R",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "rest",
+              "name": "REST",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "radarstats",
+              "name": "Radarstats",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "rapid7_insightvm",
+              "name": "Rapid7 InsightVM",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "react",
+              "name": "React",
+              "category": "CSS and JavaScript Libraries"
+            },
+            {
+              "uid": "react native",
+              "name": "React Native",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "react_redux",
+              "name": "React Redux",
+              "category": "CSS and JavaScript Libraries"
+            },
+            {
+              "uid": "reddit_for_business",
+              "name": "Reddit for business",
+              "category": "Social Media Marketing"
+            },
+            {
+              "uid": "ruby_on_rails",
+              "name": "Ruby On Rails",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "sp_capital_iq_pro",
+              "name": "S&P Capital IQ Pro",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "soql",
+              "name": "SOQL",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "swift",
+              "name": "SWIFT",
+              "category": "Financial Software"
+            },
+            {
+              "uid": "salesforce",
+              "name": "Salesforce",
+              "category": "Customer Relationship Management"
+            },
+            {
+              "uid": "salesforce crm analytics",
+              "name": "Salesforce CRM Analytics",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "scala",
+              "name": "Scala",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "secured_mvc_forum_on_windows_2012_r2",
+              "name": "Secured MVC Forum on Windows 2012 R2",
+              "category": "CMS"
+            },
+            {
+              "uid": "sentencetransformers",
+              "name": "SentenceTransformers",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "shareworks_by_morgan_stanley",
+              "name": "Shareworks by Morgan Stanley",
+              "category": "Financial Software"
+            },
+            {
+              "uid": "shopify",
+              "name": "Shopify",
+              "category": "E-commerce Platforms"
+            },
+            {
+              "uid": "sizmek_mediamind",
+              "name": "Sizmek (MediaMind)",
+              "category": "Ad Servers"
+            },
+            {
+              "uid": "slack",
+              "name": "Slack",
+              "category": "Chats"
+            },
+            {
+              "uid": "specific_media",
+              "name": "Specific Media",
+              "category": "Advertising Networks"
+            },
+            {
+              "uid": "splunk",
+              "name": "Splunk",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "stack_overflow",
+              "name": "Stack Overflow",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "streamlit",
+              "name": "Streamlit",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "stripe",
+              "name": "Stripe",
+              "category": "Payments"
+            },
+            {
+              "uid": "stripe_billing",
+              "name": "Stripe Billing",
+              "category": "Payments"
+            },
+            {
+              "uid": "stripe_connect",
+              "name": "Stripe Connect",
+              "category": "Payments"
+            },
+            {
+              "uid": "stripe_terminal",
+              "name": "Stripe Terminal",
+              "category": "Payments"
+            },
+            {
+              "uid": "substack",
+              "name": "Substack",
+              "category": "Content Management Platform"
+            },
+            {
+              "uid": "tableau",
+              "name": "Tableau",
+              "category": "Widgets"
+            },
+            {
+              "uid": "temporal_cloud",
+              "name": "Temporal Cloud",
+              "category": "Cloud Services"
+            },
+            {
+              "uid": "tensorflow",
+              "name": "TensorFlow",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "terminalfour",
+              "name": "Terminalfour",
+              "category": "CMS"
+            },
+            {
+              "uid": "tiktok",
+              "name": "TikTok",
+              "category": "Other"
+            },
+            {
+              "uid": "twitter_ads",
+              "name": "Twitter Ads",
+              "category": "Advertising Networks"
+            },
+            {
+              "uid": "typescript",
+              "name": "TypeScript",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "ultipro",
+              "name": "UltiPro",
+              "category": "Recruitment"
+            },
+            {
+              "uid": "vmix",
+              "name": "VMIX",
+              "category": "Other"
+            },
+            {
+              "uid": "vtiger_for_g_suite",
+              "name": "Vtiger for G Suite",
+              "category": "Customer Relationship Management"
+            },
+            {
+              "uid": "webgl",
+              "name": "WebGL",
+              "category": "CSS and JavaScript Libraries"
+            },
+            {
+              "uid": "workday",
+              "name": "Workday",
+              "category": "CMS"
+            },
+            {
+              "uid": "workday_prism_analytics",
+              "name": "Workday Prism Analytics",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "x_twitter",
+              "name": "X (Twitter)",
+              "category": "Social Media Marketing"
+            },
+            {
+              "uid": "xgboost",
+              "name": "XGBoost",
+              "category": "Business Intelligence"
+            },
+            {
+              "uid": "youtube",
+              "name": "YouTube",
+              "category": "Online Video Platforms"
+            },
+            {
+              "uid": "zip",
+              "name": "Zip",
+              "category": "Other"
+            },
+            {
+              "uid": "zoom_rooms",
+              "name": "Zoom Rooms",
+              "category": "Communication and Collaboration"
+            },
+            {
+              "uid": "zoomdata",
+              "name": "Zoomdata",
+              "category": "Analytics and Tracking"
+            },
+            {
+              "uid": "go",
+              "name": "go+",
+              "category": "Frameworks and Programming Languages"
+            },
+            {
+              "uid": "mo_jira_oauth_sso_jira_openid_connect_sso_jira_oidc_sso",
+              "name": "mO Jira OAuth SSO, Jira OpenID Connect SSO, Jira OIDC SSO",
+              "category": "Social Login"
+            },
+            {
+              "uid": "mabl",
+              "name": "mabl",
+              "category": "Other"
+            }
+          ],
+          "org_chart_root_people_ids": [],
+          "org_chart_sector": "OrgChart::SectorHierarchy::Rules::IT",
+          "org_chart_removed": false,
+          "org_chart_show_department_filter": true,
+          "departmental_head_count": {
+            "finance": 832,
+            "sales": 1047,
+            "human_resources": 599,
+            "operations": 1238,
+            "marketing": 336,
+            "business_development": 282,
+            "support": 320,
+            "accounting": 89,
+            "arts_and_design": 229,
+            "legal": 211,
+            "engineering": 3886,
+            "consulting": 86,
+            "data_science": 332,
+            "product_management": 189,
+            "entrepreneurship": 14,
+            "media_and_commmunication": 45,
+            "information_technology": 74,
+            "administrative": 58,
+            "education": 12
+          },
+          "organization_headcount_six_month_growth": 0.07830139823925428,
+          "organization_headcount_twelve_month_growth": 0.1955672944418925,
+          "organization_headcount_twenty_four_month_growth": 0.4283166415146111
+        }
+      }
+    },
+    "agentBalanceUSD": 0.10732
+  },
+  "timestamp": "2026-06-19T14:52:09.765Z"
+}

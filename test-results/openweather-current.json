@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.006,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001770c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a3555f2846a3555cf9420c000000000000000000000b9537d11c60e8b5080c0b84120b184beac54a6e093cb034d2db6e8be384fc8b7a6756e49bcb5f9d16bc3e0b00e21a3b53eb8643ca3b2cbd93a074823f09e935efd704014fa54aa98a0f921e51b",
+    "response": {
+      "success": true,
+      "data": {
+        "coord": {
+          "lon": 139.7671,
+          "lat": 35.6812
+        },
+        "weather": [
+          {
+            "id": 804,
+            "main": "Clouds",
+            "description": "overcast clouds",
+            "icon": "04n"
+          }
+        ],
+        "base": "stations",
+        "main": {
+          "temp": 23.84,
+          "feels_like": 24.5,
+          "temp_min": 22.77,
+          "temp_max": 24.53,
+          "pressure": 1012,
+          "humidity": 85,
+          "sea_level": 1012,
+          "grnd_level": 1010
+        },
+        "visibility": 10000,
+        "wind": {
+          "speed": 0.89,
+          "deg": 37,
+          "gust": 4.02
+        },
+        "clouds": {
+          "all": 100
+        },
+        "dt": 1781880290,
+        "sys": {
+          "type": 2,
+          "id": 268395,
+          "country": "JP",
+          "sunrise": 1781810699,
+          "sunset": 1781863160
+        },
+        "timezone": 32400,
+        "id": 1857654,
+        "name": "Marunouchi",
+        "cod": 200
+      }
+    },
+    "agentBalanceUSD": 0.113782
+  },
+  "timestamp": "2026-06-19T14:44:50.902Z"
+}

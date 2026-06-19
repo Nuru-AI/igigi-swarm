@@ -1,0 +1,2720 @@
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "paymentSucceeded": true,
+    "serviceStatus": 200,
+    "amountPaid": 0.008,
+    "chain": "tempo",
+    "paymentTx": "0x76f8f5821079018509502f900183013880f85ef85c9420c000000000000000000000b9537d11c60e8b5080b844a9059cbb000000000000000000000000060b0fb0be9d90557577b3aee480711067149ff00000000000000000000000000000000000000000000000000000000000001f40c0a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff80846a355611846a3555ee9420c000000000000000000000b9537d11c60e8b5080c0b8411c49dd131109500cfc51b1feb74a92c89e3966858295a415b8074d1d53fa2c3d653065b81e42fd18bc744cf29181ac476df2a62797cbc2b10c402613b2b87cb41c",
+    "response": {
+      "success": true,
+      "data": {
+        "items": "50",
+        "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
+        "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
+        "feed": [
+          {
+            "title": "Wick Capital Partners LLC Takes Position in VeriSign, Inc. $VRSN",
+            "url": "https://www.marketbeat.com/instant-alerts/filing-wick-capital-partners-llc-takes-position-in-verisign-inc-vrsn-2026-06-19/",
+            "time_published": "20260619T103827",
+            "authors": [
+              "MarketBeat"
+            ],
+            "summary": "Wick Capital Partners LLC recently initiated a position in VeriSign, Inc. (VRSN), purchasing over 240,000 shares valued at approximately $58.4 million, which now constitutes 4.2% of its portfolio. This move follows VeriSign's better-than-expected quarterly earnings and revenue, along with a declared quarterly dividend. Analysts maintain a \"Moderate Buy\" rating for the stock, with several raising their price targets.",
+            "banner_image": "https://www.marketbeat.com/logos/verisign-inc-logo-1200x675.png",
+            "source": "MarketBeat",
+            "category_within_source": "General",
+            "source_domain": "MarketBeat",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.936992"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.811234"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.720355"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.632057"
+              }
+            ],
+            "overall_sentiment_score": 0.203369,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "VRSN",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.524262",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.648714",
+                "ticker_sentiment_score": "0.100808",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.636884",
+                "ticker_sentiment_score": "0.107878",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "QCOM",
+                "relevance_score": "0.615826",
+                "ticker_sentiment_score": "0.139287",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.645238",
+                "ticker_sentiment_score": "0.142398",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Groupama Asset Managment Sells 55,668 Shares of The Walt Disney Company $DIS",
+            "url": "https://www.marketbeat.com/instant-alerts/filing-groupama-asset-managment-sells-55668-shares-of-the-walt-disney-company-dis-2026-06-19/",
+            "time_published": "20260619T103728",
+            "authors": [
+              "MarketBeat"
+            ],
+            "summary": "Groupama Asset Management reduced its stake in The Walt Disney Company by 17.2% in the fourth quarter, selling 55,668 shares but still retaining 268,071 shares valued at approximately $30.5 million. Despite this sale, Disney continues to attract significant institutional interest, with hedge funds and asset managers holding 65.71% of its shares. Analysts maintain a \"Moderate Buy\" rating with an average price target of $133.71, following Disney's strong earnings beat in its latest quarter.",
+            "banner_image": "https://www.marketbeat.com/logos/the-walt-disney-company-logo-1200x675.png?v=20201229105326",
+            "source": "MarketBeat",
+            "category_within_source": "General",
+            "source_domain": "MarketBeat",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.918156"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.915197"
+              }
+            ],
+            "overall_sentiment_score": 0.15388,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "DIS",
+                "relevance_score": "0.988631",
+                "ticker_sentiment_score": "0.279730",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.650066",
+                "ticker_sentiment_score": "0.133737",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "JBL",
+                "relevance_score": "0.567361",
+                "ticker_sentiment_score": "0.148844",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "KMX",
+                "relevance_score": "0.563654",
+                "ticker_sentiment_score": "0.124708",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "QCOM",
+                "relevance_score": "0.597913",
+                "ticker_sentiment_score": "0.137372",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Titan Investment Management LLC Buys Shares of 5,988 VeriSign, Inc. $VRSN",
+            "url": "https://www.marketbeat.com/instant-alerts/filing-titan-investment-management-llc-buys-shares-of-5988-verisign-inc-vrsn-2026-06-19/",
+            "time_published": "20260619T094607",
+            "authors": [
+              "MarketBeat"
+            ],
+            "summary": "Titan Investment Management LLC recently acquired a new position of 5,988 shares in VeriSign, Inc. (NASDAQ:VRSN) during the fourth quarter, valued at approximately $1.455 million. This adds to significant institutional investment in VeriSign, with 92.9% of the stock owned by hedge funds and other institutional investors. The article also details recent insider selling by VeriSign executives, various analyst ratings and price target revisions, and the company's recent financial performance and dividend announcement.",
+            "banner_image": "https://www.marketbeat.com/logos/verisign-inc-logo-1200x675.png",
+            "source": "MarketBeat",
+            "category_within_source": "General",
+            "source_domain": "MarketBeat",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.916433"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.829219"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.744300"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.613775"
+              }
+            ],
+            "overall_sentiment_score": 0.077764,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "VRSN",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.210852",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.643698",
+                "ticker_sentiment_score": "-0.145451",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.626921",
+                "ticker_sentiment_score": "0.139745",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Thryv Holdings Inc (THRY) Earnings Forecast: Future EPS & Revenue Growth Estimates",
+            "url": "https://www.tradingkey.com/markets/stocks/nasdaq-thry/earnings",
+            "time_published": "20260619T033932",
+            "authors": [],
+            "summary": "This article provides an earnings forecast for Thryv Holdings Inc (THRY), highlighting its current earnings forecast score of 6.50 within the Media & Publishing industry. Analysts project an average price target of $13.50 for THRY, with individual forecasts ranging from $10.00 to $15.00. The company's expected revenue for the next quarter is $146.11M, and analysts generally rate the stock as \"Hold.\"",
+            "banner_image": null,
+            "source": "TradingKey",
+            "category_within_source": "General",
+            "source_domain": "TradingKey",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.939060"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.720325"
+              }
+            ],
+            "overall_sentiment_score": 0.165928,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "THRY",
+                "relevance_score": "0.983005",
+                "ticker_sentiment_score": "0.185580",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "OMC",
+                "relevance_score": "0.634984",
+                "ticker_sentiment_score": "0.107597",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.580087",
+                "ticker_sentiment_score": "0.123277",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Teradyne Hits Record High, Joins 2 Best Stock Lists And Leads 17 Others To IBD 50, Big Cap 20, More",
+            "url": "https://www.investors.com/research/teradyne-leads-17-to-ibd-50-big-cap-20-more/",
+            "time_published": "20260619T031057",
+            "authors": [
+              "JAMES DETAR"
+            ],
+            "summary": "Teradyne (TER) achieved a record high after a significant 7.2% jump, leading 17 other stocks onto IBD's Best Stock Lists, including the IBD 50 and Big Cap 20. Analysts anticipate a 261% leap in its second-quarter earnings, attributed to robust double and triple-digit earnings growth. The article also notes that while it was a \"whipsaw week,\" the market ended well.",
+            "banner_image": null,
+            "source": "Investor's Business Daily",
+            "category_within_source": "General",
+            "source_domain": "Investor's Business Daily",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.935357"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.930509"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.838124"
+              }
+            ],
+            "overall_sentiment_score": 0.421532,
+            "overall_sentiment_label": "Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "TER",
+                "relevance_score": "0.969749",
+                "ticker_sentiment_score": "0.708682",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.686003",
+                "ticker_sentiment_score": "0.334791",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "LLY",
+                "relevance_score": "0.605281",
+                "ticker_sentiment_score": "0.313047",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "DELL",
+                "relevance_score": "0.577123",
+                "ticker_sentiment_score": "0.342962",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "US tells ASML it\u2019s concerned China may have top chip tool",
+            "url": "https://www.moneycontrol.com/news/business/us-tells-asml-it-s-concerned-china-may-have-top-chip-tool-13953534.html",
+            "time_published": "20260619T014251",
+            "authors": [
+              "Bloomberg"
+            ],
+            "summary": "The US Commerce Secretary Howard Lutnick has expressed concerns to ASML, the Dutch chip-equipment giant, that one of its top-of-the-line extreme ultraviolet lithography (EUV) machines may have entered China, violating export restrictions. ASML denies these allegations, stating it has never shipped an EUV machine or related components to China. The US claims to have evidence of non-compliance, escalating pressure on ASML and potentially straining US-EU relations, though ASML maintains full compliance with all regulations.",
+            "banner_image": "https://images.moneycontrol.com/static-mcnews/2026/06/20260608012119_SK-Hynix-AI-Chip-Bloomberg.jpg?impolicy=website&width=770&height=431",
+            "source": "Moneycontrol.com",
+            "category_within_source": "General",
+            "source_domain": "Moneycontrol.com",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.922316"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.818646"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.702064"
+              }
+            ],
+            "overall_sentiment_score": 0.082326,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "ASML",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "-0.245315",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.844587",
+                "ticker_sentiment_score": "0.221383",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.734294",
+                "ticker_sentiment_score": "0.214918",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AMAT",
+                "relevance_score": "0.600508",
+                "ticker_sentiment_score": "0.132076",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "LRCX",
+                "relevance_score": "0.630283",
+                "ticker_sentiment_score": "0.102826",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Apple has agreed with Intel on the development and production of chips in the USA \u2013 Trump",
+            "url": "https://unn.ua/en/news/apple-has-agreed-with-intel-on-the-development-and-production-of-chips-in-the-usa-trump",
+            "time_published": "20260619T003858",
+            "authors": [
+              "Stepan Haftko"
+            ],
+            "summary": "US President Donald Trump announced that Apple has agreed to partner with Intel for the development and production of chips in the United States. This collaboration is expected to strengthen Intel's position in the semiconductor market and reduce Apple's reliance on TSMC, while also boosting American high-tech production. Following Trump's statement, Intel shares rose by 7% and Apple shares increased by 0.8%, though neither company has officially commented on the agreement.",
+            "banner_image": "https://unn.ua/_next/image?url=https%3A%2F%2Fimg.unn.ua%2Fimg%2F2026%2F06%2F18%2F1781816728-1005-large.webp&w=720&q=75",
+            "source": "\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0456 \u041d\u0430\u0446\u0456\u043e\u043d\u0430\u043b\u044c\u043d\u0456 \u041d\u043e\u0432\u0438\u043d\u0438 (\u0423\u041d\u041d)",
+            "category_within_source": "General",
+            "source_domain": "\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0456 \u041d\u0430\u0446\u0456\u043e\u043d\u0430\u043b\u044c\u043d\u0456 \u041d\u043e\u0432\u0438\u043d\u0438 (\u0423\u041d\u041d)",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.928582"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.732491"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.639575"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.642120"
+              }
+            ],
+            "overall_sentiment_score": 0.23793,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.957605",
+                "ticker_sentiment_score": "0.316549",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.901906",
+                "ticker_sentiment_score": "0.441280",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AMAT",
+                "relevance_score": "0.618054",
+                "ticker_sentiment_score": "0.143785",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "QCOM",
+                "relevance_score": "0.583342",
+                "ticker_sentiment_score": "0.068236",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "President Trump claims Apple has agreed to buy chips from Intel",
+            "url": "https://siliconangle.com/2026/06/18/president-trump-claims-apple-agreed-buy-chips-intel/",
+            "time_published": "20260619T003504",
+            "authors": [
+              "Mike Wheatley"
+            ],
+            "summary": "President Trump announced on Truth Social that Apple Inc. will \"design and build\" computer chips with Intel Corp. While Apple halted buying Intel processors in 2020, this deal would likely be a contract manufacturing arrangement for Intel to build Apple-designed chips, aiming to diversify Apple's supplier base and support domestic chip manufacturing. Analysts suggest Intel might initially produce Apple's M7 Series chips for MacBooks and iPads, potentially expanding to some A21 iPhone chips later.",
+            "banner_image": "https://s3.us-west-2.amazonaws.com/cube365-prod/related-content/e810e50d-1091-4ce3-9cc2-0232848a8d60.png",
+            "source": "SiliconANGLE",
+            "category_within_source": "General",
+            "source_domain": "SiliconANGLE",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.717222"
+              }
+            ],
+            "overall_sentiment_score": 0.215625,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.221123",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.312385",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.613544",
+                "ticker_sentiment_score": "0.142992",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Arlo Technologies Inc (ARLO) Earnings Forecast: Future EPS & Revenue Growth Estimates",
+            "url": "https://www.tradingkey.com/markets/stocks/nasdaq-arlo/earnings",
+            "time_published": "20260619T001601",
+            "authors": [],
+            "summary": "Arlo Technologies Inc (ARLO) has an earnings forecast score of 8.00, placing it 20th in the Specialty Retailers industry. Analysts have set an average price target of $22.00, with a consensus \"Buy\" rating based on 5 analysts. The company's expected revenue for the next quarter is $148.72 million, and the EPS forecast is $0.20.",
+            "banner_image": "https://resource.tradingkey.com/static/lseg/stocks/ARLO.png",
+            "source": "TradingKey",
+            "category_within_source": "General",
+            "source_domain": "TradingKey",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.942134"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.815136"
+              },
+              {
+                "topic": "retail_wholesale",
+                "relevance_score": "0.627724"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.614125"
+              }
+            ],
+            "overall_sentiment_score": 0.303346,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "ARLO",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.496169",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "BBY",
+                "relevance_score": "0.633497",
+                "ticker_sentiment_score": "0.133286",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.587718",
+                "ticker_sentiment_score": "0.310408",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Apple (NASDAQ: AAPL) CEO Tim Cook Warns Price Hikes Are \"Unavoidable\" As Memory Chip Costs Spiral",
+            "url": "https://www.foreignpolicyjournal.com/2026/06/18/apple-nasdaq-aapl-ceo-tim-cook-warns-price-hikes-are-unavoidable-as-memory-chip-costs-spiral/",
+            "time_published": "20260618T233659",
+            "authors": [
+              "Ewan Scott"
+            ],
+            "summary": "Apple CEO Tim Cook announced that price increases across Apple's hardware lineup are \"unavoidable\" due to soaring memory and storage chip costs, driven by the massive demand from AI infrastructure. Cook highlighted the structural breakdown in global component supply chains and the shift in memory manufacturers' focus towards higher-margin AI server components, leaving consumer electronics with tighter supply and increased expenses. While specific products and the exact timing of price adjustments were not disclosed, estimates suggest a potential $270 increase for premium iPhone Pro models, leading to investor uncertainty despite Apple's year-to-date stock gains.",
+            "banner_image": "https://www.foreignpolicyjournal.com/wp-content/uploads/2026/04/apple-ceo-tim-cook-1280x640.webp",
+            "source": "Foreign Policy Journal",
+            "category_within_source": "General",
+            "source_domain": "Foreign Policy Journal",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.913582"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.814914"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.720310"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.605570"
+              }
+            ],
+            "overall_sentiment_score": 0.009067,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "-0.207101",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              },
+              {
+                "ticker": "AMZN",
+                "relevance_score": "0.610499",
+                "ticker_sentiment_score": "0.115382",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "META",
+                "relevance_score": "0.631995",
+                "ticker_sentiment_score": "0.101848",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "VOO vs. SCHD: Which Is the Smarter Buy When Inflation Is Running Hot?",
+            "url": "https://www.theglobeandmail.com/investing/markets/stocks/GS-N/pressreleases/2546585/voo-vs-schd-which-is-the-smarter-buy-when-inflation-is-running-hot/",
+            "time_published": "20260618T221050",
+            "authors": [
+              "Motley Fool"
+            ],
+            "summary": "This article compares two ETFs, VOO (Vanguard S&P 500 ETF) and SCHD (Schwab U.S. Dividend Equity ETF), in the context of high inflation. It argues that SCHD is a smarter buy due to its focus on dividend growth, defensive sector allocations, and lower tech concentration, which makes it better suited to environments with high inflation and potential tech sector slowdowns. VOO's heavy reliance on mega-cap tech stocks is identified as a potential vulnerability.",
+            "banner_image": "https://barchart-news-media-prod.aws.barchart.com/FC/c4e61fb8e4f3de2ba7671ecc6d233b77/%3Furl%3Dhttps%253a%252f%252fg.foolcdn.com%252feditorial%252fimages%252f874467%252fgettyimages-157645744.jpg%26amp%3Bw%3D700",
+            "source": "The Globe and Mail",
+            "category_within_source": "General",
+            "source_domain": "The Globe and Mail",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.943259"
+              },
+              {
+                "topic": "economy_monetary",
+                "relevance_score": "0.800897"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.647811"
+              }
+            ],
+            "overall_sentiment_score": 0.040603,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "SCHD",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.449883",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.724334",
+                "ticker_sentiment_score": "-0.121752",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.625102",
+                "ticker_sentiment_score": "-0.102284",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "MSFT",
+                "relevance_score": "0.625972",
+                "ticker_sentiment_score": "-0.140732",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Intel Stock Jumps On Reported Apple Chip Partnership",
+            "url": "https://www.rttnews.com/3661341/intel-stock-jumps-on-reported-apple-chip-partnership.aspx",
+            "time_published": "20260618T203757",
+            "authors": [
+              "RTTNews Staff Writer"
+            ],
+            "summary": "Intel's shares surged by 10.8% after former President Donald Trump announced a deal with Apple to design and produce chips in the U.S. This partnership aims to boost domestic semiconductor manufacturing, with Intel's foundry division actively seeking major collaborations. The news has significantly increased investor confidence, with Intel's stock having risen 464% over the past year.",
+            "banner_image": null,
+            "source": "RTTNews",
+            "category_within_source": "General",
+            "source_domain": "RTTNews",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.948483"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.810901"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.715728"
+              }
+            ],
+            "overall_sentiment_score": 0.261631,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.932497",
+                "ticker_sentiment_score": "0.329618",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.427660",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.627331",
+                "ticker_sentiment_score": "0.128640",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "TSLA",
+                "relevance_score": "0.639578",
+                "ticker_sentiment_score": "0.142187",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Apple: Pulling the Pricing Lever",
+            "url": "https://www.morningstar.com/stocks/apple-pulling-pricing-lever",
+            "time_published": "20260618T202459",
+            "authors": [
+              "William Kerwin",
+              "CFA"
+            ],
+            "summary": "Apple plans to raise device prices to counteract rising memory chip costs, which have quadrupled due to AI demand. Morningstar has increased its fair value estimate for Apple to $290 per share from $270, anticipating that the price increases will lead to a net increase in revenue despite a marginal headwind to volumes. The company expects Apple's margins to rise after memory inflation slows, modeling a one-time step increase to prices.",
+            "banner_image": "https://cloudfront-us-east-1.images.arcpublishing.com/morningstar/GQR2IZXUHVGB5E7RTKE3O2AM3E.jpg",
+            "source": "Morningstar",
+            "category_within_source": "General",
+            "source_domain": "Morningstar",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.842351"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.729381"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.615738"
+              },
+              {
+                "topic": "economy_monetary",
+                "relevance_score": "0.636693"
+              }
+            ],
+            "overall_sentiment_score": 0.29471,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.254794",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "SpaceX receives Baa1 rating from Moody\u2019s with stable outlook",
+            "url": "https://www.investing.com/news/stock-market-news/spacex-receives-baa1-rating-from-moodys-with-stable-outlook-93CH-4750664",
+            "time_published": "20260618T201410",
+            "authors": [
+              "Vlad Schepkov"
+            ],
+            "summary": "Moody\u2019s Ratings has assigned SpaceX a Baa1 long-term issuer rating with a stable outlook, acknowledging its leadership in orbital launches and Starlink operations. The rating is supported by balanced financial policies, transparent governance, and Starlink's role as the primary cash flow generator. While recognizing the company's financial strengths and strategic importance to NASA and the Department of Defense, Moody's noted risks associated with high capital intensity of AI infrastructure buildout and dependence on Starship V3 for long-term growth.",
+            "banner_image": "https://i-invdn-com.investing.com/news/LYNXMPEBBR0PM_L.jpg",
+            "source": "Investing.com",
+            "category_within_source": "General",
+            "source_domain": "Investing.com",
+            "topics": [
+              {
+                "topic": "finance",
+                "relevance_score": "0.911939"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.825820"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.733908"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.605277"
+              }
+            ],
+            "overall_sentiment_score": 0.159007,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "MCO",
+                "relevance_score": "0.900294",
+                "ticker_sentiment_score": "0.308240",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.713328",
+                "ticker_sentiment_score": "0.102239",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.615999",
+                "ticker_sentiment_score": "0.123898",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.626135",
+                "ticker_sentiment_score": "0.101855",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Apple will face product gross margin pressure in FY27, says Morgan Stanley's Erik Woodring",
+            "url": "https://www.cnbc.com/video/2026/06/18/apple-will-face-product-gross-margin-pressure-in-fy27-says-morgan-stanleys-erik-woodring.html",
+            "time_published": "20260618T193713",
+            "authors": [],
+            "summary": "Morgan Stanley's Erik Woodring predicts that Apple will experience product gross margin pressure in fiscal year 2027. This information was shared during an appearance on CNBC's 'Closing Bell', where Woodring discussed the latest developments concerning Apple and their potential impact on the company's stock. The discussion is part of a broader analysis of market trends and company-specific financial outlooks.",
+            "banner_image": "https://image.cnbcfm.com/api/v1/image/108324205-17818111381781811131-46627133336-1080pnbcnews.jpg?v=1781811134&w=750&h=422&vtcrop=y",
+            "source": "CNBC",
+            "category_within_source": "General",
+            "source_domain": "CNBC",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.807007"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.714832"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.808647"
+              },
+              {
+                "topic": "economy_monetary",
+                "relevance_score": "0.635427"
+              }
+            ],
+            "overall_sentiment_score": -0.154043,
+            "overall_sentiment_label": "Somewhat-Bearish",
+            "ticker_sentiment": [
+              {
+                "ticker": "MS",
+                "relevance_score": "0.801611",
+                "ticker_sentiment_score": "-0.143751",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "-0.400382",
+                "ticker_sentiment_label": "Bearish"
+              },
+              {
+                "ticker": "CME",
+                "relevance_score": "0.644249",
+                "ticker_sentiment_score": "0.109272",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "VeriSign (NASDAQ:VRSN) Given New $308.00 Price Target at JPMorgan Chase & Co.",
+            "url": "https://www.marketbeat.com/instant-alerts/verisign-nasdaqvrsn-given-new-30800-price-target-at-jpmorgan-chase-co-2026-06-18/",
+            "time_published": "20260618T193338",
+            "authors": [
+              "MarketBeat"
+            ],
+            "summary": "JPMorgan Chase & Co. has raised its price target for VeriSign (NASDAQ:VRSN) to $308.00 from $285.00, maintaining a \"neutral\" rating on the stock. This new target suggests a potential upside of 16.58% from its previous close. Other analysts, including Robert W. Baird and Citigroup, have also increased their price targets and assigned \"buy\" or \"outperform\" ratings, contributing to a consensus \"Moderate Buy\" rating with an average target of $327.67.",
+            "banner_image": "https://www.marketbeat.com/logos/verisign-inc-logo-1200x675.png",
+            "source": "MarketBeat",
+            "category_within_source": "General",
+            "source_domain": "MarketBeat",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.933984"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.938632"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.716585"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.643770"
+              }
+            ],
+            "overall_sentiment_score": 0.129603,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "VRSN",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.407971",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "JPM",
+                "relevance_score": "0.632441",
+                "ticker_sentiment_score": "0.106927",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.627318",
+                "ticker_sentiment_score": "0.021408",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.648752",
+                "ticker_sentiment_score": "0.008890",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Bank of America Shows Strong Performance and Market Advantages",
+            "url": "https://intellectia.ai/news/stock/bank-of-america-shows-strong-performance-and-market-advantages",
+            "time_published": "20260618T191206",
+            "authors": [
+              "Emily J. Thompson"
+            ],
+            "summary": "Bank of America demonstrates strong financial performance and market advantages, including a substantial retail deposit base and significant Q1 revenue and EPS growth. The stock exhibits a reasonable valuation and offers an attractive dividend yield, making it an appealing prospect for investors. Analysts largely maintain optimistic ratings and raised price targets, reflecting confidence in its continued profitability and growth.",
+            "banner_image": "https://d5bp8bijhhba2.cloudfront.net/image/cover_image/151b118a7255f9e4c1ce0da31694fe548df6aa21898ca529a0ee35480c3600cb.jpeg",
+            "source": "Intellectia AI",
+            "category_within_source": "General",
+            "source_domain": "Intellectia AI",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.902529"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.829535"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.712457"
+              }
+            ],
+            "overall_sentiment_score": 0.338166,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "BAC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.606736",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.734526",
+                "ticker_sentiment_score": "0.111154",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "JPM",
+                "relevance_score": "0.647749",
+                "ticker_sentiment_score": "0.333513",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "GS",
+                "relevance_score": "0.626428",
+                "ticker_sentiment_score": "0.340099",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "C",
+                "relevance_score": "0.600013",
+                "ticker_sentiment_score": "0.312779",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Kulicke and Soffa, Microchip Technology, and Teradyne Shares Are Soaring, What You Need To Know",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/kulicke-soffa-microchip-technology-teradyne-183728248.html",
+            "time_published": "20260618T190802",
+            "authors": [
+              "Anthony Lee"
+            ],
+            "summary": "Shares of Kulicke and Soffa, Microchip Technology, and Teradyne jumped after President Trump announced Apple's agreement to design and manufacture chips with Intel in the U.S., boosting semiconductor industry sentiment. Micron Technology also saw gains following analyst price target hikes, and a new interim agreement between the U.S. and Iran eased geopolitical tensions and oil prices, further supporting the market. The article highlights that these events provided a significant catalyst for these companies.",
+            "banner_image": "https://s.yimg.com/ny/api/res/1.2/bv_orRxSa_sIT4AVcShAWA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEzNjtoPTQ4/https://s.yimg.com/os/creatr-uploaded-images/2023-10/7a17aaa0-71fd-11ee-bbf2-06d0c1f3a7ba",
+            "source": "Yahoo Finance",
+            "category_within_source": "General",
+            "source_domain": "Yahoo Finance",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.941670"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.843852"
+              },
+              {
+                "topic": "economy_monetary",
+                "relevance_score": "0.746758"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.611374"
+              }
+            ],
+            "overall_sentiment_score": 0.35426,
+            "overall_sentiment_label": "Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "MCHP",
+                "relevance_score": "0.935835",
+                "ticker_sentiment_score": "0.323407",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "TER",
+                "relevance_score": "0.811194",
+                "ticker_sentiment_score": "0.303180",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.724934",
+                "ticker_sentiment_score": "0.422572",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.620282",
+                "ticker_sentiment_score": "0.330302",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "bioAffinity Technologies closes $3.2M public offering",
+            "url": "https://www.investing.com/news/company-news/bioaffinity-technologies-closes-32m-public-offering-93CH-4750449",
+            "time_published": "20260618T184631",
+            "authors": [
+              "Investing.com"
+            ],
+            "summary": "bioAffinity Technologies (NASDAQ:BIAF) has successfully closed a public offering, raising $3.2 million in gross proceeds through the sale of 4 million common shares or pre-funded warrants at around $0.80 each. The biotechnology company, specializing in noninvasive lung cancer detection tests, saw a 146% increase in sales for its CyPath Lung product in Q1 2026, despite its stock being down 89% over the past year. The offering comes amidst strong sales growth and a recent patent allowance in Mexico for one of its lung cancer tests.",
+            "banner_image": "https://i-invdn-com.investing.com/news/LYNXMPEA6606G_L.jpg",
+            "source": "Investing.com",
+            "category_within_source": "General",
+            "source_domain": "Investing.com",
+            "topics": [
+              {
+                "topic": "finance",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "life_sciences",
+                "relevance_score": "0.927395"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.814670"
+              },
+              {
+                "topic": "ipo",
+                "relevance_score": "0.732965"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.626560"
+              }
+            ],
+            "overall_sentiment_score": 0.141467,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "BIAF",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.114598",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.560980",
+                "ticker_sentiment_score": "0.134095",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.602391",
+                "ticker_sentiment_score": "0.122644",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.596423",
+                "ticker_sentiment_score": "0.102933",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "MU",
+                "relevance_score": "0.593956",
+                "ticker_sentiment_score": "0.104590",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Kulicke and Soffa, Microchip Technology, and Teradyne Shares Are Soaring, What You Need To Know",
+            "url": "https://uk.finance.yahoo.com/news/kulicke-soffa-microchip-technology-teradyne-183728248.html",
+            "time_published": "20260618T183804",
+            "authors": [
+              "Anthony Lee"
+            ],
+            "summary": "Shares of Kulicke and Soffa, Microchip Technology, and Teradyne jumped after President Trump announced a deal for Apple and Intel to design and manufacture chips in the U.S., boosting the semiconductor industry. Micron also saw a significant increase following analyst price target hikes. A temporary extension of the US-Iran ceasefire and lower oil prices further contributed to positive market sentiment, easing inflation concerns.",
+            "banner_image": "https://s.yimg.com/ny/api/res/1.2/_o_PuTBQQsJXXNuoKCFNbA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTQ4MA--/https://media.zenfs.com/en/stockstory_922/f93ef77b4a164f0cdf8fd8a11ec77a6d",
+            "source": "Yahoo Finance UK",
+            "category_within_source": "General",
+            "source_domain": "Yahoo Finance UK",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.902047"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.813764"
+              },
+              {
+                "topic": "economy_monetary",
+                "relevance_score": "0.741761"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.601783"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.638021"
+              }
+            ],
+            "overall_sentiment_score": 0.290148,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "MCHP",
+                "relevance_score": "0.932064",
+                "ticker_sentiment_score": "0.307735",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "TER",
+                "relevance_score": "0.899108",
+                "ticker_sentiment_score": "0.323379",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.753605",
+                "ticker_sentiment_score": "0.327750",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.728293",
+                "ticker_sentiment_score": "0.294156",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Telecom Argentina SA (TEO) Earnings Forecast: Future EPS & Revenue Growth Estimates",
+            "url": "https://www.tradingkey.com/markets/stocks/nasdaq-teo/earnings",
+            "time_published": "20260618T181009",
+            "authors": [],
+            "summary": "This article provides an earnings forecast for Telecom Argentina SA (TEO), highlighting its current earnings forecast score, average price target, and analyst ratings. It includes peer comparisons, revenue expectations, and historical EPS performance, noting that most analysts recommend a \"Buy\" trend for the stock.",
+            "banner_image": "https://resource.tradingkey.com/static/lseg/stocks/TEO.png",
+            "source": "TradingKey",
+            "category_within_source": "General",
+            "source_domain": "TradingKey",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.902996"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.813221"
+              }
+            ],
+            "overall_sentiment_score": 0.170941,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "TEO",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.276477",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.603134",
+                "ticker_sentiment_score": "0.127552",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "GEV",
+                "relevance_score": "0.630889",
+                "ticker_sentiment_score": "0.127384",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "TPR",
+                "relevance_score": "0.646181",
+                "ticker_sentiment_score": "0.148605",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "VRSK",
+                "relevance_score": "0.611117",
+                "ticker_sentiment_score": "0.130747",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "ITC Fights Apple Bid to Rehear Ruling Upholding 2023 Watch Ban",
+            "url": "https://news.bloomberglaw.com/ip-law/itc-fights-apple-bid-to-rehear-ruling-upholding-2023-watch-ban",
+            "time_published": "20260618T173700",
+            "authors": [
+              "Christopher Yasiejko"
+            ],
+            "summary": "The US International Trade Commission (ITC) has rejected Apple's request to rehear a ruling that upheld a 2023 ban on imports of certain Apple Watch models. The ITC argued that Apple's challenge overstated the significance of the ruling for the agency's domestic-industry test and that Apple failed to meet the criteria for a rehearing. This comes as Masimo Corp., the intervener in the appeal, also urged the court to deny Apple's petition.",
+            "banner_image": "https://news-api.bloomberglaw.com/v1/resize-image?url=https%3A%2F%2Fbloomberg-bna-brightspot.s3.us-east-1.amazonaws.com%2Fe5%2F81%2F9658b36a4622b96569b151cbeb34%2F405718747.jpg&width=1240&height=480&fit=cover",
+            "source": "Bloomberg Law News",
+            "category_within_source": "General",
+            "source_domain": "Bloomberg Law News",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.913216"
+              },
+              {
+                "topic": "life_sciences",
+                "relevance_score": "0.746737"
+              }
+            ],
+            "overall_sentiment_score": -0.219899,
+            "overall_sentiment_label": "Somewhat-Bearish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "-0.217223",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              }
+            ]
+          },
+          {
+            "title": "Intel Jumps 9% After Trump Signals Apple Chip Tie-Up",
+            "url": "https://www.tradingview.com/news/gurufocus:a59da92d1094b:0-intel-jumps-9-after-trump-signals-apple-chip-tie-up/",
+            "time_published": "20260618T173659",
+            "authors": [],
+            "summary": "Intel's shares rose over 9% in premarket trading after former President Trump indicated a potential partnership between Intel and Apple to design and build chips in the U.S. This collaboration could significantly boost Intel's foundry business, which CEO Lip-Bu Tan considers crucial for the company's resurgence. An Apple deal would validate Intel's ambitions in chip manufacturing, building on Intel's existing relationship with the U.S. government.",
+            "banner_image": null,
+            "source": "TradingView",
+            "category_within_source": "General",
+            "source_domain": "TradingView",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.849143"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.728389"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.636373"
+              }
+            ],
+            "overall_sentiment_score": 0.491447,
+            "overall_sentiment_label": "Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.905930",
+                "ticker_sentiment_score": "0.312272",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.616205",
+                "ticker_sentiment_label": "Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Apple May Add $100 To Higher-End iPhone Models To Counter Memory Costs: Analyst",
+            "url": "https://www.benzinga.com/analyst-stock-ratings/reiteration/26/06/53285077/apple-may-add-100-to-higher-end-iphone-models-to-counter-memory-costs-analyst",
+            "time_published": "20260618T170656",
+            "authors": [
+              "Kaustubh Bagalkote",
+              "Benzinga Staff Writer"
+            ],
+            "summary": "Bank of America Securities (BofA) projects Apple may increase prices for its higher-end iPhone models by $100 to offset rising memory component costs. This adjustment could lead to a marginal reduction in unit demand for hardware but is expected to maintain stable service margins, supported by Apple's strong balance sheet and supplier relationships. BofA maintained its Buy rating and a $380 price forecast for Apple.",
+            "banner_image": "https://cdn.benzinga.com/cdn-cgi/image/width=1300,format=auto,quality=85/files/images/story/2025/07/24/article-header-background-image.png",
+            "source": "Benzinga",
+            "category_within_source": "General",
+            "source_domain": "Benzinga",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.931265"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.830991"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "retail_wholesale",
+                "relevance_score": "0.639652"
+              }
+            ],
+            "overall_sentiment_score": 0.229261,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.213549",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Nasdaq 100 Rallies, Oil Sinks To $75 On Iran Peace Deal: Stock Market Today",
+            "url": "https://www.benzinga.com/markets/market-summary/26/06/53283834/nasdaq-100-rallied-intel-apple-deal-oil-sinks-on-iran-peace-deal",
+            "time_published": "20260618T163408",
+            "authors": [
+              "Piero Cingari"
+            ],
+            "summary": "U.S. stocks, especially megacap technology and semiconductors, rallied on Thursday following a newly signed U.S.-Iran peace deal that sent oil prices tumbling to a three-month low, with West Texas Intermediate crude falling to $75 a barrel. The Nasdaq 100 significantly outperformed other major indices, climbing 1.5% due to chipmakers' strength, particularly driven by news of a potential Intel-Apple chip manufacturing pact. Conversely, IT services companies experienced declines after Accenture cut its revenue guidance, signaling cautious enterprise spending.",
+            "banner_image": "https://cdn.benzinga.com/cdn-cgi/image/width=1300,format=auto,quality=85/files/images/story/2025/07/24/article-header-background-image.png",
+            "source": "Benzinga",
+            "category_within_source": "General",
+            "source_domain": "Benzinga",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.941354"
+              },
+              {
+                "topic": "economy_monetary",
+                "relevance_score": "0.847186"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.708041"
+              },
+              {
+                "topic": "energy_transportation",
+                "relevance_score": "0.705708"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.634115"
+              }
+            ],
+            "overall_sentiment_score": 0.253497,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "QQQ",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.414124",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.818488",
+                "ticker_sentiment_score": "0.743322",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.703136",
+                "ticker_sentiment_score": "0.430479",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "ACN",
+                "relevance_score": "0.707372",
+                "ticker_sentiment_score": "-0.724066",
+                "ticker_sentiment_label": "Bearish"
+              },
+              {
+                "ticker": "AMD",
+                "relevance_score": "0.644258",
+                "ticker_sentiment_score": "0.328968",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Apple Dominates Global Smartwatch Market",
+            "url": "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/06/53283613/apple-dominates-global-smartwatch-market",
+            "time_published": "20260618T162702",
+            "authors": [
+              "Anusuya Lahiri"
+            ],
+            "summary": "Apple (NASDAQ:AAPL) significantly expanded its lead in the global smartwatch market, securing a 23% share in Q1 2026 with a 21% year-over-year shipment growth, driven by its refreshed product lineup and health upgrades. The overall smartwatch market saw a 4% year-over-year increase in global shipments, with a notable rebound in China fueled by brands like Huawei and growing consumer demand for advanced health features. Despite potential macroeconomic challenges, the market is expected to maintain positive growth due to the high margins of premium smartwatches.",
+            "banner_image": "https://cdn.benzinga.com/cdn-cgi/image/width=850,format=auto,quality=85/files/images/story/2026/06/18/Bangkok-Thailand-Oct-18-2023-The-Apple-W.jpeg",
+            "source": "Benzinga",
+            "category_within_source": "General",
+            "source_domain": "Benzinga",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.911786"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.716446"
+              }
+            ],
+            "overall_sentiment_score": 0.023845,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.345501",
+                "ticker_sentiment_score": "0.022904",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Trump says Apple will manufacture chips in US with Intel",
+            "url": "https://americanbazaaronline.com/2026/06/18/trump-says-apple-will-manufacture-chips-in-us-with-intel-483051/",
+            "time_published": "20260618T161043",
+            "authors": [
+              "Keerthi Ramesh"
+            ],
+            "summary": "President Donald Trump announced that Apple has agreed to partner with Intel Corporation to design and manufacture semiconductors in the United States, a move he says will boost domestic manufacturing. This partnership is part of a larger White House initiative to revitalize American silicon manufacturing and reduce reliance on overseas production. Intel's shares saw a significant jump of 9% in premarket trading following Trump's announcement, while Apple's shares rose by 0.6%.",
+            "banner_image": "https://americanbazaaronline.com/wp-content/uploads/2026/06/Untitled-design-4-500x281.png",
+            "source": "The American Bazaar",
+            "category_within_source": "General",
+            "source_domain": "The American Bazaar",
+            "topics": [
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.941171"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.808119"
+              },
+              {
+                "topic": "economy_fiscal",
+                "relevance_score": "0.712672"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.619561"
+              }
+            ],
+            "overall_sentiment_score": 0.321543,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "TSM",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "-0.297315",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.992413",
+                "ticker_sentiment_score": "0.732658",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.917211",
+                "ticker_sentiment_score": "0.520207",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.602722",
+                "ticker_sentiment_score": "0.323712",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AMD",
+                "relevance_score": "0.585384",
+                "ticker_sentiment_score": "0.349757",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Apple to change iOS app distribution and payments in Brazil under regulator agreement (AAPL:NASDAQ)",
+            "url": "https://seekingalpha.com/news/4604963-apple-to-change-ios-app-distribution-and-payments-in-brazil-under-regulator-agreement",
+            "time_published": "20260618T155907",
+            "authors": [
+              "Soumendra Mukherjee"
+            ],
+            "summary": "Apple (AAPL) announced changes to iOS app distribution and monetization in Brazil, following an agreement with the country's competition regulator, CADE. These changes aim to expand options for developers while introducing new safeguards. The company made this announcement on Thursday, effective for developers in Brazil.",
+            "banner_image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1416170962/image_1416170962.jpg?io=getty-c-w630",
+            "source": "Seeking Alpha",
+            "category_within_source": "General",
+            "source_domain": "Seeking Alpha",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.826160"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.632422"
+              }
+            ],
+            "overall_sentiment_score": 0.205748,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.226051",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "SanDisk Jumps 11%, Western Digital Rises 7% After Apple Flags \u201cUnavoidable\u201d Memory Price Hikes",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sandisk-jumps-11-western-digital-155942660.html",
+            "time_published": "20260618T153851",
+            "authors": [
+              "David Moadel"
+            ],
+            "summary": "SanDisk (SNDK) and Western Digital (WDC) stocks surged 11% and 7% respectively following Apple CEO Tim Cook's comments about \"unavoidable\" memory price hikes, indicating strong pricing power for suppliers. Both companies have seen significant year-to-date gains and reported strong quarterly results, driven by increasing demand for memory and storage in AI infrastructure. Despite bullish sentiment and analyst projections of supply tightness through 2028, some investors are concerned about potential blow-off top valuations given the rapid price appreciation and high P/E ratios.",
+            "banner_image": "https://s.yimg.com/ny/api/res/1.2/fkK8bmqahDrkIb3SCOwhUg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTQ1Mg--/https://media.zenfs.com/en/24_7_wall_st__718/2199bcbe6f7276d7583f8cf359fd18d7",
+            "source": "Yahoo Finance",
+            "category_within_source": "General",
+            "source_domain": "Yahoo Finance",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.913242"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.801045"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.705973"
+              }
+            ],
+            "overall_sentiment_score": 0.241531,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "WDC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.411325",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "MU",
+                "relevance_score": "0.896069",
+                "ticker_sentiment_score": "0.305076",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.779429",
+                "ticker_sentiment_score": "0.296992",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.629618",
+                "ticker_sentiment_score": "0.144180",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "COIN",
+                "relevance_score": "0.561813",
+                "ticker_sentiment_score": "0.031010",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Apple to partner with Intel Corp on chips: Trump",
+            "url": "https://www.taipeitimes.com/News/biz/archives/2026/06/19/2003859339",
+            "time_published": "20260618T153749",
+            "authors": [
+              "Reuters"
+            ],
+            "summary": "Former US President Donald Trump stated that Apple has agreed to collaborate with Intel on designing and manufacturing chips in the United States. This partnership aims to diversify Apple's manufacturing base, reducing its reliance on Taiwan Semiconductor Manufacturing Co (TSMC), and boosting Intel's semiconductor business and reputation. The move aligns with the Trump administration's broader strategy to secure US supply chains for critical minerals and semiconductors.",
+            "banner_image": "https://img.taipeitimes.com/images/2026/06/19/p09-260619-307.jpg",
+            "source": "Taipei Times",
+            "category_within_source": "General",
+            "source_domain": "Taipei Times",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.906911"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.626381"
+              },
+              {
+                "topic": "economy_fiscal",
+                "relevance_score": "0.647848"
+              }
+            ],
+            "overall_sentiment_score": 0.225616,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.495615",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.943827",
+                "ticker_sentiment_score": "0.319257",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.624671",
+                "ticker_sentiment_score": "-0.140672",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Why Taiwan\u2019s Semiconductor Success Is About Much More Than TSMC",
+            "url": "https://globaltaiwan.org/2026/06/taiwans-semiconductor-success-more-than-tsmc/",
+            "time_published": "20260618T151042",
+            "authors": [
+              "Mina Chen"
+            ],
+            "summary": "Taiwan's semiconductor industry dominance extends far beyond TSMC, rooted in a comprehensive ecosystem that encompasses design, advanced manufacturing, and critical backend processes like assembly, testing, and packaging. This success is underpinned by strategic government investment in technology clusters like Hsinchu Science Park, a diversified supply chain, and robust partnerships between firms and universities to cultivate a high-skilled workforce. These integrated elements collectively position Taiwan as the indispensable backbone of the global AI infrastructure.",
+            "banner_image": "https://globaltaiwan.org/wp-content/uploads/2026/06/T-00937402-scaled.jpg",
+            "source": "Global Taiwan Institute",
+            "category_within_source": "General",
+            "source_domain": "Global Taiwan Institute",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.926773"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.612877"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.626914"
+              }
+            ],
+            "overall_sentiment_score": 0.336145,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "TSM",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.545611",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.888887",
+                "ticker_sentiment_score": "0.402521",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AMD",
+                "relevance_score": "0.743409",
+                "ticker_sentiment_score": "0.304044",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.636863",
+                "ticker_sentiment_score": "0.285237",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AMAT",
+                "relevance_score": "0.566327",
+                "ticker_sentiment_score": "0.245482",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Paycom Software, Inc. (PAYC) Stock Price Today",
+            "url": "https://coinmarketcap.com/real-world-assets/paycom-software-inc/",
+            "time_published": "20260618T143816",
+            "authors": [],
+            "summary": "This page on CoinMarketCap provides information on Paycom Software, Inc. (PAYC) stock price, market capitalization, daily volume, and asset type, noting it as a tokenized stock. It also briefly covers price performance and lists other popular real-world assets and their current prices.",
+            "banner_image": null,
+            "source": "CoinMarketCap",
+            "category_within_source": "General",
+            "source_domain": "CoinMarketCap",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.924809"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.714164"
+              }
+            ],
+            "overall_sentiment_score": 0.144628,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "PAYC",
+                "relevance_score": "0.918045",
+                "ticker_sentiment_score": "0.040999",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.625822",
+                "ticker_sentiment_score": "0.180279",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.605248",
+                "ticker_sentiment_score": "0.200466",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.603325",
+                "ticker_sentiment_score": "0.223181",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "MSFT",
+                "relevance_score": "0.615523",
+                "ticker_sentiment_score": "0.186369",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Intel shares jump after Trump says Apple will work with chipmaker on US production",
+            "url": "https://ca.finance.yahoo.com/news/intel-shares-jump-trump-says-141200043.html",
+            "time_published": "20260618T141152",
+            "authors": [
+              "Proactive"
+            ],
+            "summary": "Intel shares surged 8% after former President Donald Trump announced on Truth Social that Apple has agreed to collaborate with Intel on chip design and manufacturing in the United States, as part of a broader effort to strengthen domestic semiconductor production. While no official comments were made by Apple or Intel, Wedbush analysts believe a formalized partnership would significantly endorse Intel's foundry business, though Apple's involvement would likely focus on mature or lower-end silicon rather than its flagship processors. This move would also benefit Apple by diversifying its manufacturing and securing domestic chip capacity amidst rising demand for advanced semiconductors.",
+            "banner_image": "https://s.yimg.com/ny/api/res/1.2/dUFAsOCWw3MEkGX_EVIj.A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MA--/https://media.zenfs.com/en/proactive_us_504/29977fc1aefd7663d2583c108bca7615",
+            "source": "Yahoo! Finance Canada",
+            "category_within_source": "General",
+            "source_domain": "Yahoo! Finance Canada",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.843099"
+              }
+            ],
+            "overall_sentiment_score": 0.378529,
+            "overall_sentiment_label": "Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.455131",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.912133",
+                "ticker_sentiment_score": "0.333589",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.625327",
+                "ticker_sentiment_score": "0.252333",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Amazon Overtakes Walmart as America\u2019s Biggest Company",
+            "url": "https://www.visualcapitalist.com/amazon-overtakes-walmart-as-americas-biggest-company/",
+            "time_published": "20260618T140842",
+            "authors": [
+              "Gabriel Cohen",
+              "Niccolo Conte",
+              "Sabrina Lam"
+            ],
+            "summary": "Amazon has surpassed Walmart to become America's largest company by revenue, marking a significant shift in the U.S. economy driven by e-commerce and digital services. Amazon generated $717 billion in its latest fiscal year, ending Walmart's 13-year reign at the top of the Forbes 500 list. The article highlights the growing dominance of healthcare and technology sectors, with healthcare companies accounting for $2.7 trillion in combined revenue among the top 50 firms.",
+            "banner_image": null,
+            "source": "Visual Capitalist",
+            "category_within_source": "General",
+            "source_domain": "Visual Capitalist",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.940058"
+              },
+              {
+                "topic": "retail_wholesale",
+                "relevance_score": "0.825547"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.743395"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.615283"
+              },
+              {
+                "topic": "life_sciences",
+                "relevance_score": "0.620769"
+              }
+            ],
+            "overall_sentiment_score": 0.290439,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "WMT",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.408769",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AMZN",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.445337",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "UNH",
+                "relevance_score": "0.839827",
+                "ticker_sentiment_score": "0.224913",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.719031",
+                "ticker_sentiment_score": "0.246069",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.643541",
+                "ticker_sentiment_score": "0.219683",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Intel Shares Soar After Trump Says It Struck Apple Chip Deal",
+            "url": "https://www.advisorperspectives.com/articles/2026/06/18/intel-shares-soar-after-trump-struck-apple-chip-deal",
+            "time_published": "20260618T140459",
+            "authors": [
+              "Edwin Chan of Bloomberg News"
+            ],
+            "summary": "Intel's stock surged by as much as 12% after former President Donald Trump announced that Intel would collaborate with Apple to design and produce semiconductors in the US. Trump stated he decided to support Intel for domestic chip production, and Apple had agreed to this partnership. This potential deal would be a significant victory for Intel's CEO Lip-Bu Tan, who is actively seeking external customers for the company's foundry business.",
+            "banner_image": null,
+            "source": "Advisor Perspectives",
+            "category_within_source": "General",
+            "source_domain": "Advisor Perspectives",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.831753"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.739121"
+              },
+              {
+                "topic": "manufacturing",
+                "relevance_score": "0.623135"
+              },
+              {
+                "topic": "economy_fiscal",
+                "relevance_score": "0.618343"
+              }
+            ],
+            "overall_sentiment_score": 0.307648,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.879154",
+                "ticker_sentiment_score": "0.217622",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.962072",
+                "ticker_sentiment_score": "0.405579",
+                "ticker_sentiment_label": "Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Interactive Strength expects Q2 revenue to jump over 50%",
+            "url": "https://www.investing.com/news/company-news/interactive-strength-expects-q2-revenue-to-jump-over-50-93CH-4747956",
+            "time_published": "20260618T134030",
+            "authors": [
+              "Investing.com"
+            ],
+            "summary": "Interactive Strength Inc. expects a significant increase in its second-quarter revenue, projecting over 50% growth compared to Q1, with pro forma revenue guidance exceeding $30 million for fiscal year 2026. The company, known for fitness brands like Wattbike, CLMBR, FORME, and Ergatta, also aims for run-rate profitability by year-end, despite current challenges such as an 18% gross profit margin and negative cash flow. This outlook follows a strong Q1 performance with revenue up 279% year-over-year.",
+            "banner_image": "https://i-invdn-com.investing.com/news/LYNXNPEC0D0AP_L.jpg",
+            "source": "Investing.com",
+            "category_within_source": "General",
+            "source_domain": "Investing.com",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.939346"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.641925"
+              }
+            ],
+            "overall_sentiment_score": 0.300667,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "TRNR",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.476483",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.642118",
+                "ticker_sentiment_score": "0.253958",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.594408",
+                "ticker_sentiment_score": "0.243603",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.557244",
+                "ticker_sentiment_score": "0.238285",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Apple CEO Cook warns product price increases are \u2018unavoidable\u2019",
+            "url": "https://www.proactiveinvestors.com/companies/news/1094126/apple-ceo-cook-warns-product-price-increases-are-unavoidable-1094126.html",
+            "time_published": "20260618T133700",
+            "authors": [
+              "Emily Jarvie"
+            ],
+            "summary": "Apple CEO Tim Cook has stated that product price increases are \"unavoidable\" due to surging memory and storage chip costs, primarily driven by high demand for AI infrastructure. Cook expressed that the situation has become unsustainable, though he did not specify which products would be affected or when. He noted that Apple is willing to use its financial resources to help expand memory production capacity to address the supply issue.",
+            "banner_image": "https://cdn.proactiveinvestors.com/eyJidWNrZXQiOiJwYS1jZG4iLCJrZXkiOiJ1cGxvYWRcL05ld3NcL0ltYWdlXC8yMDI2XzA2XC8yMDI0LTA",
+            "source": "Proactive financial news",
+            "category_within_source": "General",
+            "source_domain": "Proactive financial news",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.942712"
+              },
+              {
+                "topic": "economy_monetary",
+                "relevance_score": "0.843470"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.645222"
+              },
+              {
+                "topic": "retail_wholesale",
+                "relevance_score": "0.634486"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.646515"
+              }
+            ],
+            "overall_sentiment_score": -0.102001,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "-0.134742",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.621560",
+                "ticker_sentiment_score": "-0.134062",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Intel Stock Soars After Trump Reveals Apple Partnership, Nvidia Tie-Up And U.S. Stake - Intel (NASDAQ:INT",
+            "url": "https://www.benzinga.com/trading-ideas/technicals/26/06/53274303/intel-stock-soars-after-trump-reveals-apple-partnership-the-chart-points-to-more-upside",
+            "time_published": "20260618T131900",
+            "authors": [
+              "Surbhi Jain"
+            ],
+            "summary": "Intel's stock surged more than 12% in premarket trading following an announcement from former President Trump regarding significant partnerships. Trump stated that Apple has agreed to collaborate with Intel on chip design and manufacturing in the U.S., and reiterated Nvidia's commitment to manufacturing chips with Intel, alongside a claimed 10% U.S. government stake in Intel. These developments further reinforce the semiconductor reshoring narrative, positioning Intel as a key player in the domestic chip production strategy.",
+            "banner_image": "https://cdn.benzinga.com/cdn-cgi/image/width=1300,format=auto,quality=85/files/images/story/2025/07/24/article-header-background-image.png",
+            "source": "Benzinga",
+            "category_within_source": "General",
+            "source_domain": "Benzinga",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "0.831928"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.711702"
+              }
+            ],
+            "overall_sentiment_score": 0.639067,
+            "overall_sentiment_label": "Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.992841",
+                "ticker_sentiment_score": "0.739355",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.810303",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.872204",
+                "ticker_sentiment_score": "0.447192",
+                "ticker_sentiment_label": "Bullish"
+              }
+            ]
+          },
+          {
+            "title": "SpaceX Joins Nvidia, Alphabet, Apple, Microsoft, Amazon, and Taiwan Semiconductor in the $2 Trillion Club. But Will It Last?",
+            "url": "https://www.fool.com/investing/2026/06/18/spacex-stock-trillion-club-nvidia-alphabet-apple/",
+            "time_published": "20260618T125751",
+            "authors": [
+              "Daniel Foelber"
+            ],
+            "summary": "SpaceX recently held its IPO, achieving a $2.11 trillion market capitalization and joining several tech giants in the $2 trillion club. Despite this impressive valuation, driven by high demand and limited share availability, the S&P Dow Jones Indices has decided against fast-tracking its inclusion into the S&P 500, signaling potential concerns about its current valuation. While the company has massive growth potential in aerospace, satellites, and AI, investors are advised to be cautious due to initial IPO hype and wait for market stabilization.",
+            "banner_image": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F874604%2Fa-satellite-in-space-overlooking-a-cloudy-earth-sky-with-stars-on-the-horizon.jpg&w=3840&op=resize",
+            "source": "The Motley Fool",
+            "category_within_source": "General",
+            "source_domain": "The Motley Fool",
+            "topics": [
+              {
+                "topic": "ipo",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.930231"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.828503"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.740521"
+              }
+            ],
+            "overall_sentiment_score": 0.1336,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "TSM",
+                "relevance_score": "0.749112",
+                "ticker_sentiment_score": "0.110842",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.814379",
+                "ticker_sentiment_score": "0.231182",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.735727",
+                "ticker_sentiment_score": "0.168395",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.736903",
+                "ticker_sentiment_score": "0.101936",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "MSFT",
+                "relevance_score": "0.725814",
+                "ticker_sentiment_score": "0.112980",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Memory shortage crisis: Apple CEO confirms higher prices are on the way; chip stocks keep soaring",
+            "url": "https://www.fastcompany.com/91561795/chip-stocks-today-apple-ceo-confirms-memory-shortage-price-hikes",
+            "time_published": "20260618T122559",
+            "authors": [
+              "Michael Grothaus"
+            ],
+            "summary": "Apple CEO Tim Cook has confirmed that the company will raise prices on its devices due to an unavoidable AI-fueled memory chip shortage. The crisis, driven by high demand for RAM and storage chips for AI servers from hyperscalers like Nvidia and Google, has led to skyrocketing prices and a shift in manufacturing towards more expensive AI-specific chips, impacting consumer device costs. This means consumers might pay more for new Apple products, such as the next iPhone, set to ship in September.",
+            "banner_image": "https://images.fastcompany.com/image/upload/f_webp,c_fit,w_1920,q_auto/wp-cms-2/2026/06/p-1-91561795-apple-devices-pay-more-memory-chip-crisis.jpg",
+            "source": "Fast Company",
+            "category_within_source": "General",
+            "source_domain": "Fast Company",
+            "topics": [
+              {
+                "topic": "technology",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.839994"
+              },
+              {
+                "topic": "economy_macro",
+                "relevance_score": "0.741674"
+              }
+            ],
+            "overall_sentiment_score": 0.296488,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.116375",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.705393",
+                "ticker_sentiment_score": "0.308812",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AMZN",
+                "relevance_score": "0.601975",
+                "ticker_sentiment_score": "0.331923",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.626732",
+                "ticker_sentiment_score": "0.328072",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "META",
+                "relevance_score": "0.642096",
+                "ticker_sentiment_score": "0.332125",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Platinum Equity agrees to sell Heat Controller to Lennox By Investing.com",
+            "url": "https://ca.investing.com/news/stock-market-news/platinum-equity-agrees-to-sell-heat-controller-to-lennox-93CH-4698196",
+            "time_published": "20260618T122457",
+            "authors": [
+              "Investing.com"
+            ],
+            "summary": "Platinum Equity has reached a definitive agreement to sell Heat Controller, an HVAC equipment supplier, to Lennox International Inc. Financial terms of the deal were not disclosed. This transaction marks Platinum Equity's final exit from its MARS investment, having previously divested the MARS parts division to CSW Industrials in 2025 for $650 million.",
+            "banner_image": "https://i-invdn-com.investing.com/news/LYNXNPEB5S0BB_L.jpg",
+            "source": "Investing.com Canada",
+            "category_within_source": "General",
+            "source_domain": "Investing.com Canada",
+            "topics": [
+              {
+                "topic": "mergers_and_acquisitions",
+                "relevance_score": "0.934165"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.819472"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.725003"
+              }
+            ],
+            "overall_sentiment_score": 0.093891,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "LII",
+                "relevance_score": "0.932941",
+                "ticker_sentiment_score": "0.330030",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AVGO",
+                "relevance_score": "0.648495",
+                "ticker_sentiment_score": "0.343612",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.557918",
+                "ticker_sentiment_score": "-0.218207",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              },
+              {
+                "ticker": "TSLA",
+                "relevance_score": "0.592273",
+                "ticker_sentiment_score": "-0.216320",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              }
+            ]
+          },
+          {
+            "title": "US Stock Futures Rise With Intel Leading Semiconductor Rally",
+            "url": "https://www.bloomberg.com/news/articles/2026-06-18/us-stock-futures-rise-with-intel-leading-semiconductor-rally",
+            "time_published": "20260618T114300",
+            "authors": [
+              "Felice Maranz"
+            ],
+            "summary": "US stock index futures rose on Thursday, with Intel leading a semiconductor rally after an announcement from President Donald Trump. Intel surged following news of a deal with Apple to produce semiconductors domestically, causing futures on the Nasdaq 100 and S&P 500 to climb. Other chip companies like Micron Technology and Sandisk also saw significant gains.",
+            "banner_image": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ivwOEh9Imorw/v1/-1x-1.webp",
+            "source": "Bloomberg.com",
+            "category_within_source": "General",
+            "source_domain": "Bloomberg.com",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.903344"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.808945"
+              }
+            ],
+            "overall_sentiment_score": 0.337373,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.715124",
+                "ticker_sentiment_score": "0.202619",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "INTC",
+                "relevance_score": "0.907237",
+                "ticker_sentiment_score": "0.410556",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "MU",
+                "relevance_score": "0.638857",
+                "ticker_sentiment_score": "0.332031",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "WDC",
+                "relevance_score": "0.636234",
+                "ticker_sentiment_score": "0.316873",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Eni SpA (ENI) Stock, Price, News, Quotes, Forecast and Insights | MSN Money",
+            "url": "https://www.msn.com/en-us/money/markets?id=ajezf2&tab=TopLosers&ocid=nl_esmx_a1_20210929_1_1",
+            "time_published": "20260618T114114",
+            "authors": [],
+            "summary": "This article provides key financial data and performance metrics for Eni SpA (ENI), an Oil & Gas company listed on Borsa Italiana. It includes stock price details, day and 52-week ranges, market capitalization, earnings per share, P/E ratio, and forward dividend yield. The content appears to be a snapshot of market data as of June 18, 2026.",
+            "banner_image": null,
+            "source": "MSN",
+            "category_within_source": "General",
+            "source_domain": "MSN",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.936235"
+              },
+              {
+                "topic": "earnings",
+                "relevance_score": "0.818752"
+              },
+              {
+                "topic": "energy_transportation",
+                "relevance_score": "0.722177"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.609528"
+              }
+            ],
+            "overall_sentiment_score": 0.132552,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "E",
+                "relevance_score": "0.309288",
+                "ticker_sentiment_score": "0.009916",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.636857",
+                "ticker_sentiment_score": "0.316491",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "STZ",
+                "relevance_score": "0.624293",
+                "ticker_sentiment_score": "0.349118",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AMZN",
+                "relevance_score": "0.631646",
+                "ticker_sentiment_score": "0.300865",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "JPM",
+                "relevance_score": "0.610872",
+                "ticker_sentiment_score": "-0.349138",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              }
+            ]
+          },
+          {
+            "title": "104,545 Shares in Intel Corporation $INTC Purchased by Insight Holdings Group LLC",
+            "url": "https://www.marketbeat.com/instant-alerts/filing-104545-shares-in-intel-corporation-intc-purchased-by-insight-holdings-group-llc-2026-06-18/",
+            "time_published": "20260618T104254",
+            "authors": [
+              "MarketBeat"
+            ],
+            "summary": "Insight Holdings Group LLC recently acquired 104,545 shares of Intel Corporation (NASDAQ:INTC) in the fourth quarter, representing a new position valued at approximately $3.86 million. This makes Intel the 25th largest holding for Insight Holdings Group LLC, accounting for about 0.3% of their portfolio. The article also details other institutional investor activity, insider trades, Intel's stock performance, recent analyst ratings, and key news impacting the company.",
+            "banner_image": "https://www.marketbeat.com/logos/intel-co-logo-1200x675.png?v=20250605133156",
+            "source": "MarketBeat",
+            "category_within_source": "General",
+            "source_domain": "MarketBeat",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.933702"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.818688"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.701087"
+              }
+            ],
+            "overall_sentiment_score": 0.259723,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.261335",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AMD",
+                "relevance_score": "0.647541",
+                "ticker_sentiment_score": "0.301111",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.646982",
+                "ticker_sentiment_score": "0.221158",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.642427",
+                "ticker_sentiment_score": "0.204979",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "MS",
+                "relevance_score": "0.602754",
+                "ticker_sentiment_score": "0.122558",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "VanEck Avalanche ETF to initiate quarterly cash distributions from staking By Investing.com",
+            "url": "https://ca.investing.com/news/sec-filings/vaneck-avalanche-etf-to-initiate-quarterly-cash-distributions-from-staking-93CH-4697764",
+            "time_published": "20260618T103951",
+            "authors": [],
+            "summary": "The VanEck Avalanche ETF (NASDAQ: VAVX) will begin making quarterly cash distributions to shareholders, derived from its Avalanche (AVAX) staking activities. These distributions, expected to start in July 2026, will be net of staking service provider payments and custodian fees. The trust may sell staking rewards or AVAX holdings to fund these distributions, potentially affecting its market price and net asset value.",
+            "banner_image": "https://i-invdn-com.investing.com/news/moved_LYNXNPEL990UO_L.jpg",
+            "source": "Investing.com Canada",
+            "category_within_source": "General",
+            "source_domain": "Investing.com Canada",
+            "topics": [
+              {
+                "topic": "blockchain",
+                "relevance_score": "1.000000"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.929256"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.823579"
+              }
+            ],
+            "overall_sentiment_score": 0.278692,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "VAVX",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.122654",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AVGO",
+                "relevance_score": "0.578974",
+                "ticker_sentiment_score": "0.433942",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.579074",
+                "ticker_sentiment_score": "0.319307",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "TSLA",
+                "relevance_score": "0.567926",
+                "ticker_sentiment_score": "0.339673",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Should ALPS OShares U.S. Quality Dividend ETF (OUSA) Be on Your Investing Radar?",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/alps-oshares-u-quality-dividend-102002193.html",
+            "time_published": "20260618T103932",
+            "authors": [
+              "Zacks Equity Research"
+            ],
+            "summary": "The ALPS OShares U.S. Quality Dividend ETF (OUSA) offers broad exposure to the Large Cap Value segment of the U.S. equity market, having amassed over $725.78 million in assets. With an expense ratio of 0.48% and a 12-month trailing dividend yield of 1.42%, OUSA primarily invests in Financials, Information Technology, and Healthcare sectors, with top holdings including Johnson & Johnson, Alphabet Inc., and Apple Inc. The ETF has performed well recently, returning 1.24% year-to-date and 11.21% over the last year, and is considered a medium-risk option with a Zacks ETF Rank of 3 (Hold).",
+            "banner_image": "https://s.yimg.com/ny/api/res/1.2/I6vl5XfwVoMsHnquKUL3nQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTc1OA--/https://media.zenfs.com/en/zacks.com/d2f7ed3d1940141716bfd200f5c94c6b",
+            "source": "Yahoo Finance",
+            "category_within_source": "General",
+            "source_domain": "Yahoo Finance",
+            "topics": [
+              {
+                "topic": "finance",
+                "relevance_score": "0.742498"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.943574"
+              }
+            ],
+            "overall_sentiment_score": 0.155112,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "OUSA",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.331493",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "JNJ",
+                "relevance_score": "0.726160",
+                "ticker_sentiment_score": "0.131005",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.622907",
+                "ticker_sentiment_score": "0.126524",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.645186",
+                "ticker_sentiment_score": "0.107800",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Investment Management Corp of Ontario Acquires 200,424 Shares of Intel Corporation $INTC",
+            "url": "https://www.marketbeat.com/instant-alerts/filing-investment-management-corp-of-ontario-acquires-200424-shares-of-intel-corporation-intc-2026-06-18/",
+            "time_published": "20260618T103746",
+            "authors": [
+              "MarketBeat"
+            ],
+            "summary": "Investment Management Corp of Ontario significantly increased its stake in Intel Corporation, adding 200,424 shares to nearly double its holdings to 404,029 shares valued at $14.9 million. The increase comes as Intel reaches a major manufacturing milestone with its new 18A-P process, sparking both optimism among some analysts regarding AI-related demand and foundry growth, and caution from others who believe the stock might be overvalued after its recent rally. Insider transactions also show an EVP selling a substantial number of shares.",
+            "banner_image": "https://www.marketbeat.com/logos/intel-co-logo-1200x675.png?v=20250605133156",
+            "source": "MarketBeat",
+            "category_within_source": "General",
+            "source_domain": "MarketBeat",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.912207"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.840054"
+              },
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.738742"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.604082"
+              }
+            ],
+            "overall_sentiment_score": 0.23456,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "INTC",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.214808",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AMD",
+                "relevance_score": "0.604911",
+                "ticker_sentiment_score": "0.286316",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.606281",
+                "ticker_sentiment_score": "0.204864",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.628579",
+                "ticker_sentiment_score": "0.241425",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Should iShares Nasdaq Top 30 Stocks ETF (QTOP) Be on Your Investing Radar?",
+            "url": "https://sg.finance.yahoo.com/news/ishares-nasdaq-top-30-stocks-102002239.html",
+            "time_published": "20260618T102000",
+            "authors": [
+              "Zacks Equity Research"
+            ],
+            "summary": "The article evaluates the iShares Nasdaq Top 30 Stocks ETF (QTOP), highlighting its passively managed large-cap growth focus, low expense ratio of 0.2%, and strong performance. It notes QTOP's concentration in the information technology sector with top holdings like Nvidia, Apple, and Microsoft, and positions it as a \"Buy\" for investors seeking exposure to the large-cap growth segment. The article also mentions alternative ETFs such as VUG and QQQ for comparison.",
+            "banner_image": "https://s.yimg.com/ny/api/res/1.2/vrkkkMGj31_E_Z11uaK.VQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MQ--/https://media.zenfs.com/en/zacks.com/48ad4265c55e3ba7a1fb9148d6e717d9",
+            "source": "Yahoo Finance Singapore",
+            "category_within_source": "General",
+            "source_domain": "Yahoo Finance Singapore",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.922640"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.811885"
+              }
+            ],
+            "overall_sentiment_score": 0.330294,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "QTOP",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.396269",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.643938",
+                "ticker_sentiment_score": "0.339971",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.648108",
+                "ticker_sentiment_score": "0.315657",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "MSFT",
+                "relevance_score": "0.642271",
+                "ticker_sentiment_score": "0.310239",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              }
+            ]
+          },
+          {
+            "title": "Why Apple Stock Looks Compelling After Its Q2 Gross Margin and Services Record in 2026",
+            "url": "https://www.tikr.com/blog/why-apple-stock-looks-compelling-after-its-q2-gross-margin-and-services-record-in-2026",
+            "time_published": "20260618T101701",
+            "authors": [
+              "Gian Estrada"
+            ],
+            "summary": "Apple recorded a Q2 FY2026 revenue of $111.2 billion and a March quarter record for Services revenue at $31 billion, driving gross margins to a multi-year high of 49%. Despite increasing operating expenses and R&D investment in areas like Apple Intelligence, operating income grew 21%. TIKR's model projects a 47% total return by September 2030, valuing AAPL at $434, contingent on sustained gross margin expansion.",
+            "banner_image": "https://res.cloudinary.com/tikr/images/f_auto,q_auto,w_800/v1781750047/images/FEATURED-IMAGE-MAKER-888/FEATURED-IMAGE-MAKER-888",
+            "source": "TIKR.com",
+            "category_within_source": "General",
+            "source_domain": "TIKR.com",
+            "topics": [
+              {
+                "topic": "earnings",
+                "relevance_score": "0.907242"
+              },
+              {
+                "topic": "technology",
+                "relevance_score": "0.843490"
+              }
+            ],
+            "overall_sentiment_score": 0.18995,
+            "overall_sentiment_label": "Somewhat-Bullish",
+            "ticker_sentiment": [
+              {
+                "ticker": "AAPL",
+                "relevance_score": "1.000000",
+                "ticker_sentiment_score": "0.490026",
+                "ticker_sentiment_label": "Bullish"
+              },
+              {
+                "ticker": "MSFT",
+                "relevance_score": "0.640591",
+                "ticker_sentiment_score": "0.102926",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "GOOGL",
+                "relevance_score": "0.642968",
+                "ticker_sentiment_score": "0.112630",
+                "ticker_sentiment_label": "Neutral"
+              },
+              {
+                "ticker": "META",
+                "relevance_score": "0.642418",
+                "ticker_sentiment_score": "0.136739",
+                "ticker_sentiment_label": "Neutral"
+              }
+            ]
+          },
+          {
+            "title": "Why the Invesco S&P 500 Equal Weight ETF (RSP) Might Be a Better Buy Than the Flagship Vanguard S&P 500 ETF (VOO) Right Now",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/why-invesco-p-500-equal-101000211.html",
+            "time_published": "20260618T100956",
+            "authors": [
+              "Jennifer Saibil",
+              "The Motley Fool"
+            ],
+            "summary": "This article contrasts two S&P 500 ETFs: the market-cap-weighted Vanguard S&P 500 ETF (VOO) and the equal-weight Invesco S&P 500 Equal Weight ETF (RSP). It argues that RSP might be a better buy currently due to VOO's heavy concentration in a few tech giants and its inherent bias towards growth stocks, which can introduce risk and volatility. The Invesco ETF offers a more balanced exposure, having demonstrated less volatility and better performance during market corrections.",
+            "banner_image": "https://s.yimg.com/ny/api/res/1.2/LGS3X5NPU1BNmlcC_vMiUg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MA--/https://media.zenfs.com/en/motleyfool.com/fdc8f06de1992a6495e2b9e533e67f34",
+            "source": "Yahoo Finance",
+            "category_within_source": "General",
+            "source_domain": "Yahoo Finance",
+            "topics": [
+              {
+                "topic": "financial_markets",
+                "relevance_score": "0.930889"
+              },
+              {
+                "topic": "finance",
+                "relevance_score": "0.722825"
+              }
+            ],
+            "overall_sentiment_score": -0.065659,
+            "overall_sentiment_label": "Neutral",
+            "ticker_sentiment": [
+              {
+                "ticker": "IVZ",
+                "relevance_score": "0.831671",
+                "ticker_sentiment_score": "0.325921",
+                "ticker_sentiment_label": "Somewhat-Bullish"
+              },
+              {
+                "ticker": "NVDA",
+                "relevance_score": "0.718216",
+                "ticker_sentiment_score": "-0.235050",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              },
+              {
+                "ticker": "AAPL",
+                "relevance_score": "0.626611",
+                "ticker_sentiment_score": "-0.247702",
+                "ticker_sentiment_label": "Somewhat-Bearish"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "agentBalanceUSD": 0.09783
+  },
+  "timestamp": "2026-06-19T14:45:27.685Z"
+}
