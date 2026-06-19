@@ -99,9 +99,28 @@
   .goalbar .gright{flex:0 0 auto;display:flex;align-items:center;gap:8px}
 
   /* grid */
-  .grid{flex:1;display:grid;grid-template-columns:300px minmax(0,1fr) 350px;gap:14px;padding:14px;overflow:hidden}
-  @media (max-width:1240px){ .grid{grid-template-columns:260px minmax(0,1fr)} .col-right{display:none} }
-  @media (max-width:900px){ .grid{grid-template-columns:1fr;overflow:auto} .center{min-height:0} }
+  .grid{flex:1;display:grid;grid-template-columns:280px minmax(0,1fr) 330px;gap:14px;padding:14px;overflow:hidden}
+  @media (max-width:1180px){ .grid{grid-template-columns:240px minmax(0,1fr) 300px;gap:10px;padding:10px} }
+  /* tablet + mobile: stack into a vertically-scrolling single column (nothing hidden) */
+  @media (max-width:1000px){
+    html,body{height:auto}
+    .app{height:auto;min-height:100vh}
+    .grid{grid-template-columns:1fr;height:auto;overflow:visible;padding:12px;gap:12px}
+    .center{min-height:0}
+    .col-right,body.ovw .col-right{display:flex!important;max-width:none;height:460px}
+    .col-dag,body.ovw .center .col-dag{height:320px;min-height:0}
+    .col-feed{height:420px}
+  }
+  @media (max-width:560px){
+    header{gap:9px 14px;padding:11px 13px}
+    .gauge{min-width:150px}
+    .stat .v.big{font-size:18px}
+    .col-dag,body.ovw .center .col-dag{height:260px}
+    .col-feed{height:360px} .col-right,body.ovw .col-right{height:400px}
+    .goalbar{flex-wrap:wrap;gap:6px 12px} .goalbar .gtext{flex-basis:100%;-webkit-line-clamp:3}
+    .modal{padding:10px} .modal-head{flex-wrap:wrap} .catgrid{grid-template-columns:1fr}
+    .row{grid-template-columns:54px 20px 26px 1fr auto;gap:7px;padding:6px 11px}
+  }
 
   .panel{background:rgba(20,33,64,.78);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;min-height:0;overflow:hidden}
   .phead{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--line-soft);flex:0 0 auto;flex-wrap:wrap}
