@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 104" role="img" aria-label="igigi-swarm mark">
+  <title>igigi-swarm</title>
+  <desc>Four copper agent-wedges flowing inward along a network to a terracotta settlement node.</desc>
+  <g stroke="#D4A074" stroke-opacity="0.45" stroke-width="1.4" stroke-linecap="round">
+    <line x1="60" y1="52" x2="34" y2="30"/><line x1="60" y1="52" x2="86" y2="30"/>
+    <line x1="60" y1="52" x2="34" y2="74"/><line x1="60" y1="52" x2="86" y2="74"/>
+    <line x1="34" y1="30" x2="86" y2="30"/><line x1="34" y1="74" x2="86" y2="74"/>
+  </g>
+  <g fill="#D4A074">
+    <path transform="translate(34,30) rotate(40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+    <path transform="translate(86,30) rotate(140) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+    <path transform="translate(86,74) rotate(220) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+    <path transform="translate(34,74) rotate(-40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+  </g>
+  <circle cx="60" cy="52" r="5" fill="#B87654"/>
+</svg>

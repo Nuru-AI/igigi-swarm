@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Igigi Swarm — live</title>
+<title>igigi-swarm — live</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@
     backdrop-filter:blur(6px);
   }
   .brand{display:flex;align-items:center;gap:12px;padding-right:4px}
-  .brand .mark{width:30px;height:30px;flex:0 0 auto;filter:drop-shadow(0 0 10px rgba(212,160,116,.22))}
+  .brand .mark{width:40px;height:35px;flex:0 0 auto;filter:drop-shadow(0 0 6px rgba(212,160,116,.18))}
   .brand .word{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.02em;color:var(--paper);line-height:1}
   .brand .sub{font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.30em;text-transform:uppercase;color:var(--copper);margin-top:3px}
   .livedot{width:8px;height:8px;border-radius:50%;background:var(--grey-dim);margin-left:2px}
@@ -395,14 +395,27 @@
 </head>
 <body class="ovw">
 <div class="field" aria-hidden="true"></div>
-<h1 class="sr-only">Igigi Swarm — live agent-payment observability dashboard, settled by Sippar</h1>
+<h1 class="sr-only">igigi-swarm — live agent-payment observability dashboard</h1>
 <div class="app">
 
   <header>
     <div class="brand">
-      <!-- Locked Sippar mark — embedded verbatim from src/frontend/public/brand/sippar-mark.svg. Never redrawn. -->
-      <svg class="mark" viewBox="0 0 248 248" role="img" aria-label="Sippar"><g transform="translate(34 39) rotate(135 90 85)" fill="#D4A074"><rect x="32" y="24" width="118" height="17"/><rect x="32" y="126" width="118" height="16"/><rect x="32" y="41" width="17" height="85"/><rect x="134" y="41" width="16" height="85"/><rect x="79" y="71" width="55" height="12"/><rect x="49" y="83" width="55" height="12"/></g></svg>
-      <div><div class="word">igigi</div><div class="sub">Swarm · by Sippar</div></div>
+      <!-- igigi-swarm a2a-constellation mark (branding/igigi-swarm-mark.svg) -->
+      <svg class="mark" viewBox="0 0 120 104" role="img" aria-label="igigi-swarm">
+        <g stroke="#D4A074" stroke-opacity="0.5" stroke-width="1.8" stroke-linecap="round">
+          <line x1="60" y1="52" x2="34" y2="30"/><line x1="60" y1="52" x2="86" y2="30"/>
+          <line x1="60" y1="52" x2="34" y2="74"/><line x1="60" y1="52" x2="86" y2="74"/>
+          <line x1="34" y1="30" x2="86" y2="30"/><line x1="34" y1="74" x2="86" y2="74"/>
+        </g>
+        <g fill="#D4A074">
+          <path transform="translate(34,30) rotate(40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+          <path transform="translate(86,30) rotate(140) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+          <path transform="translate(86,74) rotate(220) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+          <path transform="translate(34,74) rotate(-40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/>
+        </g>
+        <circle cx="60" cy="52" r="5" fill="#B87654"/>
+      </svg>
+      <div><div class="word">igigi</div><div class="sub">Swarm</div></div>
       <span id="dot" class="livedot" title="run status" aria-hidden="true"></span>
     </div>
 
