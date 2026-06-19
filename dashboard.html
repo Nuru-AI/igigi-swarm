@@ -650,9 +650,9 @@ function upsertAgent(label,patch){
 }
 function flashAgent(label){ const el=document.querySelector('.acard[data-a="'+label+'"]'); if(el){ el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),900); } }
 function coordCard(){
-  return `<div class="acard coord" aria-label="Coordinator — deterministic harness, not an LLM agent">
+  return `<div class="acard coord" aria-label="Coordinator — team sized by Claude, in-run gating is deterministic with no per-task model">
     <div class="top"><span class="lbl">Coordinator</span><span class="role">harness</span><span class="pill"><span class="d" aria-hidden="true"></span>deterministic</span></div>
-    <div class="csub">deterministic code · no model · <b>no inference</b></div>
+    <div class="csub">team sized by <b>Claude</b> · gates the DAG deterministically · <b>no per-task model</b></div>
     <div class="meta"><span>tasks <b>${tasksDone}/${tasksTotal}</b></span></div>
   </div>`;
 }
