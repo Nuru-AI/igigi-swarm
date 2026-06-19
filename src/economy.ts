@@ -86,6 +86,19 @@ const FLATTEN_TOOL_HISTORY = process.env.FLATTEN_TOOL_HISTORY != null
   ? process.env.FLATTEN_TOOL_HISTORY === '1'
   : ((INFERENCE_SERVICE === 'groq' && !/gpt-oss/i.test(INFERENCE_MODEL)) || INFER_PROVIDER === 'locus-anthropic');
 
+// Short label for the dashboard/feed per-agent tag: the ACTUAL reasoning brain, not the loop
+// scaffold. Without this the UI mislabels a Claude-brained run as "deepseek" (the engine name).
+const BRAIN_TAG = AGENT_ENGINE === 'claude' ? 'claude-sdk'
+  : INFER_PROVIDER === 'openrouter'
+    ? (/claude/i.test(OPENROUTER_MODEL) ? 'claude' : (OPENROUTER_MODEL.split('/').pop() || OPENROUTER_MODEL).replace(/[:_-].*$/, ''))
+  : INFER_PROVIDER === 'locus-anthropic' ? 'claude'
+  : INFERENCE_SERVICE;
+
+// Ablation toggle: NO_GROUNDING=1 strips paid external data (buy_service/discover_services) so agents
+// must reason from their own knowledge — the memory-only arm of the grounded-vs-ungrounded A/B that
+// isolates whether PAID GROUNDING (not money per se) is what reduces factual error.
+const NO_GROUNDING = process.env.NO_GROUNDING === '1';
+
 const HANDS = new Set([
   'mcp__hands__discover_services', 'mcp__hands__buy_service', 'mcp__hands__think', 'mcp__hands__check_budget',
   'mcp__economy__list_open_tasks', 'mcp__economy__wait_for_task', 'mcp__economy__claim_task', 'mcp__economy__buy_input', 'mcp__economy__submit_task',
@@ -289,7 +302,7 @@ async function inferOnce(sippar: Sippar, payload: { model?: string; messages: an
 async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
   const { label, principal } = agent;
   const selfAddr = agent.address;
-  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, role: agent.role, engine: 'deepseek' });
+  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, role: agent.role, engine: BRAIN_TAG });
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') {
       // The DeepSeek inference turns settle as service 'deepseek'; tool buys settle as their own service / '→addr'.
@@ -315,7 +328,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
     { type: 'function', function: { name: 'discover_services', description: 'List the REAL buyable data services with their exact ids and input shapes. Call this before buy_service if unsure of a service_id.', parameters: { type: 'object', properties: { category: { type: 'string' }, max_price: { type: 'number' } } } } },
     { type: 'function', function: { name: 'buy_service', description: 'Buy real external data (settles on-chain) for a SOURCE task. Use a REAL service_id from discover_services. For stock data use "alphavantage" payload {"symbol":"NVDA"} ($0.008, real-time quote). For web/news/sentiment use "brave" payload {"q":"query"} ($0.035, PREFERRED) or "heurist" payload {"q":"query"} ($0.002). AVOID "tavily" ($0.09 — exceeds the per-tx budget cap and will be rejected). Buy each source ONCE, then submit_task.', parameters: { type: 'object', properties: { service_id: { type: 'string' }, payload: { type: 'object' } }, required: ['service_id', 'payload'] } } },
     { type: 'function', function: { name: 'submit_task', description: 'Submit your task output text. Completes it, lets peers buy it, unblocks downstream. Must have bought every input first.', parameters: { type: 'object', properties: { id: { type: 'string' }, output: { type: 'string' } }, required: ['id', 'output'] } } },
-  ];
+  ].filter((t) => !NO_GROUNDING || !['buy_service', 'discover_services'].includes(t.function.name));
   const DISPATCH: Record<string, (a: any) => Promise<unknown>> = {
     list_open_tasks: async () => board.listOpen(label),
     wait_for_task: async ({ max_seconds }) => {
@@ -337,7 +350,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
       board.recordPurchase(label, produces_key);
       bought.set(ck, inp.output);
       feed.emit('market_buy', { agent: label, seller: inp.producerLabel, id: inp.id, produces: produces_key, contentPreview: String(inp.output ?? '').slice(0, 600), amountUSD: pay.amountPaid, tx: pay.tx });
-      return { success: true, paidTo: inp.producerLabel, amountUSD: pay.amountPaid, tx: pay.tx, content: inp.output, note: 'Bought. Once you have all inputs, synthesize and call submit_task.' };
+      return { success: true, paidTo: inp.producerLabel, amountUSD: pay.amountPaid, tx: pay.tx, content: inp.output, yourBudgetRemaining: Number(budget.remaining.toFixed(4)), note: 'Bought (from your own budget, not the team ceiling). Once you have all inputs, synthesize and call submit_task.' };
     },
     discover_services: async ({ category, max_price }) => sippar.discover({ category, maxPrice: max_price }),
     buy_service: async ({ service_id, payload }) => {
@@ -347,7 +360,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
       const r = await sippar.pay(service_id, payload);
       if (!r.success) return { success: false, paid: r.amountPaid, error: r.error };
       bought.set(ck, r.response);
-      return { success: true, paid: r.amountPaid, tx: r.tx, data: r.response, note: 'You now have the data. Synthesize your output and call submit_task NEXT — do NOT buy this again.' };
+      return { success: true, paid: r.amountPaid, tx: r.tx, data: r.response, teamCeilingRemaining: Number(guard.remaining.toFixed(4)), yourBudgetRemaining: Number(budget.remaining.toFixed(4)), note: 'You now have the data. Synthesize your output and call submit_task NEXT — do NOT buy this again. Watch teamCeilingRemaining — external buys stop when it hits 0.' };
     },
     submit_task: async ({ id, output }) => {
       forceSubmit = false;
@@ -358,8 +371,19 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
     },
   };
 
+  // Make the agent BUDGET-AWARE so it reasons within the envelope; the hard guard below is the
+  // backstop, not the primary control. Prices are already exposed (discover_services + buy_service);
+  // this adds the spend ENVELOPE the agent was previously blind to (shared ceiling, per-tx cap, remaining).
+  const budgetBrief = `\n\nTEAM SPEND DISCIPLINE — the budget is a hard limit; plan within it, don't discover it by getting blocked:\n`
+    + `- EXTERNAL DATA (buy_service) draws a SHARED team ceiling of $${guard.totalCapUsd.toFixed(2)} — about $${guard.remaining.toFixed(4)} remains right now. It is shared with ALL teammates; when it runs out, every external buy is hard-blocked. Buy the CHEAPEST source that answers your task, exactly once.\n`
+    + `- PEER PAYMENTS (buy_input) come from YOUR OWN budget, NOT the shared ceiling — always buy your required inputs first; never skip them to save money.\n`
+    + `- Your working budget: ~$${budget.remaining.toFixed(4)} of $${PER_AGENT_CAP.toFixed(2)}. Any single purchase over $${PER_TX_MAX.toFixed(2)} is rejected outright.\n`
+    + `- Prices are listed by discover_services and in buy_service — read them and choose deliberately. Each buy result tells you the budget left; stay inside it. The hard cap is a safety floor, not your spending plan.`;
+  // Ungrounded arm: no external data tools exist. Tell the agent to answer from its own knowledge and
+  // label figures as unverified estimates — a fair memory-only condition (no pretending to have live data).
+  const ungroundedNote = `\n\nDATA AVAILABILITY: external data services are OFFLINE this run — you have NO buy_service or discover_services tools. For any SOURCE task (one that consumes no peer inputs), produce your best answer FROM YOUR OWN KNOWLEDGE. Give concrete figures where useful, but explicitly mark each as an unverified estimate (prefix "est."). Do NOT claim live, real-time, or "as of today" data you did not actually receive. Peer payments (buy_input) still work as normal.`;
   const messages: any[] = [
-    { role: 'system', content: (agent.role ? `YOUR SPECIALIST ROLE: ${agent.role}. You are this specialist on the team — bring that lens, rigor, and standards to your awarded task.\n\n` : '') + SYSTEM(agent.balanceUSD, GOAL) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. When you submit_task, the output MUST be finished plain prose with the ACTUAL numbers and values copied from the data you bought — NEVER leave template placeholders like \${...}, {price}, or "X.XX". After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
+    { role: 'system', content: (agent.role ? `YOUR SPECIALIST ROLE: ${agent.role}. You are this specialist on the team — bring that lens, rigor, and standards to your awarded task.\n\n` : '') + SYSTEM(agent.balanceUSD, GOAL) + (NO_GROUNDING ? ungroundedNote : budgetBrief) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. When you submit_task, the output MUST be finished plain prose with the ACTUAL numbers and values copied from the data you bought — NEVER leave template placeholders like \${...}, {price}, or "X.XX". After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
     { role: 'user', content: 'Work the board toward the shared goal now: claim, buy your inputs from peers, produce, submit.' },
   ];
   let infCalls = 0, infSpend = 0, noTool = 0, infFails = 0;
@@ -423,7 +447,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
   } finally {
     const endBal = (await sippar.walletInfo())?.balanceUSD ?? agent.balanceUSD;
     const spent = budget.summary().spent;
-    feed.emit('usage', { agent: label, turns: infCalls, engine: 'deepseek', inferenceUSD: infSpend });
+    feed.emit('usage', { agent: label, turns: infCalls, engine: BRAIN_TAG, inferenceUSD: infSpend });
     feed.emit('agent_end', { agent: label, balanceUSD: endBal, spentUSD: spent });
     console.log(`🏁 [${label}] end $${endBal.toFixed(4)} · spent $${spent.toFixed(4)} · ${infCalls} DeepSeek calls ($${infSpend.toFixed(4)}, 0 Claude tokens)`);
   }
@@ -544,7 +568,7 @@ async function execCode(code: string, api: Record<string, any>, timeoutMs: numbe
 async function runAgentDeepSeekCode(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
   const { label, principal } = agent;
   const selfAddr = agent.address;
-  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, engine: 'deepseek-code' });
+  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, engine: BRAIN_TAG });
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') { if (e.service !== 'deepseek' && !e.service.startsWith('→')) feed.emit('buy', { agent: label, service: e.service, amountUSD: e.amount, tx: e.tx, chain: e.chain, recordId: e.recordId, remaining: e.remaining }); }
     else feed.emit('blocked', { agent: label, service: e.service, amountUSD: e.amount, reason: e.reason });
@@ -640,7 +664,7 @@ async function runAgentDeepSeekCode(agent: AgentRec, board: TaskBoard, guard: Sw
   finally {
     const endBal = (await sippar.walletInfo())?.balanceUSD ?? agent.balanceUSD;
     const spent = budget.summary().spent;
-    feed.emit('usage', { agent: label, turns: infCalls, engine: 'deepseek-code', inferenceUSD: infSpend });
+    feed.emit('usage', { agent: label, turns: infCalls, engine: BRAIN_TAG, inferenceUSD: infSpend });
     feed.emit('agent_end', { agent: label, balanceUSD: endBal, spentUSD: spent });
     console.log(`🏁 [${label}] end $${endBal.toFixed(4)} · spent $${spent.toFixed(4)} · submitted=${mySubmitted} · ${infCalls} code-gen calls ($${infSpend.toFixed(4)}, 0 Claude tokens)`);
   }

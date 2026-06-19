@@ -12,3 +12,12 @@ runs/
 .locus-*.sh
 fund-base.mjs
 locus-docs/
+
+# local scratch / machine-specific launchers + state (not for publication)
+.provision-test*.mjs
+.run-*.ps1
+.provisioned-principals.txt
+ab_deliverable_*.md
+.ab-*.py
+*.bak
+*.bak-*

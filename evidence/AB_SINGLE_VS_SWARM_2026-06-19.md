@@ -19,7 +19,9 @@
 **3 passes with memo positions swapped (bias control):** swarm **3/3 wins**, swarm avg **8.07** vs single **7.23** — independent of presentation order.
 
 ## Why the swarm wins
-The single agent gathered the *same data* but **flattens** it. The swarm's specialist layers force depth: the **Quant Risk Analyst** adds bull/base/bear **scenario probabilities**; the **Chief Strategist** adds **explicit price targets, portfolio weights, stop-loss discipline**. Judge's words: the single agent *"stops short of price targets or position-sizing, rendering its recommendations difficult to act on."* The judge also caught a **data error** in the single-agent memo (an implausible $537 AMD price) that the swarm handled correctly.
+The single agent gathered the *same data* but **flattens** it. The swarm's specialist layers force depth: the **Quant Risk Analyst** adds bull/base/bear **scenario probabilities**; the **Chief Strategist** adds **explicit price targets, portfolio weights, stop-loss discipline**. Judge's words: the single agent *"stops short of price targets or position-sizing, rendering its recommendations difficult to act on."*
+
+**Correction (2026-06-19):** an earlier version of this note claimed the judge "caught an implausible $537 AMD price" in the single-agent memo. That was wrong — AMD really did close at **$537.37 on 2026-06-17** (verified independently). The judge model flagged a *correct* real-time price as a hallucination because its own training memory anchors AMD near ~$170. That is **not** a point in the swarm's favor; if anything it shows **memory misleads even the judge** (see `AB_GROUNDED_VS_UNGROUNDED_2026-06-19.md`). The 9.0-vs-7.4 result stands on structural grounds (specialist depth), independent of this price.
 
 **Takeaway:** the agent economy isn't only a settlement story — the *specialization it enables produces measurably better, more actionable work* (≈ +0.8–1.6 overall, blind, position-controlled).
 
