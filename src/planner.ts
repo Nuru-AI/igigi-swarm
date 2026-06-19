@@ -10,9 +10,10 @@ import { type Task, validatePlan } from './taskboard.js';
 const PLANNER_SYS = `You decompose a GOAL into a DAG of small subtasks for a team of autonomous agents who pay each other on-chain for the outputs they consume.
 
 OUTPUT: ONLY valid JSON, no prose, no markdown fences:
-{"tasks":[{"id":"t1","title":"...","produces":"snake_case_key","consumes":[],"priceUSD":0.01}, ...]}
+{"tasks":[{"id":"t1","title":"...","role":"...","produces":"snake_case_key","consumes":[],"priceUSD":0.01}, ...]}
 
 HARD RULES:
+- Each task gets a "role": a concise (2-4 word) specialist JOB TITLE for the agent who'd do it, fitting the GOAL's domain (e.g. "Equity Data Analyst", "Crypto Market Researcher", "Semiconductor Supply-Chain Analyst", "Chief Investment Strategist"). The single SINK task's role is the senior synthesizer (e.g. "Chief Strategist", "Lead Editor"). Roles must be DISTINCT across tasks — each agent is a different specialist.
 - Each task PRODUCES exactly one unique output key (snake_case). No two tasks share a produces key.
 - CONSUMES lists other tasks' produces keys (the inputs it needs), or [] for a source task.
 - The graph MUST be acyclic and CONNECTED: make real dependencies — downstream tasks consume upstream outputs. Tasks must be genuinely DIFFERENT so no agent can do another's work.
@@ -45,6 +46,7 @@ export async function decompose(goal: string, n: number, model: string): Promise
     const tasks: Task[] = (parsed.tasks ?? []).map((t: any, i: number) => ({
       id: String(t.id ?? `t${i + 1}`),
       title: String(t.title ?? `task ${i + 1}`),
+      role: t.role ? String(t.role) : undefined, // CI-pattern specialist title; falls back by DAG layer in economy.ts
       produces: String(t.produces ?? `out${i + 1}`),
       consumes: Array.isArray(t.consumes) ? t.consumes.map(String) : [],
       priceUSD: Math.min(0.03, Math.max(0.005, Number(t.priceUSD ?? 0.01))),

@@ -155,7 +155,7 @@ HOW TO WORK (loop until you have no awarded task left):
 5. ★ THE MOMENT you have your output text, IMMEDIATELY call submit_task(id, output). Do NOT look for other tasks first, do NOT keep researching — SUBMIT. An unsubmitted task blocks the whole team and you are not paid until you submit.
 Only AFTER submitting, list_open_tasks for another awarded task; if none, call wait_for_task. If wait_for_task returns boardRemaining 0 (or your awarded work is done), you are FINISHED — stop. Earn by producing what peers need; keep your own messages short.`;
 
-interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; }
+interface AgentRec { label: string; principal: string; address: string; balanceUSD: number; role?: string; }
 
 async function runAgent(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
   const { label, principal } = agent;
@@ -289,7 +289,7 @@ async function inferOnce(sippar: Sippar, payload: { model?: string; messages: an
 async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmGuard, feed: SwarmFeed): Promise<void> {
   const { label, principal } = agent;
   const selfAddr = agent.address;
-  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, engine: 'deepseek' });
+  feed.emit('agent_start', { agent: label, principal, address: selfAddr, balanceUSD: agent.balanceUSD, role: agent.role, engine: 'deepseek' });
   const onEvent = (e: BudgetEvent) => {
     if (e.type === 'spent') {
       // The DeepSeek inference turns settle as service 'deepseek'; tool buys settle as their own service / '→addr'.
@@ -359,7 +359,7 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
   };
 
   const messages: any[] = [
-    { role: 'system', content: SYSTEM(agent.balanceUSD, GOAL) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. When you submit_task, the output MUST be finished plain prose with the ACTUAL numbers and values copied from the data you bought — NEVER leave template placeholders like \${...}, {price}, or "X.XX". After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
+    { role: 'system', content: (agent.role ? `YOUR SPECIALIST ROLE: ${agent.role}. You are this specialist on the team — bring that lens, rigor, and standards to your awarded task.\n\n` : '') + SYSTEM(agent.balanceUSD, GOAL) + `\n\nYOU REASON VIA TOOL CALLS. Call ONE tool at a time. NEVER call a tool with empty arguments — always include the required fields. When you submit_task, the output MUST be finished plain prose with the ACTUAL numbers and values copied from the data you bought — NEVER leave template placeholders like \${...}, {price}, or "X.XX". After you submit_task successfully, find your next awarded task (or wait_for_task); if boardRemaining is 0 or you have no awarded task, reply with the word DONE and stop.` },
     { role: 'user', content: 'Work the board toward the shared goal now: claim, buy your inputs from peers, produce, submit.' },
   ];
   let infCalls = 0, infSpend = 0, noTool = 0, infFails = 0;
@@ -679,10 +679,19 @@ async function main() {
   const sinkId = board.sink()?.id;
   console.log(`   deliverable (sink): ${sinkId ?? '(none)'}\n`);
 
+  // Specialist ROLE per agent (CI-pattern): the planner's role for its primary awarded task,
+  // else a DAG-layer fallback (source→Research Analyst, intermediate→Synthesis Analyst,
+  // sink→Lead Strategist). Turns 8 homogeneous agents into a visible market of named specialists.
+  agents.forEach((a, ai) => {
+    const myTask = plan.find((_, i) => i % agents.length === ai);
+    if (myTask) a.role = myTask.role || (myTask.id === sinkId ? 'Lead Strategist' : myTask.consumes.length === 0 ? 'Research Analyst' : 'Synthesis Analyst');
+  });
+  console.log(`   roles: ${agents.map((a) => `${a.label}=${a.role ?? '?'}`).join('  ')}\n`);
+
   feed.emit('swarm_start', {
     capUSD: SWARM_CAP_USD, perAgentUSD: PER_AGENT_CAP, model: MODEL, mandate: `TASK-ECONOMY: ${GOAL}`,
-    agents: agents.map((a, ai) => ({ label: a.label, principal: a.principal, address: a.address, balanceUSD: a.balanceUSD, assignedTasks: plan.filter((_, i) => i % agents.length === ai).map((t) => t.id) })),
-    plan: plan.map((t) => ({ id: t.id, title: t.title, produces: t.produces, consumes: t.consumes, priceUSD: t.priceUSD })),
+    agents: agents.map((a, ai) => ({ label: a.label, principal: a.principal, address: a.address, balanceUSD: a.balanceUSD, role: a.role, assignedTasks: plan.filter((_, i) => i % agents.length === ai).map((t) => t.id) })),
+    plan: plan.map((t) => ({ id: t.id, title: t.title, role: t.role, produces: t.produces, consumes: t.consumes, priceUSD: t.priceUSD })),
   });
 
   // 3) Run all agents concurrently — the DAG orders them (no stagger needed).

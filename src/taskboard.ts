@@ -15,6 +15,7 @@ export interface Task {
   produces: string;       // unique output key this task creates
   consumes: string[];     // produces-keys of upstream tasks (inputs); [] = source task
   priceUSD: number;       // what a consumer pays the producer for this output
+  role?: string;          // specialist job title for the agent awarded this task (CI-pattern)
 }
 
 type Status = 'open' | 'claimed' | 'completed';
@@ -80,7 +81,7 @@ export class TaskBoard {
     return this.tasks
       .filter((t) => t.status === 'open' && this.depsMet(t, done) && (agent == null || this.mayTake(t, agent, now)))
       .map((t) => ({
-        id: t.id, title: t.title, produces: t.produces, consumes: t.consumes, priceUSD: t.priceUSD,
+        id: t.id, title: t.title, role: t.role, produces: t.produces, consumes: t.consumes, priceUSD: t.priceUSD,
         buy_inputs: t.consumes, // keys to buy_input before submit
       }));
   }
