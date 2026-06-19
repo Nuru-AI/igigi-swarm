@@ -342,8 +342,8 @@ async function runAgentDeepSeek(agent: AgentRec, board: TaskBoard, guard: SwarmG
     discover_services: async ({ category, max_price }) => sippar.discover({ category, maxPrice: max_price }),
     buy_service: async ({ service_id, payload }) => {
       if (!service_id || !payload || !Object.keys(payload).length) return { error: 'service_id + non-empty payload required (a real id from discover_services). Never call with empty arguments.' };
-      const ck = `svc:${service_id}`;
-      if (bought.has(ck)) { forceSubmit = true; return { success: true, alreadyBought: true, data: bought.get(ck), note: `You ALREADY bought "${service_id}" and have the data. Do NOT buy it again — call submit_task(id, output) NOW with your synthesized result.` }; }
+      const ck = `svc:${service_id}:${JSON.stringify(payload)}`; // dedup by service+payload — allows alphavantage(NVDA) AND alphavantage(AMD); only EXACT repeats are blocked
+      if (bought.has(ck)) { forceSubmit = true; return { success: true, alreadyBought: true, data: bought.get(ck), note: `You ALREADY bought "${service_id}" with these exact params — reuse that data. Buy a DIFFERENT service/param if you need more, else synthesize and call submit_task NOW.` }; }
       const r = await sippar.pay(service_id, payload);
       if (!r.success) return { success: false, paid: r.amountPaid, error: r.error };
       bought.set(ck, r.response);
