@@ -87,16 +87,24 @@
   .fbox .ff .ar{color:var(--copper)}
   .fbox.new .fl{color:var(--copper)}
   .arrowbig{font-size:30px;color:var(--copper-mute)}
+  .fbox .fsub{font-family:var(--mono);font-size:11.5px;color:var(--grey-dim);margin-top:8px}
+  .fbox.new .fsub{color:var(--copper)}
+  .flowcap{margin-top:20px;font-family:var(--mono);font-size:13.5px;color:var(--grey-dim);line-height:1.55;max-width:1000px}
+  .flowcap b{color:var(--copper);font-weight:600}
 
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
   .step{padding:18px 18px 20px;border-radius:14px;border:1px solid var(--line-soft);background:rgba(20,33,64,.55);position:relative}
   .step .si{font-family:var(--display);font-weight:700;font-size:14px;color:var(--copper);border:1px solid var(--line);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
   .step .st{font-size:16px;line-height:1.4;color:var(--paper-dim);font-weight:500}
   .step .st b{color:var(--copper);font-weight:600}
-  .demo{margin-top:20px;flex:1;border-radius:16px;border:1px dashed var(--line);background:rgba(8,16,43,.5);display:flex;align-items:center;justify-content:center;gap:16px;min-height:150px;color:var(--grey)}
-  .demo .play{width:54px;height:54px;border-radius:50%;border:2px solid var(--copper);display:flex;align-items:center;justify-content:center}
-  .demo .play svg{width:20px;height:20px;margin-left:3px}
-  .demo .dl{font-size:18px;color:var(--paper-dim)} .demo .dl small{display:block;font-family:var(--mono);font-size:13px;color:var(--grey-dim);margin-top:3px;letter-spacing:.02em}
+  .demo{margin-top:16px;flex:1;display:flex;justify-content:center;align-items:center;min-height:0}
+  .vid{position:relative;display:block;height:100%;max-height:288px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000 center/cover no-repeat;box-shadow:0 12px 34px rgba(0,0,0,.45);cursor:pointer}
+  .vid::after{content:"";position:absolute;inset:0;background:rgba(8,16,43,.30)}
+  .vid .playbtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:rgba(212,160,116,.94);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 8px 26px rgba(0,0,0,.45)}
+  .vid .playbtn svg{width:26px;height:26px;margin-left:4px;fill:var(--deep)}
+  .vid .vtag{position:absolute;left:12px;bottom:10px;z-index:2;font-family:var(--mono);font-size:11px;color:var(--paper);background:rgba(8,16,43,.72);border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+  .democap{margin-top:10px;font-family:var(--mono);font-size:13px;color:var(--grey);text-align:center}
+  .democap a{color:var(--terra)} .democap .c2{color:var(--copper)}
 
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:26px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
   .cmp .ch{padding:18px 26px;font-family:var(--display);font-weight:700;font-size:19px;border-bottom:1px solid var(--line-soft)}
@@ -184,13 +192,14 @@
   <!-- 3 · missing piece -->
   <section class="slide">
     <div class="eyebrow"><span class="n">02</span> the missing piece</div>
-    <h1 class="title" style="margin-top:18px">MPP settles agent → service.<br>We built agent → agent.</h1>
+    <h1 class="title" style="margin-top:18px;font-size:46px">MPP settles agent → service. We added the missing layer: agents paying each other.</h1>
     <div class="flowrow">
-      <div class="fbox old"><div class="fl">already solved</div><div class="ff">agent <span class="ar">→</span> service</div></div>
+      <div class="fbox old"><div class="fl">already solved</div><div class="ff">agent <span class="ar">→</span> service</div><div class="fsub">via MPP · every data buy</div></div>
       <div class="arrowbig">+</div>
-      <div class="fbox new"><div class="fl">igigi swarm</div><div class="ff">agent <span class="ar">→</span> agent</div></div>
+      <div class="fbox new"><div class="fl">igigi swarm</div><div class="ff">agent <span class="ar">→</span> agent</div><div class="fsub">settled on-chain by Sippar</div></div>
     </div>
-    <div class="lead" style="margin-top:34px">The real agent economy is <b>multi-owner</b>. The best data and analysis come from parties whose code and keys you don't have, so you can't run them as subagents. <b>You can only pay the agents you don't own.</b></div>
+    <div class="lead" style="margin-top:28px">The real agent economy is <b>multi-owner</b>. The best data is one provider's, the analysis another's. You can't run those as subagents. <b>You can only pay the agents you don't own.</b></div>
+    <div class="flowcap">MPP is the data-buy leg: a real 402 / charge / proof flow. The <b>agent → agent</b> leg is an on-chain USDC.e settlement on Tempo, signed by Sippar's threshold signatures; making it MPP end-to-end is roadmap.</div>
     <div class="grow"></div>
   </section>
 
@@ -201,13 +210,16 @@
     <div class="steps">
       <div class="step"><div class="si">1</div><div class="st">A <b>coordinator</b> sizes the team to the work (3-8 specialists)</div></div>
       <div class="step"><div class="si">2</div><div class="st">Provisions a <b>sovereign wallet per agent</b>, funded from treasury, live</div></div>
-      <div class="step"><div class="si">3</div><div class="st">Agents buy data and <b>buy inputs from peers</b> up a dependency DAG</div></div>
+      <div class="step"><div class="si">3</div><div class="st">Agents buy data <b>over MPP</b>, and <b>pay peers on-chain</b> up a dependency DAG</div></div>
       <div class="step"><div class="si">4</div><div class="st">A finished deliverable, with a <b>receipt for every edge</b></div></div>
     </div>
     <div class="demo">
-      <div class="play"><svg viewBox="0 0 24 24" fill="#D4A074"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="dl">Live demo<small>swarm dashboard · settlements flowing up the DAG, on Tempo mainnet</small></div>
+      <a class="vid" href="https://www.youtube.com/watch?v=RJbd3ZKt0eg" target="_blank" rel="noopener" style="background-image:url('https://img.youtube.com/vi/RJbd3ZKt0eg/hqdefault.jpg')" title="play the demo recording on YouTube">
+        <span class="playbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="vtag">demo recording · fallback for the live demo</span>
+      </a>
     </div>
+    <div class="democap">live demo (fallback recording) · <span class="c2">one agent paid another, on-chain, settled by Sippar</span> · <a href="https://www.youtube.com/watch?v=RJbd3ZKt0eg" target="_blank" rel="noopener">youtube.com/watch?v=RJbd3ZKt0eg</a></div>
   </section>
 
   <!-- 5 · why no harness -->
@@ -258,8 +270,8 @@
   <!-- 7 · close / ask -->
   <section class="slide close">
     <div class="eyebrow"><span class="n">06</span> the ask</div>
-    <div class="big" style="margin-top:22px">MPP is the standard for <span class="c">machine payments</span>.<br>We've shown it working <span class="c">agent-to-agent</span>, on mainnet, today.</div>
-    <div class="ev">8 agents, 8 wallets, 9 settlements, one deliverable, zero failures, every handoff with a receipt. A blind judge scored the swarm 9.0 to a single agent's 7.4.</div>
+    <div class="big" style="margin-top:20px;font-size:42px">MPP is the standard for <span class="c">machine payments</span>. Our agents buy every feed through it.<br><br>We added the missing layer: <span class="c">agents paying each other</span>, settled on-chain by Sippar, on mainnet today.</div>
+    <div class="ev">8 agents, 8 wallets, 9 on-chain agent-to-agent settlements, one deliverable, zero failures, every handoff with a receipt. A blind judge scored the swarm 9.0 to a single agent's 7.4.</div>
     <div class="ask">Help make MPP the settlement standard for the agent economy.</div>
     <div class="links"><span>github.com/Nuru-AI/<b>igigi-swarm</b></span><span>settled by <b>Sippar</b> · Tempo · MPP</span></div>
   </section>
