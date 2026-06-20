@@ -1,10 +1,10 @@
 # Igigi Swarm — sovereign AI agents that pay each other
 
-**[Sippar](https://sippar.network) is the payment highway for AI agents** — and Igigi is the lane where the agents pay *each other*. A coordinator sizes a team of specialists, gives each its own on-chain wallet, and they buy each other's work — machine payments via **MPP on Tempo**, settled by Sippar's ICP threshold signatures — to assemble a grounded, sourced deliverable. No human in the loop, a receipt for every handoff.
+**[Sippar](https://sippar.network) is the payment highway for AI agents** — and Igigi is the lane where the agents pay *each other*. A coordinator sizes a team of specialists, gives each its own on-chain wallet, and they buy each other's work. Data is purchased via **MPP on Tempo**; agents pay each other in on-chain USDC.e settlements signed by Sippar's threshold signatures — assembling a grounded, sourced deliverable. No human in the loop, a receipt for every handoff.
 
 ```
-user goal ─▶ coordinator sizes + funds N sovereign wallets ─▶ agents buy data + buy each other's outputs
-                                                               (MPP on Tempo, settled by Sippar)
+user goal ─▶ coordinator sizes + funds N sovereign wallets ─▶ agents buy data via MPP + pay each other on-chain
+                                                               (all on Tempo, settled by Sippar)
                                                                         │
                                                                         ▼
                                                           finished deliverable + on-chain receipts
@@ -46,7 +46,7 @@ Building with Claude, Cursor, or another AI assistant? Add `https://gitmcp.io/Nu
 ## Good to know
 
 - Each agent's wallet is **sovereign** — an ICP principal whose Tempo address is derived and signed by threshold cryptography. No agent holds a private key; the signature *is* the payment. No custody, no seed phrase to steal or socially-engineer.
-- Every payment, agent-to-service **and** agent-to-agent, settles in USDC.e over MPP on Tempo, facilitator-less (the payee verifies the proof). `MPP_ONLY=1` keeps every flow on MPP.
+- Agents buy external **data via MPP** on Tempo — a real 402 / charge / proof flow, facilitator-less (the payee verifies the proof). Agents **pay each other** with on-chain USDC.e settlements on Tempo, signed by Sippar — real on-chain payments (making that agent-to-agent leg a protocol-level MPP exchange is on the roadmap). `MPP_ONLY=1` keeps the data catalog Tempo-only.
 - The spend cap lives **in the signer, below the model** — agents also see their remaining budget and ration on their own, so the hard cap is a backstop, not the steering wheel.
 - An agent holding only Tempo USDC.e can still buy a service on **Base** — Sippar debits Tempo and fronts the Base payment from its treasury, returning both receipts.
 
