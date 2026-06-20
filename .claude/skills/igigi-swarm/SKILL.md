@@ -40,7 +40,7 @@ Run from the project root (`agent-budget-experiment/`). Verify, and only fix wha
 
 1. **Dependencies** — if `node_modules/` is absent, run `npm install`. (Provisioning needs `@dfinity/identity`.)
 2. **Secrets** — `.env` must exist with `SIPPAR_ACCESS_TOKEN` (the Sippar agent-pay API) and `OPENROUTER_API_KEY` (the agents' brain). If `.env` is missing, `cp .env.example .env` and ask the user to fill those two in — do **not** invent or echo token values.
-3. **On Windows**, Node needs the system cert bundle: `NODE_EXTRA_CA_CERTS` should point at a PEM (the repo's runs set `C:/Users/<you>/win-ca-bundle.pem`). The `.run-*.ps1` launchers set this for you.
+3. **On Windows only, and only if you hit a TLS / self-signed-cert error**, set `NODE_EXTRA_CA_CERTS` to your cert bundle (e.g. `C:/Users/<you>/win-ca-bundle.pem`) before the `node`/`npm` commands. Most environments don't need this, and there is no `.run-*.ps1` launcher in a clone — use the explicit commands below.
 
 If a prereq is missing, stop and tell the user exactly what to add — a half-configured run fails mid-demo, which is the worst time.
 
@@ -67,32 +67,51 @@ Then tell the user to open the dashboard URL and walk the Activity / Receipt / S
 
 Run these in order. Narrate each step (see "What to say" below).
 
-**1. Coordinator sizes the team + provisions wallets on-chain.**
+**1. Start the dashboard FIRST — once, in the background** — so it's ready to stream the moment the swarm writes its first event. It binds `http://localhost:7878` and auto-tails the newest `runs/*.jsonl`.
+
+```bash
+npm run dashboard          # leave running; shows "waiting for a run" until the swarm starts
+```
+
+If you see `EADDRINUSE … :7878`, a dashboard is **already running** — reuse it, don't start a second (the second just crashes, and that's expected). To take the port over (e.g. for a screenshot / `preview_start`): Windows `netstat -ano | findstr :7878` then `taskkill //PID <pid> //F`; macOS/Linux `lsof -ti:7878 | xargs kill`.
+
+**2. Coordinator sizes the team + provisions wallets on-chain.**
 
 ```bash
 node provision.mjs "<the user's goal>"
 ```
 
-This makes a real model call to decide how many specialists the goal needs (3–8) and their roles, then for each: generates a sovereign ICP identity, derives its Tempo address, and funds it from treasury. It prints the wallet table and writes the principals to `.provisioned-principals.txt`. Watch for any `FAIL` lines — the script falls back across funders, but if a wallet ends unfunded, the swarm's sink agent may stall.
+A real model call decides how many specialists the goal needs (3–8) and their roles, then for each generates a sovereign ICP identity, derives its Tempo address, and funds it from treasury. It prints the wallet table and writes `.provisioned-principals.txt`. Watch for `FAIL` lines — the script falls back across funders, but if a wallet ends unfunded the sink agent may stall.
 
-If the user gives no goal, default to: `"rank NVDA, AMD, and crypto-AI tokens (buy/sell/hold) with rationale, from stock quotes, crypto-AI sentiment, AI news, and semiconductor supply-chain signals"` — it exercises the full multi-specialist DAG.
+If the user gives no goal, default to: `"rank NVDA, AMD, and crypto-AI tokens (buy/sell/hold) with rationale, from stock quotes, crypto-AI sentiment, AI news, and semiconductor supply-chain signals"`.
 
-**2. Run the swarm on the freshly-provisioned wallets.**
+**3. Run the swarm on the freshly-provisioned wallets** (same goal string). Use whichever shell you're in:
 
 ```bash
+# bash / the Bash tool
 MPP_ONLY=1 AGENT_ENGINE=deepseek INFERENCE_PROVIDER=openrouter \
   OPENROUTER_MODEL=anthropic/claude-sonnet-4.6 \
   SWARM_PRINCIPALS=$(cat .provisioned-principals.txt) \
   npm run economy "<the same goal>"
 ```
 
-`MPP_ONLY=1` restricts the catalog to Tempo so 100% of payments are MPP. The agents reason on bought inference (off any Claude cap), claim DAG tasks, buy real data (`buy_service`), buy their inputs from peers (`buy_input` — the agent-to-agent settlement), and submit. On **Windows**, run `./.run-provisioned.ps1` instead (it sets the same env + the cert path).
+```powershell
+# PowerShell
+$env:MPP_ONLY='1'; $env:AGENT_ENGINE='deepseek'; $env:INFERENCE_PROVIDER='openrouter'; $env:OPENROUTER_MODEL='anthropic/claude-sonnet-4.6'; $env:SWARM_PRINCIPALS=(Get-Content .provisioned-principals.txt -Raw).Trim()
+npm run economy "<the same goal>"
+```
 
-**3. Open the live dashboard in another shell** (or beforehand, so it streams as the swarm runs):
+(There is **no `.run-*.ps1` launcher in a clone** — use the command above. On Windows, if you hit a TLS/self-signed-cert error, also set `NODE_EXTRA_CA_CERTS` to your cert bundle, e.g. `C:/Users/<you>/win-ca-bundle.pem`.) The agents claim DAG tasks, buy real data (`buy_service`), buy their inputs from peers (`buy_input` — the agent-to-agent settlement), and submit. Point the audience at the dashboard now to watch settlements flow.
+
+**4. Pull the finished deliverable** when `swarm_end` lands. The run stores the output **capped (~8000 chars)**, so don't copy the truncated console line — read the full text from the `swarm_end` event of the newest run file:
 
 ```bash
-npm run dashboard          # http://localhost:7878
+f=$(ls -t runs/*.jsonl | head -1)
+node -e 'const fs=require("fs");const L=fs.readFileSync(process.argv[1],"utf8").trim().split("\n").map(l=>{try{return JSON.parse(l)}catch{return null}}).filter(Boolean);const e=L.find(x=>x.kind==="swarm_end");process.stdout.write((e&&e.deliverable&&e.deliverable.output)||"NOT FOUND");' "$f" > investment-memo.md
+cat investment-memo.md
 ```
+
+Don't hand-roll string-matching extractors — use the `swarm_end` event.
 
 ## What to say while it runs (the narration)
 
@@ -120,7 +139,8 @@ curl -s -X POST https://sippar.network/api/sippar/agent/relay-pay \
 - **Provisioning `FAIL: 0x0`** — a funder was too thin for the amount + ~700k gas reservation; the script retries the next funder automatically. If all fail, top a funder wallet, or lower `PROVISION_FUND_USD`.
 - **Payments error with "Sign failed" / out of cycles** — the `ethereum_signer` canister needs cycles. The live run can't settle until it's topped up.
 - **`fetch failed` mid-run** — almost always the machine sleeping and dropping the network. Disable sleep before a demo (`powercfg /change standby-timeout-ac 0` on Windows).
-- **Dashboard shows the wrong run** — it tails the newest `runs/*.jsonl` unless `FEED_FILE` is set.
+- **Dashboard shows the wrong / a stale run** — it tails the newest `runs/*.jsonl` unless `FEED_FILE` is set, and only follows *new* runs when `FEED_FILE` is unset. Run the dashboard from the **same folder** as the swarm.
+- **`Start-Sleep N; <cmd>` is blocked** by the harness. To wait on a background task's output, use an until-loop in the Bash tool: `f="<task-output-file>"; until grep -qiE "swarm_end|Wrote .* principals" "$f" 2>/dev/null; do sleep 3; done; cat "$f"`.
 
 ## What this is (one paragraph, for context)
 
