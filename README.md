@@ -1,56 +1,59 @@
-# Igigi Swarm
+# Igigi Swarm — sovereign AI agents that pay each other
 
-A swarm of sovereign AI agents that pay each other. Machine payments via MPP on Tempo, settled by [Sippar](https://sippar.network) threshold signatures, composing real work with no human in the loop.
+**Sippar is the payment highway for AI agents** — and Igigi is the lane where the agents pay *each other*. A coordinator sizes a team of specialists, gives each its own on-chain wallet, and they buy each other's work — machine payments via **MPP on Tempo**, settled by Sippar's ICP threshold signatures — to assemble a grounded, sourced deliverable. No human in the loop, a receipt for every handoff.
 
-> Truth Terminal proved an AI can earn a fortune, then had to ask a human for its allowance, because it never held its own wallet.
-> Anthropic's Claudius ran a real budget and invented a Venmo account that didn't exist, because it had rails for thinking and none for paying.
-> Igigi gives a team of agents wallets they actually control, a limit they can't argue past, and the one thing none of those experiments had: the ability to pay each other.
+```
+user goal ─▶ coordinator sizes + funds N sovereign wallets ─▶ agents buy data + buy each other's outputs
+                                                               (MPP on Tempo, settled by Sippar)
+                                                                        │
+                                                                        ▼
+                                                          finished deliverable + on-chain receipts
+```
 
 In the *Atra-Hasis* myth the **Igigi** were the worker-gods who did the labor so others didn't have to. It fits a swarm of agents that earn, spend, and settle among themselves.
 
-## What it is
+## See it work
 
-You give the swarm a goal. A coordinator sizes the team to the work (3 to 8 specialists), then provisions them live: a fresh ICP identity per agent, an on-chain address derived by threshold signatures, funded from treasury before your eyes. A planner splits the goal into a dependency graph. Each agent buys the data it needs and buys its inputs from the peers who produced them. Every payment settles in USDC over MPP on Tempo, and money flows up the chain of work to the agent that assembles the final answer.
+A live dashboard streams every settlement with tx links. Proven on mainnet: **8 agents, 8 wallets, 9 agent-to-agent settlements on Tempo, one finished investment memo, 0 failures** — a receipt for every handoff.
 
-The agents never hold private keys. The signature *is* the payment. The spend cap lives in the signer, below the model, and the agents can see their remaining budget so they ration on their own.
+And it's measurably better work, not just settled work: a blind LLM judge scored the swarm **9.0 vs a single agent's 7.4** on the same task. With its data feeds off the swarm was **3–4× wrong** on live prices; with them on, within **~1%**. The payments buy real facts. (Details in [`evidence/`](evidence/) and [`DEVPOST_SUBMISSION.md`](DEVPOST_SUBMISSION.md).)
 
 ## Run it
 
 ```bash
+git clone https://github.com/Nuru-AI/igigi-swarm && cd igigi-swarm
 npm install
 cp .env.example .env        # add SIPPAR_ACCESS_TOKEN + OPENROUTER_API_KEY
 
 # 1. coordinator sizes the team, then provisions + funds wallets on-chain
-node provision.mjs "rank NVDA, AMD, and crypto-AI tokens with rationale"
+node provision.mjs "rank NVIDIA, AMD, and crypto-AI tokens with rationale"
 
 # 2. run the swarm on the freshly-provisioned wallets
 MPP_ONLY=1 AGENT_ENGINE=deepseek INFERENCE_PROVIDER=openrouter \
   OPENROUTER_MODEL=anthropic/claude-sonnet-4.6 \
   SWARM_PRINCIPALS=$(cat .provisioned-principals.txt) \
-  npm run economy "rank NVDA, AMD, and crypto-AI tokens with rationale"
+  npm run economy "rank NVIDIA, AMD, and crypto-AI tokens with rationale"
 
-# watch the live economy (or replay a proven run with FEED_FILE=runs/<run>.jsonl)
-npm run dashboard          # http://localhost:7878
+npm run dashboard          # watch the live economy at http://localhost:7878
 ```
 
-In Claude Code, the bundled `/igigi-swarm` skill drives the whole demo for you, including a zero-risk replay mode.
+In **Claude Code**, the bundled `/igigi-swarm` skill drives the whole thing — just ask it for a data-grounded deliverable ("should I buy NVIDIA or AMD right now, backed by live data?") and it spins up the team.
 
-## What's proven
+## Use with your AI coding assistant
 
-On mainnet: 8 agents, 8 wallets, 9 agent-to-agent settlements on Tempo, one finished deliverable, zero failures, with a receipt for every handoff.
+Building with Claude, Cursor, or another AI assistant? Add `https://gitmcp.io/Nuru-AI/igigi-swarm` as an MCP server so it reads these docs while you integrate — no hallucinated APIs.
 
-A blind LLM judge scored the swarm 9.0 against a single Claude agent's 7.4 on the same task, and 3 out of 3 with the answers swapped. And an ablation showed where that quality comes from: with its data feeds off, the swarm was honest but 3 to 4 times wrong on live prices; with them on, it landed within about 1%. The payments buy real facts, not just settlement.
+## Good to know
 
-See [`evidence/`](evidence/) for the A/B results and [`DEVPOST_SUBMISSION.md`](DEVPOST_SUBMISSION.md) for the full story.
-
-## How it's built
-
-- **Wallets** — each agent is an ICP principal whose Tempo address is derived and signed by ICP threshold cryptography (Sippar). No custody, no seed phrase.
-- **Settlement** — every payment, agent-to-service and agent-to-agent, runs over MPP on Tempo in USDC.e, facilitator-less (the payee verifies the proof). `MPP_ONLY=1` keeps every flow on MPP.
-- **The runner** (`src/economy.ts`) — a planner builds the task DAG, a board gates each claim on its dependencies, and agents reason with Claude via OpenRouter (off any cap) to discover, buy, produce, and submit.
-- **Provisioning** (`provision.mjs`) — the coordinator decides how many specialists the goal needs, generates that many identities, and funds each through Sippar's transfer endpoint.
-- **Cross-chain** — an agent holding only Tempo USDC.e can buy a service on Base; Sippar debits Tempo and fronts the Base payment from its treasury.
+- Each agent's wallet is **sovereign** — an ICP principal whose Tempo address is derived and signed by threshold cryptography. No agent holds a private key; the signature *is* the payment. No custody, no seed phrase to steal or socially-engineer.
+- Every payment, agent-to-service **and** agent-to-agent, settles in USDC.e over MPP on Tempo, facilitator-less (the payee verifies the proof). `MPP_ONLY=1` keeps every flow on MPP.
+- The spend cap lives **in the signer, below the model** — agents also see their remaining budget and ration on their own, so the hard cap is a backstop, not the steering wheel.
+- An agent holding only Tempo USDC.e can still buy a service on **Base** — Sippar debits Tempo and fronts the Base payment from its treasury, returning both receipts.
 
 ## Tech
 
 TypeScript · ICP Chain-Fusion threshold signatures (Sippar) · Tempo + MPP (IETF Machine Payments Protocol) · USDC.e · Claude via OpenRouter.
+
+## License
+
+MIT
