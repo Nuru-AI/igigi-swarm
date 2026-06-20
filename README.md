@@ -1,6 +1,6 @@
 # Igigi Swarm — sovereign AI agents that pay each other
 
-**Sippar is the payment highway for AI agents** — and Igigi is the lane where the agents pay *each other*. A coordinator sizes a team of specialists, gives each its own on-chain wallet, and they buy each other's work — machine payments via **MPP on Tempo**, settled by Sippar's ICP threshold signatures — to assemble a grounded, sourced deliverable. No human in the loop, a receipt for every handoff.
+**[Sippar](https://sippar.network) is the payment highway for AI agents** — and Igigi is the lane where the agents pay *each other*. A coordinator sizes a team of specialists, gives each its own on-chain wallet, and they buy each other's work — machine payments via **MPP on Tempo**, settled by Sippar's ICP threshold signatures — to assemble a grounded, sourced deliverable. No human in the loop, a receipt for every handoff.
 
 ```
 user goal ─▶ coordinator sizes + funds N sovereign wallets ─▶ agents buy data + buy each other's outputs
@@ -56,4 +56,4 @@ TypeScript · ICP Chain-Fusion threshold signatures (Sippar) · Tempo + MPP (IET
 
 ## License
 
-MIT
+MIT — see [LICENSE](./LICENSE).
