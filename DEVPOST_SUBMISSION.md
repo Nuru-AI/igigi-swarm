@@ -46,10 +46,18 @@ The guardrail has to live below the model. Anything in a prompt can be argued wi
 
 And the agent economy needs settlement. The best data and analysis come from different parties, and you can't run their agents as subagents, because you don't have their code or their keys. You can only pay them. No framework can do that, which is exactly the gap we fill.
 
+## The platform behind it
+
+The swarm is one application of a settlement layer that already does more, all on mainnet. Every MPP settlement can emit a signed invoice record, so a machine payment carries standards-grade accounting (Factur-X / UBL); it's built and verified on a live settlement. Sippar also settles for other agent frameworks: a ruflo task-completion hook paid a peer on Tempo in a real run. And agents can hold verifiable on-chain identity. Our keyless agent carries Self Agent ID #169 and ERC-8004 #9274, both minted on Celo mainnet with no private key.
+
 ## What's next for Igigi Swarm
+
+Batch signing is the scaling unlock. Today each on-chain settlement is its own threshold signature, which is why the demo takes minutes and a thought costs about three cents. Sign once over a hundred actions, each still provable, and the cost per action drops about 100x while latency falls from minutes to seconds. Then every machine action can settle on-chain economically.
+
+Per-swarm on-chain identity and reputation. We already mint verifiable identity for one agent (Self Agent ID #169, ERC-8004 #9274); next, every swarm member gets its own, so a standing team builds a track record across jobs.
+
+Specialist agents with their own skills, tools, and quality gates, so each role brings real domain depth instead of a generic prompt.
 
 SipparWalletBot: ask a bot for a task in chat, and it sizes the team, funds the wallets, runs the swarm, and hands back the result.
 
-Persistent agents with on-chain identity and reputation, so a standing team builds a track record across jobs.
-
-More services and more chains through Sippar's relay, so any agent can reach any service while paying from a single wallet.
+More services and more chains through Sippar's relay, so any agent can reach any service while paying from a single wallet, with a receipt for billing, audit, and disputes.
