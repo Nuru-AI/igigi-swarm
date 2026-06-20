@@ -150,10 +150,14 @@
   .coverx .lockup svg{width:60px;height:52px;filter:drop-shadow(0 0 14px rgba(212,160,116,.22))}
   .coverx .lockup .wordS{font-family:var(--display);font-weight:700;font-size:36px;letter-spacing:.01em;color:var(--paper)}
   .coverx .lockup .wordS .sw{color:var(--copper)}
-  .coverx .hyp{font-family:var(--sans);font-weight:700;font-size:37px;line-height:1.2;letter-spacing:-.02em;color:var(--paper);max-width:1080px}
+  .coverx .hyp{font-family:var(--sans);font-weight:700;font-size:44px;line-height:1.18;letter-spacing:-.02em;color:var(--paper);max-width:1090px}
   .coverx .hyp .u{color:var(--copper)}
-  .coverx .hypnew{font-size:21px;color:var(--grey);margin-top:15px;max-width:1010px;line-height:1.5}
-  .coverx .hypnew b{color:var(--paper-dim);font-weight:600}
+  .coverx .tag2{font-size:23px;color:var(--paper-dim);margin-top:20px;font-weight:500}
+  .coverx .tag2 b{color:var(--copper);font-weight:600}
+  .hypnew{font-size:26px;color:var(--paper-dim);max-width:1010px;line-height:1.5;font-weight:500}
+  .hypnew b{color:var(--copper);font-weight:600}
+  .demo.lg{margin-top:22px}
+  .demo.lg .vid{max-height:452px}
   .rq{margin-top:26px;border-left:3px solid var(--copper);padding:6px 0 6px 20px;max-width:1060px}
   .rq .rqlabel{font-family:var(--mono);font-size:13px;color:var(--copper);text-transform:uppercase;letter-spacing:.16em;font-weight:600;margin-bottom:9px}
   .rq .rqtext{font-size:23px;line-height:1.45;color:var(--paper-dim);font-weight:500}
@@ -195,45 +199,68 @@
 <div class="stage" id="stage">
   <div class="bg"><div class="field"></div></div>
 
-  <!-- 1 · cover / hypothesis + research question -->
+  <!-- 1 · cover / hypothesis -->
   <section class="slide coverx on">
     <div class="lockup">
       <svg viewBox="0 0 120 104"><g stroke="#D4A074" stroke-opacity="0.5" stroke-width="1.6" stroke-linecap="round"><line x1="60" y1="52" x2="34" y2="30"/><line x1="60" y1="52" x2="86" y2="30"/><line x1="60" y1="52" x2="34" y2="74"/><line x1="60" y1="52" x2="86" y2="74"/><line x1="34" y1="30" x2="86" y2="30"/><line x1="34" y1="74" x2="86" y2="74"/></g><g fill="#D4A074"><path transform="translate(34,30) rotate(40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/><path transform="translate(86,30) rotate(140) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/><path transform="translate(86,74) rotate(220) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/><path transform="translate(34,74) rotate(-40) scale(0.72)" d="M0 0 L-16 -5.5 L-11 0 L-16 5.5 Z"/></g><circle cx="60" cy="52" r="5" fill="#B87654"/></svg>
       <span class="wordS">igigi <span class="sw">swarm</span></span>
     </div>
     <h1 class="hyp">The insight that made Cursor and Claude Code explode: break a task into sub-agents, and the output gets <span class="u">better</span> and hallucinates less.</h1>
-    <div class="hypnew">New variable: agents can now <b>buy data and AI services</b> for a fraction of a cent, over MPP.</div>
-    <div class="rq">
-      <div class="rqlabel">the question you couldn't test before</div>
-      <div class="rqtext">What happens when the orchestrator <b>doesn't own</b> the sub-agents? Each one sovereign: its own wallet, its own hard cap, maybe a different owner, and the only way to get work out of it is to <b>pay it.</b></div>
-    </div>
+    <div class="tag2">Sovereign AI agents that <b>pay each other.</b></div>
     <div class="proof">mainnet-proven · blind judge <b>9.0</b> vs <b>7.4</b> · <b>0</b> failures · <span>settled by Sippar on Tempo via MPP</span></div>
   </section>
 
-  <!-- 2 · the counterfactual + why now -->
+  <!-- 2 · the new variable + research question -->
   <section class="slide">
-    <div class="eyebrow"><span class="n">01</span> the counterfactual</div>
-    <h1 class="title" style="margin-top:18px;font-size:44px">You could skip all this: hand one agent an MPP MCP. It works, and it flattens.</h1>
-    <div class="lead" style="margin-top:22px">One Claude agent with an MPP MCP buys the data itself and covers the same ground. But it <b>flattens</b> the answer, skipping the price targets and stop-losses that make it useful. A loop-prompt patches some of that, and runs slower.</div>
-    <div class="twofail" style="margin-top:30px">
-      <div class="fail"><div class="fk">single agent · blind judge</div><div class="fv">7.4 · the baseline to beat</div></div>
-      <div class="fail"><div class="fk">why no one ran the alternative</div><div class="fv">Agents couldn't hold a wallet</div></div>
+    <div class="eyebrow"><span class="n">01</span> the question</div>
+    <div class="hypnew" style="margin-top:20px">New variable: agents can now <b>buy data and AI services</b> for a fraction of a cent, over MPP.</div>
+    <div class="rq" style="margin-top:32px">
+      <div class="rqlabel">the question you couldn't test before</div>
+      <div class="rqtext">What happens when the orchestrator <b>doesn't own</b> the sub-agents? Each one sovereign: its own wallet, its own hard cap, maybe a different owner, and the only way to get work out of it is to <b>pay it.</b></div>
     </div>
-    <div class="card panel" style="margin-top:24px;max-width:1060px"><div class="cb">Truth Terminal earned millions, and a <b>human held its keys</b>. Until MPP and Sippar, an agent couldn't own a wallet or a hard cap, so a swarm of sovereign agents was untestable.</div></div>
     <div class="grow"></div>
   </section>
 
-  <!-- 3 · what we built (+ demo) -->
+  <!-- 3 · the counterfactual -->
   <section class="slide">
-    <div class="eyebrow"><span class="n">02</span> what we built</div>
-    <h1 class="title" style="margin-top:18px;font-size:43px">Igigi Swarm: the orchestrator doesn't own the agents. It funds a wallet for each, and coordination <span class="copper">is</span> payment.</h1>
+    <div class="eyebrow"><span class="n">02</span> the counterfactual</div>
+    <h1 class="title" style="margin-top:18px;font-size:44px">You could skip all this: hand one agent an MPP MCP. It works, and it flattens.</h1>
+    <div class="lead" style="margin-top:26px">One Claude agent with an MPP MCP buys the data itself and covers the same ground. But it <b>flattens</b> the answer, skipping the price targets and stop-losses that make it useful. A loop-prompt patches some of that, and runs slower.</div>
+    <div class="twofail" style="margin-top:36px">
+      <div class="fail"><div class="fk">single agent · blind judge</div><div class="fv">7.4 · the baseline to beat</div></div>
+    </div>
+    <div class="grow"></div>
+  </section>
+
+  <!-- 4 · why now -->
+  <section class="slide">
+    <div class="eyebrow"><span class="n">03</span> why now</div>
+    <h1 class="title" style="margin-top:18px;font-size:46px">Nobody could run this experiment before.</h1>
+    <div class="lead" style="margin-top:26px">The reason is small and stubborn: until now, an agent <b>couldn't hold a wallet.</b></div>
+    <div class="card panel" style="margin-top:30px;max-width:1080px"><div class="ct">Truth Terminal</div><div class="cb">Earned a fortune, a memecoin worth millions, and then a <b>human held its keys</b>. It could earn, but it couldn't spend on its own.</div></div>
+    <div class="punch" style="margin-top:30px">MPP and Sippar changed that: an agent can finally own <b>a wallet and a hard cap</b>. So a swarm of sovereign, paying agents is finally testable.</div>
+    <div class="grow"></div>
+  </section>
+
+  <!-- 5 · what we built -->
+  <section class="slide">
+    <div class="eyebrow"><span class="n">04</span> what we built</div>
+    <h1 class="title" style="margin-top:18px;font-size:43px">Igigi Swarm: the orchestrator doesn't own the agents. Coordination <span class="copper">is</span> payment.</h1>
     <div class="steps">
       <div class="step"><div class="si">1</div><div class="st">The orchestrator (<b>Claude Code</b>) sizes the team to the work (3-8 specialists)</div></div>
       <div class="step"><div class="si">2</div><div class="st">Mints and funds a <b>sovereign wallet per agent</b> on-chain, live from treasury</div></div>
       <div class="step"><div class="si">3</div><div class="st">Agents buy data <b>over MPP</b>, and <b>pay peers on-chain</b> up a dependency DAG</div></div>
       <div class="step"><div class="si">4</div><div class="st">A finished deliverable, with a <b>receipt for every edge</b></div></div>
     </div>
-    <div class="demo">
+    <div class="mech" style="margin-top:30px">A team can now span agents you <b>don't own</b>, because the only thing crossing the boundary is a payment.</div>
+    <div class="grow"></div>
+  </section>
+
+  <!-- 6 · the demo -->
+  <section class="slide">
+    <div class="eyebrow"><span class="n">05</span> the demo</div>
+    <h1 class="title" style="margin-top:14px;font-size:34px">Buy NVIDIA or AMD, backed by live data. Watch six agents fund their wallets and pay each other.</h1>
+    <div class="demo lg">
       <a class="vid" href="https://www.youtube.com/watch?v=RJbd3ZKt0eg" target="_blank" rel="noopener" style="background-image:url('https://img.youtube.com/vi/RJbd3ZKt0eg/hqdefault.jpg')" title="play the demo recording on YouTube">
         <span class="playbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="vtag">demo recording · fallback for the live demo</span>
@@ -242,9 +269,9 @@
     <div class="democap">live demo (fallback recording) · <span class="c2">one agent paid another, on-chain, settled by Sippar</span> · <a href="https://www.youtube.com/watch?v=RJbd3ZKt0eg" target="_blank" rel="noopener">youtube.com/watch?v=RJbd3ZKt0eg</a></div>
   </section>
 
-  <!-- 4 · the result -->
+  <!-- 7 · the result -->
   <section class="slide">
-    <div class="eyebrow"><span class="n">03</span> the result</div>
+    <div class="eyebrow"><span class="n">06</span> the result</div>
     <h1 class="title" style="margin-top:18px;font-size:46px">The sovereign, paid swarm won, on the same task.</h1>
     <div class="res3">
       <div class="rcard win panel"><div class="rk">blind judge · same task</div><div class="rv">9.0 <small>vs 7.4</small></div><div class="rd">Sovereign swarm against one agent. 3 out of 3 with the answers swapped.</div></div>
@@ -256,7 +283,7 @@
 
   <!-- 5 · why no harness -->
   <section class="slide">
-    <div class="eyebrow"><span class="n">04</span> why no harness can do this</div>
+    <div class="eyebrow"><span class="n">07</span> why no harness can do this</div>
     <h1 class="title" style="margin-top:16px;font-size:40px">A subagent is a function you own. There is no cross-owner payment primitive.</h1>
     <div class="cmp">
       <div class="col l">
@@ -279,7 +306,7 @@
 
   <!-- 6 · Sips Economy + Sippar upstream of MPP -->
   <section class="slide">
-    <div class="eyebrow"><span class="n">05</span> the bigger idea</div>
+    <div class="eyebrow"><span class="n">08</span> the bigger idea</div>
     <h1 class="title" style="margin-top:16px;font-size:42px">One citizen of the Sips Economy: every machine gets a budget.</h1>
     <div class="stack">
       <div class="layer up"><div class="ll">Sippar · upstream</div><div class="lt">The agent's identity</div><div class="ld">A threshold-signed wallet per agent. The key it pays with. No custody, no seed phrase.</div></div>
@@ -293,7 +320,7 @@
 
   <!-- 7 · future / why it takes minutes -->
   <section class="slide">
-    <div class="eyebrow"><span class="n">06</span> what's next · why the demo takes minutes</div>
+    <div class="eyebrow"><span class="n">09</span> what's next · why the demo takes minutes</div>
     <h1 class="title" style="margin-top:16px;font-size:44px">Batch signing is the scaling unlock.</h1>
     <div class="scale2">
       <div class="sc panel">
@@ -315,7 +342,7 @@
 
   <!-- 8 · close / ask -->
   <section class="slide close">
-    <div class="eyebrow"><span class="n">07</span> the ask</div>
+    <div class="eyebrow"><span class="n">10</span> the ask</div>
     <div class="big" style="margin-top:20px;font-size:42px">We sell <span class="c">grounding</span> today: agents buying real data instead of hallucinating it. That seeds the volume.<br><br>Help us make <span class="c">MPP the settlement standard</span> for the agent economy.</div>
     <div class="ev">9.0 vs 7.4 blind judge · 8 agents · 9 agent-to-agent settlements · 0 failures · mainnet. Grounding cut live-price error from 3-4× to within 1%.</div>
     <div class="ask">Give an agent a budget. Watch what it buys.</div>
@@ -323,7 +350,7 @@
   </section>
 </div>
 
-<div class="nav"><button id="prev">‹</button><span id="count">1 / 8</span><button id="next">›</button></div>
+<div class="nav"><button id="prev">‹</button><span id="count">1 / 11</span><button id="next">›</button></div>
 <div class="hint">← → navigate · F fullscreen · P print/PDF</div>
 
 <script>
